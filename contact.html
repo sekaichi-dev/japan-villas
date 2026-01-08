@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Japan Villas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/translations.js"></script>
+    <script src="js/data.js"></script>
+</head>
+
+<body class="contact-page">
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <nav class="nav-center">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="stays.html" class="nav-link" data-i18n="nav.destinations">Destinations</a>
+                <a href="contact.html" class="nav-link active" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="nav-right">
+                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
+                    EN</span>
+                <a href="#" class="btn-login desktop-only" data-i18n="nav.login">Login</a>
+                <button class="mobile-menu-btn" onclick="openMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="contact-main">
+
+        <section class="container contact-container" style="padding-top: 140px;">
+            <div class="contact-form-wrapper fade-in-up">
+                <h1 style="font-family: var(--font-display); font-size: 3rem; margin-bottom: 1rem;"
+                    data-i18n="contact.title">Contact Us
+                </h1>
+                <p style="color: #ccc; margin-bottom: 3rem; font-weight: 300;" data-i18n="contact.desc">Ready to plan
+                    your escape? Reach
+                    out to our concierge team.</p>
+
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label data-i18n="contact.form.name">Name</label>
+                        <input type="text" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="contact.form.email">Email</label>
+                        <input type="email" placeholder="Your Email">
+                    </div>
+                    <div class="form-group">
+                        <label data-i18n="contact.form.message">Message</label>
+                        <textarea rows="5" placeholder="How can we help?"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit" data-i18n="contact.form.send">Send Message</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="global-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <span class="footer-logo">JAPAN VILLAS.</span>
+                    <p style="opacity: 0.6; line-height: 1.6;" data-i18n="footer.desc">The new standard in Japanese
+                        luxury retreats.</p>
+                </div>
+                <!-- Standardized Footer Grid -->
+                <div class="footer-links-grid">
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.links.title">Links</h4>
+                        <a href="index.html" data-i18n="nav.home">Home</a>
+                        <a href="stays.html" data-i18n="nav.destinations">Destinations</a>
+                        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.social.title">Social</h4>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Facebook</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.legal.title">Legal</h4>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2025 Japan Villas. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <button class="btn-close-menu" onclick="closeMenu()">×</button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">Home</a>
+            <a href="stays.html" onclick="closeMenu()" data-i18n="nav.destinations">Destinations</a>
+            <a href="contact.html" onclick="closeMenu()" data-i18n="nav.contact">Contact</a>
+            <a href="#" class="mobile-login" onclick="closeMenu()" data-i18n="nav.login">Login</a>
+        </div>
+    </div>
+    <script src="js/app.js"></script>
+</body>
+
+</html>

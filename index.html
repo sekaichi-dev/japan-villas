@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan Villas | Experience importance</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css"> <!-- Dark theme -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/translations.js"></script>
+    <script src="js/dataLoader.js"></script> <!-- Async Loader -->
+    <script src="js/app.js"></script>
+</head>
+
+<body class="home-page">
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+
+            <nav class="nav-center">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="stays.html" class="nav-link" data-i18n="nav.destinations">Destinations</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+
+            <div class="nav-right">
+                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
+                    EN</span>
+                <a href="#" class="btn-login desktop-only" data-i18n="nav.login">Login</a>
+                <button class="mobile-menu-btn" onclick="openMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home View -->
+        <div id="home-view">
+            <!-- 1. Hero Visual (New) -->
+            <section class="hero-visual">
+                <div id="hero-slideshow" class="hero-slideshow"></div>
+                <h1 class="hero-headline"><span data-i18n="hero.headline">The New Standard</span><br><span
+                        style="font-size: 0.6em; font-weight: 300; display: block; margin-top: 0.5rem; letter-spacing: 0.05em;"
+                        data-i18n="hero.deadline_sub">in
+                        Japanese Retreats</span></h1>
+
+                <!-- Floating Search Bar -->
+                <div class="hero-search-container">
+                    <div class="search-field desktop-only">
+                        <span class="search-label" data-i18n="search.location">Location</span>
+                        <span class="search-value" data-i18n="search.location.val">Anywhere</span>
+                    </div>
+                    <div class="search-field desktop-only">
+                        <span class="search-label" data-i18n="search.dates">Dates</span>
+                        <span class="search-value" data-i18n="search.dates.val">Add dates</span>
+                    </div>
+                    <div class="search-field desktop-only">
+                        <span class="search-label" data-i18n="search.guests">Guests</span>
+                        <span class="search-value" data-i18n="search.guests.val">Add guests</span>
+                    </div>
+
+                    <!-- Mobile Trigger -->
+                    <div class="mobile-search-trigger" onclick="openSearch()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <span class="search-text" data-i18n="mobile.search.trigger">Start Your Search</span>
+                    </div>
+
+                    <button class="search-btn desktop-only">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </button>
+                </div>
+                <!-- Scroll Indicator -->
+                <div class="scroll-indicator">
+                    <span class="scroll-text">Scroll to Explore</span>
+                    <div class="scroll-arrow"></div>
+                </div>
+            </section>
+
+            <!-- 2. Map Section (Existing but shifted) -->
+            <section class="hero">
+                <!-- Mapbox Container (Fixed to window) -->
+                <div id="mapbox-container"></div>
+                <!-- Token & Controls (hidden/adjusted) -->
+                <div id="token-prompt"
+                    style="position:fixed; bottom:20px; left:20px; z-index:1000; background:rgba(0,0,0,0.8); padding:1rem; border-radius:8px; display:none;">
+                    <p style="font-size:0.8rem; margin-bottom:0.5rem; color:#fff;">Enter Mapbox Token to View Map</p>
+                    <input type="text" id="mapbox-token-input" placeholder="pk.ey..."
+                        style="padding:4px; border-radius:4px; border:none;">
+                    <button id="mapbox-token-btn" style="padding:4px 8px; cursor:pointer;">Go</button>
+                    <p style="font-size:0.7rem; color:#aaa; margin-top:4px;">(This is a client-side demo only)</p>
+                </div>
+
+                <div class="hero-content">
+                    <span class="subtitle" style="letter-spacing: 0.3em; opacity: 0.8;"
+                        data-i18n="hero.subtitle">JAPANVILLAS</span>
+                    <h2 style="font-size: 3rem; text-shadow: 0 4px 20px rgba(0,0,0,0.5); font-weight: 400; margin-bottom:1rem;"
+                        data-i18n="hero.headline">
+                        Luxury stays across Japan</h2>
+                    <p style="text-shadow: 0 2px 10px rgba(0,0,0,0.5); font-family:var(--font-main); font-weight: 300; letter-spacing: 0.05em; color: #ccc;"
+                        data-i18n="hero.desc">
+                        Curated villas, lakeside retreats, and coastal escapes.</p>
+                </div>
+            </section>
+
+            <section class="featured container" style="position: relative; z-index: 2;" id="stays">
+                <div class="welcome-section">
+                    <div class="flex-center" style="margin-bottom: 1rem; text-align: center;">
+                        <h2 style="font-family:var(--font-display); font-size:2.5rem; letter-spacing:-0.02em; line-height: 1.2;"
+                            data-i18n="welcome.title">
+                            Welcome to Japan Villas</h2>
+                    </div>
+                </div>
+                <div id="featured-grid" class="grid grid-3">
+                    <!-- Injected via JS -->
+                </div>
+            </section>
+        </div>
+
+        <!-- Detail View Overlay (Initially Hidden) -->
+        <div id="detail-view" class="detail-overlay">
+            <button id="close-detail" class="btn-close">×</button>
+            <div id="detail-content">
+                <!-- Injected via JS -->
+            </div>
+        </div>
+    </main>
+
+    <footer class="global-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-left">
+                    <span class="footer-logo">JAPAN VILLAS.</span>
+                    <p style="opacity: 0.6; line-height: 1.6;" data-i18n="footer.desc">The new standard in Japanese
+                        luxury retreats.</p>
+                </div>
+                <div class="footer-links-grid">
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.links.title">Links</h4>
+                        <a href="index.html" data-i18n="nav.home">Home</a>
+                        <a href="stays.html" data-i18n="nav.destinations">Destinations</a>
+                        <a href="contact.html" data-i18n="nav.contact">Contact</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.social.title">Social</h4>
+                        <a href="#">Instagram</a>
+                        <a href="#">Twitter</a>
+                        <a href="#">Facebook</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4 data-i18n="footer.legal.title">Legal</h4>
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p data-i18n="footer.copyright">© 2025 Japan Villas. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Mobile Search Modal -->
+    <div id="search-modal" class="search-modal">
+        <div class="search-modal-header">
+            <button class="btn-close-search" onclick="closeSearch()">×</button>
+            <span data-i18n="search.btn">Search</span>
+            <div style="width: 24px;"></div> <!-- Spacer -->
+        </div>
+        <div class="search-modal-body">
+            <div class="search-input-group">
+                <label data-i18n="search.location">Where</label>
+                <input type="text" placeholder="Search destinations" class="search-input">
+            </div>
+            <div class="search-input-group">
+                <label data-i18n="search.dates">When</label>
+                <div class="date-display" data-i18n="search.dates.val">Add dates</div>
+            </div>
+            <div class="search-input-group">
+                <label data-i18n="search.guests">Who</label>
+                <div class="guest-display" data-i18n="search.guests.val">Add guests</div>
+            </div>
+
+            <div class="search-filters-section">
+                <h3>Filters</h3>
+                <div class="filter-chips">
+                    <button class="filter-chip" data-i18n="stays.filter.mountain">Mountain</button>
+                    <button class="filter-chip" data-i18n="stays.filter.ocean">Ocean</button>
+                    <button class="filter-chip" data-i18n="stays.filter.lake">Lake</button>
+                    <button class="filter-chip" data-i18n="stays.filter.city">City</button>
+                </div>
+            </div>
+        </div>
+        <div class="search-modal-footer">
+            <button class="btn-clear" onclick="clearSearch()">Clear</button>
+            <button class="btn-search-submit" onclick="closeSearch()" data-i18n="search.btn">Search</button>
+        </div>
+    </div>
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <button class="btn-close-menu" onclick="closeMenu()">×</button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">Home</a>
+            <a href="stays.html" onclick="closeMenu()" data-i18n="nav.destinations">Destinations</a>
+            <a href="contact.html" onclick="closeMenu()" data-i18n="nav.contact">Contact</a>
+            <a href="#" class="mobile-login" onclick="closeMenu()" data-i18n="nav.login">Login</a>
+        </div>
+    </div>
+</body>
+
+</html>

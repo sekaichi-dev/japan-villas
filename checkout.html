@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirm and pay | Japan Villas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Checkout specific overrides */
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .checkout-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            /* Top padding for fixed header */
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+                padding-top: 6rem;
+            }
+
+            .checkout-summary {
+                order: -1;
+                /* Summary first on mobile? Wander usually keeps summary handy or collapsible. Let's keep it top or bottom? Wander on mobile actually puts summary at top usually or collapsible. */
+            }
+        }
+
+        .checkout-title {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-section {
+            margin-bottom: 3rem;
+        }
+
+        .step-header {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-display);
+        }
+
+        .payment-option-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        .payment-option-card.selected {
+            border-color: #fff;
+            background: #222;
+        }
+
+        .radio-circle {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            border: 2px solid #666;
+            position: relative;
+        }
+
+        .payment-option-card.selected .radio-circle {
+            border-color: #fff;
+        }
+
+        .payment-option-card.selected .radio-circle::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #fff;
+        }
+
+        .pay-section-placeholder {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 4rem 2rem;
+            text-align: center;
+            color: #666;
+        }
+
+        /* Summary Box */
+        .summary-box {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            padding: 1.5rem;
+            position: sticky;
+            top: 2rem;
+        }
+
+        .prop-mini-header {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .prop-mini-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .prop-mini-info h3 {
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            font-family: var(--font-display);
+        }
+
+        .prop-mini-info p {
+            font-size: 0.8rem;
+            color: #888;
+        }
+
+        .trip-detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .trip-detail-label {
+            color: #ddd;
+            font-size: 0.95rem;
+        }
+
+        .trip-detail-change {
+            font-size: 0.8rem;
+            text-decoration: underline;
+            color: #888;
+            cursor: pointer;
+        }
+
+        .price-breakdown {
+            margin-top: 2rem;
+            border-top: 1px solid #333;
+            padding-top: 1.5rem;
+        }
+
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.75rem;
+            font-size: 0.95rem;
+            color: #aaa;
+        }
+
+        .price-row.total {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+            border-top: 1px solid #444;
+            padding-top: 1rem;
+        }
+
+        .risk-free-badge {
+            margin-top: 1.5rem;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1rem;
+            display: flex;
+            gap: 0.75rem;
+            align-items: flex-start;
+        }
+
+        .badge-icon {
+            color: #4CAF50;
+        }
+
+        .next-btn {
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            float: right;
+        }
+
+        /* Auth Styles */
+        .social-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .social-btn {
+            flex: 1;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 0.8rem;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .social-btn:hover {
+            background: #333;
+        }
+
+        .auth-divider {
+            position: relative;
+            text-align: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid #333;
+            line-height: 0;
+        }
+
+        .auth-divider span {
+            background: #000;
+            padding: 0 1rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .auth-input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1rem;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .auth-input:focus {
+            border-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Standard Header -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+
+            <nav class="nav-center">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="stays.html" class="nav-link" data-i18n="nav.destinations">Destinations</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+
+            <div class="nav-right">
+                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
+                    EN</span>
+                <a href="#" class="btn-login desktop-only" data-i18n="nav.login">Login</a>
+                <button class="mobile-menu-btn" onclick="openMenu()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="3" y1="12" x2="21" y2="12"></line>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <line x1="3" y1="18" x2="21" y2="18"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="checkout-container">
+        <!-- Left Column -->
+        <div class="checkout-main">
+            <h1 class="checkout-title">Confirm and pay</h1>
+
+            <h2 class="step-header">1. Sign in or sign up</h2>
+            <div class="auth-section">
+                <p style="color:#aaa; margin-bottom:1.5rem;">Create a free account or sign in to continue. We will never
+                    sell your personal information.</p>
+
+                <div class="social-buttons">
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M17.05 20.28c-.98.95-2.05.88-3.08.36-1.09-.56-2.13-.48-3.08.48-1.04.96-2.08.6-3.08.36-1.63-.36-2.58-2.61-3.6-5.87-1.42-4.54 1.14-8.08 4.29-8.35 1.05-.1 2.05.48 2.58.72 1.02.48 1.93.36 2.45.12 2.65-.96 4.34 1.25 4.96 1.83-2.11 1.08-1.89 4.34 1.05 5.27-.47 2.22-1.43 4.19-2.49 5.08zM12.03 7.25c-.15-2.23 1.63-4.08 3.7-4.25.26 2.41-2.12 4.29-3.7 4.25z" />
+                        </svg>
+                        <span>Continue with Apple</span>
+                    </button>
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-2.15-.15-2.15z" />
+                        </svg>
+                        <span>Continue with Google</span>
+                    </button>
+                    <button class="social-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95z" />
+                        </svg>
+                        <span>Continue with Facebook</span>
+                    </button>
+                </div>
+
+                <div class="auth-divider">
+                    <span>OR</span>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" placeholder="Enter email address" class="auth-input">
+                </div>
+
+                <button class="next-btn" style="width:100%; float:none;" id="btn-login-continue">Continue</button>
+
+                <div
+                    style="margin-top:1.5rem; display:flex; align-items:center; gap:0.5rem; justify-content:center; opacity:0.8;">
+                    <div style="display:flex; margin-left:-0.5rem;">
+                        <!-- Fake avatars -->
+                        <div
+                            style="width:24px; height:24px; background:#555; border-radius:50%; border:2px solid #000; margin-left:-8px;">
+                        </div>
+                        <div
+                            style="width:24px; height:24px; background:#777; border-radius:50%; border:2px solid #000; margin-left:-8px;">
+                        </div>
+                        <div
+                            style="width:24px; height:24px; background:#999; border-radius:50%; border:2px solid #000; margin-left:-8px;">
+                        </div>
+                        <div
+                            style="width:24px; height:24px; background:#bbb; border-radius:50%; border:2px solid #000; margin-left:-8px;">
+                        </div>
+                    </div>
+                    <span style="font-size:0.85rem; color:#aaa;">Join 650,000+ happy travelers...</span>
+                </div>
+            </div>
+
+            <div class="step-section">
+                <h2 class="step-header">2. Pay for your trip</h2>
+                <div class="pay-section-placeholder">
+                    Payment Form Integration Placeholder
+                </div>
+                <button class="next-btn">Confirm and Pay</button>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="checkout-summary">
+            <div class="summary-box">
+                <h3 style="margin-bottom:1.5rem; font-size:1.1rem;">Trip details</h3>
+
+                <div class="prop-mini-header">
+                    <img id="summary-img" src="" alt="Property" class="prop-mini-img">
+                    <div class="prop-mini-info">
+                        <h3 id="summary-name">Loading...</h3>
+                        <p id="summary-location">Loading...</p>
+                        <div id="summary-stats" style="margin-top:0.5rem; font-size:0.8rem; color:#888;">
+                            <!-- populated by JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="trip-detail-row">
+                    <div class="trip-detail-label" id="summary-dates">Loading dates...</div>
+                    <div class="trip-detail-change">Change</div>
+                </div>
+
+                <div class="trip-detail-row">
+                    <div class="trip-detail-label" id="summary-guests">1 Guest</div>
+                    <div class="trip-detail-change">Change</div>
+                </div>
+
+                <div class="price-breakdown">
+                    <h4 style="margin-bottom:1rem; font-size:1rem;">Price breakdown</h4>
+                    <div id="breakdown-lines">
+                        <!-- Populated by JS -->
+                    </div>
+                    <div class="price-row total">
+                        <span>Total (JPY)</span>
+                        <span id="summary-total">...</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="risk-free-badge">
+                <div class="badge-icon">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <div style="font-weight:500; margin-bottom:0.25rem;">Book risk-free</div>
+                    <div style="font-size:0.8rem; color:#888; line-height:1.4;">
+                        Might change your mind? Reserve now and cancel within 24 hours for a full refund.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <button class="btn-close-menu" onclick="closeMenu()">×</button>
+        </div>
+        <div class="mobile-menu-links">
+            <a href="index.html" onclick="closeMenu()" data-i18n="nav.home">Home</a>
+            <a href="stays.html" onclick="closeMenu()" data-i18n="nav.destinations">Destinations</a>
+            <a href="contact.html" onclick="closeMenu()" data-i18n="nav.contact">Contact</a>
+            <a href="#" class="mobile-login" onclick="closeMenu()" data-i18n="nav.login">Login</a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/translations.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/data.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Retrieve booking data from sessionStorage
+            const bookingData = JSON.parse(sessionStorage.getItem('bookingData'));
+
+            if (!bookingData) {
+                alert('No booking data found. Returning to home.');
+                window.location.href = '/';
+                return;
+            }
+
+            // Populate UI
+            document.getElementById('summary-name').textContent = bookingData.name;
+            document.getElementById('summary-location').textContent = bookingData.location || 'Japan';
+            document.getElementById('summary-img').src = bookingData.image;
+
+            // Stats
+            const statsEl = document.getElementById('summary-stats');
+            if (bookingData.stats) {
+                statsEl.textContent = `${bookingData.stats.beds} Beds • ${bookingData.stats.guests} Guests • ${bookingData.stats.baths} Baths`;
+            }
+
+            // Dates
+            // bookingData.dates should be formatted string or objects
+            document.getElementById('summary-dates').textContent = bookingData.dateRangeString || 'Dates selected';
+
+            // Guests
+            document.getElementById('summary-guests').textContent = `${bookingData.adults} Guest${bookingData.adults > 1 ? 's' : ''}`;
+
+            // Price Breakdown
+            const breakdownContainer = document.getElementById('breakdown-lines');
+            // Assuming bookingData has price details. If not, we might need to recalculate or pass them.
+            // Let's assume passed:
+            // bookingData.prices = { perNight: X, nights: Y, total: Z, tax: T }
+
+            if (bookingData.prices) {
+                const { perNight, nights, total } = bookingData.prices;
+                breakdownContainer.innerHTML = `
+                    <div class="price-row">
+                        <span>¥${perNight.toLocaleString()} x ${nights} nights</span>
+                        <span>¥${(perNight * nights).toLocaleString()}</span>
+                    </div>
+                    <!-- Tax line if separate? Currently API gives total? -->
+                    <!-- We'll assume tax is included or calculated separately as per previous work -->
+                    <div class="price-row">
+                        <span>Taxes & fees</span>
+                        <span>Included</span>
+                    </div>
+                `;
+                document.getElementById('summary-total').textContent = `¥${total.toLocaleString()}`;
+                document.getElementById('pay-full-amount').textContent = `Pay ¥${total.toLocaleString()}`;
+            }
+        });
+    </script>
+</body>
+
+</html>
