@@ -161,14 +161,22 @@ window.initApp = () => {
         };
 
         try {
-            // Return promise for concurrency
-            const res = await fetch(`/api/availability?roomId=${beds24RoomId}&startDate=${formatDate(today)}&endDate=${formatDate(end)}`);
-            if (!res.ok) throw new Error("API Error");
-            const json = await res.json();
-
+            // First check if property already has _availability data from initial load
             let availMap = {};
-            if (json.data && json.data.length > 0 && json.data[0].availability) {
-                availMap = json.data[0].availability;
+
+            if (property._availability && Object.keys(property._availability).length > 0) {
+                // Use pre-loaded data
+                availMap = property._availability;
+                console.log(`[fetchEarliestDate] Using pre-loaded availability for room ${beds24RoomId}`);
+            } else {
+                // Fetch from API - use /api/beds24-availability (the working endpoint)
+                const res = await fetch(`/api/beds24-availability?roomId=${beds24RoomId}&startDate=${formatDate(today)}&endDate=${formatDate(end)}`);
+                if (!res.ok) throw new Error(`API Error ${res.status}`);
+                const json = await res.json();
+
+                if (json.data && json.data.length > 0 && json.data[0].availability) {
+                    availMap = json.data[0].availability;
+                }
             }
 
             // Find first available date
@@ -460,9 +468,13 @@ window.initApp = () => {
                 const startStr = getLocalISODate(currentStart);
                 const endStr = getLocalISODate(currentEnd);
 
-                const res = await fetch(`/api/beds24/price?roomId=${beds24RoomId}&arrival=${startStr}&departure=${endStr}&numAdults=${numAdults}`);
-                if (!res.ok) throw new Error("Price API not reachable");
+                const res = await fetch(`/api/beds24-price?roomId=${beds24RoomId}&arrival=${startStr}&departure=${endStr}&numAdults=${numAdults}`);
+                if (!res.ok) {
+                    console.error(`[Price API] Error ${res.status}: ${res.statusText}`);
+                    throw new Error("Price API not reachable");
+                }
                 const json = await res.json();
+                console.log("[Price API] Success:", json);
 
                 // Logic: Find lowest price offer
                 let bestOffer = null;
@@ -572,9 +584,13 @@ window.initApp = () => {
         // Helper to fetch (Real + Mock Fallback)
         const fetchAvailability = async (start, end) => {
             try {
-                const res = await fetch(`/api/beds24/availability?roomId=${beds24RoomId}&startDate=${formatDate(start)}&endDate=${formatDate(end)}`);
-                if (!res.ok) throw new Error("API not reachable");
+                const res = await fetch(`/api/beds24-availability?roomId=${beds24RoomId}&startDate=${formatDate(start)}&endDate=${formatDate(end)}`);
+                if (!res.ok) {
+                    console.error(`[Availability API] Error ${res.status}: ${res.statusText}`);
+                    throw new Error("API not reachable");
+                }
                 const json = await res.json();
+                console.log("[Availability API] Success:", json);
 
                 if (json.data && json.data.length > 0 && json.data[0].availability) {
                     Object.assign(cachedAvailability, json.data[0].availability);
@@ -608,6 +624,40 @@ window.initApp = () => {
             return d.getFullYear() + '-' + z(d.getMonth() + 1) + '-' + z(d.getDate());
         };
 
+        // Find the earliest available date in the availability map
+        // This helps determine which dates should be fully disabled
+        let earliestAvailableDate = null;
+        const today = new Date();
+        const tomorrow = new Date(today);
+        tomorrow.setDate(today.getDate() + 1);
+
+        // Scan next 90 days to find earliest available date
+        for (let i = 0; i < 90; i++) {
+            const checkDate = new Date(tomorrow);
+            checkDate.setDate(tomorrow.getDate() + i);
+            const key = getLocalISODate(checkDate);
+            const avail = availabilityMap[key];
+
+            // Check if this date is available
+            let isAvail = false;
+            if (avail === undefined) {
+                isAvail = true; // Default to available if no data
+            } else if (typeof avail === 'boolean') {
+                isAvail = avail;
+            } else if (avail && typeof avail === 'object') {
+                if (avail.status == 0) isAvail = false;
+                else if ('quantity' in avail) isAvail = parseInt(avail.quantity) > 0;
+                else isAvail = true;
+            }
+
+            if (isAvail) {
+                earliestAvailableDate = new Date(checkDate);
+                break;
+            }
+        }
+
+        console.log('[Calendar] Earliest available date:', earliestAvailableDate ? getLocalISODate(earliestAvailableDate) : 'none found');
+
         // Strict Bookability Check (Is this night sleepable?)
         const isBookable = (d) => {
             const key = getLocalISODate(d);
@@ -627,6 +677,15 @@ window.initApp = () => {
                 return true; // Default to open
             }
             return true;
+        };
+
+        // Check if a date is before the earliest available check-in
+        const isBeforeEarliestCheckin = (d) => {
+            if (!earliestAvailableDate) return false;
+            // Compare date only (not time)
+            const dDate = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+            const earliestDate = new Date(earliestAvailableDate.getFullYear(), earliestAvailableDate.getMonth(), earliestAvailableDate.getDate());
+            return dDate < earliestDate;
         };
 
         // Tooltip Helpers
@@ -672,16 +731,22 @@ window.initApp = () => {
             appendTo: container,
             disable: [
                 (date) => {
+                    // Dates before earliest available check-in are always disabled
+                    if (isBeforeEarliestCheckin(date)) return true;
+
                     const currentOk = isBookable(date);
 
                     // 1. If currently available, always enabled
                     if (currentOk) return false;
 
-                    // 2. [NEW] Enable Checkout-Only dates (Prev available, current not)
+                    // 2. Enable Checkout-Only dates (Prev available, current not)
                     // This allows clicking them as an end date.
+                    // But ONLY if the previous day is actually after the earliest check-in
                     const prevDate = new Date(date);
                     prevDate.setDate(date.getDate() - 1);
-                    if (isBookable(prevDate)) return false;
+
+                    // Only allow checkout-only if prev day is bookable AND not before earliest
+                    if (isBookable(prevDate) && !isBeforeEarliestCheckin(prevDate)) return false;
 
                     return true; // Disabled otherwise
                 }
@@ -693,6 +758,18 @@ window.initApp = () => {
                 dayElem.title = ""; // Disable native tooltip
 
                 const date = dayElem.dateObj;
+
+                // Skip processing for dates before earliest available
+                if (isBeforeEarliestCheckin(date)) {
+                    // These dates should show as unavailable, not checkout-only
+                    if (!dayElem.classList.contains("flatpickr-disabled")) {
+                        dayElem.classList.add("flatpickr-disabled");
+                    }
+                    dayElem.addEventListener('mouseenter', (e) => showTooltip(e, "Unavailable"));
+                    dayElem.addEventListener('mouseleave', hideTooltip);
+                    return;
+                }
+
                 let isCheckoutOnly = false;
 
                 // Determine if Checkout Only (Prev Day Available + Current Day Unavailable)
@@ -700,8 +777,11 @@ window.initApp = () => {
                 const prevDate = new Date(date);
                 prevDate.setDate(date.getDate() - 1);
 
-                // Only check if current is unavailable (otherwise it's just available)
-                if (!isBookable(date) && isBookable(prevDate)) {
+                // Only mark as checkout-only if:
+                // 1. Current date is unavailable
+                // 2. Previous date is bookable
+                // 3. Previous date is NOT before earliest check-in (valid booking window exists)
+                if (!isBookable(date) && isBookable(prevDate) && !isBeforeEarliestCheckin(prevDate)) {
                     isCheckoutOnly = true;
                     dayElem.classList.add('avail-checkout-only');
                 }
