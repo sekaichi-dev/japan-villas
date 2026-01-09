@@ -1,6 +1,6 @@
 async function loadProperties() {
     try {
-        const res = await fetch("/api/properties");
+        const res = await fetch("/api/beds24/properties");
         if (!res.ok) throw new Error("API not found");
         return await res.json();
     } catch (e) {

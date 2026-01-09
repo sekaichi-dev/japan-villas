@@ -460,7 +460,7 @@ window.initApp = () => {
                 const startStr = getLocalISODate(currentStart);
                 const endStr = getLocalISODate(currentEnd);
 
-                const res = await fetch(`/api/price?roomId=${beds24RoomId}&arrival=${startStr}&departure=${endStr}&numAdults=${numAdults}`);
+                const res = await fetch(`/api/beds24/price?roomId=${beds24RoomId}&arrival=${startStr}&departure=${endStr}&numAdults=${numAdults}`);
                 if (!res.ok) throw new Error("Price API not reachable");
                 const json = await res.json();
 
@@ -572,7 +572,7 @@ window.initApp = () => {
         // Helper to fetch (Real + Mock Fallback)
         const fetchAvailability = async (start, end) => {
             try {
-                const res = await fetch(`/api/availability?roomId=${beds24RoomId}&startDate=${formatDate(start)}&endDate=${formatDate(end)}`);
+                const res = await fetch(`/api/beds24/availability?roomId=${beds24RoomId}&startDate=${formatDate(start)}&endDate=${formatDate(end)}`);
                 if (!res.ok) throw new Error("API not reachable");
                 const json = await res.json();
 
