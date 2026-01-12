@@ -10,6 +10,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+    <!-- Stripe.js for secure payment processing -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- Supabase JS for authentication -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         /* Checkout specific overrides */
         body {
@@ -364,10 +368,32 @@
 
             <div class="step-section">
                 <h2 class="step-header">2. Pay for your trip</h2>
-                <div class="pay-section-placeholder">
-                    Payment Form Integration Placeholder
+                <div class="pay-section-info"
+                    style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="2">
+                            <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                            <line x1="1" y1="10" x2="23" y2="10"></line>
+                        </svg>
+                        <div>
+                            <div style="font-weight: 500;">Secure Payment via Stripe</div>
+                            <div style="font-size: 0.85rem; color: #888;">Your payment is processed securely by Stripe
+                            </div>
+                        </div>
+                    </div>
+                    <div style="font-size: 0.85rem; color: #666; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <span>💳 Visa</span>
+                        <span>💳 Mastercard</span>
+                        <span>💳 Amex</span>
+                        <span>💳 JCB</span>
+                    </div>
                 </div>
-                <button class="next-btn">Confirm and Pay</button>
+                <div id="payment-message"
+                    style="display: none; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;"></div>
+                <button class="next-btn" id="btn-checkout" style="width: 100%; float: none;">
+                    <span id="btn-checkout-text">Confirm and Pay</span>
+                    <span id="btn-checkout-loading" style="display: none;">Processing...</span>
+                </button>
             </div>
         </div>
 
@@ -443,8 +469,29 @@
     <script src="js/translations.js"></script>
     <script src="js/app.js"></script>
     <script src="js/data.js"></script>
+    <script src="js/auth.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
+        // Stripe Configuration
+        const STRIPE_PUBLISHABLE_KEY = 'pk_test_51R4JWIGDBBKX0pDfQEoMMaYOZFdivdN0lWJoBPRrW6pRH1gW1GLXMQqsjdsEnEDUgrebF5ophMmm5WgwsujOhyBM00gxs18K9H';
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check for payment result in URL params
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentStatus = urlParams.get('payment');
+            const sessionId = urlParams.get('session_id');
+
+            // Handle payment success - VERIFY against database before showing confirmation
+            if (paymentStatus === 'success' && sessionId) {
+                await handlePaymentSuccess(sessionId);
+                return;
+            } else if (paymentStatus === 'success' && !sessionId) {
+                // Success without session_id is suspicious
+                showPaymentMessage('Unable to verify payment. Please contact support.', 'error');
+                return;
+            } else if (paymentStatus === 'cancelled') {
+                showPaymentMessage('Payment was cancelled. Please try again.', 'error');
+            }
+
             // Retrieve booking data from sessionStorage
             const bookingData = JSON.parse(sessionStorage.getItem('bookingData'));
 
@@ -454,30 +501,132 @@
                 return;
             }
 
-            // Populate UI
+            // Populate checkout UI with booking data
+            populateCheckoutUI(bookingData);
+
+            // Initialize Stripe Checkout button
+            const checkoutBtn = document.getElementById('btn-checkout');
+            if (checkoutBtn) {
+                checkoutBtn.addEventListener('click', () => handleStripeCheckout(bookingData));
+            }
+        });
+
+        /**
+         * Verify payment against database and show confirmation
+         * This is CRITICAL for security - never trust URL params alone
+         */
+        async function handlePaymentSuccess(sessionId) {
+            // Show loading state
+            showPaymentMessage('Verifying your payment...', 'loading');
+
+            try {
+                // Verify the payment against our database
+                const response = await fetch(`/api/reservations/verify?session_id=${encodeURIComponent(sessionId)}`);
+                const data = await response.json();
+
+                if (data.verified && data.reservation) {
+                    // Payment is genuinely confirmed - show success UI
+                    showVerifiedSuccessUI(data.reservation);
+                    // Clear booking data
+                    sessionStorage.removeItem('bookingData');
+
+                    // Try to link reservation to logged-in user (if any)
+                    if (typeof SupabaseAuth !== 'undefined') {
+                        const user = await SupabaseAuth.getCurrentUser();
+                        if (user) {
+                            console.log('Linking reservation to user:', user.email);
+                            const linkResult = await SupabaseAuth.linkReservationToUser(sessionId);
+                            if (linkResult.success) {
+                                console.log('Reservation linked successfully');
+                            }
+                        }
+                    }
+                } else {
+                    // Verification failed - could be spoofed URL or pending webhook
+                    console.error('Payment verification failed:', data.error);
+
+                    if (data.error === 'Reservation not found') {
+                        // Webhook may not have processed yet - suggest waiting
+                        showPaymentMessage(
+                            'Payment is being processed. Please refresh in a few seconds or check your email for confirmation.',
+                            'warning'
+                        );
+                    } else {
+                        showPaymentMessage(
+                            'Unable to verify payment. Please contact support if you believe this is an error.',
+                            'error'
+                        );
+                    }
+                }
+            } catch (error) {
+                console.error('Verification error:', error);
+                showPaymentMessage('Error verifying payment. Please contact support.', 'error');
+            }
+        }
+
+        /**
+         * Show verified success UI with reservation details
+         */
+        function showVerifiedSuccessUI(reservation) {
+            // Hide the checkout form sections
+            const checkoutMain = document.querySelector('.checkout-main');
+            if (checkoutMain) {
+                checkoutMain.innerHTML = `
+                    <div class="success-container" style="text-align: center; padding: 3rem 0;">
+                        <div style="width: 80px; height: 80px; background: #1a4a1a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem;">
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#4CAF50" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                        </div>
+                        <h1 class="checkout-title" style="color: #4CAF50; margin-bottom: 1rem;">Booking Confirmed!</h1>
+                        <p style="color: #aaa; margin-bottom: 2rem; font-size: 1.1rem;">
+                            Thank you for your reservation. A confirmation email will be sent to<br>
+                            <strong style="color: #fff;">${reservation.customerEmail || 'your email address'}</strong>
+                        </p>
+                        
+                        <div style="background: #1a1a1a; border: 1px solid #333; border-radius: 12px; padding: 1.5rem; text-align: left; max-width: 400px; margin: 0 auto 2rem;">
+                            <h3 style="margin-bottom: 1rem; font-size: 1rem; color: #888;">Reservation Details</h3>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <span style="color: #888;">Confirmation ID</span>
+                                <span style="color: #fff; font-family: monospace;">${reservation.id.slice(0, 8).toUpperCase()}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <span style="color: #888;">Amount Paid</span>
+                                <span style="color: #fff; font-weight: 600;">¥${reservation.amount.toLocaleString()}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.75rem;">
+                                <span style="color: #888;">Status</span>
+                                <span style="color: #4CAF50; font-weight: 500;">${reservation.status.toUpperCase()}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between;">
+                                <span style="color: #888;">Date</span>
+                                <span style="color: #fff;">${new Date(reservation.createdAt).toLocaleDateString()}</span>
+                            </div>
+                        </div>
+                        
+                        <a href="/" class="next-btn" style="display: inline-block; text-decoration: none;">Return to Home</a>
+                    </div>
+                `;
+            }
+        }
+
+        /**
+         * Populate checkout UI with booking data
+         */
+        function populateCheckoutUI(bookingData) {
             document.getElementById('summary-name').textContent = bookingData.name;
             document.getElementById('summary-location').textContent = bookingData.location || 'Japan';
             document.getElementById('summary-img').src = bookingData.image;
 
-            // Stats
             const statsEl = document.getElementById('summary-stats');
             if (bookingData.stats) {
                 statsEl.textContent = `${bookingData.stats.beds} Beds • ${bookingData.stats.guests} Guests • ${bookingData.stats.baths} Baths`;
             }
 
-            // Dates
-            // bookingData.dates should be formatted string or objects
             document.getElementById('summary-dates').textContent = bookingData.dateRangeString || 'Dates selected';
-
-            // Guests
             document.getElementById('summary-guests').textContent = `${bookingData.adults} Guest${bookingData.adults > 1 ? 's' : ''}`;
 
-            // Price Breakdown
             const breakdownContainer = document.getElementById('breakdown-lines');
-            // Assuming bookingData has price details. If not, we might need to recalculate or pass them.
-            // Let's assume passed:
-            // bookingData.prices = { perNight: X, nights: Y, total: Z, tax: T }
-
             if (bookingData.prices) {
                 const { perNight, nights, total } = bookingData.prices;
                 breakdownContainer.innerHTML = `
@@ -485,17 +634,83 @@
                         <span>¥${perNight.toLocaleString()} x ${nights} nights</span>
                         <span>¥${(perNight * nights).toLocaleString()}</span>
                     </div>
-                    <!-- Tax line if separate? Currently API gives total? -->
-                    <!-- We'll assume tax is included or calculated separately as per previous work -->
                     <div class="price-row">
                         <span>Taxes & fees</span>
                         <span>Included</span>
                     </div>
                 `;
                 document.getElementById('summary-total').textContent = `¥${total.toLocaleString()}`;
-                document.getElementById('pay-full-amount').textContent = `Pay ¥${total.toLocaleString()}`;
+                const btnText = document.getElementById('btn-checkout-text');
+                if (btnText) {
+                    btnText.textContent = `Pay ¥${total.toLocaleString()}`;
+                }
             }
-        });
+        }
+
+        /**
+         * Display payment status message
+         */
+        function showPaymentMessage(message, type) {
+            const messageEl = document.getElementById('payment-message');
+            if (messageEl) {
+                messageEl.style.display = 'block';
+                messageEl.textContent = message;
+                const styles = {
+                    success: { bg: '#1a4a1a', border: '#4CAF50', color: '#4CAF50' },
+                    error: { bg: '#4a1a1a', border: '#f44336', color: '#f44336' },
+                    warning: { bg: '#4a3a1a', border: '#ff9800', color: '#ff9800' },
+                    loading: { bg: '#1a2a4a', border: '#2196F3', color: '#2196F3' }
+                };
+                const style = styles[type] || styles.error;
+                messageEl.style.background = style.bg;
+                messageEl.style.border = `1px solid ${style.border}`;
+                messageEl.style.color = style.color;
+            }
+        }
+
+        /**
+         * Handle Stripe Checkout redirect
+         */
+        async function handleStripeCheckout(bookingData) {
+            const checkoutBtn = document.getElementById('btn-checkout');
+            const btnText = document.getElementById('btn-checkout-text');
+            const btnLoading = document.getElementById('btn-checkout-loading');
+
+            checkoutBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'inline';
+
+            try {
+                const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
+                const paymentData = {
+                    productName: `${bookingData.name} - ${bookingData.dateRangeString}`,
+                    amount: bookingData.prices.total,
+                    currency: 'jpy'
+                };
+
+                const response = await fetch('/api/create-checkout-session', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(paymentData),
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(errorData.error || 'Failed to create checkout session');
+                }
+
+                const { sessionId } = await response.json();
+                const { error } = await stripe.redirectToCheckout({ sessionId });
+                if (error) throw new Error(error.message);
+
+            } catch (error) {
+                console.error('Checkout error:', error);
+                showPaymentMessage(`Payment error: ${error.message}`, 'error');
+                checkoutBtn.disabled = false;
+                btnText.style.display = 'inline';
+                btnLoading.style.display = 'none';
+            }
+        }
     </script>
 </body>
 

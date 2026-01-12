@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page | Japan Villas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- Translation Support -->
+    <script src="js/translations.js"></script>
+    <!-- Supabase JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+        }
+
+        .mypage-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 8rem 2rem 4rem;
+            min-height: 100vh;
+        }
+
+        .mypage-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .mypage-title {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .user-email {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn {
+            background: transparent;
+            border: 1px solid #444;
+            color: #888;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+
+        .logout-btn:hover {
+            border-color: #666;
+            color: #fff;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            color: #888;
+        }
+
+        .reservations-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .reservation-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        @media (max-width: 600px) {
+            .reservation-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .reservation-details h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-display);
+        }
+
+        .reservation-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .reservation-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .reservation-status {
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .status-paid {
+            background: #1a4a1a;
+            color: #4CAF50;
+        }
+
+        .status-confirmed {
+            background: #1a3a4a;
+            color: #2196F3;
+        }
+
+        .status-pending {
+            background: #4a3a1a;
+            color: #ff9800;
+        }
+
+        .status-cancelled {
+            background: #4a1a1a;
+            color: #f44336;
+        }
+
+        .reservation-amount {
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-family: var(--font-display);
+        }
+
+        .empty-state p {
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .browse-btn {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .loading-state {
+            text-align: center;
+            padding: 4rem;
+            color: #888;
+        }
+
+        .auth-required {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .auth-required h2 {
+            font-family: var(--font-display);
+            margin-bottom: 1rem;
+        }
+
+        .auth-required p {
+            color: #888;
+            margin-bottom: 2rem;
+        }
+
+        .login-btn {
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Skeleton Loader Styles */
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        .skeleton-line {
+            border-radius: 6px;
+            background: linear-gradient(110deg, #1f1f1f 8%, #2a2a2a 18%, #1f1f1f 33%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(110deg, #1f1f1f 8%, #2a2a2a 18%, #1f1f1f 33%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-reservation-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .skeleton-reservation-card .skeleton-line {
+            animation: shimmer 1.5s ease-in-out infinite;
+        }
+
+        .skeleton-reservation-card:nth-child(2) .skeleton-line {
+            animation-delay: 0.15s;
+        }
+
+        /* Auth Form Styles */
+        .auth-form-container {
+            max-width: 400px;
+            margin: 2rem auto 0;
+        }
+
+        .social-login-btn {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.9rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #333;
+            background: #222;
+            color: #fff;
+        }
+
+        .social-login-btn:hover {
+            background: #333;
+            border-color: #444;
+        }
+
+        .auth-divider {
+            position: relative;
+            text-align: center;
+            margin: 1.5rem 0;
+            border-bottom: 1px solid #333;
+            line-height: 0;
+        }
+
+        .auth-divider span {
+            background: #0B0B0B;
+            padding: 0 1rem;
+            color: #666;
+            font-size: 0.85rem;
+        }
+
+        .auth-input-group {
+            margin-bottom: 1rem;
+        }
+
+        .auth-input-row {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .auth-input-row .auth-input-group {
+            flex: 1;
+        }
+
+        .auth-input {
+            width: 100%;
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 0.9rem 1rem;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .auth-input:focus {
+            border-color: #fff;
+        }
+
+        .auth-input::placeholder {
+            color: #666;
+        }
+
+        .auth-submit-btn {
+            width: 100%;
+            background: #fff;
+            color: #000;
+            border: none;
+            padding: 0.9rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .auth-submit-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .auth-toggle-section {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .auth-toggle-link {
+            color: #fff;
+            text-decoration: underline;
+            margin-left: 0.5rem;
+        }
+
+        .auth-toggle-link:hover {
+            color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Standard Header -->
+    <header>
+        <div class="header-inner">
+            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <nav class="nav-center">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="stays.html" class="nav-link" data-i18n="nav.destinations">Destinations</a>
+                <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
+            </nav>
+            <div class="nav-right">
+                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
+                    EN</span>
+                <a href="/my-page.html" class="btn-login desktop-only" id="header-auth-btn" data-i18n="nav.mypage">My
+                    Page</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="mypage-container">
+        <!-- Skeleton Loading State (visible by default) -->
+        <div id="skeleton-state">
+            <div class="mypage-header">
+                <div class="skeleton-line skeleton-line-title" style="width: 200px; height: 32px;"></div>
+                <div class="user-info">
+                    <div class="skeleton-avatar"></div>
+                    <div>
+                        <div class="skeleton-line" style="width: 120px; height: 14px; margin-bottom: 6px;"></div>
+                        <div class="skeleton-line" style="width: 180px; height: 12px;"></div>
+                    </div>
+                    <div class="skeleton-line"
+                        style="width: 80px; height: 36px; border-radius: 6px; margin-left: auto;"></div>
+                </div>
+            </div>
+
+            <div class="reservations-list" style="margin-top: 2rem;">
+                <!-- Skeleton Reservation Card 1 -->
+                <div class="skeleton-reservation-card">
+                    <div class="skeleton-card-content" style="padding: 0;">
+                        <div class="skeleton-line skeleton-line-title" style="width: 60%; margin-bottom: 12px;"></div>
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="skeleton-line" style="width: 150px; height: 12px;"></div>
+                            <div class="skeleton-line" style="width: 100px; height: 12px;"></div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="skeleton-line"
+                            style="width: 80px; height: 20px; margin-left: auto; margin-bottom: 8px;"></div>
+                        <div class="skeleton-line"
+                            style="width: 60px; height: 24px; border-radius: 20px; margin-left: auto;"></div>
+                    </div>
+                </div>
+                <!-- Skeleton Reservation Card 2 -->
+                <div class="skeleton-reservation-card" style="animation-delay: 0.15s;">
+                    <div class="skeleton-card-content" style="padding: 0;">
+                        <div class="skeleton-line skeleton-line-title" style="width: 50%; margin-bottom: 12px;"></div>
+                        <div style="display: flex; gap: 1rem;">
+                            <div class="skeleton-line" style="width: 150px; height: 12px;"></div>
+                            <div class="skeleton-line" style="width: 100px; height: 12px;"></div>
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="skeleton-line"
+                            style="width: 80px; height: 20px; margin-left: auto; margin-bottom: 8px;"></div>
+                        <div class="skeleton-line"
+                            style="width: 60px; height: 24px; border-radius: 20px; margin-left: auto;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Auth Required State -->
+        <div id="auth-required" class="auth-required" style="display: none;">
+            <h2 data-i18n="mypage.signin.title">Sign in to view your reservations</h2>
+            <p data-i18n="mypage.signin.desc">Access your booking history and manage your upcoming stays.</p>
+
+            <div class="auth-form-container">
+                <!-- Google Button -->
+                <button onclick="SupabaseAuth.signInWithGoogle()" class="social-login-btn" style="cursor: pointer;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M21.35 11.1h-9.17v2.73h6.51c-.33 3.81-3.5 5.44-6.5 5.44C8.36 19.27 5 16.25 5 12c0-4.1 3.2-7.27 7.2-7.27 3.09 0 4.9 1.97 4.9 1.97L19 4.72S16.56 2 12.1 2C6.42 2 2.03 6.8 2.03 12c0 5.05 4.13 10 10.22 10 5.35 0 9.25-3.67 9.25-9.09 0-1.15-.15-2.15-.15-2.15z" />
+                    </svg>
+                    <span data-i18n="loginModal.google">Continue with Google</span>
+                </button>
+
+                <div class="auth-divider">
+                    <span data-i18n="loginModal.or">OR</span>
+                </div>
+
+                <!-- Login Form -->
+                <div id="mypage-login-form">
+                    <div class="auth-input-group">
+                        <input type="email" id="mypage-login-email" class="auth-input" placeholder="Email address"
+                            data-placeholder-i18n="loginModal.emailPlaceholder">
+                    </div>
+                    <button class="auth-submit-btn" id="mypage-login-continue-btn"
+                        data-i18n="loginModal.continue">Continue</button>
+                </div>
+
+                <!-- Signup Form (hidden by default) -->
+                <div id="mypage-signup-form" style="display: none;">
+                    <div class="auth-input-row">
+                        <div class="auth-input-group">
+                            <input type="text" id="mypage-signup-firstname" class="auth-input" placeholder="First Name"
+                                data-placeholder-i18n="loginModal.firstName">
+                        </div>
+                        <div class="auth-input-group">
+                            <input type="text" id="mypage-signup-lastname" class="auth-input" placeholder="Last Name"
+                                data-placeholder-i18n="loginModal.lastName">
+                        </div>
+                    </div>
+                    <div class="auth-input-group">
+                        <input type="email" id="mypage-signup-email" class="auth-input" placeholder="Email address"
+                            data-placeholder-i18n="loginModal.emailPlaceholder">
+                    </div>
+                    <button class="auth-submit-btn" id="mypage-signup-continue-btn"
+                        data-i18n="loginModal.signupBtn">Sign Up</button>
+                </div>
+
+                <!-- Toggle Login/Signup -->
+                <div class="auth-toggle-section" id="mypage-toggle-to-signup">
+                    <span data-i18n="loginModal.noAccount">Don't have an account?</span>
+                    <a href="#" class="auth-toggle-link" id="mypage-signup-link" data-i18n="loginModal.signup">Sign
+                        Up</a>
+                </div>
+                <div class="auth-toggle-section" id="mypage-toggle-to-login" style="display: none;">
+                    <span data-i18n="loginModal.hasAccount">Already have an account?</span>
+                    <a href="#" class="auth-toggle-link" id="mypage-login-link" data-i18n="loginModal.login">Login</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logged In State -->
+        <div id="logged-in-content" style="display: none;">
+            <div class="mypage-header">
+                <h1 class="mypage-title" data-i18n="mypage.title">My Reservations</h1>
+                <div class="user-info">
+                    <div class="user-avatar" id="user-avatar">?</div>
+                    <div>
+                        <div id="user-name" style="font-weight: 500;">User</div>
+                        <div class="user-email" id="user-email">email@example.com</div>
+                    </div>
+                    <button class="logout-btn" id="logout-btn" data-i18n="mypage.signout">Sign Out</button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="loading-state" data-i18n="mypage.loading">
+                Loading your reservations...
+            </div>
+
+            <!-- Reservations List -->
+            <div id="reservations-container" style="display: none;">
+                <h2 class="section-title" data-i18n="mypage.bookings.title">Your Bookings</h2>
+                <div id="reservations-list" class="reservations-list">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <h3 data-i18n="mypage.empty.title">No reservations yet</h3>
+                <p data-i18n="mypage.empty.desc">Start exploring our beautiful properties in Japan.</p>
+                <a href="/stays.html" class="browse-btn" data-i18n="mypage.empty.btn">Browse Properties</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const skeletonState = document.getElementById('skeleton-state');
+
+            // Check authentication
+            const user = await SupabaseAuth.getCurrentUser();
+
+            // Hide skeleton once we know the auth state
+            if (skeletonState) {
+                skeletonState.style.display = 'none';
+            }
+
+            if (!user) {
+                // Show auth required state
+                document.getElementById('auth-required').style.display = 'block';
+
+                // Set up auth form toggle handlers
+                setupMypageAuthHandlers();
+                return;
+            }
+
+            // Show logged in content
+            document.getElementById('logged-in-content').style.display = 'block';
+
+            // Update user info
+            document.getElementById('user-email').textContent = user.email;
+            document.getElementById('user-name').textContent = user.user_metadata?.full_name || user.email.split('@')[0];
+            document.getElementById('user-avatar').textContent = (user.email[0] || '?').toUpperCase();
+
+            // Update header button
+            const headerBtn = document.getElementById('header-auth-btn');
+            if (headerBtn) {
+                headerBtn.textContent = 'My Page';
+                headerBtn.href = '/my-page.html';
+            }
+
+            // Handle logout
+            document.getElementById('logout-btn').addEventListener('click', async () => {
+                await SupabaseAuth.signOut();
+                window.location.href = '/';
+            });
+
+            // Fetch reservations
+            await loadReservations();
+        });
+
+        function setupMypageAuthHandlers() {
+            // Toggle to signup
+            const signupLink = document.getElementById('mypage-signup-link');
+            if (signupLink) {
+                signupLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('mypage-login-form').style.display = 'none';
+                    document.getElementById('mypage-signup-form').style.display = 'block';
+                    document.getElementById('mypage-toggle-to-signup').style.display = 'none';
+                    document.getElementById('mypage-toggle-to-login').style.display = 'block';
+                });
+            }
+
+            // Toggle to login
+            const loginLink = document.getElementById('mypage-login-link');
+            if (loginLink) {
+                loginLink.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    document.getElementById('mypage-login-form').style.display = 'block';
+                    document.getElementById('mypage-signup-form').style.display = 'none';
+                    document.getElementById('mypage-toggle-to-signup').style.display = 'block';
+                    document.getElementById('mypage-toggle-to-login').style.display = 'none';
+                });
+            }
+
+            // Email login button
+            const loginContinueBtn = document.getElementById('mypage-login-continue-btn');
+            if (loginContinueBtn) {
+                loginContinueBtn.addEventListener('click', async (e) => {
+                    const email = document.getElementById('mypage-login-email').value;
+                    const btn = e.currentTarget;
+                    if (!email) {
+                        alert('Please enter your email address.');
+                        return;
+                    }
+
+                    btn.disabled = true;
+                    const originalBtnText = btn.textContent;
+                    btn.textContent = window.currentLang === 'jp' ? '送信中...' : 'Sending...';
+
+                    const result = await SupabaseAuth.signInWithEmail(email);
+                    if (result.success) {
+                        showMypageOTP(email, 'email');
+                    } else {
+                        alert('Error: ' + result.error);
+                        btn.disabled = false;
+                        btn.textContent = originalBtnText;
+                    }
+                });
+            }
+
+            // Signup button
+            const signupContinueBtn = document.getElementById('mypage-signup-continue-btn');
+            if (signupContinueBtn) {
+                signupContinueBtn.addEventListener('click', async (e) => {
+                    const firstName = document.getElementById('mypage-signup-firstname').value;
+                    const lastName = document.getElementById('mypage-signup-lastname').value;
+                    const email = document.getElementById('mypage-signup-email').value;
+                    const btn = e.currentTarget;
+
+                    if (!firstName || !lastName || !email) {
+                        alert('Please fill in all fields.');
+                        return;
+                    }
+
+                    btn.disabled = true;
+                    const originalBtnText = btn.textContent;
+                    btn.textContent = window.currentLang === 'jp' ? '送信中...' : 'Sending...';
+
+                    const result = await SupabaseAuth.signUpWithEmail(email, firstName, lastName);
+                    if (result.success) {
+                        showMypageOTP(email, 'signup');
+                    } else {
+                        alert('Error: ' + result.error);
+                        btn.disabled = false;
+                        btn.textContent = originalBtnText;
+                    }
+                });
+            }
+
+            /**
+             * Show OTP entry state in the My Page widget
+             * @param {string} email - The email to verify
+             * @param {string} type - 'email' for login, 'signup' for new user
+             */
+            function showMypageOTP(email, type = 'email') {
+                const isJP = window.currentLang === 'jp';
+                const container = document.querySelector('#auth-required .auth-form-container');
+                if (container) {
+                    container.innerHTML = `
+                        <div style="text-align: center; padding: 2rem 0;">
+                            <div style="font-size: 3rem; margin-bottom: 1.5rem;">🔢</div>
+                            <h2 style="margin-bottom: 1rem;">${isJP ? '確認コードを入力' : 'Enter Verification Code'}</h2>
+                            <p style="color: #aaa; margin-bottom: 2rem; line-height: 1.6;">
+                                ${isJP
+                            ? `<strong>${email}</strong> 宛に送信された6桁の確認コードを入力してください。`
+                            : `Please enter the 6-digit verification code sent to <strong>${email}</strong>.`}
+                            </p>
+                            <div class="auth-input-group">
+                                <input type="text" id="mypage-otp-input" class="auth-input" placeholder="000000" maxlength="6" style="text-align: center; font-size: 1.5rem; letter-spacing: 0.5rem; font-weight: bold;">
+                            </div>
+                            <button class="auth-submit-btn" id="mypage-verify-btn">${isJP ? '確認する' : 'Verify'}</button>
+                            <div class="auth-toggle-section" style="margin-top: 1rem;">
+                                <a href="#" class="auth-toggle-link" onclick="location.reload()">${isJP ? '戻る' : 'Back'}</a>
+                            </div>
+                        </div>
+                    `;
+
+                    const verifyBtn = document.getElementById('mypage-verify-btn');
+                    const otpInput = document.getElementById('mypage-otp-input');
+
+                    verifyBtn.addEventListener('click', async () => {
+                        const token = otpInput.value.trim();
+                        if (token.length !== 6) {
+                            alert(isJP ? '6桁のコードを入力してください。' : 'Please enter a 6-digit code.');
+                            return;
+                        }
+
+                        verifyBtn.disabled = true;
+                        const originalText = verifyBtn.textContent;
+                        verifyBtn.textContent = isJP ? '検証中...' : 'Verifying...';
+
+                        const result = await SupabaseAuth.verifyOTP(email, token, type);
+
+                        if (result.success) {
+                            container.innerHTML = `
+                                <div style="text-align: center; padding: 2rem 0;">
+                                    <div style="font-size: 3rem; margin-bottom: 1.5rem;">🎉</div>
+                                    <h2 style="margin-bottom: 1rem;">${isJP ? '認証成功' : 'Verified!'}</h2>
+                                    <p style="color: #aaa; margin-bottom: 2rem;">
+                                        ${isJP ? 'ログインが完了しました。' : 'You have been successfully signed in.'}
+                                    </p>
+                                    <button class="auth-submit-btn" onclick="location.reload()">${isJP ? '完了' : 'Done'}</button>
+                                </div>
+                            `;
+                        } else {
+                            alert('Error: ' + result.error);
+                            verifyBtn.disabled = false;
+                            verifyBtn.textContent = originalText;
+                        }
+                    });
+
+                    otpInput.focus();
+                }
+            }
+        }
+
+        async function loadReservations() {
+            const loadingState = document.getElementById('loading-state');
+            const reservationsContainer = document.getElementById('reservations-container');
+            const emptyState = document.getElementById('empty-state');
+            const reservationsList = document.getElementById('reservations-list');
+
+            try {
+                const reservations = await SupabaseAuth.getMyReservations();
+
+                loadingState.style.display = 'none';
+
+                if (reservations.length === 0) {
+                    emptyState.style.display = 'block';
+                    return;
+                }
+
+                reservationsContainer.style.display = 'block';
+                reservationsList.innerHTML = reservations.map(r => createReservationCard(r)).join('');
+
+            } catch (error) {
+                console.error('Error loading reservations:', error);
+                loadingState.textContent = 'Error loading reservations. Please try again.';
+            }
+        }
+
+        function createReservationCard(reservation) {
+            const statusClass = `status-${reservation.status}`;
+            const amount = reservation.amount?.toLocaleString() || '—';
+            const currency = reservation.currency?.toUpperCase() || 'JPY';
+            const date = reservation.createdAt ? new Date(reservation.createdAt).toLocaleDateString() : '—';
+            const propertyName = reservation.propertyName || 'Japan Villa Reservation';
+            const confirmationId = reservation.id?.slice(0, 8).toUpperCase() || '—';
+
+            let dateRange = '';
+            if (reservation.checkInDate && reservation.checkOutDate) {
+                const checkIn = new Date(reservation.checkInDate).toLocaleDateString();
+                const checkOut = new Date(reservation.checkOutDate).toLocaleDateString();
+                dateRange = `${checkIn} → ${checkOut}`;
+            }
+
+            return `
+                <div class="reservation-card">
+                    <div class="reservation-details">
+                        <h3>${propertyName}</h3>
+                        <div class="reservation-meta">
+                            <span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                    <line x1="16" y1="2" x2="16" y2="6"></line>
+                                    <line x1="8" y1="2" x2="8" y2="6"></line>
+                                    <line x1="3" y1="10" x2="21" y2="10"></line>
+                                </svg>
+                                ${dateRange || date}
+                            </span>
+                            <span>
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                                </svg>
+                                #${confirmationId}
+                            </span>
+                            ${reservation.guests ? `<span>👤 ${reservation.guests} guests</span>` : ''}
+                        </div>
+                    </div>
+                    <div style="text-align: right;">
+                        <div class="reservation-amount">¥${amount}</div>
+                        <span class="reservation-status ${statusClass}">${reservation.status}</span>
+                    </div>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

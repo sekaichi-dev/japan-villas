@@ -4,6 +4,7 @@ window.translations = {
         "nav.destinations": "Destinations",
         "nav.contact": "Contact",
         "nav.login": "Login",
+        "nav.mypage": "My Page",
         "nav.lang": "JP / EN",
 
         "hero.subtitle": "JAPANVILLAS",
@@ -48,12 +49,40 @@ window.translations = {
         "login.btn": "Login",
         "login.signup": "Sign Up",
         "login.close": "Close",
+
+        "mypage.title": "My Reservations",
+        "mypage.signout": "Sign Out",
+        "mypage.loading": "Loading your reservations...",
+        "mypage.signin.title": "Sign in to view your reservations",
+        "mypage.signin.desc": "Access your booking history and manage your upcoming stays.",
+        "mypage.signin.btn": "Sign in with Google",
+        "mypage.bookings.title": "Your Bookings",
+        "mypage.empty.title": "No reservations yet",
+        "mypage.empty.btn": "Browse Properties",
+
+        "dropdown.mypage": "My Page",
+        "dropdown.switch": "Switch Account",
+        "dropdown.signout": "Sign Out",
+
+        "loginModal.title": "Login / Sign Up",
+        "loginModal.google": "Continue with Google",
+        "loginModal.or": "OR",
+        "loginModal.emailPlaceholder": "Email address",
+        "loginModal.continue": "Continue",
+        "loginModal.firstName": "First Name",
+        "loginModal.lastName": "Last Name",
+        "loginModal.signupBtn": "Sign Up",
+        "loginModal.noAccount": "Don't have an account?",
+        "loginModal.signup": "Sign Up",
+        "loginModal.hasAccount": "Already have an account?",
+        "loginModal.login": "Login",
     },
     jp: {
         "nav.home": "ホーム",
         "nav.destinations": "宿泊施設",
         "nav.contact": "お問い合わせ",
         "nav.login": "ログイン",
+        "nav.mypage": "マイページ",
         "nav.lang": "JP / EN",
 
         "hero.subtitle": "JAPANVILLAS",
@@ -98,5 +127,66 @@ window.translations = {
         "login.btn": "ログイン",
         "login.signup": "サインアップ",
         "login.close": "閉じる",
+
+        "mypage.title": "予約一覧",
+        "mypage.signout": "ログアウト",
+        "mypage.loading": "予約情報を読み込み中...",
+        "mypage.signin.title": "ログインして予約を確認",
+        "mypage.signin.desc": "予約履歴の確認と今後のご滞在を管理できます。",
+        "mypage.signin.btn": "Googleでログイン",
+        "mypage.bookings.title": "ご予約",
+        "mypage.empty.title": "まだ予約がありません",
+        "mypage.empty.btn": "物件を探す",
+
+        "dropdown.mypage": "マイページ",
+        "dropdown.switch": "アカウント切替",
+        "dropdown.signout": "ログアウト",
+
+        "loginModal.title": "ログイン / サインアップ",
+        "loginModal.google": "Googleで続ける",
+        "loginModal.or": "または",
+        "loginModal.emailPlaceholder": "メールアドレス",
+        "loginModal.continue": "続ける",
+        "loginModal.firstName": "名",
+        "loginModal.lastName": "姓",
+        "loginModal.signupBtn": "サインアップ",
+        "loginModal.noAccount": "アカウントをお持ちでない方は？",
+        "loginModal.signup": "サインアップ",
+        "loginModal.hasAccount": "すでにアカウントをお持ちの方は？",
+        "loginModal.login": "ログイン",
     }
 };
+
+// Initialize language from localStorage
+window.currentLang = localStorage.getItem('siteLang') || 'en';
+
+// Toggle language function (can be overridden by app.js for additional functionality)
+if (!window.toggleLanguage) {
+    window.toggleLanguage = () => {
+        window.currentLang = window.currentLang === 'en' ? 'jp' : 'en';
+        localStorage.setItem('siteLang', window.currentLang);
+        window.updateContent();
+    };
+}
+
+// Update all text content based on current language
+if (!window.updateContent) {
+    window.updateContent = () => {
+        const lang = window.currentLang;
+        const t = window.translations[lang] || window.translations.en;
+
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            const key = el.getAttribute('data-i18n');
+            if (t[key]) {
+                el.textContent = t[key];
+            }
+        });
+    };
+}
+
+// Auto-apply translations on page load
+document.addEventListener('DOMContentLoaded', () => {
+    if (window.updateContent) {
+        window.updateContent();
+    }
+});

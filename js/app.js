@@ -226,16 +226,25 @@ window.initApp = () => {
                     badge.parentElement.style.position = 'relative';
                 }
 
+                // Remove loading state
+                badge.classList.remove('loading');
+
                 if (earliest) {
                     const m = (earliest.getMonth() + 1);
                     const d = earliest.getDate();
                     const dateStr = `${m}/${d}`;
 
-                    // Use SVG Icon
+                    // Use SVG Icon with smooth appearance
                     badge.innerHTML = `<span style="display:flex; align-items:center; gap:4px;">${icons.calendar} ${dateStr} ~</span>`;
+                    badge.style.opacity = '0';
+                    badge.style.transition = 'opacity 0.3s ease';
+                    requestAnimationFrame(() => {
+                        badge.style.opacity = '1';
+                    });
                 } else {
                     const unavailableText = window.currentLang === 'jp' ? '利用不可' : 'Unavailable';
                     badge.innerHTML = unavailableText;
+                    badge.style.opacity = '1';
                 }
             });
         });
@@ -926,34 +935,11 @@ window.initApp = () => {
     };
 
 
-    // 2. Login Modal Logic
-    const loginBtns = document.querySelectorAll('.btn-login, .mobile-login');
-    const modalOverlay = document.createElement('div');
-    modalOverlay.className = 'modal-overlay';
-    modalOverlay.innerHTML = `
-        <div class="auth-modal">
-            <h2 class="auth-title" data-i18n="login.title">Welcome Back</h2>
-            <button class="auth-btn primary" data-i18n="login.btn">Login</button>
-            <button class="auth-btn" data-i18n="login.signup">Sign Up</button>
-            <div style="margin-top:2rem; font-size:0.8rem; color:#666; cursor:pointer;" onclick="document.querySelector('.modal-overlay').classList.remove('active')" data-i18n="login.close">Close</div>
-        </div>
-    `;
-    document.body.appendChild(modalOverlay);
+    // 2. Login Modal Logic - REMOVED
+    // Login is now handled by js/auth.js which triggers Google OAuth directly
+    // See js/auth.js for implementation
 
-    loginBtns.forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            e.preventDefault();
-            modalOverlay.classList.add('active');
-        });
-    });
-
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            modalOverlay.classList.remove('active');
-        }
-    });
-
-    // Ensure translations are applied to dynamic content (like the modal)
+    // Ensure translations are applied to dynamic content
     if (window.updateContent) window.updateContent();
 
     // --- SHARED LOGIC ---
@@ -1154,8 +1140,8 @@ window.initApp = () => {
 
             return `
         <div onclick="openProperty(${property.id})" data-id="${property.id}" class="property-card" style="cursor: pointer;">
-            <div class="card-image-wrapper">
-                <img id="card-img-${property.id}" src="${property.images && property.images.length > 0 ? property.images[0] : 'placeholder.jpg'}" alt="${name}" class="card-image" loading="lazy">
+            <div class="card-image-wrapper loading">
+                <img id="card-img-${property.id}" src="${property.images && property.images.length > 0 ? property.images[0] : 'placeholder.jpg'}" alt="${name}" class="card-image" loading="lazy" onload="this.classList.add('loaded'); this.parentElement.classList.remove('loading');">
                 
                 <!-- Carousel Controls -->
                 <button class="carousel-btn prev" onclick="event.stopPropagation(); window.changeImage(event, ${property.id}, 'prev')">
@@ -1165,9 +1151,9 @@ window.initApp = () => {
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                 </button>
                 
-                <!-- Availability Badge Placeholder -->
-                <div class="availability-badge" data-badge-id="${property.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 6px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: block; letter-spacing: 0.05em; font-weight: 500;">
-                    <span class="avail-loading">...</span>
+                <!-- Availability Badge with Loading Animation -->
+                <div class="availability-badge loading" data-badge-id="${property.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center;">
+                    <span class="loading-dots"><span></span><span></span><span></span></span>
                 </div>
             </div>
 
@@ -1252,10 +1238,11 @@ window.initApp = () => {
 
                     propertyList.innerHTML += `
                     <div class="property-list-item visible" onclick="openProperty(${p.id})">
-                        <div class="list-img-wrapper">
+                        <div class="list-img-wrapper loading">
                             <img id="card-img-${p.id}" src="${p.images && p.images.length > 0 ? p.images[0] : 'placeholder.jpg'}" 
                                  alt="${name}" 
-                                 class="list-img" loading="lazy">
+                                 class="list-img card-image" loading="lazy"
+                                 onload="this.classList.add('loaded'); this.parentElement.classList.remove('loading');">
                             
                             <!-- Carousel Controls -->
                             <button class="carousel-btn prev" onclick="event.stopPropagation(); window.changeImage(event, ${p.id}, 'prev')">
@@ -1265,9 +1252,9 @@ window.initApp = () => {
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
                             </button>
                             
-                            <!-- Availability Badge Placeholder -->
-                            <div class="availability-badge" data-badge-id="${p.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 6px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: block; letter-spacing: 0.05em; font-weight: 500;">
-                                <span class="avail-loading">...</span>
+                            <!-- Availability Badge with Loading Animation -->
+                            <div class="availability-badge loading" data-badge-id="${p.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center;">
+                                <span class="loading-dots"><span></span><span></span><span></span></span>
                             </div>
                         </div>
                         <div class="list-content">

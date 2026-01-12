@@ -14,6 +14,9 @@
     <script src="js/translations.js"></script>
     <script src="js/dataLoader.js"></script> <!-- Async Loader -->
     <script src="js/app.js"></script>
+    <!-- Supabase Auth -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/auth.js"></script>
 </head>
 
 <body class="home-page">
@@ -48,7 +51,10 @@
         <div id="home-view">
             <!-- 1. Hero Visual (New) -->
             <section class="hero-visual">
-                <div id="hero-slideshow" class="hero-slideshow"></div>
+                <div id="hero-slideshow" class="hero-slideshow">
+                    <!-- Skeleton loader for hero - visible until JS loads images -->
+                    <div class="skeleton-hero"></div>
+                </div>
                 <h1 class="hero-headline"><span data-i18n="hero.headline">The New Standard</span><br><span
                         style="font-size: 0.6em; font-weight: 300; display: block; margin-top: 0.5rem; letter-spacing: 0.05em;"
                         data-i18n="hero.deadline_sub">in
@@ -129,7 +135,34 @@
                     </div>
                 </div>
                 <div id="featured-grid" class="grid grid-3">
-                    <!-- Injected via JS -->
+                    <!-- Skeleton loaders for property cards - visible until JS loads -->
+                    <div class="skeleton-card">
+                        <div class="skeleton-card-image"></div>
+                        <div class="skeleton-card-content">
+                            <div class="skeleton-line skeleton-line-short"></div>
+                            <div class="skeleton-line skeleton-line-title"></div>
+                            <div class="skeleton-line skeleton-line-long"></div>
+                            <div class="skeleton-line skeleton-line-stats"></div>
+                        </div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton-card-image"></div>
+                        <div class="skeleton-card-content">
+                            <div class="skeleton-line skeleton-line-short"></div>
+                            <div class="skeleton-line skeleton-line-title"></div>
+                            <div class="skeleton-line skeleton-line-long"></div>
+                            <div class="skeleton-line skeleton-line-stats"></div>
+                        </div>
+                    </div>
+                    <div class="skeleton-card">
+                        <div class="skeleton-card-image"></div>
+                        <div class="skeleton-card-content">
+                            <div class="skeleton-line skeleton-line-short"></div>
+                            <div class="skeleton-line skeleton-line-title"></div>
+                            <div class="skeleton-line skeleton-line-long"></div>
+                            <div class="skeleton-line skeleton-line-stats"></div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

@@ -1,0 +1,25 @@
+{
+  "name": "antigravity",
+  "version": "1.0.0",
+  "description": "Japan Villas Website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sekaichi-dev/japan-villas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/sekaichi-dev/japan-villas/issues"
+  },
+  "homepage": "https://github.com/sekaichi-dev/japan-villas#readme",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.90.1",
+    "stripe": "^20.1.2"
+  }
+}

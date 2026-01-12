@@ -2529,3 +2529,284 @@ body.stays-page {
     padding-top: 1.5rem;
     margin-top: 0.5rem;
 }
+
+/* ============================================
+   LOADING ANIMATIONS (Shimmer / Skeleton)
+   ============================================ */
+
+/* Shimmer animation keyframes */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Loading state for availability badges */
+.availability-badge.loading {
+    min-width: 70px;
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0.1) 25%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0.1) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.availability-badge.loading .shimmer-text {
+    visibility: hidden;
+}
+
+/* Pulsing dots for text loading indicator */
+.loading-dots {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+}
+
+.loading-dots span {
+    width: 4px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.loading-dots span:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.loading-dots span:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    80%,
+    100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+
+    40% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Card image loading skeleton */
+.card-image-wrapper.loading::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg,
+            #1a1a1a 25%,
+            #252525 50%,
+            #1a1a1a 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    z-index: 1;
+}
+
+/* Fade in when loaded */
+.card-image {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.card-image.loaded {
+    opacity: 1;
+}
+
+/* Loading spinner for calendar/modals */
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #888;
+    font-size: 0.9rem;
+    padding: 2rem;
+}
+
+.loading-spinner::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    border: 2px solid #333;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   SKELETON LOADERS
+   ============================================ */
+
+/* Hero skeleton - full screen background shimmer */
+.skeleton-hero {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg,
+            #1a1a1a 8%,
+            #252525 18%,
+            #1a1a1a 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+/* When hero slides are loaded, hide skeleton */
+.hero-slideshow:has(.hero-slide) .skeleton-hero {
+    display: none;
+}
+
+/* Property card skeleton */
+.skeleton-card {
+    background: var(--card-bg, #141414);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeIn 0.3s ease;
+}
+
+.skeleton-card-image {
+    width: 100%;
+    height: 280px;
+    background: linear-gradient(110deg,
+            #1a1a1a 8%,
+            #252525 18%,
+            #1a1a1a 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-card-content {
+    padding: 1.5rem;
+}
+
+.skeleton-line {
+    height: 12px;
+    border-radius: 6px;
+    background: linear-gradient(110deg,
+            #1f1f1f 8%,
+            #2a2a2a 18%,
+            #1f1f1f 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    margin-bottom: 12px;
+}
+
+.skeleton-line-short {
+    width: 30%;
+    height: 10px;
+}
+
+.skeleton-line-title {
+    width: 70%;
+    height: 20px;
+    margin-bottom: 16px;
+}
+
+.skeleton-line-long {
+    width: 90%;
+    height: 10px;
+}
+
+.skeleton-line-stats {
+    width: 60%;
+    height: 14px;
+    margin-top: 20px;
+}
+
+/* Stagger animation delays for multiple skeletons */
+.skeleton-card:nth-child(2) .skeleton-card-image,
+.skeleton-card:nth-child(2) .skeleton-line {
+    animation-delay: 0.15s;
+}
+
+.skeleton-card:nth-child(3) .skeleton-card-image,
+.skeleton-card:nth-child(3) .skeleton-line {
+    animation-delay: 0.3s;
+}
+
+/* Fade in animation for when content loads */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Hide skeleton cards once real cards are loaded */
+#featured-grid:has(.property-card) .skeleton-card {
+    display: none;
+}
+
+/* Skeleton for list-style items (Stays page) */
+.skeleton-list-item {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 4rem;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+}
+
+.skeleton-list-image {
+    width: 100%;
+    height: 280px;
+    border-radius: 8px;
+    background: linear-gradient(110deg,
+            #1a1a1a 8%,
+            #252525 18%,
+            #1a1a1a 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.skeleton-list-content {
+    padding-top: 1rem;
+}
+
+/* Stagger for list items */
+.skeleton-list-item:nth-child(2) .skeleton-list-image,
+.skeleton-list-item:nth-child(2) .skeleton-line {
+    animation-delay: 0.2s;
+}
+
+.skeleton-list-item:nth-child(3) .skeleton-list-image,
+.skeleton-list-item:nth-child(3) .skeleton-line {
+    animation-delay: 0.4s;
+}
+
+/* Hide list skeletons when real items load */
+#property-list:has(.property-list-item) .skeleton-list-item {
+    display: none;
+}
+
+/* Mobile responsive for list skeletons */
+@media (max-width: 768px) {
+    .skeleton-list-item {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .skeleton-list-image {
+        height: 200px;
+    }
+}

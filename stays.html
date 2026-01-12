@@ -14,6 +14,9 @@
     <script src="js/translations.js"></script>
     <script src="js/dataLoader.js"></script> <!-- Async Loader -->
     <script src="js/app.js"></script>
+    <!-- Supabase Auth -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/auth.js"></script>
 </head>
 
 <body class="stays-page">
@@ -86,7 +89,7 @@
         </section>
 
         <!-- Filter Bar -->
-        <div class="force-full-width" style="background: #000; position: static; z-index: 10;">
+        <div class="force-full-width" style="background: #0B0B0B; position: static; z-index: 10;">
             <div class="container">
                 <div class="filter-bar" id="filter-bar">
                     <!-- Icons would ideally be SVG, using simple text for now or provided icons if any -->
@@ -104,7 +107,37 @@
 
         <!-- Property List -->
         <section class="property-list container" id="property-list">
-            <!-- Properties injected via JS -->
+            <!-- Skeleton loaders for property list - visible until JS loads -->
+            <div class="skeleton-list-item">
+                <div class="skeleton-list-image"></div>
+                <div class="skeleton-list-content">
+                    <div class="skeleton-line skeleton-line-short"></div>
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-long"></div>
+                    <div class="skeleton-line skeleton-line-long"></div>
+                    <div class="skeleton-line skeleton-line-stats"></div>
+                </div>
+            </div>
+            <div class="skeleton-list-item">
+                <div class="skeleton-list-image"></div>
+                <div class="skeleton-list-content">
+                    <div class="skeleton-line skeleton-line-short"></div>
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-long"></div>
+                    <div class="skeleton-line skeleton-line-long"></div>
+                    <div class="skeleton-line skeleton-line-stats"></div>
+                </div>
+            </div>
+            <div class="skeleton-list-item">
+                <div class="skeleton-list-image"></div>
+                <div class="skeleton-list-content">
+                    <div class="skeleton-line skeleton-line-short"></div>
+                    <div class="skeleton-line skeleton-line-title"></div>
+                    <div class="skeleton-line skeleton-line-long"></div>
+                    <div class="skeleton-line skeleton-line-long"></div>
+                    <div class="skeleton-line skeleton-line-stats"></div>
+                </div>
+            </div>
         </section>
     </main>
 
