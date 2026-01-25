@@ -79,19 +79,168 @@
 }
 
 @media (max-width: 768px) {
+    .guidebook-header {
+        padding: 0.5rem 0;
+        /* Revert to fixed position for sticky behavior */
+        position: fixed;
+    }
+
+    .guidebook-header .nav-logo {
+        font-size: 1rem;
+        white-space: nowrap;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .logo-desktop {
+        display: none;
+    }
+
+    .logo-mobile {
+        display: inline;
+    }
+
+    .guidebook-header .header-inner {
+        padding: 0 0.8rem;
+        gap: 0.6rem;
+    }
+
+    .header-search {
+        flex: 1 1 auto;
+        max-width: none;
+        /* Let it fill available space */
+    }
+
+    .search-input {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
+
+    /* Hide desktop nav items including buttons on mobile */
+    .desktop-nav {
+        display: none !important;
+    }
+
+    /* Show mobile nav */
+    .mobile-nav {
+        display: block;
+        position: relative;
+    }
+
+    .mobile-menu-btn {
+        background: none;
+        border: none;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        padding: 0.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0.9;
+    }
+
+    .mobile-menu-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        margin-top: 14px;
+        /* Increased margin to clear fixed header */
+        background: rgba(30, 30, 30, 0.95);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 0.5rem;
+        min-width: 160px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        flex-direction: column;
+        gap: 2px;
+        z-index: 1000;
+        transform-origin: top right;
+        transition: all 0.2s ease;
+    }
+
+    .mobile-menu-dropdown.active {
+        display: flex;
+        animation: menuFadeIn 0.2s ease forwards;
+    }
+
+    @keyframes menuFadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95) translateY(-5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    .menu-item {
+        display: block;
+        padding: 12px 16px;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        border-radius: 8px;
+        transition: background 0.2s;
+    }
+
+    .menu-item:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
     .top-nav-container {
-        top: 57px;
-        /* Match mobile header height */
+        top: 54px;
+        /* Adjusted for mobile header height */
+        height: 38px;
+        z-index: 150;
+    }
+
+    .top-nav-scroll {
+        padding: 0 0.8rem;
+        gap: 0.8rem;
+    }
+
+    .top-nav-item {
+        font-size: 0.75rem;
+        padding: 0.5rem 0;
     }
 
     .guidebook-layout .guidebook-content {
-        padding-top: 107px;
-        /* 57px + 50px */
+        padding-top: 92px;
+    }
+
+    .guidebook-layout.has-hero .guidebook-content {
+        padding-top: 1rem;
+    }
+
+    .guidebook-hero {
+        height: 30vh;
+        min-height: 200px;
     }
 
     .guidebook-section,
     .accordion-item {
-        scroll-margin-top: 107px;
+        scroll-margin-top: 92px;
+    }
+
+    .guidebook-sidebar {
+        top: 92px;
+        height: calc(100vh - 92px);
+    }
+}
+
+@media (min-width: 769px) {
+    .logo-mobile {
+        display: none;
+    }
+
+    .mobile-nav {
+        display: none;
     }
 }
 
@@ -294,8 +443,8 @@
 /* Hero Section */
 .guidebook-hero {
     position: relative;
-    height: 45vh;
-    min-height: 280px;
+    height: 35vh;
+    min-height: 250px;
     max-height: 400px;
     overflow: hidden;
 }
@@ -387,6 +536,11 @@
     transition: transform 0.3s ease;
 }
 
+/* Sidebar open state for mobile */
+.guidebook-sidebar.open {
+    transform: translateX(0);
+}
+
 .sidebar-header {
     display: none;
     /* Hide header in sidebar, distinct context now */
@@ -469,10 +623,15 @@
     flex: 1;
     padding: 1.5rem;
     padding-top: 110px;
-    /* Clear fixed headers (60+50) */
+    /* Default for no-hero (60+50) */
     max-width: 800px;
     margin: 0 auto;
     width: 100%;
+}
+
+.guidebook-layout.has-hero .guidebook-content {
+    padding-top: 1rem;
+    /* Tighten space when hero is present */
 }
 
 /* Desktop: Show sidebar always */
@@ -497,6 +656,10 @@
         padding: 2rem;
         padding-top: 110px;
         /* Maintain clearance */
+    }
+
+    .guidebook-layout.has-hero .guidebook-content {
+        padding-top: 1.5rem;
     }
 }
 

@@ -11,22 +11,54 @@
     <!-- Supabase Auth -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/auth.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            const dropdown = document.getElementById('mobileMenuDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('mobileMenuDropdown');
+            const btn = document.querySelector('.mobile-menu-btn');
+
+            if (dropdown && dropdown.classList.contains('active')) {
+                if (!dropdown.contains(event.target) && !btn.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                }
+            }
+        });
+    </script>
 </head>
 
 <body class="guidebook-page">
     <!-- Global Header -->
     <header class="guidebook-header">
         <div class="header-inner">
-            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <a href="index.html" class="nav-logo">
+                <span class="logo-desktop">JAPAN VILLAS.</span>
+                <span class="logo-mobile">JV.</span>
+            </a>
             <div class="header-search">
                 <input type="text" id="guidebook-search" class="search-input" placeholder="Search guidebook..."
                     autocomplete="off">
                 <div class="search-results" id="search-results"></div>
             </div>
-            <div class="nav-right">
+            <div class="nav-right desktop-nav">
                 <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
                     EN</span>
-                <a href="#" class="btn-login desktop-only" data-i18n="nav.login">Login</a>
+                <a href="#" class="btn-login" data-i18n="nav.login">Login</a>
+            </div>
+            <div class="nav-right mobile-nav">
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <span class="menu-icon">☰</span>
+                </button>
+                <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                    <a href="#" class="menu-item" onclick="toggleLanguage(); return false;">
+                        <span data-i18n="nav.lang">JP / EN</span>
+                    </a>
+                    <a href="#" class="menu-item" data-i18n="nav.login">Login</a>
+                </div>
             </div>
         </div>
     </header>

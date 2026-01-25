@@ -688,8 +688,18 @@ window.switchCategory = function (catId, preserveScroll = false) {
 
     // 2. Show/Hide Sections (Tab behavior)
     // Hide all main containers first
+    const layout = document.querySelector('.guidebook-layout');
     const hero = document.querySelector('.guidebook-hero');
-    if (hero) hero.style.display = (catId === 'access') ? 'block' : 'none';
+    const isAccess = (catId === 'access');
+
+    if (hero) hero.style.display = isAccess ? 'block' : 'none';
+    if (layout) {
+        if (isAccess) {
+            layout.classList.add('has-hero');
+        } else {
+            layout.classList.remove('has-hero');
+        }
+    }
 
     // Info components
     const propertyInfo = document.getElementById('property-info'); // Note: property-info ID might not exist in HTML yet, relying on Hero mainly for 'info'
