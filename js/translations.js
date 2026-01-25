@@ -76,6 +76,22 @@ window.translations = {
         "loginModal.signup": "Sign Up",
         "loginModal.hasAccount": "Already have an account?",
         "loginModal.login": "Login",
+
+        // Guidebook translations
+        "guidebook.title": "Guest Guidebook",
+        "guidebook.sidebar.title": "Guidebook",
+        "guidebook.sidebar.subtitle": "Guest Guidebook",
+        "guidebook.nav.access": "Access",
+        "guidebook.nav.facilities": "Facilities",
+        "guidebook.nav.neighborhood": "Neighborhood",
+        "guidebook.nav.rules": "House Rules",
+        "guidebook.nav.faq": "FAQ",
+        "guidebook.nav.services": "Services",
+        "guidebook.services.title": "Optional Services",
+        "guidebook.services.subtitle": "Enhance your stay",
+        "guidebook.services.reserve": "Reserve",
+        "guidebook.footer.help": "Need help? Contact your host",
+        "guidebook.footer.call": "Call Host",
     },
     jp: {
         "nav.home": "ホーム",
@@ -154,6 +170,22 @@ window.translations = {
         "loginModal.signup": "サインアップ",
         "loginModal.hasAccount": "すでにアカウントをお持ちの方は？",
         "loginModal.login": "ログイン",
+
+        // Guidebook translations
+        "guidebook.title": "ゲストガイドブック",
+        "guidebook.sidebar.title": "ガイドブック",
+        "guidebook.sidebar.subtitle": "ゲストガイドブック",
+        "guidebook.nav.access": "アクセス",
+        "guidebook.nav.facilities": "施設案内",
+        "guidebook.nav.neighborhood": "近隣情報",
+        "guidebook.nav.rules": "ハウスルール",
+        "guidebook.nav.faq": "よくある質問",
+        "guidebook.nav.services": "オプション",
+        "guidebook.services.title": "オプションサービス",
+        "guidebook.services.subtitle": "滞在をより快適に",
+        "guidebook.services.reserve": "予約する",
+        "guidebook.footer.help": "お困りですか？ホストにご連絡ください",
+        "guidebook.footer.call": "ホストに電話",
     }
 };
 
