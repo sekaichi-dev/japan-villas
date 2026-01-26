@@ -227,12 +227,83 @@ async function handleCheckoutSessionCompleted(session) {
 
     console.log('[stripe-webhook] ✅ Reservation created successfully');
     console.log('[stripe-webhook] Reservation ID:', newReservation.id);
-    console.log('[stripe-webhook] Amount:', newReservation.amount, newReservation.currency.toUpperCase());
-    console.log('[stripe-webhook] Customer:', newReservation.customer_email);
 
-    // TODO: Phase 2+ - Create booking in Beds24
+    // --- PHASE 2: Create booking in Beds24 ---
+    if (metadata.room_id) {
+        try {
+            console.log('[stripe-webhook] Creating booking in Beds24 for room:', metadata.room_id);
+            const beds24BookingId = await createBeds24Booking({
+                roomId: metadata.room_id,
+                arrival: metadata.check_in_date,
+                departure: metadata.check_out_date,
+                numAdult: metadata.guests || 1,
+                firstName: session.customer_details?.name?.split(' ')[0] || 'Guest',
+                lastName: session.customer_details?.name?.split(' ').slice(1).join(' ') || 'Customer',
+                email: session.customer_details?.email,
+                notes: `Stripe Session: ${session.id}`
+            });
+
+            if (beds24BookingId) {
+                // Update reservation with Beds24 ID
+                await supabase
+                    .from('reservations')
+                    .update({ beds24_booking_id: beds24BookingId })
+                    .eq('id', newReservation.id);
+                console.log('[stripe-webhook] ✅ Beds24 booking created:', beds24BookingId);
+            }
+        } catch (err) {
+            console.error('[stripe-webhook] ❌ Failed to create Beds24 booking:', err.message);
+            // We don't throw here to ensure we don't retry a successful payment
+            // but in production we might want to alert staff
+        }
+    } else {
+        console.warn('[stripe-webhook] ⚠️ No room_id in metadata, skipping Beds24 booking');
+    }
+
     // TODO: Send confirmation email to customer
     // TODO: Notify admin of new booking
+}
+
+/**
+ * Helper to create a booking in Beds24 v2 API
+ */
+async function createBeds24Booking(bookingInfo) {
+    const token = process.env.BEDS24_TOKEN;
+    if (!token) throw new Error('Missing BEDS24_TOKEN');
+
+    const response = await fetch('https://api.beds24.com/v2/bookings', {
+        method: 'POST',
+        headers: {
+            'token': token.trim(),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify([{
+            roomId: parseInt(bookingInfo.roomId),
+            arrival: bookingInfo.arrival,
+            departure: bookingInfo.departure,
+            numAdult: parseInt(bookingInfo.numAdult),
+            firstName: bookingInfo.firstName,
+            lastName: bookingInfo.lastName,
+            email: bookingInfo.email,
+            status: 'confirmed',
+            notes: bookingInfo.notes
+        }])
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Beds24 API Error (${response.status}): ${errorText}`);
+    }
+
+    const data = await response.json();
+    // Beds24 v2 POST /bookings returns an array of results
+    if (data && data.length > 0 && data[0].bookId) {
+        return data[0].bookId;
+    }
+
+    console.error('[createBeds24Booking] Unexpected response:', data);
+    return null;
 }
 
 /**

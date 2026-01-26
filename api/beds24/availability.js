@@ -1,38 +1,94 @@
 // Vercel Serverless Function: /api/beds24/availability.js
+// 
+// Beds24 API v2 Authentication:
+// This API requires a custom HTTP header "token" (NOT Authorization header).
+//
+// Caching Strategy:
+// - In-memory cache with 90-second TTL
+// - HTTP Cache-Control headers for CDN/browser caching
+
+const cache = new Map();
+const CACHE_TTL_MS = 90 * 1000; // 90 seconds
+
+function getCacheKey(query) {
+    const params = Object.entries(query || {})
+        .filter(([k, v]) => k !== "token" && typeof v === "string")
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([k, v]) => `${k}=${v}`)
+        .join("&");
+    return params || "__default__";
+}
+
+function getFromCache(key) {
+    const entry = cache.get(key);
+    if (!entry) return null;
+    const age = Date.now() - entry.timestamp;
+    if (age > CACHE_TTL_MS) {
+        cache.delete(key);
+        return null;
+    }
+    return { data: entry.data, age };
+}
+
+function setCache(key, data) {
+    cache.set(key, { data, timestamp: Date.now() });
+    if (cache.size > 100) {
+        const oldestKey = cache.keys().next().value;
+        cache.delete(oldestKey);
+    }
+}
 
 export default async function handler(req, res) {
-    const { roomId, startDate, endDate } = req.query;
-
-    if (!roomId || !startDate || !endDate) {
-        return res.status(400).json({ error: "Missing required parameters (roomId, startDate, endDate)" });
-    }
-
-    const token = process.env.BEDS24_TOKEN;
-    if (!token) {
-        console.error("Missing BEDS24_TOKEN");
-        return res.status(500).json({ error: "Server Configuration Error" });
-    }
-
     try {
-        const bedsUrl = `https://api.beds24.com/v2/inventory/rooms/availability?roomId=${roomId}&startDate=${startDate}&endDate=${endDate}`;
+        if (req.method !== "GET") {
+            res.setHeader("Allow", "GET");
+            return res.status(405).json({ error: "Method not allowed" });
+        }
 
-        const response = await fetch(bedsUrl, {
-            method: 'GET',
+        const cacheKey = getCacheKey(req.query);
+        const cached = getFromCache(cacheKey);
+        if (cached) {
+            res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+            res.setHeader("X-Cache", "HIT");
+            return res.status(200).json(cached.data);
+        }
+
+        const rawToken = process.env.BEDS24_TOKEN;
+        if (!rawToken) {
+            return res.status(500).json({ error: "Missing BEDS24_TOKEN env var" });
+        }
+
+        const token = rawToken.trim();
+        const baseUrl = "https://beds24.com/api/v2/inventory/rooms/availability";
+        let queryParts = [];
+        for (const [k, v] of Object.entries(req.query || {})) {
+            if (typeof v === "string" && k !== "token") {
+                queryParts.push(`${encodeURIComponent(k)}=${encodeURIComponent(v)}`);
+            }
+        }
+
+        const fullUrl = queryParts.length > 0 ? `${baseUrl}?${queryParts.join("&")}` : baseUrl;
+
+        const response = await fetch(fullUrl, {
+            method: "GET",
             headers: {
-                'token': token,
-                'content-type': 'application/json'
+                "accept": "application/json",
+                "token": token
             }
         });
 
-        if (!response.ok) {
-            throw new Error(`Beds24 endpoint error: ${response.status}`);
+        const responseData = await response.json();
+
+        if (response.status === 200) {
+            setCache(cacheKey, responseData);
         }
 
-        const data = await response.json();
-        return res.status(200).json(data);
+        res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+        res.setHeader("X-Cache", "MISS");
+
+        return res.status(response.status).json(responseData);
 
     } catch (err) {
-        console.error("Availability API Error:", err);
-        return res.status(500).json({ error: err.message });
+        return res.status(500).json({ error: "Server error", details: err.message });
     }
 }

@@ -1,3 +1,4 @@
+// Translation data for Japan Villas
 window.translations = {
     en: {
         "nav.home": "Home",
@@ -102,8 +103,8 @@ window.translations = {
         "nav.lang": "JP / EN",
 
         "hero.subtitle": "JAPANVILLAS",
-        "hero.headline": "新しい基準",
-        "hero.deadline_sub": "日本の隠れ家",
+        "hero.headline": "日本の景観と<span class='headline-split'>別邸の旅へ</span>",
+        "hero.deadline_sub": "",
         "hero.desc": "厳選されたヴィラ、湖畔の隠れ家、そして海辺のエスケープ。",
 
         "search.location": "場所",
@@ -137,7 +138,7 @@ window.translations = {
         "footer.legal.title": "法的事項",
         "footer.copyright": "© 2025 Japan Villas. All rights reserved.",
 
-        "mobile.search.trigger": "検索を始める",
+        "mobile.search.trigger": "宿を探す",
 
         "login.title": "お帰りなさい",
         "login.btn": "ログイン",
@@ -188,37 +189,3 @@ window.translations = {
         "guidebook.footer.call": "ホストに電話",
     }
 };
-
-// Initialize language from localStorage
-window.currentLang = localStorage.getItem('siteLang') || 'en';
-
-// Toggle language function (can be overridden by app.js for additional functionality)
-if (!window.toggleLanguage) {
-    window.toggleLanguage = () => {
-        window.currentLang = window.currentLang === 'en' ? 'jp' : 'en';
-        localStorage.setItem('siteLang', window.currentLang);
-        window.updateContent();
-    };
-}
-
-// Update all text content based on current language
-if (!window.updateContent) {
-    window.updateContent = () => {
-        const lang = window.currentLang;
-        const t = window.translations[lang] || window.translations.en;
-
-        document.querySelectorAll('[data-i18n]').forEach(el => {
-            const key = el.getAttribute('data-i18n');
-            if (t[key]) {
-                el.textContent = t[key];
-            }
-        });
-    };
-}
-
-// Auto-apply translations on page load
-document.addEventListener('DOMContentLoaded', () => {
-    if (window.updateContent) {
-        window.updateContent();
-    }
-});

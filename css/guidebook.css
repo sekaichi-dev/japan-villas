@@ -49,15 +49,38 @@
     padding: 0.75rem 0;
 }
 
+/* Base Nav Right - shared styles */
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Desktop nav - visible by default on larger screens */
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Mobile nav - hidden by default, shown via media query on small screens */
+.mobile-nav {
+    display: none !important;
+}
+
 /* New Top Level Nav */
 .top-nav-container {
     padding-top: 0;
     /* Removed offset */
     background: var(--gb-bg);
     border-bottom: 1px solid var(--gb-border);
-    position: sticky;
+    position: fixed;
+    /* Fixed with header */
+    left: 0;
+    right: 0;
     top: 60px;
-    z-index: 100;
+    z-index: 190;
+    /* Below header (200) but above content */
     height: 50px;
     /* Slimmer height */
     box-sizing: border-box;
@@ -80,7 +103,7 @@
 
 @media (max-width: 768px) {
     .guidebook-header {
-        padding: 0.5rem 0;
+        padding: 0.25rem 0;
         /* Revert to fixed position for sticky behavior */
         position: fixed;
     }
@@ -121,9 +144,9 @@
         display: none !important;
     }
 
-    /* Show mobile nav */
+    /* Show mobile nav only on mobile */
     .mobile-nav {
-        display: block;
+        display: block !important;
         position: relative;
     }
 
@@ -145,8 +168,8 @@
         position: absolute;
         top: 100%;
         right: 0;
-        margin-top: 14px;
-        /* Increased margin to clear fixed header */
+        margin-top: 10px;
+        /* Reduced to match mobile header height */
         background: rgba(30, 30, 30, 0.95);
         backdrop-filter: blur(10px);
         -webkit-backdrop-filter: blur(10px);
@@ -194,10 +217,10 @@
     }
 
     .top-nav-container {
-        top: 54px;
-        /* Adjusted for mobile header height */
+        top: 44px;
+        /* Matches slimmer mobile header height */
         height: 38px;
-        z-index: 150;
+        z-index: 190;
     }
 
     .top-nav-scroll {
@@ -211,7 +234,8 @@
     }
 
     .guidebook-layout .guidebook-content {
-        padding-top: 92px;
+        padding-top: 82px;
+        /* 44px header + 38px section nav */
     }
 
     .guidebook-layout.has-hero .guidebook-content {
@@ -225,12 +249,14 @@
 
     .guidebook-section,
     .accordion-item {
-        scroll-margin-top: 92px;
+        scroll-margin-top: 82px;
     }
 
     .guidebook-sidebar {
-        top: 92px;
-        height: calc(100vh - 92px);
+        top: 82px !important;
+        /* 44px header + 38px section nav */
+        height: calc(100vh - 82px) !important;
+        padding-top: 0 !important;
     }
 }
 
@@ -770,6 +796,19 @@
 .maps-external-link:hover {
     background: var(--gb-accent);
     color: #000;
+}
+
+/* Phone Link Styling */
+.phone-link {
+    color: var(--gb-accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.phone-link:hover {
+    color: var(--gb-accent-hover);
+    text-decoration: underline;
 }
 
 /* Access Method Typography */

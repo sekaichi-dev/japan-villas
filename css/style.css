@@ -27,6 +27,13 @@
     /* Reduced from default ~90px */
 }
 
+/* Japanese Mode Overrides */
+.lang-jp {
+    --font-main: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif;
+    --font-display: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif;
+    font-family: var(--font-main);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -99,6 +106,13 @@ h3 {
     padding: 0 var(--spacing-md);
 }
 
+/* Featured section stretches to edges on desktop */
+.featured.container {
+    max-width: 100%;
+    padding: 0 2rem;
+    /* Minimal side padding for edge-to-edge feel */
+}
+
 .grid {
     display: grid;
     gap: var(--spacing-md);
@@ -106,6 +120,12 @@ h3 {
 
 .grid-3 {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+@media (max-width: 768px) {
+    .grid {
+        gap: 0;
+    }
 }
 
 .flex {
@@ -214,8 +234,8 @@ header.scrolled {
     position: fixed;
     inset: 0;
     background: #000;
-    z-index: 2001;
-    /* Above everything */
+    z-index: 7000;
+    /* Above header (6000) */
     display: flex;
     flex-direction: column;
     padding: 2rem;
@@ -329,16 +349,8 @@ header.scrolled {
         /* Force Center */
     }
 
-    /* Fix Stays Hero Padding & Alignment to match Home perfectly */
-    .stays-hero .container {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-        width: 100%;
-        max-width: 100%;
-        display: flex !important;
-        flex-direction: column;
-        align-items: center;
-    }
+    /* Stays Hero styles removed - search bar removed as requested */
+    /* .stays-hero .container original padding was 140px, now handled via inline style on filter bar */
 
     .hero-headline {
         font-size: 2.5rem !important;
@@ -649,7 +661,7 @@ body.stays-page {
 }
 
 .hero-headline {
-    font-family: 'Playfair Display', serif;
+    font-family: var(--font-display);
     font-size: clamp(3.5rem, 6vw, 6rem);
     text-align: center;
     margin-bottom: 3rem;
@@ -658,6 +670,22 @@ body.stays-page {
     /* Softer shadow */
     letter-spacing: -0.03em;
     line-height: 1.1;
+}
+
+.hero-subheadline {
+    font-size: 0.6em;
+    font-weight: 300;
+    display: block;
+    margin-top: 0.5rem;
+    letter-spacing: 0.05em;
+}
+
+.hero-subheadline:empty {
+    display: none;
+}
+
+.hero-subheadline:empty {
+    display: none;
 }
 
 /* Floating Search Bar (Premium) */
@@ -1058,7 +1086,8 @@ body.stays-page {
     /* Old welcome-section rules removed */
 
     .home-page .property-card {
-        max-width: 55vw;
+        width: 60vw;
+        /* Always occupy 60% of viewport width */
         height: 70vh;
         min-height: 550px;
         /* Prevent crushing on short screens */
@@ -1148,8 +1177,8 @@ body.stays-page {
 
 /* 2. Scroll to Explore Indicator */
 .scroll-indicator {
-    position: fixed;
-    /* Fixed as requested "visible at all times" */
+    position: absolute;
+    /* Absolute relative to hero-visual so it scrolls away */
     bottom: 2rem;
     left: 50%;
     transform: translateX(-50%);
@@ -1165,6 +1194,15 @@ body.stays-page {
     pointer-events: none;
     /* Don't block interaction */
 }
+
+/* Hide scroll indicator on mobile - REMOVED per user request */
+/*
+@media (max-width: 768px) {
+    .scroll-indicator {
+        display: none !important;
+    }
+}
+*/
 
 /* Welcome Section Adjustment for Mobile */
 /* Welcome Section Adjustment */
@@ -1190,19 +1228,8 @@ body.stays-page {
 
 @media (max-width: 768px) {
     .welcome-section {
-        min-height: 0 !important;
-        height: auto !important;
-        max-height: none;
-        padding: 1.5rem 0 !important;
-        /* Balanced padding */
-        margin: 0 !important;
-        width: 100%;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform: translateY(-7rem);
-        /* Finalized lift for perfect center */
+        display: none !important;
+        /* Hidden on mobile per user request */
     }
 
     .welcome-section h2 {
@@ -1214,43 +1241,45 @@ body.stays-page {
         z-index: 60;
     }
 
-    /* Mobile Property Card Sizing (Moved Inside Media Query) */
+    /* Mobile Property Card Sizing - Instagram Style */
     .featured.container {
-        padding-top: 0 !important;
+        padding: 0 !important;
         margin-top: -45vh !important;
         /* Ultimate negative pull */
     }
 
+    #featured-grid.grid.grid-3 {
+        gap: 0 !important;
+        /* No gap between cards */
+        padding: 0 !important;
+    }
+
     .home-page .property-card {
-        max-width: 85vw !important;
-        /* Proper mobile width */
+        max-width: 100% !important;
+        width: 100% !important;
+        /* Full width */
         height: auto !important;
-        /* Allow growing to fit details */
-        min-height: 65vh !important;
-        /* Ensure tall enough */
-        margin: 0 auto;
+        min-height: auto !important;
+        margin: 0 !important;
+        border-radius: 0 !important;
+        /* No rounded corners for Instagram feel */
     }
 
     .home-page .card-image-wrapper {
         flex: none;
-        /* Don't grow/shrink */
-        height: 45vh;
-        /* Fixed viewport height for image */
-        max-height: 300px;
-        /* Cap image height */
+        height: 75vw;
+        /* Square-ish aspect ratio like Instagram */
+        max-height: none;
         width: 100%;
-        border-radius: 12px 12px 0 0;
+        border-radius: 0 !important;
     }
 
     .home-page .card-info {
         flex: 1;
-        /* Take remaining space */
         min-height: 0;
-        /* Allow small */
-        padding: 1.2rem 1.5rem;
+        padding: 1rem 1rem;
         justify-content: flex-start;
-        /* Stack from top */
-        gap: 0.5rem;
+        gap: 0.3rem;
     }
 
     .home-page .card-info h3 {
@@ -1317,15 +1346,17 @@ body.stays-page {
     right: 20px;
 }
 
-/* Zig-Zag Logic */
+/* Zig-Zag Logic - cards stick to edges */
 .home-page .property-card:nth-child(odd) {
     margin-right: auto;
-    margin-left: 5%;
+    margin-left: 0;
+    /* Stick to left edge */
 }
 
 .home-page .property-card:nth-child(even) {
     margin-left: auto;
-    margin-right: 5%;
+    margin-right: 0;
+    /* Stick to right edge */
 }
 
 /* Compact & Fluid Text Styles for Home Card */
@@ -1884,35 +1915,7 @@ body.stays-page {
     /* Keeping this empty or removing the height constraint */
 }
 
-/* Fix Stays Hero Search Bar Sizing */
-.stays-hero .hero-search-container {
-    min-width: auto;
-    /* Fix "Too Wide" on Desktop */
-    width: fit-content;
-    margin: 0 auto;
-    /* Ensure Centered */
-}
-
-/* Prevent text wrapping inside the shrink-wrapped container */
-.stays-hero .search-field {
-    white-space: nowrap;
-}
-
-@media (max-width: 768px) {
-    .stays-hero .hero-search-container {
-        width: 100%;
-        margin-top: 1rem;
-    }
-
-    .stays-hero .mobile-search-trigger {
-        width: 90vw;
-        /* Fix "Too Small" on Mobile - Force wider */
-        max-width: 400px;
-        /* Allow it to be slightly bigger than Home if needed, or match */
-        padding: 1rem 2rem;
-        /* Extra plush */
-    }
-}
+/* Stays Hero Search Bar styles removed */
 
 .footer-col h4 {
     font-size: 0.85rem;
@@ -2062,20 +2065,7 @@ body.stays-page {
     border-color: #ccc;
 }
 
-/* 2. Scroll to Explore Indicator */
-.scroll-indicator {
-    position: absolute;
-    bottom: 5vh;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-    opacity: 1;
-    transition: opacity 0.5s;
-    text-align: center;
-}
+
 
 .scroll-text {
     font-size: 0.75rem;
@@ -2809,4 +2799,13 @@ body.stays-page {
     .skeleton-list-image {
         height: 200px;
     }
+}
+
+/* Japanese Headline Split - Same size & Centered */
+.lang-jp .headline-split {
+    display: block;
+    margin-left: 0;
+    font-size: inherit;
+    /* Use parent h1 size */
+    margin-top: 0.5rem;
 }

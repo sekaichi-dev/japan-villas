@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         const stripe = new Stripe(stripeSecretKey);
 
         // Parse request body
-        const { productName, amount, currency = 'jpy' } = req.body;
+        const { productName, amount, currency = 'jpy', metadata = {} } = req.body;
 
         // Validate required fields
         if (!productName || !amount) {
@@ -52,6 +52,7 @@ export default async function handler(req, res) {
         const session = await stripe.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
+            metadata: metadata, // Pass booking details to webhook
             line_items: [
                 {
                     price_data: {

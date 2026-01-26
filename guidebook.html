@@ -51,12 +51,21 @@
             </div>
             <div class="nav-right mobile-nav">
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
-                    <span class="menu-icon">☰</span>
+                    <!-- Globe Icon -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    <span id="mobile-lang-label"
+                        style="font-size: 0.8rem; font-weight: 500; margin-left: 4px;">EN</span>
                 </button>
                 <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
-                    <a href="#" class="menu-item" onclick="toggleLanguage(); return false;">
-                        <span data-i18n="nav.lang">JP / EN</span>
-                    </a>
+                    <a href="#" class="menu-item" onclick="toggleLanguage('jp'); return false;">JPN</a>
+                    <a href="#" class="menu-item" onclick="toggleLanguage('en'); return false;">ENG</a>
                     <a href="#" class="menu-item" data-i18n="nav.login">Login</a>
                 </div>
             </div>

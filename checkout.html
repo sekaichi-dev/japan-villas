@@ -685,7 +685,15 @@
                 const paymentData = {
                     productName: `${bookingData.name} - ${bookingData.dateRangeString}`,
                     amount: bookingData.prices.total,
-                    currency: 'jpy'
+                    currency: 'jpy',
+                    metadata: {
+                        property_id: bookingData.propertyId,
+                        property_name: bookingData.name,
+                        check_in_date: bookingData.dates.start,
+                        check_out_date: bookingData.dates.end,
+                        guests: bookingData.adults,
+                        room_id: bookingData.roomId || '' // Added roomId if available
+                    }
                 };
 
                 const response = await fetch('/api/create-checkout-session', {

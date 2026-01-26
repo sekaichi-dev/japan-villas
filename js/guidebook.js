@@ -4,6 +4,9 @@
  * Supports bilingual content (EN/JP)
  */
 
+// Initialize language state
+window.currentLang = localStorage.getItem('siteLang') || 'en';
+
 // ============================================
 // ICONS (Monochrome SVG)
 // ============================================
@@ -108,9 +111,9 @@ const guidebookData = {
                 icon: "parking",
                 title: { en: "Parking", jp: "駐車場" },
                 content: {
-                    en: `<p>Parking for 3 cars is available. Please refer to the image.</p>
+                    en: `<p>Parking for 3 cars is available.</p>
                         <img src="./img/parking_layout.jpg" alt="Parking Layout" class="access-image">`,
-                    jp: `<p>乗用車3台分を駐車できます。画像をご参照ください。</p>
+                    jp: `<p>乗用車3台分を駐車できます。</p>
                         <img src="./img/parking_layout.jpg" alt="駐車場配置図" class="access-image">`
                 }
             },
@@ -121,7 +124,7 @@ const guidebookData = {
                     en: `<p>5 minutes from Nojiriko IC on the Joshinetsu Expressway.</p>
                         <p>Car rental is also available at Nagano Station.</p>`,
                     jp: `<p>上信越自動車道の野尻湖インターから車で5分</p>
-                        <p>長野駅でレンタカーを借りることも可能</p>`
+                        <p>長野駅でレンタカーを借りることも可能です。</p>`
                 }
             },
             {
@@ -134,12 +137,12 @@ const guidebookData = {
             },
             {
                 icon: "taxi",
-                title: { en: "Taxi Companies", jp: "タクシー会社" },
+                title: { en: "Taxi Companies (Japanese only)", jp: "タクシー会社" },
                 content: {
-                    en: `<p><strong>Nojiriko Taxi:</strong> 026-219-2829</p>
-                        <p><strong>Toriigawa Kanko Taxi:</strong> 026-255-3155</p>`,
-                    jp: `<p><strong>野尻湖タクシー（株）:</strong> 026−219−2829</p>
-                        <p><strong>鳥居川観光タクシー（株）:</strong> 026−255−3155</p>`
+                    en: `<p><strong>Nojiriko Taxi:</strong> <a href="tel:026-219-2829" class="phone-link">026-219-2829</a></p>
+                        <p><strong>Toriigawa Kanko Taxi:</strong> <a href="tel:026-255-3155" class="phone-link">026-255-3155</a></p>`,
+                    jp: `<p><strong>野尻湖タクシー（株）:</strong> <a href="tel:026-219-2829" class="phone-link">026−219−2829</a></p>
+                        <p><strong>鳥居川観光タクシー（株）:</strong> <a href="tel:026-255-3155" class="phone-link">026−255−3155</a></p>`
                 }
             }
         ]
@@ -621,13 +624,28 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGuidebook();
     initNavigation();
 
-    // Store original toggleLanguage and extend it
-    const originalToggle = window.toggleLanguage;
-    window.toggleLanguage = () => {
-        if (originalToggle) originalToggle();
+    // Implement toggleLanguage directly since app.js is not loaded
+    window.toggleLanguage = (targetLang) => {
+        if (targetLang) {
+            window.currentLang = targetLang;
+        } else {
+            window.currentLang = window.currentLang === 'en' ? 'jp' : 'en';
+        }
+        localStorage.setItem('siteLang', window.currentLang);
+
+        // Toggle body class
+        if (document.body) {
+            document.body.classList.remove('lang-en', 'lang-jp');
+            document.body.classList.add(`lang-${window.currentLang}`);
+        }
+
         // Re-render guidebook content when language changes
         renderGuidebook();
+        updateLanguageLabel();
     };
+
+    // Initial label update
+    updateLanguageLabel();
 
     // Initialize New Navigation
     renderTopNav();
@@ -1180,3 +1198,11 @@ function handleServiceClick(serviceId) {
 // EXPORTS (for potential API use)
 // ============================================
 window.guidebookData = guidebookData;
+
+// Helper to update the mobile language label
+function updateLanguageLabel() {
+    const label = document.getElementById('mobile-lang-label');
+    if (label) {
+        label.textContent = (window.currentLang || 'en').toUpperCase();
+    }
+}

@@ -14,26 +14,45 @@ const icons = {
 };
 
 // --- I18N LOGIC ---
-const translations = window.translations || {}; // Ensure it exists
 window.currentLang = localStorage.getItem('siteLang') || 'en';
 
-window.toggleLanguage = () => {
-    window.currentLang = window.currentLang === 'en' ? 'jp' : 'en';
+window.toggleLanguage = (targetLang) => {
+    if (targetLang) {
+        window.currentLang = targetLang;
+    } else {
+        window.currentLang = window.currentLang === 'en' ? 'jp' : 'en';
+    }
     localStorage.setItem('siteLang', window.currentLang);
+
+    // Toggle body class for language-specific styling
+    if (document.body) {
+        document.body.classList.remove('lang-en', 'lang-jp');
+        document.body.classList.add(`lang-${window.currentLang}`);
+    }
+
     window.updateContent();
 
     // Re-render components if they exist
     if (document.getElementById('featured-grid') && window.createCard) {
         const featuredContainer = document.getElementById('featured-grid');
-        featuredContainer.innerHTML = '';
-        window.properties.forEach(property => {
-            featuredContainer.innerHTML += window.createCard(property);
-        });
+        if (featuredContainer) {
+            featuredContainer.innerHTML = '';
+            if (window.properties) {
+                window.properties.forEach(property => {
+                    featuredContainer.innerHTML += window.createCard(property);
+                });
+            }
+        }
         // Re-attach observers
         setTimeout(() => {
             const cards = document.querySelectorAll('.property-card');
             const observer = new IntersectionObserver((entries) => {
-                entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        e.target.classList.add('visible');
+                        observer.unobserve(e.target);
+                    }
+                });
             });
             cards.forEach(c => {
                 observer.observe(c);
@@ -48,11 +67,32 @@ window.toggleLanguage = () => {
 
 window.updateContent = () => {
     // Update static text
+    const t = window.translations ? window.translations[window.currentLang] : null;
+    if (!t) {
+        console.warn('[I18N] Translations not found for lang:', window.currentLang);
+        return;
+    }
+
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        // translations object comes from translations.js
-        if (typeof translations !== 'undefined' && translations[window.currentLang] && translations[window.currentLang][key]) {
-            el.textContent = translations[window.currentLang][key];
+        if (t[key] !== undefined) {
+            const translation = t[key];
+
+            // Set content
+            el.innerHTML = translation;
+
+            // Handle display logic for empty translations
+            if (translation === "") {
+                el.style.display = 'none';
+                el.style.visibility = 'hidden'; // Extra safety
+            } else {
+                if (el.style.display === 'none') {
+                    el.style.display = '';
+                }
+                if (el.style.visibility === 'hidden') {
+                    el.style.visibility = '';
+                }
+            }
         }
     });
 };
@@ -67,6 +107,12 @@ const getPropField = (prop, field) => {
 
 // Data Loading & Init
 document.addEventListener('DOMContentLoaded', async () => {
+    // Set initial body class safely now that DOM is ready
+    if (document.body) {
+        document.body.classList.remove('lang-en', 'lang-jp');
+        document.body.classList.add(`lang-${window.currentLang}`);
+    }
+
     if (typeof loadProperties === 'function') {
         try {
             const properties = await loadProperties();
@@ -80,6 +126,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (window.initApp) {
         window.initApp();
     }
+
+    // Apply initial translations
+    window.updateContent();
 });
 
 // App Logic encapsulated
@@ -169,8 +218,8 @@ window.initApp = () => {
                 availMap = property._availability;
                 console.log(`[fetchEarliestDate] Using pre-loaded availability for room ${beds24RoomId}`);
             } else {
-                // Fetch from API - use /api/beds24-availability (the working endpoint)
-                const res = await fetch(`/api/beds24-availability?roomId=${beds24RoomId}&startDate=${formatDate(today)}&endDate=${formatDate(end)}`);
+                // Fetch from API - use /api/beds24/availability (the working endpoint)
+                const res = await fetch(`/api/beds24/availability?roomId=${beds24RoomId}&startDate=${formatDate(today)}&endDate=${formatDate(end)}`);
                 if (!res.ok) throw new Error(`API Error ${res.status}`);
                 const json = await res.json();
 
@@ -477,7 +526,7 @@ window.initApp = () => {
                 const startStr = getLocalISODate(currentStart);
                 const endStr = getLocalISODate(currentEnd);
 
-                const res = await fetch(`/api/beds24-price?roomId=${beds24RoomId}&arrival=${startStr}&departure=${endStr}&numAdults=${numAdults}`);
+                const res = await fetch(`/api/beds24/price?roomId=${beds24RoomId}&arrival=${startStr}&departure=${endStr}&numAdults=${numAdults}`);
                 if (!res.ok) {
                     console.error(`[Price API] Error ${res.status}: ${res.statusText}`);
                     throw new Error("Price API not reachable");
@@ -593,7 +642,7 @@ window.initApp = () => {
         // Helper to fetch (Real + Mock Fallback)
         const fetchAvailability = async (start, end) => {
             try {
-                const res = await fetch(`/api/beds24-availability?roomId=${beds24RoomId}&startDate=${formatDate(start)}&endDate=${formatDate(end)}`);
+                const res = await fetch(`/api/beds24/availability?roomId=${beds24RoomId}&startDate=${formatDate(start)}&endDate=${formatDate(end)}`);
                 if (!res.ok) {
                     console.error(`[Availability API] Error ${res.status}: ${res.statusText}`);
                     throw new Error("API not reachable");
@@ -1152,7 +1201,7 @@ window.initApp = () => {
                 </button>
                 
                 <!-- Availability Badge with Loading Animation -->
-                <div class="availability-badge loading" data-badge-id="${property.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center;">
+                <div class="availability-badge loading" data-badge-id="${property.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center; line-height: 1.6;">
                     <span class="loading-dots"><span></span><span></span><span></span></span>
                 </div>
             </div>
@@ -1253,7 +1302,7 @@ window.initApp = () => {
                             </button>
                             
                             <!-- Availability Badge with Loading Animation -->
-                            <div class="availability-badge loading" data-badge-id="${p.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center;">
+                            <div class="availability-badge loading" data-badge-id="${p.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center; line-height: 1.6;">
                                 <span class="loading-dots"><span></span><span></span><span></span></span>
                             </div>
                         </div>

@@ -126,7 +126,7 @@ function getFallbackProperties() {
 async function loadProperties() {
     try {
         // Fetch from Beds24 availability API
-        const res = await fetch("/api/beds24-availability");
+        const res = await fetch("/api/beds24/availability");
         if (!res.ok) {
             console.error("[loadProperties] API Error:", res.status, res.statusText);
             throw new Error(`API returned ${res.status}: ${res.statusText}`);
