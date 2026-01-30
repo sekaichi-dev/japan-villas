@@ -1322,7 +1322,7 @@ window.initApp = () => {
                             <p class="list-desc">${description}</p>
                             
                             <div class="flex-between" style="padding-top:0;">
-                                 <div class="card-stats" style="font-size: 0.85rem; color: #fff; opacity: 0.9; font-weight: 300; border-top:1px solid rgba(255,255,255,0.1); padding-top: 0.5rem; width:100%;">
+                                 <div class="card-stats" style="font-size: 0.85rem; color: #fff; opacity: 0.9; font-weight: 300; border-top:1px solid rgba(255,255,255,0.1); padding-top: 0.75rem; width:100%; display: flex; align-items: center;">
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.bed} ${p.details.bedrooms} <span class="stat-label">${bedLabel}</span></span>
                                     <span style="margin: 0 0.5rem; opacity:0.4;">|</span>
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.guests} ${p.details.guests} <span class="stat-label">${guestLabel}</span></span>

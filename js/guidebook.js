@@ -69,8 +69,50 @@ const guidebookData = {
     // Access Section (Bilingual) - Now as items array
     access: {
         id: "access",
-        title: { en: "Access", jp: "アクセス" },
+        title: { en: "Access & WiFi", jp: "アクセス ＆ WiFi" },
         items: [
+            {
+                icon: "checkin",
+                title: { en: "Check-in Guide", jp: "チェックイン・アウト方法" },
+                content: {
+                    en: `<p>Open the key box on the door using the code <strong>0123</strong>.</p>
+                        <div class="keybox-container">
+                            <img src="img/tlh-keybox1.jpg" alt="Keybox Location" class="guidebook-img">
+                            <img src="img/tlh-keybox2.jpg" alt="Keybox Detail" class="guidebook-img">
+                        </div>`,
+                    jp: `<p>玄関ドアのドアノブに設置しているキーボックスは、暗証番号「<strong>0123</strong>」で解錠できます。チェックアウト時は、鍵をキーボックスへお戻しください。</p>
+                        <div class="keybox-container">
+                            <img src="img/tlh-keybox1.jpg" alt="キーボックスの場所" class="guidebook-img">
+                            <img src="img/tlh-keybox2.jpg" alt="キーボックス詳細" class="guidebook-img">
+                        </div>`
+                }
+            },
+            {
+                icon: "wifi",
+                title: { en: "WiFi", jp: "WiFi" },
+                content: {
+                    en: `<div class="wifi-container">
+                            <div class="wifi-text">
+                                <p><strong>Network 1:</strong> The Lake House - 2G</p>
+                                <p><strong>Network 2:</strong> The Lake House - 5G</p>
+                                <p><strong>Password:</strong> nojiriko</p>
+                            </div>
+                            <div class="wifi-image">
+                                <img src="img/tlh-wifi.png" alt="WiFi QR Code" class="guidebook-img">
+                            </div>
+                        </div>`,
+                    jp: `<div class="wifi-container">
+                            <div class="wifi-text">
+                                <p><strong>ネットワーク1:</strong> The Lake House - 2G</p>
+                                <p><strong>ネットワーク2:</strong> The Lake House - 5G</p>
+                                <p><strong>パスワード:</strong> nojiriko</p>
+                            </div>
+                            <div class="wifi-image">
+                                <img src="img/tlh-wifi.png" alt="WiFi QRコード" class="guidebook-img">
+                            </div>
+                        </div>`
+                }
+            },
             {
                 icon: "address",
                 title: { en: "Address", jp: "住所" },
@@ -152,192 +194,220 @@ const guidebookData = {
     sections: [
         {
             id: "facility",
-            title: { en: "Facilities", jp: "施設" },
+            title: { en: "Room & Equipment Guide", jp: "各部屋と備品のご案内" },
             items: [
                 {
-                    icon: "checkin",
-                    title: { en: "Check-in Guide", jp: "チェックイン方法" },
+                    icon: "rooms",
+                    title: { en: "Toilet", jp: "トイレ" },
                     content: {
-                        en: `<p>Upon arrival, locate the key lockbox on the right side of the entrance. Enter your 4-digit code to retrieve the keys.</p>
-                        <p>Please remove shoes at the genkan (entrance area) and use the provided slippers inside.</p>`,
-                        jp: `<p>到着後、玄関右側のキーボックスを探してください。4桁のコードを入力して鍵を取り出してください。</p>
-                        <p>玄関で靴を脱ぎ、室内用スリッパをご使用ください。</p>`
+                        en: `<p>There are two separate toilets for men and women. Please use them accordingly.</p>`,
+                        jp: `<p>男女別で2個あるので、使い分けてご使用ください。</p>`
                     }
                 },
                 {
-                    icon: "water",
-                    title: { en: "Water Heater", jp: "給湯器の案内" },
+                    icon: "tv",
+                    title: { en: "Living Room", jp: "リビング" },
                     content: {
-                        en: `<p>The water heater is located in the utility room. It is set to automatic mode and should provide hot water immediately.</p>
-                        <p>Floor heating controls are on the wall panel near the living room.</p>`,
-                        jp: `<p>給湯器はユーティリティルームにあります。自動モードに設定されており、すぐにお湯が出ます。</p>
-                        <p>床暖房のコントロールパネルはリビング近くの壁にあります。</p>`
-                    }
-                },
-                {
-                    icon: "amenities",
-                    title: { en: "Amenities", jp: "アメニティの案内" },
-                    content: {
-                        en: `<p>We provide the following amenities:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>Shampoo, conditioner, body wash</li>
-                            <li>Towels (bath and face)</li>
-                            <li>Hair dryer</li>
-                            <li>Toothbrush sets</li>
-                            <li>Slippers</li>
-                        </ul>`,
-                        jp: `<p>以下のアメニティをご用意しています:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>シャンプー・コンディショナー・ボディソープ</li>
-                            <li>タオル（バス・フェイス）</li>
-                            <li>ドライヤー</li>
-                            <li>歯ブラシセット</li>
-                            <li>スリッパ</li>
-                        </ul>`
-                    }
-                },
-                {
-                    icon: "kitchen",
-                    title: { en: "Kitchen Tools", jp: "調理器具の使用方法" },
-                    content: {
-                        en: `<p>The kitchen is fully equipped with:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>Refrigerator & freezer</li>
-                            <li>Induction cooktop (3 burners)</li>
-                            <li>Microwave oven</li>
-                            <li>Rice cooker</li>
-                            <li>Pots, pans, cooking utensils</li>
-                            <li>Plates, bowls, cups, cutlery</li>
-                            <li>Plates, bowls, cups, cutlery</li>
-                        </ul>`,
-                        jp: `<p>キッチンには以下の設備があります:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>冷蔵庫・冷凍庫</li>
-                            <li>IHコンロ（3口）</li>
-                            <li>電子レンジ</li>
-                            <li>炊飯器</li>
-                            <li>鍋・フライパン・調理器具</li>
-                            <li>食器類</li>
-                        </ul>`
-                    }
-                },
-                {
-                    icon: "bath",
-                    title: { en: "Bath Usage", jp: "浴室の使用方法" },
-                    content: {
-                        en: `<p>The bathroom features a traditional Japanese soaking tub. Please rinse off before entering the tub.</p>
-                        <p>Hot water is available 24/7. Temperature can be adjusted using the control panel.</p>`,
-                        jp: `<p>浴室には日本式の浴槽があります。湯船に入る前に体を洗ってください。</p>
-                        <p>お湯は24時間使用可能です。温度はコントロールパネルで調整できます。</p>`
-                    }
-                },
-                {
-                    icon: "dishes",
-                    title: { en: "Dishes", jp: "食器類の説明" },
-                    content: {
-                        en: `<p>Dish soap and sponges are provided under the kitchen sink. Please wash and dry dishes before checkout.</p>
-                        <p>A dishwasher is available - detergent pods are in the cabinet above.</p>`,
-                        jp: `<p>食器用洗剤とスポンジはシンク下にあります。チェックアウト前に食器を洗って乾かしてください。</p>
-                        <p>食洗機もあります。洗剤は上の棚にあります。</p>`
-                    }
-                },
-                {
-                    icon: "condiments",
-                    title: { en: "Condiments", jp: "調味料の説明" },
-                    content: {
-                        en: `<p>We provide basic condiments:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>Salt, pepper, cooking oil</li>
-                            <li>Soy sauce</li>
-                            <li>Coffee, tea</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem;">Feel free to use these during your stay.</p>`,
-                        jp: `<p>基本的な調味料をご用意しています:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>塩・胡椒・油</li>
-                            <li>醤油</li>
-                            <li>コーヒー・紅茶</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem;">ご自由にお使いください。</p>`
-                    }
-                },
-                {
-                    icon: "rentals",
-                    title: { en: "Rental Items", jp: "貸出品の使い方" },
-                    content: {
-                        en: `<p>The following items are available for rent:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>SUP boards</li>
-                            <li>BBQ grill set</li>
-                            <li>Fishing equipment</li>
-                            <li>Bicycles</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem;">See Optional Services section below for pricing.</p>`,
-                        jp: `<p>以下のアイテムがレンタル可能です:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>SUPボード</li>
-                            <li>BBQグリルセット</li>
-                            <li>釣り道具</li>
-                            <li>自転車</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem;">料金は下のオプションサービスをご覧ください。</p>`
-                    }
-                },
-                {
-                    icon: "ac",
-                    title: { en: "Air Conditioning", jp: "エアコンの使い方" },
-                    content: {
-                        en: `<p>Each room has its own air conditioning unit. Remotes are located on the wall mount or bedside table.</p>
-                        <p>Please turn off A/C when leaving the property to conserve energy.</p>`,
-                        jp: `<p>各部屋にエアコンがあります。リモコンは壁掛けまたはベッドサイドにあります。</p>
-                        <p>外出時はエアコンをオフにしてください。</p>`
-                    }
-                },
-                {
-                    icon: "wifi",
-                    title: { en: "WiFi", jp: "WiFiの紹介" },
-                    content: {
-                        en: `<p><strong>Network Name:</strong> LAKEHOUSE_GUEST</p>
-                        <p><strong>Password:</strong> nojiriko2024</p>
-                        <p>Speed: Up to 100Mbps. Router is located in the living room.</p>`,
-                        jp: `<p><strong>ネットワーク名:</strong> LAKEHOUSE_GUEST</p>
-                        <p><strong>パスワード:</strong> nojiriko2024</p>
-                        <p>速度: 最大100Mbps。ルーターはリビングにあります。</p>`
+                        en: `<p><strong>DAM Karaoke System:</strong> Equipped with 4 remotes, 2 microphones, tambourines, maracas, smoke items, and mic stands. (Available anytime, please mind volume at night.)</p>
+                        <p><strong>BOSE Speakers:</strong> Bluetooth compatible.</p>
+                        <p><strong>85-inch TV:</strong> Netflix, Prime Video, Hulu, U-NEXT, Rakuten TV, ABEMA available (please log in with your own account).</p>
+                        <p><strong>HALO Sofa:</strong> Luxurious feather down sofa for cloud-like comfort.</p>
+                        <p><strong>HALO Dining Table:</strong> Upcycled Georgian-style table made from historic British timber.</p>
+                        <p><strong>DR.VRANJES Diffuser:</strong> Enjoy high-quality fragrances.</p>
+                        <p><strong>Board Games:</strong> Cards and various games available.</p>`,
+                        jp: `<p><strong>【DAMカラオケ使い放題】</strong>大人数でもお楽しみいただけるようデンモク4つ、マイク2本、タンバリン、マラカス、スモークアイテムやマイクスタンドもご用意しております。（ご滞在中いつでもご利用いただけますが、夜間使用の際は音量にご注意下さい。）</p>
+                        <p><strong>BOSEスピーカー完備</strong>(Bluetooth接続可能)</p>
+                        <p><strong>85インチTV完備</strong>。NETFLIX、Prime video、hulu、U-NEXT、RakutenTV、ABEMAをご利用いただけます。（アカウントログインにつきましてはお客様ご自身でお願いいたします。）</p>
+                        <p><strong>【英国家具ブランドHALOよりフェザーダウンを贅沢に使用したソファを完備】</strong>まるで雲の上にいるかのような、抜け出せなくなってしまう心地よさをご体感下さい。</p>
+                        <p><strong>【英国家具ブランドHALOよりジョージアン様式のダイニングテーブルを完備】</strong>イギリスの家屋で実際に使用されていた梁や柱などの古材をアップサイクル。そのまま残された木のふしや釘の跡が味わいを増してくれます。ご友人やご家族との大切なひとときに是非ご利用下さいませ。</p>
+                        <p>DR.VRANJESディフューザーの上質な香りをお楽しみいただけます。</p>
+                        <p>横乗り好きオーナーこだわりアイテムもインテリアとして置かせていただいております。（壊れやすいものもございます。小さなお子様がお手を触れぬよう、ご注意願います。）</p>
+                        <p>ボードゲームやトランプ等、ゲームグッズも多数ご用意しております。</p>`
                     }
                 },
                 {
                     icon: "rooms",
-                    title: { en: "Rooms", jp: "各部屋の紹介" },
+                    title: { en: "Bedrooms", jp: "寝室" },
                     content: {
-                        en: `<p><strong>1F:</strong> Living room, dining area, kitchen, bathroom, toilet</p>
-                        <p><strong>2F:</strong> 3 bedrooms (2 queen, 1 twin), toilet</p>
-                        <p>Maximum occupancy: 8 guests</p>`,
-                        jp: `<p><strong>1F:</strong> リビング・ダイニング・キッチン・浴室・トイレ</p>
-                        <p><strong>2F:</strong> 寝室3部屋（クイーン2・ツイン1）・トイレ</p>
-                        <p>最大定員: 8名</p>`
+                        en: `<p><strong>Bedroom 1 (7.5 tatami):</strong> 1 Double Bed, A/C, Bedside Table, Mini Fridge</p>
+                        <p><strong>Bedroom 2 (7.5 tatami):</strong> 2 Single Beds, A/C, Bedside Table, Mini Fridge</p>
+                        <p><strong>Bedroom 3 (6.0 tatami):</strong> 2 Single Beds, A/C, Bedside Table</p>
+                        <p><strong>Bedroom 4 (9.0 tatami):</strong> 2 Semi-Double Beds, A/C, Bedside Table, Mini Fridge, LCD TV</p>`,
+                        jp: `<p><strong>寝室①【洋室7.5帖】</strong>ダブルベッド1台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
+                        <p><strong>寝室②【洋室7.5帖】</strong>シングルベッド2台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
+                        <p><strong>寝室③【洋室6.0帖】</strong>シングルベッド2台、冷暖房エアコン、ベッドサイドテーブル</p>
+                        <p><strong>寝室④【洋室9.0帖】</strong>セミダブルベッド2台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫、液晶テレビ</p>`
+                    }
+                },
+                {
+                    icon: "kitchen",
+                    title: { en: "Kitchen", jp: "キッチン" },
+                    content: {
+                        en: `<p><strong>Unlimited Sparkling Water Server:</strong> Fresh strong carbonation on tap. Great for mixers or drinking straight (especially after sauna).</p>
+                        <p><strong>HOSHIZAKI Ice Maker:</strong> Commercial-grade ice maker for crystal clear, slow-melting ice.</p>
+                        <p><strong>Appliances:</strong> Panasonic 470L Fridge, T-fal 1.2L Kettle, Panasonic Microwave.</p>
+                        <p><strong>Cooking:</strong> Fully cooking utensils, dishes, glasses. IH Stove (instructions below).</p>
+                        <p><strong>Condiments:</strong> Oil, Salt, Pepper only.</p>
+                        <p><strong>Note:</strong> Please use the provided drain net and discard after use.</p>
+                        <div class="tip-box">If kitchen stove batteries die, spares are available (see image). Open cover to replace.</div>`,
+                        jp: `<p><strong>【炭酸サーバー使い放題】</strong>レバーを引くだけで無限に出てくる強炭酸サーバー完備！ご自身のお好みのリキュールやお飲み物をお好きな分強炭酸水で割っていただけます。サウナ時の飲用もオススメです。</p>
+                        <p><strong>【HOSHIZAKI製氷機完備】</strong>業務用製氷機を完備しております。溶けにくく大きな氷で是非快適なご飲食をお楽しみ下さい。</p>
+                        <p>Panasonic 470L冷蔵庫完備、1.2Lティファール完備、Panasonic電子レンジ完備</p>
+                        <p>調理器具、食器、グラス各種完備</p>
+                        <p>キッチンコンロが電池切れした際は右記の画像に換えの電池があるので、2番目の画像よりカバーを開けて交換いただければと存じます。</p>
+                        <p>水切りネットをセットさせていただきますので、ご使用して捨ててください</p>
+                        <p>調味料は油と塩と胡椒のみ用意しております。</p>`
+                    }
+                },
+                {
+                    icon: "fire",
+                    title: { en: "Fireplace", jp: "暖炉" },
+                    content: {
+                        en: `<p>Please watch the video guide to operate the fireplace.</p>
+                        <p><strong>Important:</strong> Return gas cans to their original location. Ensure safety to prevent fire hazards.</p>`,
+                        jp: `<p>こちらの動画を参考に、暖炉を付けてください。※ガス缶は元の場所に戻してください。※火災の原因にもなりますので、必ずご確認お願いいたします。</p>`
+                    }
+                },
+                {
+                    icon: "mic",
+                    title: { en: "Karaoke", jp: "カラオケ" },
+                    content: {
+                        en: `<p>1. Switch TV input to HDMI 1.</p>
+                        <p>2. Press the 3 power buttons (see image).</p>
+                        <p><strong>Note:</strong> Takes about 3 minutes to boot if all power was off.</p>
+                        <p>If unsure, please watch the video guide.</p>`,
+                        jp: `<p>① テレビのリモコンの入力切り替えでHDMI1に合わせる。</p>
+                        <p>② 3ヶ所の電源ボタンを押す→写真参照</p>
+                        <p>※電源が全て切れている場合は3分ほど、起動までお時間がかかります。</p>
+                        <p>わからない場合はこちらの動画をご視聴ください。</p>`
+                    }
+                },
+                {
+                    icon: "laundry",
+                    title: { en: "Washing Machine", jp: "洗濯機" },
+                    content: {
+                        en: `<p>Follow the steps to Wash / Wash & Dry / Dry.</p>
+                        <p>Manual available here.</p>`,
+                        jp: `<p>こちらの手順で洗濯と乾燥が可能です。②の際に洗濯・洗乾燥・乾燥の三つよりコースがお選びできます。取扱説明書はこちら。</p>`
+                    }
+                },
+                {
+                    icon: "water",
+                    title: { en: "Water Heater", jp: "給湯器" },
+                    content: {
+                        en: `<p>Two units located in Kitchen and Bath. Please verify images.</p>
+                        <p>Set both to 60°C for use.</p>`,
+                        jp: `<p>給湯器がキッチンと風呂場に2個ずつあります。画像を参照ください。双方とも60度に設定をして、お使いください。</p>`
+                    }
+                },
+                {
+                    icon: "bath",
+                    title: { en: "Jacuzzi", jp: "ジャグジー" },
+                    content: {
+                        en: `<p>1. Turn on switch panel next to Jacuzzi.</p>
+                        <p>2. Turn on Jacuzzi power.</p>
+                        <p><strong>Filling:</strong> Use the faucet (not water heater). Close Drain Valves 1 & 2.</p>
+                        <p><strong>Draining:</strong> Open Drain Valves 1 & 2. Drain completely after use.</p>
+                        <p><strong>Notes:</strong> No food/drink inside. Auto-fill takes too long, follow manual fill instructions.</p>
+                        <p><strong>Hot Shower:</strong> Available Mar-Nov (¥10,000/day extra).</p>`,
+                        jp: `<p>① ジャグジー横にあるスイッチパネルを開け電源を入れる。</p>
+                        <p>② ジャグジーの電源を入れる。</p>
+                        <p><strong>&lt;水を貯める&gt;</strong> 給湯器ではなくこちらの蛇口を捻ってお使いください。水を貯める場合は排水弁①と排水弁②を閉じてください</p>
+                        <p><strong>&lt;排水する&gt;</strong> 排水弁①と排水弁②両方開けてください。※使用後は完全に排水をお願いします</p>
+                        <p>※ジャグジー内での飲食は禁止です。※自動のお湯炊きだと時間かかるので、必ず上記の説明通りにお試しください。</p>
+                        <p>【温シャワー完備】※3月~11月のみ利用可能※別途一日あたり10,000円頂いております。</p>`
+                    }
+                },
+                {
+                    icon: "sightseeing",
+                    title: { en: "Balcony", jp: "バルコニー" },
+                    content: {
+                        en: `<p><strong>Lafuma Sauna Chairs (x4):</strong> Relax after the cold bath under the stars.</p>
+                        <p><strong>Amenities:</strong> Side tables, Custom wood table, JBL PartyBox Speaker.</p>
+                        <p><strong>Overhead Shower:</strong> Cold water shower available (except winter).</p>
+                        <div class="warning-box">
+                            <strong>Rules:</strong> Quiet hours after 10 PM. No jumping into the lake (dangerous). Do not bury alcohol in snow.
+                        </div>`,
+                        jp: `<p><strong>【フランス輸入サウナチェア（Lafuma MOBILIER）4台完備】</strong>こだわりの水風呂につかった後は、ゆったりとした時間をおくつろぎ下さい。</p>
+                        <p>サイドテーブル2台完備、特注ウッドテーブル完備。</p>
+                        <p>JBLスピーカーPartyBox完備</p>
+                        <p>固定式シャワー完備（冬季使用不可）</p>
+                        <div class="warning-box">
+                            <strong>注意事項:</strong> 夜22時以降はバルコニーではお静かにお過ごしください。日が暮れてから、湖に飛び込むのは大変危険なので厳禁です。雪の中にお酒を埋めて冷やすのはご遠慮ください。
+                        </div>`
+                    }
+                },
+                {
+                    icon: "bbq",
+                    title: { en: "BBQ", jp: "BBQ" },
+                    content: {
+                        en: `<p>Located on the upper kitchen shelf.</p>
+                        <p>1. Check position of lighter and tongs.</p>
+                        <p>2. Check position of the grill net.</p>`,
+                        jp: `<p>① チャッカマンとトングの位置を確認する。</p>
+                        <p>② 網の位置を確認する。</p>
+                        <p>③ キッチンの上部の棚にあります。</p>`
+                    }
+                },
+                {
+                    icon: "bath",
+                    title: { en: "Sauna", jp: "サウナ" },
+                    content: {
+                        en: `<p>Private sauna with Lake Nojiri views. Max 6 people.</p>
+                        <p><strong>Equipment:</strong> HARVIA LEGEND300 Stove, Löyly Set (Birch scent), Sauna Mats, Towels, Merino Wool Hats.</p>
+                        <p><strong>Items:</strong> Bose Speaker, Blower (for self-aufguss), FIRESIDE Gloves & Firestarters.</p>
+                        <p><strong>Rentals:</strong> Sauna Ponchos available (paid).</p>
+                        <p>Please return gas cans to basket.</p>`,
+                        jp: `<p>オーナーこだわりの特注サウナルームです。最大６名。</p>
+                        <p>HARVIA LEGEND300ストーブサウナ完備、ロウリュセット完備（白樺の香り）、サウナマット・タオル完備。</p>
+                        <p>メリノウール100％サウナハット完備。</p>
+                        <p>Boseモバイルスピーカー完備、ブロアー完備（セルフアウフグース可能）。</p>
+                        <p>FIRESIDE革手袋・着火剤完備。</p>
+                        <p>有料でサウナポンチョの貸し出しがある。ガス缶はカゴに戻すようにする。</p>`
+                    }
+                },
+                {
+                    icon: "water",
+                    title: { en: "Cold Bath", jp: "水風呂" },
+                    content: {
+                        en: `<p>Custom-built 140cm deep cold bath fed by natural underground water (14°C year-round, 100L/min).</p>
+                        <p>Dive in to cool down completely.</p>`,
+                        jp: `<p>春夏秋冬、季節を問わず14℃の天然地下水が毎分100ℓで湧き出ているため、掛け流しで提供させていただきます。</p>
+                        <p>深さなんと140cm、天然地下水掛け流しの水風呂へダイブ。</p>`
+                    }
+                },
+                {
+                    icon: "amenities",
+                    title: { en: "Amenities & Tools", jp: "アメニティ・備品" },
+                    content: {
+                        en: `<p><strong>Bath:</strong> Shampoo, Body Soap, Conditioner, Towels, Toothbrush, Hair Dryers (x2), Jet Bath.</p>
+                        <p><strong>Kitchen:</strong> Rice Cooker, Gas Stove, Tefal Pot, Pots/Pans, Dishwasher (detergent in clear box).</p>`,
+                        jp: `<p><strong>アメニティ:</strong> シャンプー、ボディソープ、コンディショナー、バスタオル、ボディタオル、歯ブラシ。</p>
+                        <p><strong>調理器具:</strong> 炊飯器、ガスコンロ、Tefal 電気ポット、鍋、フライパン。</p>
+                        <p><strong>食洗機:</strong> 透明のボックスの中に洗剤が入っています。食器と一緒に中に入れてください。電源を先に押してオンにした後にスタートを押してください。</p>
+                        <p><strong>お風呂:</strong> ジェットバス付き浴槽完備、浴室内5段階調光完備、ヘアドライヤー2台完備。</p>`
+                    }
+                },
+                {
+                    icon: "power",
+                    title: { en: "Breaker", jp: "ブレーカー" },
+                    content: {
+                        en: `<p>Located as shown in image. Reset any switches that are down.</p>`,
+                        jp: `<p>こちらの画像の場所にブレーカーがあります。下がっているスイッチを直してください。</p>`
                     }
                 },
                 {
                     icon: "trash",
-                    title: { en: "Trash Disposal", jp: "ゴミの捨て方" },
+                    title: { en: "Trash Rules", jp: "ゴミ箱" },
                     content: {
-                        en: `<p>Please separate trash:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li><strong>Burnable:</strong> Food waste, paper</li>
-                            <li><strong>Plastic:</strong> Bottles, packaging</li>
-                            <li><strong>PET Bottles:</strong> Remove caps</li>
-                            <li><strong>Cans/Glass:</strong> Rinse before disposal</li>
-                            <li><strong>Cans/Glass:</strong> Rinse before disposal</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem;">Please take all trash with you upon checkout.</p>`,
-                        jp: `<p>ゴミは分別してください:</p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li><strong>可燃:</strong> 生ゴミ・紙</li>
-                            <li><strong>プラ:</strong> ボトル・包装</li>
-                            <li><strong>ペットボトル:</strong> キャップを外す</li>
-                            <li><strong>缶・瓶:</strong> 洗ってから</li>
-                        </ul>
-                        <p style="margin-top: 0.5rem;">チェックアウト時にゴミはお持ち帰りください。</p>`
+                        en: `<p>Separate into: Burnable, Non-burnable, Cans, PET bottles, Glass.</p>
+                        <p>Place in designated area (red frame in image).</p>
+                        <p>Consolidate trash near living room red frame area upon checkout.</p>
+                        <p>Long-term guests: Contact via booking site for collection.</p>`,
+                        jp: `<p>ゴミは可燃ゴミ、不燃ゴミ、缶、ペットボトル、瓶で分別して画像の赤枠付近に置いてください。</p>
+                        <p>ゴミ箱は1点のみご使用になれます。</p>
+                        <p>退出時にリビングに右記の画像の赤枠周辺にまとめてゴミを置いておいてください。</p>
+                        <p>長期宿泊のお客様はゴミを回収させていただきますので、お使いの予約サイトよりご連絡をしてください。</p>`
                     }
                 }
             ]
@@ -348,44 +418,220 @@ const guidebookData = {
             items: [
                 {
                     icon: "goods",
-                    title: { en: "Daily Goods & Grocery", jp: "生活雑貨" },
+                    title: { en: "Supermarkets & Daily Goods", jp: "生活用品・スーパー" },
                     content: {
-                        en: `<p><strong>Tsuruya:</strong> 10 min drive - Large supermarket with local produce</p>
-                        <p><strong>7-Eleven:</strong> 5 min drive - 24 hours</p>
-                        <p><strong>Lawson:</strong> 7 min drive - 24 hours</p>
-                        <p>We recommend stocking up before arriving, especially in the evening.</p>`,
-                        jp: `<p><strong>スーパーツルヤ:</strong> 車10分・地元の食材が揃う大型スーパー</p>
-                        <p><strong>セブンイレブン:</strong> 車5分・24時間営業</p>
-                        <p><strong>ローソン:</strong> 車7分・24時間営業</p>
-                        <p>特に夜到着の場合は事前に買い物をおすすめします。</p>`
-                    }
-                },
-                {
-                    icon: "sightseeing",
-                    title: { en: "Sightseeing", jp: "観光スポット" },
-                    content: {
-                        en: `<p><strong>Lake Nojiri:</strong> 2 min walk - Beautiful lake with water activities</p>
-                        <p><strong>Togakushi Shrine:</strong> 30 min drive - Ancient shrine in cedar forest</p>
-                        <p><strong>Zenko-ji Temple:</strong> 45 min drive - National treasure, must-visit</p>
-                        <p><strong>Ski Resorts:</strong> 20-40 min drive (winter)</p>`,
-                        jp: `<p><strong>野尻湖:</strong> 徒歩2分・ウォーターアクティビティ</p>
-                        <p><strong>戸隠神社:</strong> 車30分・杉林の中の古社</p>
-                        <p><strong>善光寺:</strong> 車45分・国宝・必見</p>
-                        <p><strong>スキー場:</strong> 車20-40分（冬季）</p>`
+                        en: `<ul class="guide-list">
+                                <li><strong>7-Eleven Nojiriko</strong> (3 min drive / 25 min walk)<br><a href="https://maps.app.goo.gl/G9RWM8weuvCBwHWE8" target="_blank">View Map</a></li>
+                                <li><strong>Gas Station ENEOS Nojiriko SS</strong> (3 min drive)<br><a href="https://maps.app.goo.gl/AwKBxDQRZknxXWaUA" target="_blank">View Map</a></li>
+                                <li><strong>7-Eleven Shinanomachi Furuma</strong> (10 min drive)<br><a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">View Map</a></li>
+                                <li><strong>Matsumoto Kiyoshi</strong> (Drugstore, 10 min drive)<br><a href="https://maps.app.goo.gl/RsZJ9Vxb7pGENTUQ7" target="_blank">View Map</a></li>
+                                <li><strong>Komeri</strong> (Home Center, 10 min drive)<br><a href="https://maps.app.goo.gl/qUL7xc5uUWoJMPw79" target="_blank">View Map</a></li>
+                                <li><strong>Minemura Sake Shop</strong> (10 min drive)<br><a href="https://maps.app.goo.gl/GmhirMwhEaAkA3SRA" target="_blank">View Map</a></li>
+                                <li><strong>Daiichi Supermarket</strong> (10 min drive)<br><a href="https://maps.app.goo.gl/oroYjsQDXvs9zWwn6" target="_blank">View Map</a></li>
+                            </ul>`,
+                        jp: `<ul class="guide-list">
+                                <li><strong>セブンイレブン野尻湖店</strong> (車で3分 徒歩25分)<br><a href="https://maps.app.goo.gl/G9RWM8weuvCBwHWE8" target="_blank">地図を見る</a></li>
+                                <li><strong>ガソリンスタンドENEOS 野尻湖SS</strong> (車で3分)<br><a href="https://maps.app.goo.gl/AwKBxDQRZknxXWaUA" target="_blank">地図を見る</a></li>
+                                <li><strong>セブンイレブン信濃町古間店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">地図を見る</a></li>
+                                <li><strong>マツモトキヨシ古間店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/RsZJ9Vxb7pGENTUQ7" target="_blank">地図を見る</a></li>
+                                <li><strong>ホームセンターコメリ 信濃町店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/qUL7xc5uUWoJMPw79" target="_blank">地図を見る</a></li>
+                                <li><strong>みねむら酒店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/GmhirMwhEaAkA3SRA" target="_blank">地図を見る</a></li>
+                                <li><strong>スーパーマーケット第一スーパー古間店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/oroYjsQDXvs9zWwn6" target="_blank">地図を見る</a></li>
+                            </ul>`
                     }
                 },
                 {
                     icon: "restaurant",
-                    title: { en: "Restaurants", jp: "レストラン" },
+                    title: { en: "Dining: Western & Cafe", jp: "食事：洋食・カフェ" },
                     content: {
-                        en: `<p><strong>Soba Takagi:</strong> 15 min drive - Famous handmade soba</p>
-                        <p><strong>Lamp Bistro:</strong> 10 min drive - Western cuisine with local ingredients</p>
-                        <p><strong>Yakiniku Matsumoto:</strong> 20 min drive - Quality Japanese BBQ</p>
-                        <p>Many restaurants close early (around 8 PM). Reservations recommended on weekends.</p>`,
-                        jp: `<p><strong>蕎麦たかぎ:</strong> 車15分・手打ち蕎麦</p>
-                        <p><strong>ランプビストロ:</strong> 車10分・地元食材の洋食</p>
-                        <p><strong>焼肉松本:</strong> 車20分・焼肉</p>
-                        <p>多くの店は20時頃に閉まります。週末は予約をおすすめします。</p>`
+                        en: `<h4 class="guide-sub-title">Italian</h4>
+                            <ul class="guide-list">
+                                <li><strong>Funagoya</strong><br><a href="https://maps.app.goo.gl/UTGMEnHbVUd4nEMt9" target="_blank">View Map</a></li>
+                                <li><strong>Terra</strong><br><a href="https://maps.app.goo.gl/bvsg8gmxt7ARfFV78" target="_blank">View Map</a></li>
+                                <li><strong>Nicoli</strong><br><a href="https://maps.app.goo.gl/3PXMN6TghEhUyzEp7" target="_blank">View Map</a></li>
+                                <li><strong>Restaurant Rudolf</strong><br><a href="https://maps.app.goo.gl/C2N41Ku3MATQNBcF8" target="_blank">View Map</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">Hamburger & Western</h4>
+                            <ul class="guide-list">
+                                <li><strong>Lamp Nojiriko</strong><br><a href="https://maps.app.goo.gl/WjK4gYTUV2uPQpms5" target="_blank">View Map</a></li>
+                                <li><strong>Arrowhead Tavern</strong><br><a href="https://maps.app.goo.gl/Yi2MTGhadx9iZQaw9" target="_blank">View Map</a></li>
+                                <li><strong>Lumber jack</strong><br><a href="https://maps.app.goo.gl/woFffzQ9f1bkPExx8" target="_blank">View Map</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">Cafe & Bakery</h4>
+                            <ul class="guide-list">
+                                <li><strong>MYOKO COFFEE</strong><br><a href="https://maps.app.goo.gl/ZfZi2q3FnZJDHYt19" target="_blank">View Map</a></li>
+                                <li><strong>EN Bakery 39</strong><br><a href="https://maps.app.goo.gl/H1krSAdkcu498NXM6" target="_blank">View Map</a></li>
+                            </ul>`,
+                        jp: `<h4 class="guide-sub-title">イタリアン</h4>
+                            <ul class="guide-list">
+                                <li><strong>Funagoya舟小屋</strong><br><a href="https://maps.app.goo.gl/UTGMEnHbVUd4nEMt9" target="_blank">地図を見る</a></li>
+                                <li><strong>イタリア料理 テルラ</strong><br><a href="https://maps.app.goo.gl/bvsg8gmxt7ARfFV78" target="_blank">地図を見る</a></li>
+                                <li><strong>Nicoli</strong><br><a href="https://maps.app.goo.gl/3PXMN6TghEhUyzEp7" target="_blank">地図を見る</a></li>
+                                <li><strong>レストランルドルフ</strong><br><a href="https://maps.app.goo.gl/C2N41Ku3MATQNBcF8" target="_blank">地図を見る</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">ハンバーガー・洋食</h4>
+                            <ul class="guide-list">
+                                <li><strong>Lamp野尻湖</strong><br><a href="https://maps.app.goo.gl/WjK4gYTUV2uPQpms5" target="_blank">地図を見る</a></li>
+                                <li><strong>Arrowhead Tavern</strong><br><a href="https://maps.app.goo.gl/Yi2MTGhadx9iZQaw9" target="_blank">地図を見る</a></li>
+                                <li><strong>Lumber jack</strong><br><a href="https://maps.app.goo.gl/woFffzQ9f1bkPExx8" target="_blank">地図を見る</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">カフェ・パン屋</h4>
+                            <ul class="guide-list">
+                                <li><strong>MYOKO COFFEE 高原駅前</strong><br><a href="https://maps.app.goo.gl/ZfZi2q3FnZJDHYt19" target="_blank">地図を見る</a></li>
+                                <li><strong>EN　ベーカリー39</strong><br><a href="https://maps.app.goo.gl/H1krSAdkcu498NXM6" target="_blank">地図を見る</a></li>
+                            </ul>`
+                    }
+                },
+                {
+                    icon: "restaurant",
+                    title: { en: "Dining: Japanese & Asian", jp: "食事：和食・中華・その他" },
+                    content: {
+                        en: `<h4 class="guide-sub-title">Japanese (Soba, etc.)</h4>
+                            <ul class="guide-list">
+                                <li><strong>Issa Shokudo</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">View Map</a></li>
+                                <li><strong>Shinanoya (Soba)</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">View Map</a></li>
+                                <li><strong>Restaurant Kiju</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">View Map</a></li>
+                                <li><strong>Sobadokoro Takasawa</strong><br><a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">View Map</a></li>
+                                <li><strong>Jurin (Tonkatsu)</strong><br><a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">View Map</a></li>
+                                <li><strong>Kirakuen</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">View Map</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">Sushi & Yakiniku</h4>
+                            <ul class="guide-list">
+                                <li><strong>Kitokito Sushi</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">View Map</a></li>
+                                <li><strong>Yakiniku Toyooka</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">View Map</a></li>
+                                <li><strong>Echigoya</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">View Map</a></li>
+                                <li><strong>Yakiniku Otagiri</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">View Map</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">Chinese & Ramen</h4>
+                            <ul class="guide-list">
+                                <li><strong>Eika (Machichuka)</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">View Map</a></li>
+                                <li><strong>Arakin Ramen</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">View Map</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">Izakaya</h4>
+                            <ul class="guide-list">
+                                <li><strong>Tamaki</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">View Map</a></li>
+                                <li><strong>Nihontei</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">View Map</a></li>
+                            </ul>`,
+                        jp: `<h4 class="guide-sub-title">和食</h4>
+                            <ul class="guide-list">
+                                <li><strong>一茶食堂</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">地図を見る</a></li>
+                                <li><strong>信濃屋 そば</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">地図を見る</a></li>
+                                <li><strong>レストラン樹香</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">地図を見る</a></li>
+                                <li><strong>そば処 たかさわ</strong><br><a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">地図を見る</a></li>
+                                <li><strong>樹林とんかつ</strong><br><a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">地図を見る</a></li>
+                                <li><strong>きらく園</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">地図を見る</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">寿司・焼肉</h4>
+                            <ul class="guide-list">
+                                <li><strong>きときと寿司</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">地図を見る</a></li>
+                                <li><strong>精肉焼肉とよおか</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">地図を見る</a></li>
+                                <li><strong>越後屋</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">地図を見る</a></li>
+                                <li><strong>焼肉おたぎり</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">地図を見る</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">中華・ラーメン</h4>
+                            <ul class="guide-list">
+                                <li><strong>栄華 町中華</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">地図を見る</a></li>
+                                <li><strong>あらきんラーメン</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">地図を見る</a></li>
+                            </ul>
+                            <h4 class="guide-sub-title">居酒屋</h4>
+                            <ul class="guide-list">
+                                <li><strong>町酒場 たまき</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">地図を見る</a></li>
+                                <li><strong>日本亭</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">地図を見る</a></li>
+                            </ul>`
+                    }
+                },
+                {
+                    icon: "bath",
+                    title: { en: "Onsen & Sauna", jp: "温泉・サウナ" },
+                    content: {
+                        en: `<ul class="guide-list">
+                                <li><strong>Madarao no Yu</strong> (Tattoo friendly)<br><a href="https://maps.app.goo.gl/YmcpSpDAjNMbH1ND9" target="_blank">View Map</a></li>
+                                <li><strong>THE SAUNA</strong><br><a href="https://maps.app.goo.gl/f2GPWJpnjmtHuHWQ8" target="_blank">View Map</a></li>
+                            </ul>`,
+                        jp: `<ul class="guide-list">
+                                <li><strong>まだらおの湯</strong> (タトゥーOK)<br><a href="https://maps.app.goo.gl/YmcpSpDAjNMbH1ND9" target="_blank">地図を見る</a></li>
+                                <li><strong>THE SAUNA</strong><br><a href="https://maps.app.goo.gl/f2GPWJpnjmtHuHWQ8" target="_blank">地図を見る</a></li>
+                            </ul>`
+                    }
+                },
+                {
+                    icon: "sightseeing",
+                    title: { en: "Ski Resorts", jp: "スキー場" },
+                    content: {
+                        en: `<div class="resort-list">
+                                <div class="resort-item">
+                                    <strong>Seki Onsen Ski Resort</strong> (20 min drive)<br>
+                                    <p class="resort-desc">Famous for heavy snow and powder. Advanced/Expert friendly with many non-groomed areas. Quiet and uncrowded.</p>
+                                    <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">part_link</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>Myoko Kogen / Akakura Onsen</strong> (15 min drive)<br>
+                                    <p class="resort-desc">Wide variety of courses from beginner to advanced. Connected to Akakura Onsen town with great après-ski. Popular international resort.</p>
+                                    <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">View Map</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>Kurohime Kogen Snow Park</strong> (10 min drive)<br>
+                                    <p class="resort-desc">Gentle slopes ideal for families and beginners. Excellent kids park and ski school. Uncrowded and relaxed.</p>
+                                    <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">View Map</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>Tangram Ski Circus</strong> (14 min drive)<br>
+                                    <p class="resort-desc">All-in-one resort with hotel. Perfect for beginners and families. Offers activities beyond skiing.</p>
+                                    <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">View Map</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>Madarao Kogen Ski Resort</strong> (22 min drive)<br>
+                                    <p class="resort-desc">Known for the highest number of tree run courses in Japan. Popular for powder and backcountry lovers. Intermediate to Advanced.</p>
+                                    <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">View Map</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>Nozawa Onsen Ski Resort</strong> (45 min drive)<br>
+                                    <p class="resort-desc">Large scale resort with long runs. Historic onsen town atmosphere with free public baths. Great for sightseeing and skiing.</p>
+                                    <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">View Map</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>Shiga Kogen Ski Resort</strong> (55 min drive)<br>
+                                    <p class="resort-desc">Japan's largest ski area (18 resorts). High altitude and stable snow quality. For advanced skiers and long stays.</p>
+                                    <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">View Map</a>
+                                </div>
+                            </div>`,
+                        jp: `<div class="resort-list">
+                                <div class="resort-item">
+                                    <strong>関温泉スキー場</strong> (車で20分)<br>
+                                    <p class="resort-desc">豪雪×上級者向けで有名なローカルスキー場。非圧雪エリアが多く、パウダースノー好き・玄人向け。観光客が少なく、静かに滑りたい人に最適。</p>
+                                    <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">地図を見る</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>妙高高原・赤倉温泉スキー場</strong> (車で15分)<br>
+                                    <p class="resort-desc">コースバリエーションが豊富で初級〜上級まで対応。ゲレンデ直結の赤倉温泉街があり、アフタースキーも充実。外国人観光客にも人気の国際的リゾート。</p>
+                                    <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">地図を見る</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>黒姫高原スノーパーク</strong> (車で10分)<br>
+                                    <p class="resort-desc">ファミリー・初心者向けの緩やかなコース設計。キッズパークやスクールが充実。混雑しにくく、気軽に楽しめるスキー場。</p>
+                                    <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">地図を見る</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>タングラムスキーサーカス</strong> (車で14分)<br>
+                                    <p class="resort-desc">ホテル一体型のオールインワンリゾート。初心者・ファミリー・観光目的の人に最適。スキー以外（温泉・アクティビティ）も楽しめる。</p>
+                                    <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">地図を見る</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>斑尾高原スキー場</strong> (車で22分)<br>
+                                    <p class="resort-desc">日本有数のツリーランコース数を誇る。パウダー・バックカントリー好きに大人気。中〜上級者向け、滑りごたえ重視。</p>
+                                    <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">地図を見る</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>野沢温泉スキー場</strong> (車で45分)<br>
+                                    <p class="resort-desc">コース規模が大きく、長距離滑走が可能。歴史ある野沢温泉街と外湯巡りが魅力。スキー×温泉×街歩きを楽しみたい人向け。</p>
+                                    <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">地図を見る</a>
+                                </div>
+                                <div class="resort-item">
+                                    <strong>志賀高原スキー場</strong> (車で55分)<br>
+                                    <p class="resort-desc">日本最大級のスキーエリア（18スキー場連結）。標高が高く、雪質が安定している。上級者・長期滞在・本格派スキーヤー向け。</p>
+                                    <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">地図を見る</a>
+                                </div>
+                            </div>`
                     }
                 }
             ]
@@ -398,110 +644,112 @@ const guidebookData = {
                     icon: "cancel",
                     title: { en: "Cancellation Policy", jp: "キャンセルポリシー" },
                     content: {
-                        en: `<p><strong>30+ days before:</strong> Full refund</p>
-                        <p><strong>14-29 days before:</strong> 50% refund</p>
-                        <p><strong>7-13 days before:</strong> 25% refund</p>
-                        <p><strong>Less than 7 days:</strong> No refund</p>`,
-                        jp: `<p><strong>30日以上前:</strong> 全額返金</p>
-                        <p><strong>14-29日前:</strong> 50%返金</p>
-                        <p><strong>7-13日前:</strong> 25%返金</p>
-                        <p><strong>7日未満:</strong> 返金不可</p>`
+                        en: `<p><strong>1. Full Refund:</strong> Canceled 30+ days before check-in, OR canceled within 24 hours of booking (if booking made at least 7 days before check-in).</p>
+                        <p><strong>2. 50% Refund:</strong> Canceled 30+ days before check-in but after the 24-hour grace period.</p>
+                        <p><strong>3. Full Refund:</strong> Canceled less than 30 days before check-in, IF booking was made at least 7 days before check-in and canceled within 24 hours.</p>
+                        <p><strong>4. No Refund (Tax Only):</strong> Canceled less than 30 days before check-in and after the 24-hour grace period.</p>`,
+                        jp: `<p><strong>① 全額返金:</strong> チェックイン30日前までのキャンセル、またはチェックイン7日前までの予約で予約確定後24時間以内のキャンセル。</p>
+                        <p><strong>② 50%返金:</strong> チェックイン30日前までのキャンセルで、予約確定後24時間を過ぎた場合。</p>
+                        <p><strong>③ 全額返金:</strong> チェックイン30日を切ってからのキャンセルだが、チェックイン7日前までの予約で予約確定後24時間以内のキャンセル。</p>
+                        <p><strong>④ 返金なし（税金のみ）:</strong> チェックイン30日を切ってからのキャンセルで、予約確定後24時間を過ぎている場合。</p>`
                     }
                 },
                 {
-                    icon: "smoke",
-                    title: { en: "Smoking Policy", jp: "禁煙喫煙" },
+                    icon: "rules",
+                    title: { en: "General Rules", jp: "ルール" },
                     content: {
-                        en: `<p><strong>Strictly No Smoking Indoors</strong></p>
-                        <p>A designated outdoor smoking area is available on the deck.</p>
-                        <p>Please use the provided ashtray.</p>
-                        <p>A ¥50,000 cleaning fee will be charged if indoor smoking is detected.</p>`,
-                        jp: `<p><strong>室内禁煙</strong></p>
-                        <p>デッキに喫煙スペースがあります。</p>
-                        <p>備え付けの灰皿をお使いください。</p>
-                        <p>室内喫煙が発覚した場合、5万円の清掃費を請求します。</p>`
+                        en: `<h4 class="guide-sub-title">Noise</h4>
+                        <p>Please refrain from loud noise, music, or partying that bothers neighbors. Loitering around the entrance is prohibited. Use may be terminated if complaints adhere.</p>
+                        <h4 class="guide-sub-title">Smoking</h4>
+                        <p><strong>Strictly No Smoking Indoors.</strong> Smoking is allowed on the terrace only. No ashtrays provided. A fine will be charged if indoor smoking is discovered.</p>
+                        <h4 class="guide-sub-title">Damages</h4>
+                        <p>Please report any damage or stains immediately, whether intentional or accidental. Charges may apply based on terms.</p>
+                        <h4 class="guide-sub-title">Other</h4>
+                        <p>Violations of terms may result in termination of stay. Package delivery/receipt before or after reservation hours is not allowed (unless approved).</p>`,
+                        jp: `<h4 class="guide-sub-title">騒音について</h4>
+                        <p>大声で騒ぐ・音楽を大音量で流すなど近隣のご迷惑になる行為はご遠慮ください。入口周辺でのたむろ行為は周辺住民のご迷惑となります。近隣から指摘があった場合、利用を中止いただくことがあります。</p>
+                        <h4 class="guide-sub-title">喫煙</h4>
+                        <p>建物内は禁煙となります。喫煙をされる場合は、テラスでお願いします。灰皿の用意はありません。喫煙が発覚した場合、罰金を課させていただきます。</p>
+                        <h4 class="guide-sub-title">破損・汚損があった際の対応</h4>
+                        <p>備品や設備を破損汚損された場合、故意または過失を問わず必ずご連絡をお願いします。利用規約に基づきご請求をさせていただく場合があります。</p>
+                        <h4 class="guide-sub-title">その他</h4>
+                        <p>利用規約に反したご利用が確認された場合は、利用中止をさせていただくことがあります。予約時間前後に荷物を受取、配達をすることはできません。</p>`
                     }
                 },
                 {
-                    icon: "noise",
-                    title: { en: "Noise", jp: "騒音の注意" },
+                    icon: "cancel",
+                    title: { en: "Prohibited Acts", jp: "禁止行為" },
                     content: {
-                        en: `<p>Please keep noise to a minimum, especially after 10:00 PM.</p>
-                        <p>This is a residential area with neighbors nearby.</p>
-                        <p>Loud music or parties are not permitted.</p>`,
-                        jp: `<p>22時以降は特に静かにお過ごしください。</p>
-                        <p>周辺は住宅地です。</p>
-                        <p>大音量の音楽やパーティーはご遠慮ください。</p>`
+                        en: `<p><strong>Unauthorized Extension:</strong> Please adhere to check-in/out times. ¥10,000 per 30 min charged for unauthorized extensions.</p>
+                        <p><strong>Fire:</strong> Use of fire indoors is prohibited (except kitchen stove).</p>
+                        <p><strong>Restricted Areas:</strong> Guests are not allowed on the 3rd floor.</p>`,
+                        jp: `<p><strong>無断延長:</strong> 予約時間内の入退室をお願いします。無断延長は30分につき1万円を請求します。</p>
+                        <p><strong>火気の利用:</strong> 室内での火気利用は禁止です（キッチンコンロを除く）。</p>
+                        <p><strong>立入禁止:</strong> 3階は管理上の理由により立ち入りできません。</p>`
                     }
                 },
                 {
-                    icon: "damage",
-                    title: { en: "Damages", jp: "備品が壊れた際の注意点" },
+                    icon: "info",
+                    title: { en: "Important Notes", jp: "注意事項" },
                     content: {
-                        en: `<p>Please report any damages or broken items immediately to the host.</p>
-                        <p>Accidents happen - we appreciate honesty. Repair costs will be assessed fairly.</p>`,
-                        jp: `<p>破損があった場合は、すぐにホストにご連絡ください。</p>
-                        <p>事故は起こりうるものです。正直にお伝えいただければ、修理費は公正に査定いたします。</p>`
-                    }
-                },
-                {
-                    icon: "damage",
-                    title: { en: "Stains & Cleaning", jp: "汚した際の注意点" },
-                    content: {
-                        en: `<p>Please take care with food and drinks on furniture and bedding.</p>
-                        <p>Cleaning supplies are available under the kitchen sink for minor spills.</p>
-                        <p>Additional cleaning fees may apply for excessive mess.</p>`,
-                        jp: `<p>家具や寝具への飲食物の汚れにご注意ください。</p>
-                        <p>軽い汚れ用の清掃用品はシンク下にあります。</p>
-                        <p>ひどい汚れの場合は追加清掃費が発生することがあります。</p>`
-                    }
-                },
-                {
-                    icon: "time",
-                    title: { en: "Early/Late Check-in", jp: "アーリー/レートチェックイン" },
-                    content: {
-                        en: `<p><strong>Early Check-in:</strong> Subject to availability, ¥3,000/hour</p>
-                        <p><strong>Late Check-out:</strong> Subject to availability, ¥3,000/hour</p>
-                        <p>Please contact us in advance to arrange.</p>`,
-                        jp: `<p><strong>アーリーチェックイン:</strong> 空き状況による、1時間3,000円</p>
-                        <p><strong>レイトチェックアウト:</strong> 空き状況による、1時間3,000円</p>
-                        <p>事前にご連絡ください。</p>`
+                        en: `<ul class="guide-list">
+                            <li>Do not take amenities home. You may be charged for missing items.</li>
+                            <li>Do not wear shoes indoors.</li>
+                            <li>Be mindful of noise when windows/door are open.</li>
+                            <li>Restrooms (men/women separate) are on the 1st floor.</li>
+                            <li>No security cameras. Please manage your own valuables.</li>
+                            <li>Please respect our neighbors.</li>
+                        </ul>`,
+                        jp: `<ul class="guide-list">
+                            <li>備品は持ち帰らないでください。無断持ち出しは請求対象となる場合があります。</li>
+                            <li>靴で室内には入らないでください。</li>
+                            <li>窓、玄関を開放しての騒音はご注意ください。</li>
+                            <li>お手洗い、トイレは1階(男女別)をご利用くださいませ。</li>
+                            <li>防犯カメラは設置しておりません。貴重品の管理はご利用者様で行ってください。</li>
+                            <li>周辺住人に対しての迷惑行為はお控えください。</li>
+                        </ul>`
                     }
                 },
                 {
                     icon: "money",
-                    title: { en: "Pricing by Headcount", jp: "人数における料金帯の変化" },
+                    title: { en: "Pricing", jp: "料金体系" },
                     content: {
-                        en: `<p>Base price includes up to 6 guests.</p>
-                        <p>Additional guests: ¥5,000 per person per night</p>
-                        <p>Maximum capacity: 8 guests</p>`,
-                        jp: `<p>基本料金は6名様まで。</p>
-                        <p>追加のお客様: 1人1泊5,000円</p>
-                        <p>最大定員: 8名</p>`
+                        en: `<p><strong>Capacity:</strong> Up to 8 guests (Adults + Children).</p>
+                        <p><strong>Extra Guest Fee:</strong> ¥5,000 per person for 4+ guests.</p>
+                        <p><strong>Infants:</strong> Counted as 1 guest from age 0.</p>`,
+                        jp: `<p><strong>定員:</strong> 大人・子供合わせて8名まで。</p>
+                        <p><strong>追加料金:</strong> 4名以上は一人当たり5,000円がかかります。</p>
+                        <p><strong>乳幼児:</strong> 0歳児から1名とカウントさせていただきます。</p>`
                     }
                 },
                 {
-                    icon: "trash",
-                    title: { en: "Trash Rules", jp: "ゴミルール" },
+                    icon: "check",
+                    title: { en: "Checkout Checklist", jp: "退出時チェックリスト" },
                     content: {
-                        en: `<p>Please take all trash with you when you leave.</p>
-                        <p>There is no trash collection service.</p>
-                        <p>See the Trash Disposal section under Facilities for sorting guidelines.</p>`,
-                        jp: `<p>チェックアウト時にゴミはお持ち帰りください。</p>
-                        <p>ゴミ収集サービスはありません。</p>
-                        <p>分別方法は「施設」の「ゴミの捨て方」をご覧ください。</p>`
+                        en: `<ul class="guide-list">
+                            <li>① Return furniture/items to original layout.</li>
+                            <li>② Separate trash (see guidelines).</li>
+                            <li>③ Empty fridge (take all food home).</li>
+                            <li>④ Turn off AC and lights.</li>
+                            <li>⑤ Check for personal belongings (cables, fridge, clothes).</li>
+                            <li>⑥ Report any lost or broken items.</li>
+                        </ul>`,
+                        jp: `<ul class="guide-list">
+                            <li>① 机や椅子、小物を動かされた場合は、元のレイアウトに戻してください</li>
+                            <li>② ゴミ類は分別して置いてください</li>
+                            <li>③ 残った食材は冷蔵庫に残さず、全てお持ち帰りください</li>
+                            <li>④ エアコン、電気等の電源をオフにしてください</li>
+                            <li>⑤ 忘れ物はありませんか?(充電ケーブル/冷蔵庫内/傘/洋服 等)</li>
+                            <li>⑥ 備品の紛失、破損等があった場合はご連絡をお願い致します</li>
+                        </ul>`
                     }
                 },
                 {
-                    icon: "amenities",
-                    title: { en: "Emergency Contacts", jp: "緊急連絡先" },
+                    icon: "phone",
+                    title: { en: "Emergency Contact", jp: "緊急連絡先" },
                     content: {
-                        en: `<p><strong>Emergency (Police, Fire, Ambulance):</strong> 110 / 119</p>
-                        <p><strong>Property Manager:</strong> 090-XXXX-XXXX</p>
-                        <p><strong>Nearest Hospital:</strong> Shinanomachi Central Hospital, 15 min drive</p>`,
-                        jp: `<p><strong>緊急（警察・消防・救急）:</strong> 110 / 119</p>
-                        <p><strong>管理者:</strong> 090-XXXX-XXXX</p>
-                        <p><strong>最寄りの病院:</strong> 信濃町中央病院、車15分</p>`
+                        en: `<p><strong>Manager (Kobayashi):</strong> 090-9357-5586</p>`,
+                        jp: `<p><strong>管理者 (小林):</strong> 090-9357-5586</p>`
                     }
                 }
             ]
@@ -511,41 +759,91 @@ const guidebookData = {
             title: { en: "FAQ", jp: "よくある質問" },
             items: [
                 {
-                    icon: "luggage",
-                    title: { en: "Luggage Delivery", jp: "荷物を配送したい場合" },
+                    icon: "rooms",
+                    title: { en: "Change Guest Count", jp: "宿泊人数変更したいです" },
                     content: {
-                        en: `<p>You can send luggage to the property before arrival using Yamato Transport (Kuroneko).</p>
-                        <p><strong>Address:</strong> [Property Address Here]</p>
-                        <p><strong>Recipient:</strong> Your Name + "Guest"</p>
-                        <p>Please coordinate delivery date with check-in date.</p>`,
-                        jp: `<p>ヤマト運輸で事前に荷物を送ることができます。</p>
-                        <p><strong>住所:</strong> [物件住所]</p>
-                        <p><strong>宛名:</strong> お名前 + 「ゲスト様」</p>
-                        <p>チェックイン日に届くよう手配してください。</p>`
+                        en: `<p><strong>OTA Bookings:</strong> Please contact the OTA (Booking.com, Airbnb, etc.) directly.</p>
+                        <p><strong>Official Site Bookings:</strong> Please contact us via chat or the email you used for booking.</p>`,
+                        jp: `<p><strong>OTAからご予約の場合:</strong> 各OTAにお問い合わせください。</p>
+                        <p><strong>公式サイトからのご予約の場合:</strong> チャットまたはご予約いただいたメールアドレスからお問い合わせください。</p>`
+                    }
+                },
+                {
+                    icon: "bath",
+                    title: { en: "No Hot Water (Bath/Kitchen)", jp: "風呂かキッチンからお湯が流れないです" },
+                    content: {
+                        en: `<p>Please turn ON both the bath and kitchen water heater panels as shown in the image.</p>
+                        <p><strong>Note:</strong> If the "Priority" (優先) button is pressed in the bathroom, hot water may not be available in the kitchen. Please understand this is a system specification.</p>
+                        <div class="tip-box fa-tip">
+                            <strong>Winter Warning:</strong> Heavy snow may cause water heater malfunctions. If this happens, please contact us via Emergency Support.
+                        </div>`,
+                        jp: `<p>右記の画像のように風呂場とキッチンの給湯器をどちらもオンにしてお使いください。</p>
+                        <p>またお風呂場の優先ボタンを押したら、風呂場の給湯器が優先されキッチンから暖かいお湯が出ない場合がありますので、ご理解ください。</p>
+                        <div class="tip-box fa-tip">
+                            <strong>冬期の注意:</strong> 積雪による給湯器の故障する場合がありますので、その場合は緊急問い合わせよりご連絡ください。
+                        </div>`
                     }
                 },
                 {
                     icon: "power",
-                    title: { en: "Power Outage", jp: "ブレーカーが落ちた場合" },
+                    title: { en: "Breaker Tripped", jp: "ブレーカー落ちた時どうすればいいでしょうか" },
                     content: {
-                        en: `<p>The breaker panel is located in the utility room near the entrance.</p>
-                        <p>If the power goes out, check if the main breaker has tripped.</p>
-                        <p>Flip the switch back to the ON position.</p>
-                        <p>If problems persist, contact the property manager.</p>`,
-                        jp: `<p>分電盤は玄関近くのユーティリティルームにあります。</p>
-                        <p>停電した場合は、ブレーカーが落ちていないか確認してください。</p>
-                        <p>スイッチをONの位置に戻してください。</p>
-                        <p>問題が続く場合は管理者にご連絡ください。</p>`
+                        en: `<p>The breaker panel is located as shown in the image.</p>
+                        <p>Please check for any switches that are down (OFF) and flip them back up (ON).</p>`,
+                        jp: `<p>右記の画像の場所にブレーカーがあります。</p>
+                        <p>下がっているブレーカーのスイッチを元の位置（上）に戻してください。</p>`
                     }
                 },
                 {
                     icon: "receipt",
-                    title: { en: "Receipts", jp: "領収書の発行方法" },
+                    title: { en: "Issue Receipt", jp: "領収書発行したい場合どうすればいいでしょうか" },
                     content: {
-                        en: `<p>A receipt will be automatically sent to your email after payment.</p>
-                        <p>If you need a formal invoice for business purposes, please contact us with the required name/company information.</p>`,
-                        jp: `<p>支払い後、領収書が自動でメールに届きます。</p>
-                        <p>法人名での正式な領収書が必要な場合は、必要な情報をお知らせください。</p>`
+                        en: `<p><strong>OTA Bookings:</strong> Please issue the receipt through the OTA platform.</p>
+                        <p><strong>Official Site Bookings:</strong> Please contact us via chat or email.</p>`,
+                        jp: `<p><strong>OTAからご予約の場合:</strong> 各OTAにお問い合わせください。</p>
+                        <p><strong>公式サイトからのご予約の場合:</strong> チャットまたはご予約いただいたメールアドレスからお問い合わせください。</p>`
+                    }
+                },
+                {
+                    icon: "luggage",
+                    title: { en: "Luggage Delivery", jp: "事前・事後に荷物を配送したい場合" },
+                    content: {
+                        en: `<p><strong>Pre-delivery:</strong> Accepted if arriving <strong>after 12:00 PM</strong> on check-in day.</p>
+                        <p><strong>Delivery Method:</strong> Packages will be left at the entrance (unlocked area) as this is a self-check-in facility.</p>
+                        <div class="warning-box">
+                            <strong>Warning:</strong> We are not responsible for any loss of items. Please do NOT ship valuables.
+                        </div>
+                        <p><strong>Address:</strong> 54-3 Nojiri, Shinano-machi, Kamiminochi-gun, Nagano-ken</p>
+                        <p><strong>Recipient:</strong> Please write your Check-in Date and Reservation Name.</p>`,
+                        jp: `<p><strong>事前配送:</strong> ご宿泊日の<strong>当日12時以降</strong>の到着指定であれば可能です。</p>
+                        <p><strong>受取方法:</strong> 無人営業のため、お受け取りはできません。置き配（玄関・施錠なし）となります。</p>
+                        <div class="warning-box">
+                            <strong>注意:</strong> 紛失の責任は負いかねます。貴重品類の配送はお控えくださいませ。
+                        </div>
+                        <p><strong>送付先:</strong> 長野県上水内郡信濃町野尻54-3</p>
+                        <p><strong>宛名:</strong> 宿泊日/ご予約名の記載をお願いいたします。</p>`
+                    }
+                },
+                {
+                    icon: "help",
+                    title: { en: "Lost Items", jp: "忘れ物をした場合" },
+                    content: {
+                        en: `<p>For privacy reasons, we do not contact guests regarding lost items.</p>
+                        <p>If you realize you left something behind, please contact us via your booking platform message or phone.</p>`,
+                        jp: `<p>プライバシーの観点から、施設側から忘れ物のご連絡はいたしません。</p>
+                        <p>お気づきの際は、ご予約いただいたOTAのメッセージまたは電話等でご連絡ください。</p>`
+                    }
+                },
+                {
+                    icon: "clock",
+                    title: { en: "Early Check-in / Late Check-out", jp: "アーリーチェックインとレートチェックアウト" },
+                    content: {
+                        en: `<p>Available depending on reservation schedules.</p>
+                        <p><strong>Fee:</strong> ¥10,000 per hour (includes cleaning fee adjustment).</p>
+                        <p>Please contact us in advance to check availability.</p>`,
+                        jp: `<p>前後の予約状況により可能です。</p>
+                        <p><strong>追加料金:</strong> 1時間につき10,000円（清掃費含む）をいただいております。</p>
+                        <p>ご希望の場合は事前にご連絡ください。</p>`
                     }
                 }
             ]
@@ -554,51 +852,14 @@ const guidebookData = {
     services: [
         {
             id: 1,
-            name: { en: "SUP Board Rental", jp: "SUPボードレンタル" },
-            price: 3000,
-            description: { en: "Per day, includes paddle and life jacket", jp: "1日あたり、パドル・ライフジャケット付き" },
-            image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400",
-            icon: "sup"
-        },
-        {
-            id: 2,
-            name: { en: "BBQ Grill Set", jp: "BBQグリルセット" },
-            price: 5000,
-            description: { en: "Includes grill, charcoal, and utensils", jp: "グリル・炭・調理器具付き" },
-            image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400",
-            icon: "bbq"
-        },
-        {
-            id: 3,
-            name: { en: "Late Checkout (per hour)", jp: "レイトチェックアウト（1時間）" },
-            price: 3000,
-            description: { en: "Subject to availability", jp: "空き状況による" },
-            image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400",
-            icon: "clock"
-        },
-        {
-            id: 4,
-            name: { en: "Bicycle Rental", jp: "自転車レンタル" },
-            price: 2000,
-            description: { en: "Per day, helmet included", jp: "1日あたり、ヘルメット付き" },
-            image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400",
-            icon: "bicycle"
-        },
-        {
-            id: 5,
-            name: { en: "Fishing Equipment", jp: "釣り道具" },
-            price: 2500,
-            description: { en: "Rod, tackle, and bait included", jp: "竿・仕掛け・餌付き" },
-            image: "https://images.unsplash.com/photo-1544551763-77ef2d0cfc6c?w=400",
-            icon: "fishing"
-        },
-        {
-            id: 6,
-            name: { en: "Firewood Bundle", jp: "薪セット" },
-            price: 1500,
-            description: { en: "For outdoor firepit use", jp: "屋外焚き火用" },
-            image: "https://images.unsplash.com/photo-1517420879524-86d64ac2f339?w=400",
-            icon: "fire"
+            name: { en: "Jacuzzi", jp: "ジャグジー" },
+            price: 10000,
+            description: {
+                en: "Excellent jacuzzi with lake view. *Available Mar-Nov only",
+                jp: "湖を見ながら入るジャグジーは格別です。※3月~11月のみ利用可能"
+            },
+            image: "./img/jacuzzi.jpg",
+            icon: "bath"
         }
     ]
 };
@@ -624,7 +885,36 @@ document.addEventListener('DOMContentLoaded', () => {
     renderGuidebook();
     initNavigation();
 
-    // Implement toggleLanguage directly since app.js is not loaded
+    // Implement toggleLanguage and updateContent since app.js is not loaded
+    window.updateContent = () => {
+        const lang = getLang();
+        const t = window.translations && window.translations[lang] ? window.translations[lang] : {};
+
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            const translation = t[key];
+
+            if (translation !== undefined) {
+                if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                    if (element.getAttribute('placeholder')) {
+                        element.placeholder = translation;
+                    } else {
+                        element.value = translation;
+                    }
+                } else if (element.tagName === 'IMG') {
+                    element.alt = translation;
+                } else {
+                    // Check for HTML content in specific keys if needed, otherwise textContent
+                    if (key.includes('headline') || key.includes('desc')) {
+                        element.innerHTML = translation;
+                    } else {
+                        element.textContent = translation;
+                    }
+                }
+            }
+        });
+    };
+
     window.toggleLanguage = (targetLang) => {
         if (targetLang) {
             window.currentLang = targetLang;
@@ -639,12 +929,16 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.add(`lang-${window.currentLang}`);
         }
 
-        // Re-render guidebook content when language changes
+        // Update all content
+        window.updateContent();
+
+        // Re-render guidebook content
         renderGuidebook();
         updateLanguageLabel();
     };
 
-    // Initial label update
+    // Initial label update and content translation
+    window.updateContent();
     updateLanguageLabel();
 
     // Initialize New Navigation
@@ -655,9 +949,9 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const categories = [
-    { id: 'access', title: { en: 'Access', jp: 'アクセス' }, icon: 'address' },
-    { id: 'services', title: { en: 'Paid Services', jp: '有料サービス' }, icon: 'amenities' },
-    { id: 'facility', title: { en: 'Facilities', jp: '施設' }, icon: 'rooms' },
+    { id: 'access', title: { en: 'Access & WiFi', jp: 'アクセス ＆ WiFi' }, icon: 'address' },
+    { id: 'services', title: { en: 'Optional Services', jp: '有料サービス' }, icon: 'amenities' },
+    { id: 'facility', title: { en: 'Room & Equipment Guide', jp: '各部屋と備品のご案内' }, icon: 'rooms' },
     { id: 'neighborhood', title: { en: 'Neighborhood', jp: '周辺情報' }, icon: 'sightseeing' },
     { id: 'rules', title: { en: 'House Rules', jp: 'ハウスルール' }, icon: 'cancel' },
     { id: 'faq', title: { en: 'FAQ', jp: 'よくある質問' }, icon: 'receipt' }

@@ -29,8 +29,8 @@
 
 /* Japanese Mode Overrides */
 .lang-jp {
-    --font-main: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif;
-    --font-display: "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif;
+    --font-main: 'Outfit', "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif;
+    --font-display: 'Playfair Display', "Hiragino Mincho ProN", "Hiragino Mincho Pro", "Yu Mincho", "MS PMincho", serif;
     font-family: var(--font-main);
 }
 
@@ -510,13 +510,13 @@ body.stays-page {
 .property-list-item {
     display: grid;
     grid-template-columns: 400px 1fr;
-    gap: 4rem;
+    gap: 2rem;
     background: transparent;
     /* Clean list */
     border-radius: 0;
     /* Clean list */
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    padding-bottom: 12px;
+    margin-bottom: 1.5rem;
     align-items: start;
     cursor: pointer;
     /* Clickable */
@@ -566,7 +566,7 @@ body.stays-page {
 
 .list-desc {
     color: #999;
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
     max-width: 600px;
     font-weight: 300;
     line-height: 1.8;
@@ -1699,7 +1699,7 @@ body.stays-page {
 .property-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    /* Max 3 per row (Desktop) */
+    /* 3 Columns Desktop */
     gap: 2rem;
     padding: 2rem 5%;
 }
@@ -1719,12 +1719,17 @@ body.stays-page {
 
 .list-img-wrapper {
     width: 100%;
+    height: 230px;
+    /* Fixed compact height */
     margin-bottom: 0 !important;
     line-height: 0;
 }
 
 .list-img-wrapper img {
     display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .property-list-item:hover {
@@ -1733,9 +1738,8 @@ body.stays-page {
 }
 
 .list-content {
-    padding: 0 1rem 0.5rem !important;
-    /* Force zero top padding */
-    /* Slight top padding, but pulled up by negative margin on child */
+    padding: 1rem 1rem 0.75rem 1rem !important;
+    /* Reduced padding */
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -1745,43 +1749,40 @@ body.stays-page {
     font-size: 0.7rem;
     color: #888;
     letter-spacing: 0.15em;
-    margin-top: 0.4rem;
-    margin-bottom: 0 !important;
-    /* Zero gap */
+    margin-top: 0;
+    margin-bottom: 0.5rem;
     display: block;
     line-height: 1;
 }
 
 .list-title {
-    font-size: 1.4rem !important;
-    /* Smaller per request */
-    margin-top: -3px !important;
-    /* Negative margin to pull closer */
-    margin-bottom: 0.15rem;
-    /* Extremely tight */
-    line-height: 1.1;
+    font-size: 1.3rem !important;
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
     display: flex;
     align-items: center;
 }
 
 .list-desc {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     color: #aaa;
     font-weight: 300;
-    margin-bottom: 0.5rem;
-    /* Tighter */
-    line-height: 1.35;
+    margin-bottom: 0.4rem;
+    line-height: 1.4;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    /* Limit text height */
-    flex-grow: 1;
 }
 
 .form-group {
     margin-bottom: 2rem;
+}
+
+.property-list-item .card-stats {
+    margin-top: 0 !important;
 }
 
 @media (max-width: 768px) {
@@ -1831,10 +1832,9 @@ body.stays-page {
 
     .list-content {
         width: 100%;
-        padding: 0 !important;
-        margin-top: -0.75rem;
-        /* Force reduce gap */
-        /* Vertical padding */
+        padding: 1rem 1rem 0.5rem 1rem !important;
+        /* Uniform padding on all sides */
+        margin-top: 0;
         text-align: left;
     }
 
@@ -2808,4 +2808,13 @@ body.stays-page {
     font-size: inherit;
     /* Use parent h1 size */
     margin-top: 0.5rem;
+}
+
+/* FORCE OVERRIDE for Mobile Property Card Spacing */
+@media (max-width: 768px) {
+    .property-list .property-list-item .list-content {
+        padding: 1rem 1rem 0.5rem 1rem !important;
+        margin-top: 0 !important;
+        width: 100% !important;
+    }
 }
