@@ -439,6 +439,8 @@
     letter-spacing: -0.02em;
 }
 
+
+
 .guidebook-header .nav-right {
     display: flex;
     align-items: center;
@@ -1271,5 +1273,38 @@
     .wifi-container {
         flex-wrap: nowrap;
         /* Force side-by-side on larger screens as requested */
+    }
+}
+
+/* Bedroom Grid Layout */
+.bedroom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.bedroom-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.bedroom-item p {
+    margin-bottom: 0.5rem !important;
+    font-weight: 500;
+}
+
+.bedroom-item img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--gb-radius-sm);
+    object-fit: cover;
+    aspect-ratio: 4/3;
+}
+
+@media (max-width: 600px) {
+    .bedroom-grid {
+        /* Maintain 2 columns, just reduce gap */
+        gap: 0.75rem;
     }
 }

@@ -56,7 +56,17 @@ const ICONS = {
     clock: '<svg class="icon-inline" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>',
     bicycle: '<svg class="icon-inline" viewBox="0 0 24 24"><circle cx="5.5" cy="17.5" r="3.5"></circle><circle cx="18.5" cy="17.5" r="3.5"></circle><path d="M15 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-3 11.5V14l-3-3 4-3 2 3h3"></path></svg>',
     fishing: '<svg class="icon-inline" viewBox="0 0 24 24"><path d="M18 3v7c0 2.21-1.79 4-4 4h-2l-2 3-2-3H6c-2.21 0-4-1.79-4-4V3M12 14v7M10 21h4"></path></svg>',
-    fire: '<svg class="icon-inline" viewBox="0 0 24 24"><path d="M12 22c-4.97 0-9-4.03-9-9 0-4 4-8 4-12 0 0 3 2 4 6 1.5-2 2-4 2-4s3 2.5 3 6c2-1 3-2.5 3-2.5s2 3.5 2 6.5c0 4.97-4.03 9-9 9z"></path></svg>'
+    fire: '<svg class="icon-inline" viewBox="0 0 24 24"><path d="M12 22c-4.97 0-9-4.03-9-9 0-4 4-8 4-12 0 0 3 2 4 6 1.5-2 2-4 2-4s3 2.5 3 6c2-1 3-2.5 3-2.5s2 3.5 2 6.5c0 4.97-4.03 9-9 9z"></path></svg>',
+
+    // Missing Icons
+    tv: '<svg class="icon-inline" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect><polyline points="17 2 12 7 7 2"></polyline></svg>',
+    mic: '<svg class="icon-inline" viewBox="0 0 24 24"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>',
+    laundry: '<svg class="icon-inline" viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"></rect><circle cx="12" cy="13" r="5"></circle><path d="M12 18a5 5 0 0 1-5-5"></path></svg>',
+    rules: '<svg class="icon-inline" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>',
+    info: '<svg class="icon-inline" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>',
+    check: '<svg class="icon-inline" viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>',
+    phone: '<svg class="icon-inline" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>',
+    help: '<svg class="icon-inline" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>'
 };
 
 // ============================================
@@ -208,14 +218,16 @@ const guidebookData = {
                     icon: "tv",
                     title: { en: "Living Room", jp: "リビング" },
                     content: {
-                        en: `<p><strong>DAM Karaoke System:</strong> Equipped with 4 remotes, 2 microphones, tambourines, maracas, smoke items, and mic stands. (Available anytime, please mind volume at night.)</p>
+                        en: `<img src="img/room_living.jpg" alt="Living Room" class="living-image" loading="lazy" style="margin-bottom: 1rem;">
+                        <p><strong>DAM Karaoke System:</strong> Equipped with 4 remotes, 2 microphones, tambourines, maracas, smoke items, and mic stands. (Available anytime, please mind volume at night.)</p>
                         <p><strong>BOSE Speakers:</strong> Bluetooth compatible.</p>
                         <p><strong>85-inch TV:</strong> Netflix, Prime Video, Hulu, U-NEXT, Rakuten TV, ABEMA available (please log in with your own account).</p>
                         <p><strong>HALO Sofa:</strong> Luxurious feather down sofa for cloud-like comfort.</p>
                         <p><strong>HALO Dining Table:</strong> Upcycled Georgian-style table made from historic British timber.</p>
                         <p><strong>DR.VRANJES Diffuser:</strong> Enjoy high-quality fragrances.</p>
                         <p><strong>Board Games:</strong> Cards and various games available.</p>`,
-                        jp: `<p><strong>【DAMカラオケ使い放題】</strong>大人数でもお楽しみいただけるようデンモク4つ、マイク2本、タンバリン、マラカス、スモークアイテムやマイクスタンドもご用意しております。（ご滞在中いつでもご利用いただけますが、夜間使用の際は音量にご注意下さい。）</p>
+                        jp: `<img src="img/room_living.jpg" alt="リビングルーム" class="living-image" loading="lazy" style="margin-bottom: 1rem;">
+                        <p><strong>【DAMカラオケ使い放題】</strong>大人数でもお楽しみいただけるようデンモク4つ、マイク2本、タンバリン、マラカス、スモークアイテムやマイクスタンドもご用意しております。（ご滞在中いつでもご利用いただけますが、夜間使用の際は音量にご注意下さい。）</p>
                         <p><strong>BOSEスピーカー完備</strong>(Bluetooth接続可能)</p>
                         <p><strong>85インチTV完備</strong>。NETFLIX、Prime video、hulu、U-NEXT、RakutenTV、ABEMAをご利用いただけます。（アカウントログインにつきましてはお客様ご自身でお願いいたします。）</p>
                         <p><strong>【英国家具ブランドHALOよりフェザーダウンを贅沢に使用したソファを完備】</strong>まるで雲の上にいるかのような、抜け出せなくなってしまう心地よさをご体感下さい。</p>
@@ -229,14 +241,42 @@ const guidebookData = {
                     icon: "rooms",
                     title: { en: "Bedrooms", jp: "寝室" },
                     content: {
-                        en: `<p><strong>Bedroom 1 (7.5 tatami):</strong> 1 Double Bed, A/C, Bedside Table, Mini Fridge</p>
-                        <p><strong>Bedroom 2 (7.5 tatami):</strong> 2 Single Beds, A/C, Bedside Table, Mini Fridge</p>
-                        <p><strong>Bedroom 3 (6.0 tatami):</strong> 2 Single Beds, A/C, Bedside Table</p>
-                        <p><strong>Bedroom 4 (9.0 tatami):</strong> 2 Semi-Double Beds, A/C, Bedside Table, Mini Fridge, LCD TV</p>`,
-                        jp: `<p><strong>寝室①【洋室7.5帖】</strong>ダブルベッド1台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
-                        <p><strong>寝室②【洋室7.5帖】</strong>シングルベッド2台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
-                        <p><strong>寝室③【洋室6.0帖】</strong>シングルベッド2台、冷暖房エアコン、ベッドサイドテーブル</p>
-                        <p><strong>寝室④【洋室9.0帖】</strong>セミダブルベッド2台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫、液晶テレビ</p>`
+                        en: `<div class="bedroom-grid">
+                            <div class="bedroom-item">
+                                <p><strong>Bedroom 1 (7.5 tatami):</strong> 1 Double Bed, A/C, Bedside Table, Mini Fridge</p>
+                                <img src="img/room_bedroom_1.jpg" alt="Bedroom 1" loading="lazy">
+                            </div>
+                            <div class="bedroom-item">
+                                <p><strong>Bedroom 2 (7.5 tatami):</strong> 2 Single Beds, A/C, Bedside Table, Mini Fridge</p>
+                                <img src="img/room_bedroom_2.jpg" alt="Bedroom 2" loading="lazy">
+                            </div>
+                            <div class="bedroom-item">
+                                <p><strong>Bedroom 3 (6.0 tatami):</strong> 2 Single Beds, A/C, Bedside Table</p>
+                                <img src="img/room_bedroom_3.jpg" alt="Bedroom 3" loading="lazy">
+                            </div>
+                            <div class="bedroom-item">
+                                <p><strong>Bedroom 4 (9.0 tatami):</strong> 2 Semi-Double Beds, A/C, Side Table, Mini Fridge, LCD TV</p>
+                                <img src="img/room_bedroom_4.jpg" alt="Bedroom 4" loading="lazy">
+                            </div>
+                        </div>`,
+                        jp: `<div class="bedroom-grid">
+                            <div class="bedroom-item">
+                                <p><strong>寝室①【洋室7.5帖】</strong>ダブルベッド1台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
+                                <img src="img/room_bedroom_1.jpg" alt="寝室1" loading="lazy">
+                            </div>
+                            <div class="bedroom-item">
+                                <p><strong>寝室②【洋室7.5帖】</strong>シングルベッド2台、冷暖房エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
+                                <img src="img/room_bedroom_2.jpg" alt="寝室2" loading="lazy">
+                            </div>
+                            <div class="bedroom-item">
+                                <p><strong>寝室③【洋室6.0帖】</strong>シングルベッド2台、冷暖房エアコン、ベッドサイドテーブル</p>
+                                <img src="img/room_bedroom_3.jpg" alt="寝室3" loading="lazy">
+                            </div>
+                            <div class="bedroom-item">
+                                <p><strong>寝室④【洋室9.0帖】</strong>セミダブルベッド2台、冷暖房エアコン、サイドテーブル、小型冷蔵庫、液晶テレビ</p>
+                                <img src="img/room_bedroom_4.jpg" alt="寝室4" loading="lazy">
+                            </div>
+                        </div>`
                     }
                 },
                 {
@@ -644,14 +684,22 @@ const guidebookData = {
                     icon: "cancel",
                     title: { en: "Cancellation Policy", jp: "キャンセルポリシー" },
                     content: {
-                        en: `<p><strong>1. Full Refund:</strong> Canceled 30+ days before check-in, OR canceled within 24 hours of booking (if booking made at least 7 days before check-in).</p>
-                        <p><strong>2. 50% Refund:</strong> Canceled 30+ days before check-in but after the 24-hour grace period.</p>
-                        <p><strong>3. Full Refund:</strong> Canceled less than 30 days before check-in, IF booking was made at least 7 days before check-in and canceled within 24 hours.</p>
-                        <p><strong>4. No Refund (Tax Only):</strong> Canceled less than 30 days before check-in and after the 24-hour grace period.</p>`,
-                        jp: `<p><strong>① 全額返金:</strong> チェックイン30日前までのキャンセル、またはチェックイン7日前までの予約で予約確定後24時間以内のキャンセル。</p>
-                        <p><strong>② 50%返金:</strong> チェックイン30日前までのキャンセルで、予約確定後24時間を過ぎた場合。</p>
-                        <p><strong>③ 全額返金:</strong> チェックイン30日を切ってからのキャンセルだが、チェックイン7日前までの予約で予約確定後24時間以内のキャンセル。</p>
-                        <p><strong>④ 返金なし（税金のみ）:</strong> チェックイン30日を切ってからのキャンセルで、予約確定後24時間を過ぎている場合。</p>`
+                        en: `<h4 class="guide-sub-title">Full Refund</h4>
+                        <p>Canceled 30+ days before check-in, OR canceled within 24 hours of booking (if booking made at least 7 days before check-in).</p>
+                        <h4 class="guide-sub-title">50% Refund</h4>
+                        <p>Canceled 30+ days before check-in but after the 24-hour grace period.</p>
+                        <h4 class="guide-sub-title">Full Refund</h4>
+                        <p>Canceled less than 30 days before check-in, IF booking was made at least 7 days before check-in and canceled within 24 hours.</p>
+                        <h4 class="guide-sub-title">No Refund (Tax Only)</h4>
+                        <p>Canceled less than 30 days before check-in and after the 24-hour grace period.</p>`,
+                        jp: `<h4 class="guide-sub-title">全額返金</h4>
+                        <p>チェックイン30日前までのキャンセル、またはチェックイン7日前までの予約で予約確定後24時間以内のキャンセル。</p>
+                        <h4 class="guide-sub-title">50%返金</h4>
+                        <p>チェックイン30日前までのキャンセルで、予約確定後24時間を過ぎた場合。</p>
+                        <h4 class="guide-sub-title">全額返金</h4>
+                        <p>チェックイン30日を切ってからのキャンセルだが、チェックイン7日前までの予約で予約確定後24時間以内のキャンセル。</p>
+                        <h4 class="guide-sub-title">返金なし（税金のみ）</h4>
+                        <p>チェックイン30日を切ってからのキャンセルで、予約確定後24時間を過ぎている場合。</p>`
                     }
                 },
                 {
@@ -1285,14 +1333,24 @@ function initNavigation() {
 // SEARCH FUNCTIONALITY
 // ============================================
 
+// Global search index to prevent stale closures
+let searchIndex = [];
+
 function initSearch() {
     const searchInput = document.getElementById('guidebook-search');
     const searchResults = document.getElementById('search-results');
 
     if (!searchInput || !searchResults) return;
 
-    // Build searchable index
-    const searchIndex = buildSearchIndex();
+    // Build initial index
+    updateSearchIndex();
+
+    // Prevent duplicate listeners
+    if (searchInput.dataset.searchInitialized) {
+        // Update placeholder only
+        updateSearchPlaceholder(searchInput);
+        return;
+    }
 
     // Debounce function
     let debounceTimer;
@@ -1307,6 +1365,7 @@ function initSearch() {
                 return;
             }
 
+            // Use the global searchIndex which is updated on language toggle
             const results = performSearch(query, searchIndex);
             renderSearchResults(results, query, searchResults);
         }, 200);
@@ -1319,6 +1378,9 @@ function initSearch() {
         }
     });
 
+    // Mark as initialized
+    searchInput.dataset.searchInitialized = 'true';
+
     // Update placeholder based on language
     updateSearchPlaceholder(searchInput);
 }
@@ -1328,16 +1390,16 @@ function updateSearchPlaceholder(searchInput) {
     searchInput.placeholder = lang === 'jp' ? 'ガイドブックを検索...' : 'Search guidebook...';
 }
 
-function buildSearchIndex() {
-    const index = [];
-    const lang = getLang();
+function updateSearchIndex() {
+    // Clear and rebuild
+    searchIndex = [];
 
     // Add Access items
     if (guidebookData.access && guidebookData.access.items) {
         guidebookData.access.items.forEach((item, idx) => {
             const title = getLocalizedText(item.title);
             const content = stripHtml(getLocalizedText(item.content));
-            index.push({
+            searchIndex.push({
                 id: `item-access-${idx}`,
                 sectionId: 'access',
                 title: title,
@@ -1352,7 +1414,7 @@ function buildSearchIndex() {
         section.items.forEach((item, idx) => {
             const title = getLocalizedText(item.title);
             const content = stripHtml(getLocalizedText(item.content));
-            index.push({
+            searchIndex.push({
                 id: `item-${section.id}-${idx}`,
                 sectionId: section.id,
                 title: title,
@@ -1361,8 +1423,6 @@ function buildSearchIndex() {
             });
         });
     });
-
-    return index;
 }
 
 function stripHtml(html) {
