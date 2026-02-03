@@ -460,7 +460,7 @@ const guidebookData = {
                     icon: "goods",
                     title: { en: "Supermarkets & Daily Goods", jp: "生活用品・スーパー" },
                     content: {
-                        en: `<ul class="guide-list">
+                        en: `<ul class="guide-list neighborhood-list two-col">
                                 <li><strong>7-Eleven Nojiriko</strong> (3 min drive / 25 min walk)<br><a href="https://maps.app.goo.gl/G9RWM8weuvCBwHWE8" target="_blank">View Map</a></li>
                                 <li><strong>Gas Station ENEOS Nojiriko SS</strong> (3 min drive)<br><a href="https://maps.app.goo.gl/AwKBxDQRZknxXWaUA" target="_blank">View Map</a></li>
                                 <li><strong>7-Eleven Shinanomachi Furuma</strong> (10 min drive)<br><a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">View Map</a></li>
@@ -469,14 +469,42 @@ const guidebookData = {
                                 <li><strong>Minemura Sake Shop</strong> (10 min drive)<br><a href="https://maps.app.goo.gl/GmhirMwhEaAkA3SRA" target="_blank">View Map</a></li>
                                 <li><strong>Daiichi Supermarket</strong> (10 min drive)<br><a href="https://maps.app.goo.gl/oroYjsQDXvs9zWwn6" target="_blank">View Map</a></li>
                             </ul>`,
-                        jp: `<ul class="guide-list">
-                                <li><strong>セブンイレブン野尻湖店</strong> (車で3分 徒歩25分)<br><a href="https://maps.app.goo.gl/G9RWM8weuvCBwHWE8" target="_blank">地図を見る</a></li>
-                                <li><strong>ガソリンスタンドENEOS 野尻湖SS</strong> (車で3分)<br><a href="https://maps.app.goo.gl/AwKBxDQRZknxXWaUA" target="_blank">地図を見る</a></li>
-                                <li><strong>セブンイレブン信濃町古間店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">地図を見る</a></li>
-                                <li><strong>マツモトキヨシ古間店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/RsZJ9Vxb7pGENTUQ7" target="_blank">地図を見る</a></li>
-                                <li><strong>ホームセンターコメリ 信濃町店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/qUL7xc5uUWoJMPw79" target="_blank">地図を見る</a></li>
-                                <li><strong>みねむら酒店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/GmhirMwhEaAkA3SRA" target="_blank">地図を見る</a></li>
-                                <li><strong>スーパーマーケット第一スーパー古間店</strong> (車で10分)<br><a href="https://maps.app.goo.gl/oroYjsQDXvs9zWwn6" target="_blank">地図を見る</a></li>
+                        jp: `<ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>セブンイレブン野尻湖店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩25分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=セブンイレブン野尻湖店" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>ガソリンスタンドENEOS 野尻湖SS</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩24分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=ガソリンスタンドENEOS野尻湖SS" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>セブンイレブン信濃町古間店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=セブンイレブン信濃町古間店" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>マツモトキヨシ古間店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=マツモトキヨシ古間店" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>ホームセンターコメリ 信濃町店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=ホームセンターコメリ信濃町店" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>みねむら酒店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=みねむら酒店" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>スーパーマーケット第一スーパー古間店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=スーパーマーケット第一スーパー古間店" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>`
                     }
                 },
@@ -485,40 +513,76 @@ const guidebookData = {
                     title: { en: "Dining: Western & Cafe", jp: "食事：洋食・カフェ" },
                     content: {
                         en: `<h4 class="guide-sub-title">Italian</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Funagoya</strong><br><a href="https://maps.app.goo.gl/UTGMEnHbVUd4nEMt9" target="_blank">View Map</a></li>
                                 <li><strong>Terra</strong><br><a href="https://maps.app.goo.gl/bvsg8gmxt7ARfFV78" target="_blank">View Map</a></li>
                                 <li><strong>Nicoli</strong><br><a href="https://maps.app.goo.gl/3PXMN6TghEhUyzEp7" target="_blank">View Map</a></li>
                                 <li><strong>Restaurant Rudolf</strong><br><a href="https://maps.app.goo.gl/C2N41Ku3MATQNBcF8" target="_blank">View Map</a></li>
                             </ul>
                             <h4 class="guide-sub-title">Hamburger & Western</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Lamp Nojiriko</strong><br><a href="https://maps.app.goo.gl/WjK4gYTUV2uPQpms5" target="_blank">View Map</a></li>
                                 <li><strong>Arrowhead Tavern</strong><br><a href="https://maps.app.goo.gl/Yi2MTGhadx9iZQaw9" target="_blank">View Map</a></li>
                                 <li><strong>Lumber jack</strong><br><a href="https://maps.app.goo.gl/woFffzQ9f1bkPExx8" target="_blank">View Map</a></li>
                             </ul>
                             <h4 class="guide-sub-title">Cafe & Bakery</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>MYOKO COFFEE</strong><br><a href="https://maps.app.goo.gl/ZfZi2q3FnZJDHYt19" target="_blank">View Map</a></li>
                                 <li><strong>EN Bakery 39</strong><br><a href="https://maps.app.goo.gl/H1krSAdkcu498NXM6" target="_blank">View Map</a></li>
                             </ul>`,
                         jp: `<h4 class="guide-sub-title">イタリアン</h4>
-                            <ul class="guide-list">
-                                <li><strong>Funagoya舟小屋</strong><br><a href="https://maps.app.goo.gl/UTGMEnHbVUd4nEMt9" target="_blank">地図を見る</a></li>
-                                <li><strong>イタリア料理 テルラ</strong><br><a href="https://maps.app.goo.gl/bvsg8gmxt7ARfFV78" target="_blank">地図を見る</a></li>
-                                <li><strong>Nicoli</strong><br><a href="https://maps.app.goo.gl/3PXMN6TghEhUyzEp7" target="_blank">地図を見る</a></li>
-                                <li><strong>レストランルドルフ</strong><br><a href="https://maps.app.goo.gl/C2N41Ku3MATQNBcF8" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>Funagoya舟小屋</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩16分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Funagoya舟小屋" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>イタリア料理 テルラ</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=イタリア料理テルラ" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>Nicoli</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で15分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Nicoli" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>レストランルドルフ</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で25分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=レストランルドルフ" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>
                             <h4 class="guide-sub-title">ハンバーガー・洋食</h4>
-                            <ul class="guide-list">
-                                <li><strong>Lamp野尻湖</strong><br><a href="https://maps.app.goo.gl/WjK4gYTUV2uPQpms5" target="_blank">地図を見る</a></li>
-                                <li><strong>Arrowhead Tavern</strong><br><a href="https://maps.app.goo.gl/Yi2MTGhadx9iZQaw9" target="_blank">地図を見る</a></li>
-                                <li><strong>Lumber jack</strong><br><a href="https://maps.app.goo.gl/woFffzQ9f1bkPExx8" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>Lamp野尻湖</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で4分 / 徒歩26分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Lamp野尻湖" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>Arrowhead Tavern</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩16分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Arrowhead+Tavern" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>Lumber jack</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で16分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Lumber+jack" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>
                             <h4 class="guide-sub-title">カフェ・パン屋</h4>
-                            <ul class="guide-list">
-                                <li><strong>MYOKO COFFEE 高原駅前</strong><br><a href="https://maps.app.goo.gl/ZfZi2q3FnZJDHYt19" target="_blank">地図を見る</a></li>
-                                <li><strong>EN　ベーカリー39</strong><br><a href="https://maps.app.goo.gl/H1krSAdkcu498NXM6" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>MYOKO COFFEE 高原駅前</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で9分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=MYOKO+COFFEE+高原駅前" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>EN　ベーカリー39</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩15分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=EN+ベーカリー39" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>`
                     }
                 },
@@ -527,7 +591,7 @@ const guidebookData = {
                     title: { en: "Dining: Japanese & Asian", jp: "食事：和食・中華・その他" },
                     content: {
                         en: `<h4 class="guide-sub-title">Japanese (Soba, etc.)</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Issa Shokudo</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">View Map</a></li>
                                 <li><strong>Shinanoya (Soba)</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">View Map</a></li>
                                 <li><strong>Restaurant Kiju</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">View Map</a></li>
@@ -536,47 +600,103 @@ const guidebookData = {
                                 <li><strong>Kirakuen</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">View Map</a></li>
                             </ul>
                             <h4 class="guide-sub-title">Sushi & Yakiniku</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Kitokito Sushi</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">View Map</a></li>
                                 <li><strong>Yakiniku Toyooka</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">View Map</a></li>
                                 <li><strong>Echigoya</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">View Map</a></li>
                                 <li><strong>Yakiniku Otagiri</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">View Map</a></li>
                             </ul>
                             <h4 class="guide-sub-title">Chinese & Ramen</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Eika (Machichuka)</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">View Map</a></li>
                                 <li><strong>Arakin Ramen</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">View Map</a></li>
                             </ul>
                             <h4 class="guide-sub-title">Izakaya</h4>
-                            <ul class="guide-list">
+                            <ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Tamaki</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">View Map</a></li>
                                 <li><strong>Nihontei</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">View Map</a></li>
                             </ul>`,
                         jp: `<h4 class="guide-sub-title">和食</h4>
-                            <ul class="guide-list">
-                                <li><strong>一茶食堂</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">地図を見る</a></li>
-                                <li><strong>信濃屋 そば</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">地図を見る</a></li>
-                                <li><strong>レストラン樹香</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">地図を見る</a></li>
-                                <li><strong>そば処 たかさわ</strong><br><a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">地図を見る</a></li>
-                                <li><strong>樹林とんかつ</strong><br><a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">地図を見る</a></li>
-                                <li><strong>きらく園</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>一茶食堂</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩16分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=一茶食堂" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>信濃屋 そば</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=信濃屋そば" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>レストラン樹香</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩29分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=レストラン樹香" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>そば処 たかさわ</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=そば処たかさわ" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>樹林とんかつ</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=樹林とんかつ" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>きらく園</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で15分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=きらく園" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>
                             <h4 class="guide-sub-title">寿司・焼肉</h4>
-                            <ul class="guide-list">
-                                <li><strong>きときと寿司</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">地図を見る</a></li>
-                                <li><strong>精肉焼肉とよおか</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">地図を見る</a></li>
-                                <li><strong>越後屋</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">地図を見る</a></li>
-                                <li><strong>焼肉おたぎり</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>きときと寿司</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で25分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=きときと寿司" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>精肉焼肉とよおか</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で22分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=精肉焼肉とよおか" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>越後屋</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で21分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=越後屋" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>焼肉おたぎり</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で32分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=焼肉おたぎり" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>
                             <h4 class="guide-sub-title">中華・ラーメン</h4>
-                            <ul class="guide-list">
-                                <li><strong>栄華 町中華</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">地図を見る</a></li>
-                                <li><strong>あらきんラーメン</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>栄華 町中華</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で11分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=栄華+町中華" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>あらきんラーメン</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=あらきんラーメン" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>
                             <h4 class="guide-sub-title">居酒屋</h4>
-                            <ul class="guide-list">
-                                <li><strong>町酒場 たまき</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">地図を見る</a></li>
-                                <li><strong>日本亭</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">地図を見る</a></li>
+                            <ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>町酒場 たまき</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で9分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=町酒場+たまき" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>日本亭</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で5分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=日本亭" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>`
                     }
                 },
@@ -584,13 +704,21 @@ const guidebookData = {
                     icon: "bath",
                     title: { en: "Onsen & Sauna", jp: "温泉・サウナ" },
                     content: {
-                        en: `<ul class="guide-list">
+                        en: `<ul class="guide-list neighborhood-list two-col">
                                 <li><strong>Madarao no Yu</strong> (Tattoo friendly)<br><a href="https://maps.app.goo.gl/YmcpSpDAjNMbH1ND9" target="_blank">View Map</a></li>
                                 <li><strong>THE SAUNA</strong><br><a href="https://maps.app.goo.gl/f2GPWJpnjmtHuHWQ8" target="_blank">View Map</a></li>
                             </ul>`,
-                        jp: `<ul class="guide-list">
-                                <li><strong>まだらおの湯</strong> (タトゥーOK)<br><a href="https://maps.app.goo.gl/YmcpSpDAjNMbH1ND9" target="_blank">地図を見る</a></li>
-                                <li><strong>THE SAUNA</strong><br><a href="https://maps.app.goo.gl/f2GPWJpnjmtHuHWQ8" target="_blank">地図を見る</a></li>
+                        jp: `<ul class="guide-list neighborhood-list two-col">
+                                <li>
+                                    <strong>まだらおの湯</strong> (タトゥーOK)
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で25分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=まだらおの湯" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
+                                <li>
+                                    <strong>THE SAUNA</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で4分)</div>
+                                    <a href="https://www.google.com/maps/search/?api=1&query=THE+SAUNA" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                                </li>
                             </ul>`
                     }
                 },
@@ -638,37 +766,37 @@ const guidebookData = {
                         jp: `<div class="resort-list">
                                 <div class="resort-item">
                                     <strong>関温泉スキー場</strong> (車で20分)<br>
-                                    <p class="resort-desc">豪雪×上級者向けで有名なローカルスキー場。非圧雪エリアが多く、パウダースノー好き・玄人向け。観光客が少なく、静かに滑りたい人に最適。</p>
+                                    <p class="resort-desc">豪雪と上級者向けゲレンデで知られるローカルスキー場。非圧雪エリアが多く、パウダースノーを求める玄人スキーヤーに最適です。観光客が少なく、静かな環境で滑りたい方におすすめ。</p>
                                     <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">地図を見る</a>
                                 </div>
                                 <div class="resort-item">
                                     <strong>妙高高原・赤倉温泉スキー場</strong> (車で15分)<br>
-                                    <p class="resort-desc">コースバリエーションが豊富で初級〜上級まで対応。ゲレンデ直結の赤倉温泉街があり、アフタースキーも充実。外国人観光客にも人気の国際的リゾート。</p>
+                                    <p class="resort-desc">初級から上級まで対応する豊富なコースバリエーションが魅力。ゲレンデ直結の赤倉温泉街があり、アフタースキーも充実しています。外国人観光客にも人気の国際的リゾートです。</p>
                                     <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">地図を見る</a>
                                 </div>
                                 <div class="resort-item">
                                     <strong>黒姫高原スノーパーク</strong> (車で10分)<br>
-                                    <p class="resort-desc">ファミリー・初心者向けの緩やかなコース設計。キッズパークやスクールが充実。混雑しにくく、気軽に楽しめるスキー場。</p>
+                                    <p class="resort-desc">ファミリーや初心者に優しい緩やかなコース設計。キッズパークやスキースクールも充実しており、混雑しにくく、気軽に楽しめるスキー場です。</p>
                                     <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">地図を見る</a>
                                 </div>
                                 <div class="resort-item">
                                     <strong>タングラムスキーサーカス</strong> (車で14分)<br>
-                                    <p class="resort-desc">ホテル一体型のオールインワンリゾート。初心者・ファミリー・観光目的の人に最適。スキー以外（温泉・アクティビティ）も楽しめる。</p>
+                                    <p class="resort-desc">ホテル一体型のオールインワンリゾート。初心者やファミリー、観光目的の方にも最適です。スキーだけでなく、温泉や各種アクティビティも楽しめます。</p>
                                     <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">地図を見る</a>
                                 </div>
                                 <div class="resort-item">
                                     <strong>斑尾高原スキー場</strong> (車で22分)<br>
-                                    <p class="resort-desc">日本有数のツリーランコース数を誇る。パウダー・バックカントリー好きに大人気。中〜上級者向け、滑りごたえ重視。</p>
+                                    <p class="resort-desc">日本有数のツリーランコース数を誇るスキー場。パウダースノーやバックカントリー志向のスキーヤーに高い人気があります。中〜上級者向けで、滑りごたえを重視したい方におすすめ。</p>
                                     <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">地図を見る</a>
                                 </div>
                                 <div class="resort-item">
                                     <strong>野沢温泉スキー場</strong> (車で45分)<br>
-                                    <p class="resort-desc">コース規模が大きく、長距離滑走が可能。歴史ある野沢温泉街と外湯巡りが魅力。スキー×温泉×街歩きを楽しみたい人向け。</p>
+                                    <p class="resort-desc">コース規模が大きく、長距離滑走を楽しめる大型スキー場。歴史ある野沢温泉街と外湯巡りも魅力で、スキー・温泉・街歩きを一度に楽しみたい方に最適です。</p>
                                     <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">地図を見る</a>
                                 </div>
                                 <div class="resort-item">
                                     <strong>志賀高原スキー場</strong> (車で55分)<br>
-                                    <p class="resort-desc">日本最大級のスキーエリア（18スキー場連結）。標高が高く、雪質が安定している。上級者・長期滞在・本格派スキーヤー向け。</p>
+                                    <p class="resort-desc">18のスキー場が連結する日本最大級のスキーエリア。標高が高く、シーズンを通して安定した雪質を誇ります。上級者や長期滞在、本格派スキーヤーにおすすめ。</p>
                                     <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">地図を見る</a>
                                 </div>
                             </div>`

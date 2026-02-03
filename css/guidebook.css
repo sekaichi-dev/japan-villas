@@ -1308,3 +1308,32 @@
         gap: 0.75rem;
     }
 }
+/* Neighborhood Grid Layout */
+.neighborhood-list.two-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+@media (max-width: 768px) {
+    .neighborhood-list.two-col {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* Apply Resort Link Style to Neighborhood List */
+.neighborhood-list a {
+    display: inline-block;
+    color: var(--gb-text);
+    font-size: 0.85rem;
+    text-decoration: none;
+    border-bottom: 1px solid var(--gb-accent);
+    padding-bottom: 2px;
+}
+
+.neighborhood-list a:hover {
+    color: var(--gb-accent);
+    text-decoration: none;
+}
+
