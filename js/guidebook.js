@@ -1086,114 +1086,152 @@ const guidebookData = {
                     icon: "restaurant",
                     title: { en: "Dining: Japanese & Asian", jp: "食事：和食・中華・その他" },
                     content: {
-                        en: `<h4 class="guide-sub-title">Japanese(Soba, etc.)</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li><strong>Issa Shokudo</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">View Map</a></li>
-                                                                            <li><strong>Shinanoya (Soba)</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">View Map</a></li>
-                                                                            <li><strong>Restaurant Kiju</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">View Map</a></li>
-                                                                            <li><strong>Sobadokoro Takasawa</strong><br><a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">View Map</a></li>
-                                                                            <li><strong>Jurin (Tonkatsu)</strong><br><a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">View Map</a></li>
-                                                                            <li><strong>Kirakuen</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">View Map</a></li>
-                                                                        </ul>
-                                                                        <h4 class="guide-sub-title">Sushi & Yakiniku</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li><strong>Kitokito Sushi</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">View Map</a></li>
-                                                                            <li><strong>Yakiniku Toyooka</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">View Map</a></li>
-                                                                            <li><strong>Echigoya</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">View Map</a></li>
-                                                                            <li><strong>Yakiniku Otagiri</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">View Map</a></li>
-                                                                        </ul>
-                                                                        <h4 class="guide-sub-title">Chinese & Ramen</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li><strong>Eika (Machichuka)</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">View Map</a></li>
-                                                                            <li><strong>Arakin Ramen</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">View Map</a></li>
-                                                                        </ul>
-                                                                        <h4 class="guide-sub-title">Izakaya</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li><strong>Tamaki</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">View Map</a></li>
-                                                                            <li><strong>Nihontei</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">View Map</a></li>
-                                                                        </ul>`,
-                        jp: `<h4 class="guide-sub-title">和食</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li>
-                                                                                <strong>一茶食堂</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩16分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=一茶食堂" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>信濃屋 そば</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=信濃屋そば" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>レストラン樹香</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩29分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=レストラン樹香" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>そば処 たかさわ</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=そば処たかさわ" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>樹林とんかつ</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=樹林とんかつ" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>きらく園</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で15分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=きらく園" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <h4 class="guide-sub-title">寿司・焼肉</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li>
-                                                                                <strong>きときと寿司</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で25分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=きときと寿司" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>精肉焼肉とよおか</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で22分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=精肉焼肉とよおか" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>越後屋</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で21分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=越後屋" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>焼肉おたぎり</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で32分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=焼肉おたぎり" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <h4 class="guide-sub-title">中華・ラーメン</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li>
-                                                                                <strong>栄華 町中華</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で11分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=栄華+町中華" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>あらきんラーメン</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=あらきんラーメン" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                        </ul>
-                                                                        <h4 class="guide-sub-title">居酒屋</h4>
-                                                                        <ul class="guide-list neighborhood-list two-col">
-                                                                            <li>
-                                                                                <strong>町酒場 たまき</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で9分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=町酒場+たまき" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                            <li>
-                                                                                <strong>日本亭</strong>
-                                                                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で5分)</div>
-                                                                                <a href="https://www.google.com/maps/search/?api=1&query=日本亭" target="_blank" rel="noopener noreferrer">地図を見る</a>
-                                                                            </li>
-                                                                        </ul>`
+                        en: `<div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    Japanese(Soba, etc.) <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li><strong>Issa Shokudo</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Shinanoya (Soba)</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Restaurant Kiju</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Sobadokoro Takasawa</strong><br><a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Jurin (Tonkatsu)</strong><br><a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Kirakuen</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">View Map</a></li>
+                </ul>
+            </div>
+            
+            <div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    Sushi & Yakiniku <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li><strong>Kitokito Sushi</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Yakiniku Toyooka</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Echigoya</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Yakiniku Otagiri</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">View Map</a></li>
+                </ul>
+            </div>
+
+            <div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    Chinese & Ramen <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li><strong>Eika (Machichuka)</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Arakin Ramen</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">View Map</a></li>
+                </ul>
+            </div>
+
+            <div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    Izakaya <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li><strong>Tamaki</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">View Map</a></li>
+                    <li style="display:none" class="hidden-item"><strong>Nihontei</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">View Map</a></li>
+                </ul>
+            </div>`,
+                        jp: `<div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    和食 <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li>
+                        <strong>一茶食堂</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩16分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=一茶食堂" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>信濃屋 そば</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=信濃屋そば" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>レストラン樹香</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で3分 / 徒歩29分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=レストラン樹香" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>そば処 たかさわ</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=そば処たかさわ" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>樹林とんかつ</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=樹林とんかつ" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>きらく園</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で15分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=きらく園" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    寿司・焼肉 <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li>
+                        <strong>きときと寿司</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で25分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=きときと寿司" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>精肉焼肉とよおか</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で22分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=精肉焼肉とよおか" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>越後屋</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で21分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=越後屋" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>焼肉おたぎり</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で32分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=焼肉おたぎり" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    中華・ラーメン <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li>
+                        <strong>栄華 町中華</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で11分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=栄華+町中華" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>あらきんラーメン</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=あらきんラーメン" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="dining-accordion-group">
+                <h4 class="guide-sub-title dining-accordion-header" style="cursor: pointer; display: flex; align-items: center; justify-content: space-between;" onclick="window.toggleDiningAccordion(this)">
+                    居酒屋 <span class="accordion-icon">▶</span>
+                </h4>
+                <ul class="guide-list neighborhood-list two-col">
+                    <li>
+                        <strong>町酒場 たまき</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で9分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=町酒場+たまき" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>日本亭</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で5分)</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query=日本亭" target="_blank" rel="noopener noreferrer">地図を見る</a>
+                    </li>
+                </ul>
+            </div>`,
                     }
                 },
                 {
@@ -1220,82 +1258,151 @@ const guidebookData = {
                 },
                 {
                     icon: "sightseeing",
+                    collapsible: true,
                     title: { en: "Ski Resorts", jp: "スキー場" },
                     content: {
                         en: `<div class="resort-list">
-                                                                            <div class="resort-item">
-                                                                                <strong>Seki Onsen Ski Resort</strong> (20 min drive)<br>
-                                                                                    <p class="resort-desc">Famous for heavy snow and powder. Advanced/Expert friendly with many non-groomed areas. Quiet and uncrowded.</p>
-                                                                                    <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">View Map</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>Myoko Kogen / Akakura Onsen</strong> (15 min drive)<br>
-                                                                                    <p class="resort-desc">Wide variety of courses from beginner to advanced. Connected to Akakura Onsen town with great après-ski. Popular international resort.</p>
-                                                                                    <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">View Map</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>Kurohime Kogen Snow Park</strong> (10 min drive)<br>
-                                                                                    <p class="resort-desc">Gentle slopes ideal for families and beginners. Excellent kids park and ski school. Uncrowded and relaxed.</p>
-                                                                                    <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">View Map</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>Tangram Ski Circus</strong> (14 min drive)<br>
-                                                                                    <p class="resort-desc">All-in-one resort with hotel. Perfect for beginners and families. Offers activities beyond skiing.</p>
-                                                                                    <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">View Map</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>Madarao Kogen Ski Resort</strong> (22 min drive)<br>
-                                                                                    <p class="resort-desc">Known for the highest number of tree run courses in Japan. Popular for powder and backcountry lovers. Intermediate to Advanced.</p>
-                                                                                    <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">View Map</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>Nozawa Onsen Ski Resort</strong> (45 min drive)<br>
-                                                                                    <p class="resort-desc">Large scale resort with long runs. Historic onsen town atmosphere with free public baths. Great for sightseeing and skiing.</p>
-                                                                                    <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">View Map</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>Shiga Kogen Ski Resort</strong> (55 min drive)<br>
-                                                                                    <p class="resort-desc">Japan's largest ski area (18 resorts). High altitude and stable snow quality. For advanced skiers and long stays.</p>
-                                                                                    <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">View Map</a>
-                                                                            </div>
-                                                                        </div>`,
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Seki Onsen Ski Resort</strong> (20 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">Famous for heavy snow and powder. Advanced/Expert friendly with many non-groomed areas. Quiet and uncrowded.</p>
+                                        <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Myoko Kogen / Akakura Onsen</strong> (15 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">Wide variety of courses from beginner to advanced. Connected to Akakura Onsen town with great après-ski. Popular international resort.</p>
+                                        <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Kurohime Kogen Snow Park</strong> (10 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">Gentle slopes ideal for families and beginners. Excellent kids park and ski school. Uncrowded and relaxed.</p>
+                                        <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Tangram Ski Circus</strong> (14 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">All-in-one resort with hotel. Perfect for beginners and families. Offers activities beyond skiing.</p>
+                                        <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Madarao Kogen Ski Resort</strong> (22 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">Known for the highest number of tree run courses in Japan. Popular for powder and backcountry lovers. Intermediate to Advanced.</p>
+                                        <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Nozawa Onsen Ski Resort</strong> (45 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">Large scale resort with long runs. Historic onsen town atmosphere with free public baths. Great for sightseeing and skiing.</p>
+                                        <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>Shiga Kogen Ski Resort</strong> (55 min drive)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">Japan's largest ski area (18 resorts). High altitude and stable snow quality. For advanced skiers and long stays.</p>
+                                        <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">View Map</a>
+                                    </div>
+                                </details>
+                            </div>`,
                         jp: `<div class="resort-list">
-                                                                            <div class="resort-item">
-                                                                                <strong>関温泉スキー場</strong> (車で20分)<br>
-                                                                                    <p class="resort-desc">豪雪と上級者向けゲレンデで知られるローカルスキー場。非圧雪エリアが多く、パウダースノーを求める玄人スキーヤーに最適です。観光客が少なく、静かな環境で滑りたい方におすすめ。</p>
-                                                                                    <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>妙高高原・赤倉温泉スキー場</strong> (車で15分)<br>
-                                                                                    <p class="resort-desc">初級から上級まで対応する豊富なコースバリエーションが魅力。ゲレンデ直結の赤倉温泉街があり、アフタースキーも充実しています。外国人観光客にも人気の国際的リゾートです。</p>
-                                                                                    <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>黒姫高原スノーパーク</strong> (車で10分)<br>
-                                                                                    <p class="resort-desc">ファミリーや初心者に優しい緩やかなコース設計。キッズパークやスキースクールも充実しており、混雑しにくく、気軽に楽しめるスキー場です。</p>
-                                                                                    <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>タングラムスキーサーカス</strong> (車で14分)<br>
-                                                                                    <p class="resort-desc">ホテル一体型のオールインワンリゾート。初心者やファミリー、観光目的の方にも最適です。スキーだけでなく、温泉や各種アクティビティも楽しめます。</p>
-                                                                                    <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>斑尾高原スキー場</strong> (車で22分)<br>
-                                                                                    <p class="resort-desc">日本有数のツリーランコース数を誇るスキー場。パウダースノーやバックカントリー志向のスキーヤーに高い人気があります。中〜上級者向けで、滑りごたえを重視したい方におすすめ。</p>
-                                                                                    <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>野沢温泉スキー場</strong> (車で45分)<br>
-                                                                                    <p class="resort-desc">コース規模が大きく、長距離滑走を楽しめる大型スキー場。歴史ある野沢温泉街と外湯巡りも魅力で、スキー・温泉・街歩きを一度に楽しみたい方に最適です。</p>
-                                                                                    <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                            <div class="resort-item">
-                                                                                <strong>志賀高原スキー場</strong> (車で55分)<br>
-                                                                                    <p class="resort-desc">18のスキー場が連結する日本最大級のスキーエリア。標高が高く、シーズンを通して安定した雪質を誇ります。上級者や長期滞在、本格派スキーヤーにおすすめ。</p>
-                                                                                    <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">地図を見る</a>
-                                                                            </div>
-                                                                        </div>`
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>関温泉スキー場</strong> (車で20分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">豪雪と上級者向けゲレンデで知られるローカルスキー場。非圧雪エリアが多く、パウダースノーを求める玄人スキーヤーに最適です。観光客が少なく、静かな環境で滑りたい方におすすめ。</p>
+                                        <a href="https://maps.app.goo.gl/UvR1L72DBz7xh8ei9" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>妙高高原・赤倉温泉スキー場</strong> (車で15分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">初級から上級まで対応する豊富なコースバリエーションが魅力。ゲレンデ直結の赤倉温泉街があり、アフタースキーも充実しています。外国人観光客にも人気の国際的リゾートです。</p>
+                                        <a href="https://maps.app.goo.gl/e4FE18NLo76F4yde6" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>黒姫高原スノーパーク</strong> (車で10分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">緩やかな斜面が多く、ファミリーや初心者に最適なスキー場。日本最大級のキッズパークやスキー教室が充実。混雑が少なく、のんびりと楽しめます。</p>
+                                        <a href="https://maps.app.goo.gl/6Sjiz78maGxLj2aD6" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>タングラムスキーサーカス</strong> (車で14分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">ホテル併設のオールインワンリゾート。初心者コースやキッズエリアが充実しており、ファミリー層に人気。スノーアクティビティも豊富。</p>
+                                        <a href="https://maps.app.goo.gl/1oPx6GfS8E4DnXXZA" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>斑尾高原スキー場</strong> (車で22分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">日本一のツリーランコース数を誇る、パウダー＆バックカントリー好きの聖地。地形を生かしたコースが多く、中級〜上級者も満足できます。</p>
+                                        <a href="https://maps.app.goo.gl/Bp4w27e8xNyrm1RV6" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>野沢温泉スキー場</strong> (車で45分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">広大な敷地と長い滑走距離が魅力のビッグゲレンデ。歴史ある温泉街と一体化しており、スキー後の外湯巡りや観光も含めて楽しめます。</p>
+                                        <a href="https://maps.app.goo.gl/zxcZVxCCdwNSAaXx6" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+
+                                <details class="living-accordion" name="ski-resort-group">
+                                    <summary>
+                                        <div><strong>志賀高原スキー場</strong> (車で55分)</div>
+                                    </summary>
+                                    <div class="accordion-body">
+                                        <p class="resort-desc">日本最大級のスキーエリア（18のスキー場が集結）。標高が高く、雪質の良さと規模の大きさは圧倒的。長期滞在して全山制覇を目指す上級者にも。</p>
+                                        <a href="https://maps.app.goo.gl/bDKF6hhpRqY1RVoJA" target="_blank">地図を見る</a>
+                                    </div>
+                                </details>
+                            </div>`,
                     }
                 }
             ]
@@ -1845,6 +1952,16 @@ function renderSections() {
             const itemTitle = getLocalizedText(item.title) || item.title;
             const itemContent = getLocalizedText(item.content) || item.content;
             const iconHtml = item.icon && ICONS[item.icon] ? ICONS[item.icon] : '';
+            if (item.collapsible) {
+                return `
+                            <details class="content-card living-accordion" id="item-${section.id}-${index}" open>
+                                <summary class="card-header" style="justify-content: space-between;">${iconHtml} ${itemTitle}</summary>
+                                <div class="card-body">
+                                    ${itemContent}
+                                </div>
+                            </details>
+                        `;
+            }
             return `
                             <div class="content-card" id="item-${section.id}-${index}">
                                 <h3 class="card-header">${iconHtml} ${itemTitle}</h3>
@@ -2173,3 +2290,34 @@ function updateLanguageLabel() {
         label.textContent = (window.currentLang || 'en').toUpperCase();
     }
 }
+
+// ============================================
+// DINING ACCORDION HELPER
+// ============================================
+window.toggleDiningAccordion = function (headerElement) {
+    const groupStart = headerElement.parentElement;
+    const list = groupStart.querySelector('ul.guide-list');
+
+    if (!list) return;
+
+    // Toggle hidden items
+    const hiddenItems = list.querySelectorAll('li:not(:first-child)');
+    const isExpanded = headerElement.getAttribute('data-expanded') === 'true';
+    const icon = headerElement.querySelector('.accordion-icon');
+
+    if (isExpanded) {
+        // Collapse
+        hiddenItems.forEach(item => {
+            item.style.display = 'none';
+        });
+        headerElement.setAttribute('data-expanded', 'false');
+        if (icon) icon.textContent = '▶';
+    } else {
+        // Expand
+        hiddenItems.forEach(item => {
+            item.style.display = 'block'; // Reset to default display
+        });
+        headerElement.setAttribute('data-expanded', 'true');
+        if (icon) icon.textContent = '▼';
+    }
+};
