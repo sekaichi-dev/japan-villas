@@ -15,6 +15,7 @@ window.translations = {
 
         "search.location": "Location",
         "search.location.val": "Anywhere",
+        "search.location.placeholder": "Search destinations",
         "search.dates": "Dates",
         "search.dates.val": "Add dates",
         "search.guests": "Guests",
@@ -103,12 +104,13 @@ window.translations = {
         "nav.lang": "JP / EN",
 
         "hero.subtitle": "JAPANVILLAS",
-        "hero.headline": "日本の景観と<span class='headline-split'>別邸の旅へ</span>",
-        "hero.deadline_sub": "",
+        "hero.headline": "The New Standard",
+        "hero.deadline_sub": "in Japanese Retreats",
         "hero.desc": "厳選されたヴィラ、湖畔の隠れ家、そして海辺のエスケープ。",
 
         "search.location": "場所",
         "search.location.val": "指定なし",
+        "search.location.placeholder": "目的地を検索",
         "search.dates": "日付",
         "search.dates.val": "日付を追加",
         "search.guests": "人数",
@@ -138,7 +140,7 @@ window.translations = {
         "footer.legal.title": "法的事項",
         "footer.copyright": "© 2025 Japan Villas. All rights reserved.",
 
-        "mobile.search.trigger": "宿を探す",
+        "mobile.search.trigger": "日本の宿を探す",
 
         "login.title": "お帰りなさい",
         "login.btn": "ログイン",

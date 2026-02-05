@@ -73,36 +73,57 @@ window.updateContent = () => {
         return;
     }
 
+    // 1. Text Content
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (t[key] !== undefined) {
             const translation = t[key];
-
-            // Set content
             el.innerHTML = translation;
 
             // Handle display logic for empty translations
             if (translation === "") {
                 el.style.display = 'none';
-                el.style.visibility = 'hidden'; // Extra safety
+                el.style.visibility = 'hidden';
             } else {
-                if (el.style.display === 'none') {
-                    el.style.display = '';
-                }
-                if (el.style.visibility === 'hidden') {
-                    el.style.visibility = '';
-                }
+                if (el.style.display === 'none') el.style.display = '';
+                if (el.style.visibility === 'hidden') el.style.visibility = '';
             }
         }
     });
 
-    // Handle placeholder translations
+    // 2. Placeholders
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
         const key = el.getAttribute('data-i18n-placeholder');
-        if (t[key] !== undefined) {
+        if (t[key]) {
             el.placeholder = t[key];
         }
     });
+
+    // 3. Guest Select Options
+    const guestSelect = document.getElementById('search-guests');
+    if (guestSelect) {
+        // Update default option
+        const defaultOpt = guestSelect.querySelector('option[value=""]');
+        if (defaultOpt && t['search.guests.val']) {
+            defaultOpt.textContent = t['search.guests.val'];
+        }
+
+        // Update numeric options
+        guestSelect.querySelectorAll('option:not([value=""])').forEach(opt => {
+            const val = parseInt(opt.value);
+            const unit = val === 1 ? t['search.guest'] : t['search.guests_unit'];
+            // Reconstruct text: "1 Guest" or "1 名"
+            if (unit) {
+                opt.textContent = `${val} ${unit}`;
+            }
+        });
+    }
+
+    // Update body class for font switching
+    if (document.body) {
+        document.body.classList.remove('lang-en', 'lang-jp');
+        document.body.classList.add(`lang-${window.currentLang}`);
+    }
 };
 
 // Helper to get localized property field
@@ -111,6 +132,68 @@ const getPropField = (prop, field) => {
         return prop[field + '_jp'] || prop[field];
     }
     return prop[field];
+};
+
+// --- RENDER LOGIC (Moved to top level) ---
+window.createCard = (property) => {
+    // Localized fields
+    const name = window.currentLang === 'jp' ? (property.name_jp || property.name) : property.name;
+    const location = window.currentLang === 'jp' ? (property.location_jp || property.location) : property.location;
+    const priceText = `¥${property.price.toLocaleString()}`;
+    const nightText = window.currentLang === 'jp' ? '/ 泊' : '/ night';
+
+    // Features/Amenities for Card
+    const guests = property.details ? property.details.guests : 0;
+    const bedrooms = property.details ? property.details.bedrooms : 0;
+
+    return `
+        <div class="property-card" onclick="openProperty(${property.id})">
+            <div class="card-image-wrapper">
+                <img src="${property.images[0]}" alt="${name}" loading="lazy" class="card-img">
+                <div class="availability-badge" data-badge-id="${property.id}">
+                    <!-- Loaded async -->
+                </div>
+            </div>
+            
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="card-location">${location}</span>
+                    <h3 class="card-title">${name}</h3>
+                </div>
+                
+                <div class="card-details">
+                    <div class="card-stats">
+                        <span>${icons.guests} ${guests} Guest${guests > 1 ? 's' : ''}</span>
+                        <span>${icons.bed} ${bedrooms} Bedroom${bedrooms > 1 ? 's' : ''}</span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="card-price">
+                        <span class="amount">${priceText}</span>
+                        <span class="unit">${nightText}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+};
+
+window.updatePropertyList = (properties) => {
+    const container = document.getElementById('property-list');
+    if (!container) return;
+
+    if (!properties || properties.length === 0) {
+        container.innerHTML = '<div style="text-align:center; padding:4rem; color:#888;">No properties found.</div>';
+        return;
+    }
+
+    container.innerHTML = properties.map(p => window.createCard(p)).join('');
+
+    // Trigger availability update
+    if (window.updateCardAvailability) {
+        window.updateCardAvailability();
+    }
 };
 
 // Data Loading & Init
@@ -125,15 +208,91 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             const properties = await loadProperties();
             window.properties = properties;
+
+            // Render Stays Page List
+            if (document.body.classList.contains('stays-page') && window.updatePropertyList) {
+                window.updatePropertyList(properties);
+            }
         } catch (e) {
             console.error("Failed to load properties", e);
             window.properties = []; // Fallback
+            // Remove skeleton if failed
+            const list = document.getElementById('property-list');
+            if (list) list.innerHTML = '<div style="color:#fff; text-align:center; margin-top:4rem;">Unable to load properties.</div>';
         }
     }
 
     if (window.initApp) {
         window.initApp();
     }
+
+    // ...
+
+    // --- RENDER LOGIC ---
+    window.createCard = (property) => {
+        // Localized fields
+        const name = window.currentLang === 'jp' ? (property.name_jp || property.name) : property.name;
+        const location = window.currentLang === 'jp' ? (property.location_jp || property.location) : property.location;
+        const priceText = `¥${property.price.toLocaleString()}`;
+        const nightText = window.currentLang === 'jp' ? '/ 泊' : '/ night';
+
+        // Features/Amenities for Card
+        const guests = property.details ? property.details.guests : 0;
+        const bedrooms = property.details ? property.details.bedrooms : 0;
+
+        return `
+        <div class="property-list-item" onclick="openProperty(${property.id})">
+            <div class="list-img-wrapper">
+                <img src="${property.images[0]}" alt="${name}" loading="lazy">
+                <div class="availability-badge" data-badge-id="${property.id}">
+                    <!-- Loaded async -->
+                </div>
+            </div>
+            
+            <div class="list-content">
+                <div class="list-header">
+                    <span class="list-location">${location}</span>
+                    <h3 class="list-title">${name}</h3>
+                </div>
+                
+                <div class="list-desc">
+                    <div class="card-stats">
+                        <span>${icons.guests} ${guests} Guest${guests > 1 ? 's' : ''}</span>
+                        <span>${icons.bed} ${bedrooms} Bedroom${bedrooms > 1 ? 's' : ''}</span>
+                    </div>
+                </div>
+
+                <div class="list-footer">
+                    <div class="list-price">
+                        <span class="amount">${priceText}</span>
+                        <span class="unit">${nightText}</span>
+                    </div>
+                    <button class="btn-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    };
+
+    window.updatePropertyList = (properties) => {
+        const container = document.getElementById('property-list');
+        if (!container) return;
+
+        if (!properties || properties.length === 0) {
+            container.innerHTML = '<div style="text-align:center; padding:4rem; color:#888;">No properties found.</div>';
+            return;
+        }
+
+        container.innerHTML = properties.map(p => window.createCard(p)).join('');
+
+        // Trigger availability update
+        if (window.updateCardAvailability) {
+            window.updateCardAvailability();
+        }
+    };
+
 
     // Apply initial translations
     window.updateContent();
@@ -176,92 +335,6 @@ window.initApp = () => {
         // Reset chips
         modal.querySelectorAll('.filter-chip').forEach(chip => chip.classList.remove('active'));
     };
-
-    // 0.25 Mobile Search Interactivity (Date & Guests)
-    const searchModal = document.getElementById('search-modal');
-    if (searchModal) {
-        // Date Picker
-        const dateDisplay = searchModal.querySelector('.date-display');
-        if (dateDisplay && typeof flatpickr !== 'undefined') {
-            flatpickr(dateDisplay, {
-                mode: "range",
-                minDate: "today",
-                dateFormat: "Y/m/d",
-                disableMobile: "true",
-                onChange: (selectedDates, dateStr, instance) => {
-                    if (dateStr) {
-                        dateDisplay.innerText = dateStr.replace(' to ', ' ~ ');
-                        dateDisplay.style.color = '#fff';
-                    }
-                }
-            });
-        }
-
-        // Guest Selector (Dropdown menu)
-        const guestDisplay = searchModal.querySelector('.guest-display');
-        if (guestDisplay) {
-            let guestCount = 1;
-            guestDisplay.style.cursor = 'pointer';
-
-            // Create dropdown container
-            const dropdownContainer = document.createElement('div');
-            dropdownContainer.style.cssText = `
-                position: absolute;
-                background: #222;
-                border: 1px solid #444;
-                border-radius: 8px;
-                margin-top: 0.5rem;
-                display: none;
-                z-index: 1000;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-                max-height: 200px;
-                overflow-y: auto;
-            `;
-
-            // Create options
-            for (let i = 1; i <= 10; i++) {
-                const option = document.createElement('div');
-                option.style.cssText = `
-                    padding: 0.75rem 1.5rem;
-                    cursor: pointer;
-                    color: #fff;
-                    transition: background 0.2s;
-                `;
-                const isJp = window.currentLang === 'jp';
-                option.innerText = isJp ? `${i}名` : `${i} Guest${i > 1 ? 's' : ''}`;
-                option.addEventListener('mouseenter', () => {
-                    option.style.background = '#333';
-                });
-                option.addEventListener('mouseleave', () => {
-                    option.style.background = 'transparent';
-                });
-                option.addEventListener('click', () => {
-                    guestCount = i;
-                    const isJp = window.currentLang === 'jp';
-                    guestDisplay.innerText = isJp ? `${guestCount}名` : `${guestCount} Guest${guestCount > 1 ? 's' : ''}`;
-                    guestDisplay.style.color = '#fff';
-                    dropdownContainer.style.display = 'none';
-                });
-                dropdownContainer.appendChild(option);
-            }
-
-            guestDisplay.parentElement.style.position = 'relative';
-            guestDisplay.parentElement.appendChild(dropdownContainer);
-
-            // Toggle dropdown on click
-            guestDisplay.addEventListener('click', (e) => {
-                e.stopPropagation();
-                dropdownContainer.style.display = dropdownContainer.style.display === 'none' ? 'block' : 'none';
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', (e) => {
-                if (!guestDisplay.contains(e.target) && !dropdownContainer.contains(e.target)) {
-                    dropdownContainer.style.display = 'none';
-                }
-            });
-        }
-    }
 
     // Filter Chip Toggle
     const filterChips = document.querySelectorAll('.filter-chip');
@@ -435,26 +508,26 @@ window.initApp = () => {
             <div class="detail-hero">
                 <img src="${property.images[0]}" alt="${name}">
                 <div class="container detail-overlay-content">
-                    <span class="subtitle">${location}</span>
-                    <h1 style="font-size: 3rem; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">${name}</h1>
+                    <span class="subtitle" style="font-size: 0.85rem; letter-spacing: 0.1em; opacity: 0.8;">${location}</span>
+                    <h1 style="font-size: clamp(1.8rem, 4vw, 2.4rem); text-shadow: 0 4px 20px rgba(0,0,0,0.8); line-height: 1.1; margin-bottom: 1rem;">${name}</h1>
                     <div class="key-facts">
-                         <div class="fact-item">${icons.bed} ${property.details.bedrooms} ${labels.bedrooms}</div>
-                         <div class="fact-item">${icons.bath} ${property.details.bath} ${labels.bathrooms}</div>
-                         <div class="fact-item">${icons.guests} ${property.details.guests} ${labels.guests}</div>
-                         <div class="fact-item">${icons.wifi} ${labels.wifi}</div>
-                         <div class="fact-item">${icons.parking} ${labels.parking}</div>
+                         <div class="fact-item">${icons.bed} ${property.details.bedrooms} <span class="fact-label">${labels.bedrooms}</span></div>
+                         <div class="fact-item">${icons.bath} ${property.details.bath} <span class="fact-label">${labels.bathrooms}</span></div>
+                         <div class="fact-item">${icons.guests} ${property.details.guests} <span class="fact-label">${labels.guests}</span></div>
+                         <div class="fact-item">${icons.wifi} <span class="fact-label">${labels.wifi}</span></div>
+                         <div class="fact-item">${icons.parking} <span class="fact-label">${labels.parking}</span></div>
                     </div>
                 </div>
             </div>
             <div class="split-layout">
                 <div class="left-col">
-                    <h2 style="margin-bottom:1rem;">${labels.about}</h2>
-                    <p style="font-size:1.1rem; color:#ccc; line-height:1.8; margin-bottom:2rem;">
+                    <h2 style="font-size: 1.4rem; font-family: var(--font-display); margin-bottom:0.75rem;">${labels.about}</h2>
+                    <p style="font-size:0.95rem; color:#ccc; line-height:1.7; margin-bottom:2rem;">
                         ${description}
                         <br><br>
                         ${labels.experience}
                     </p>
-                    <h3 style="margin-top:3rem;">${labels.amenitiesTitle}</h3>
+                    <h3 style="font-size: 1.2rem; margin-top:2.5rem; margin-bottom: 1rem;">${labels.amenitiesTitle}</h3>
                     <div class="amenities-list" style="margin-top:1rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
                         ${amenities.map(a => `<div style="color:#ddd; display:flex; align-items:center; gap:0.5rem;">${icons.check} ${a}</div>`).join('')}
                     </div>
@@ -567,7 +640,7 @@ window.initApp = () => {
             <div id="calendar-container" style="display: flex; justify-content: center; margin-bottom: 2rem;"></div>
             
             <div style="text-align: center;">
-                <button class="auth-btn primary" id="confirm-dates-btn" disabled>Apply Dates</button>
+                <button class="btn btn-primary" id="confirm-dates-btn" disabled style="width: 100%; max-width: 300px; padding: 1rem; border-radius: 8px;">Apply Dates</button>
                 <div style="margin-top:1rem; font-size:0.8rem; color:#666; cursor:pointer;" onclick="document.getElementById('calendar-modal').classList.remove('active')">Close</div>
             </div>
         </div>
@@ -1166,16 +1239,25 @@ window.initApp = () => {
         if (mapContainer && typeof L !== 'undefined') {
             try {
                 // Initialize Map
+                const isMobile = window.innerWidth <= 768;
                 const map = L.map('mapbox-container', {
-                    center: [38.0, 138.2529],
-                    zoom: 4.1,
+                    center: [36.2048, 138.2529],
+                    zoom: 5,
                     zoomControl: false,
                     attributionControl: false,
                     scrollWheelZoom: false,
                     dragging: false, // Locking map to prevent scroll hijacking
                     touchZoom: false,
-                    doubleClickZoom: false
+                    doubleClickZoom: false,
+                    zoomSnap: 0.1 // Allow fractional zoom for perfect fit
                 });
+
+                if (isMobile) {
+                    // Fit bounds *strictly* to mainland tips
+                    // Cape Soya (45.52) to Cape Sata (30.99)
+                    // Bounds: [[45.55, 146], [30.95, 129]] with NO padding
+                    map.fitBounds([[45.55, 146], [30.95, 129]], { padding: [0, 0] });
+                }
 
                 L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
                     attribution: '&copy; OpenStreetMap &copy; CARTO',
@@ -1211,8 +1293,15 @@ window.initApp = () => {
 
                 // Map Position Global
                 window.updateMapPosition = (id) => {
+                    console.log(`[Map] updateMapPosition called with id: ${id}`);
                     if (id === 0) {
-                        map.flyTo([38.8, 138.2529], 3.85, { duration: 2.0, easeLinearity: 0.5 });
+                        const isMobile = window.innerWidth <= 768;
+                        if (isMobile) {
+                            // Hokkaido to Kyushu Tight Fit (Fractional)
+                            map.flyToBounds([[45.55, 146], [30.95, 129]], { padding: [0, 0], duration: 1.5 });
+                        } else {
+                            map.flyTo([36.2048, 138.2529], 5, { duration: 2.0, easeLinearity: 0.5 });
+                        }
                     } else {
                         const loc = propertyLocations[id];
                         if (loc) {
@@ -1234,32 +1323,16 @@ window.initApp = () => {
                                 const newCenter = map.unproject(centerPoint, zoom);
                                 map.flyTo(newCenter, zoom, { duration: 2.0, easeLinearity: 0.5 });
                             } else {
-                                map.flyTo(targetLatLng, loc.zoom, { duration: 2.0, easeLinearity: 0.5 });
+                                // Mobile Logic: Center pin in the 45vh sticky header
+                                // Default flyTo centers target in the container, which is what we want.
+                                const zoom = loc.zoom;
+                                map.flyTo([loc.lat, loc.lng], zoom, { duration: 1.5, easeLinearity: 0.2 });
                             }
                         }
                     }
                 };
             } catch (e) {
                 console.error("Leaflet Map failed to initialize:", e);
-            }
-
-            // Add observer to reset map zoom when scrolling back to original position
-            if (mapContainer && window.updateMapPosition) {
-                const mapObserver = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        // When map is entering the middle zone of viewport (scrolling back to it)
-                        if (entry.isIntersecting) {
-                            // Reset to show all of Japan
-                            window.updateMapPosition(0);
-                        }
-                    });
-                }, {
-                    root: null,
-                    threshold: 0.1, // Trigger when just 10% visible
-                    rootMargin: '-40% 0px -40% 0px' // Create detection zone in middle 20% of viewport
-                });
-
-                mapObserver.observe(mapContainer);
             }
         } else {
             if (!mapContainer) console.warn("Map container missing on Home Page.");
@@ -1281,12 +1354,14 @@ window.initApp = () => {
             });
         }, observerOptions);
 
+        // Update observer to target hero-visual (which is visible on mobile)
         const heroObserver = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) window.updateMapPosition(0);
-        }, { threshold: 0.75 });
+        }, { threshold: 0.5 }); // Lower threshold slightly for better responsiveness
 
-        const hero = document.querySelector('.welcome-section');
-        if (hero) heroObserver.observe(hero);
+        // Observe the main hero visual (slideshow area) which is always visible
+        const heroVisual = document.querySelector('.hero-visual');
+        if (heroVisual) heroObserver.observe(heroVisual);
 
 
 
@@ -1322,21 +1397,23 @@ window.initApp = () => {
             <div class="card-info">
                 <span class="location" style="display:block; margin-bottom:0.5rem; color:var(--accent-color); letter-spacing:0.2em; font-size:0.75rem; text-transform:uppercase;">${location}</span>
                 <h3 style="margin-bottom:1rem; font-family:var(--font-display); display:flex; align-items:center;">
+                    ${name}
                     ${property.instagram ? `
-                    <a href="${property.instagram}" target="_blank" class="insta-btn" onclick="event.stopPropagation()" style="margin-right: 0.5rem; margin-left: 0;">
+                    <a href="${property.instagram}" target="_blank" class="insta-btn" onclick="event.stopPropagation()">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
                         </svg>
                     </a>` : ''}
-                    ${name}
                 </h3>
                 <p style="color:#999; margin-bottom:2rem; max-width:600px; font-weight:300;">${description.substring(0, 100)}...</p>
                 
-                <div class="card-stats">
+                <div class="card-stats" style="border-top:1px solid rgba(255,255,255,0.1); padding-top:1.5rem; gap:2rem;">
                     <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.bed} ${property.details.bedrooms} ${bedLabel}</span>
+                    <span style="opacity:0.3;">|</span>
                     <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.guests} ${property.details.guests} ${guestLabel}</span>
+                    <span style="opacity:0.3;">|</span>
                     <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.bath} ${property.details.bath} ${bathLabel}</span>
                 </div>
             </div>
@@ -1433,11 +1510,13 @@ window.initApp = () => {
                             <p class="list-desc">${description}</p>
                             
                             <div class="flex-between" style="padding-top:0;">
-                                 <div class="card-stats" style="font-size: 0.85rem; color: #fff; opacity: 0.9; font-weight: 300; width:100%; display: flex; align-items: center;">
+                                 <div class="card-stats" style="font-size: 0.85rem; color: #fff; opacity: 0.9; font-weight: 300; border-top:1px solid rgba(255,255,255,0.1); padding-top: 0.75rem; width:100%; display: flex; align-items: center;">
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.bed} ${p.details.bedrooms} <span class="stat-label">${bedLabel}</span></span>
+                                    <span style="margin: 0 0.5rem; opacity:0.4;">|</span>
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.guests} ${p.details.guests} <span class="stat-label">${guestLabel}</span></span>
+                                    <span style="margin: 0 0.5rem; opacity:0.4;">|</span>
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.bath} ${p.details.bath} <span class="stat-label">${bathLabel}</span></span>
-                                 </div>
+                                </div>
                             </div>
                         </div>
                     </div>`;
@@ -1476,3 +1555,113 @@ window.initApp = () => {
     }
 
 };
+// ... existing code ...
+
+// --- STAYS PAGE SEARCH LOGIC ---
+window.initStaysPageSearch = () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get('q');
+    const dates = urlParams.get('dates');
+    const guests = urlParams.get('guests');
+
+    // Pre-fill inputs
+    if (query) {
+        const input = document.getElementById('stays-search-input');
+        if (input) input.value = query;
+    }
+    if (dates && window.flatpickr) {
+        const dateEl = document.getElementById('stays-search-dates');
+        if (dateEl) {
+            dateEl.innerText = dates;
+            dateEl.style.color = "#fff";
+            flatpickr(dateEl, {
+                mode: "range",
+                minDate: "today",
+                dateFormat: "Y-m-d",
+                defaultDate: dates.split(' to '), // Try to parse if possible
+                locale: { rangeSeparator: " ~ " }
+            });
+        }
+    }
+    if (guests) {
+        const select = document.getElementById('stays-search-guests');
+        if (select) select.value = guests;
+    }
+
+    // Filter Logic
+    if (window.updatePropertyList) {
+        let filtered = window.properties || [];
+
+        if (query) {
+            const lowerQ = query.toLowerCase();
+            filtered = filtered.filter(p =>
+                (p.name && p.name.toLowerCase().includes(lowerQ)) ||
+                (p.location && p.location.toLowerCase().includes(lowerQ)) ||
+                (p.name_jp && p.name_jp.toLowerCase().includes(lowerQ)) ||
+                (p.location_jp && p.location_jp.toLowerCase().includes(lowerQ))
+            );
+        }
+
+        // Note: Date filtering usually requires checking availability which is complex async.
+        // For now, we might just show available match if we had availability data loaded.
+        // Assuming we just filter by text for now as per "show results filtering" request.
+
+        if (guests) {
+            const guestCount = parseInt(guests);
+            filtered = filtered.filter(p => {
+                // Parse "8 guests" -> 8
+                const capacity = parseInt(p.details ? p.details.guests : 0);
+                return capacity >= guestCount;
+            });
+        }
+
+        window.updatePropertyList(filtered);
+    }
+
+    // Attach Search Button Listener
+    const btn = document.getElementById('stays-search-btn');
+    if (btn) {
+        btn.addEventListener('click', () => {
+            const q = document.getElementById('stays-search-input').value;
+            const d = document.getElementById('stays-search-dates').innerText;
+            const g = document.getElementById('stays-search-guests').value;
+
+            const p = new URLSearchParams();
+            if (q) p.append('q', q);
+            if (d && d !== "Add dates") p.append('dates', d);
+            if (g) p.append('guests', g);
+
+            // Reload with new params to trigger filter
+            window.location.href = `stays.html?${p.toString()}`;
+        });
+    }
+};
+
+// Initialize on load for Stays page
+if (document.body.classList.contains('stays-page')) {
+    // Wait for properties to load? usually handled by dataLoader callback or window.updatePropertyList
+    // But we need to intercept the initial load.
+    // simpler: override updatePropertyList or call initStaysPageSearch after data load.
+    // For now, hook into dataLoader's success? Or just poll/wait.
+    // dataLoader calls window.updatePropertyList(window.properties).
+    // so we can wrap that?
+
+    // Better: We add this function and dataLoader or app.js calls it.
+    // Let's modify dataLoader completion or just append this logic.
+    // Assuming dataLoader.js puts properties on window.
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // We need to wait for properties.
+        let attempts = 0;
+        const checkProps = setInterval(() => {
+            attempts++;
+            if (window.properties && window.properties.length > 0) {
+                clearInterval(checkProps);
+                window.initStaysPageSearch();
+            } else if (attempts > 50) { // 5 seconds timeout
+                clearInterval(checkProps);
+                console.warn('Properties not loaded in time for search init');
+            }
+        }, 100);
+    });
+}

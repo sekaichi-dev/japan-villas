@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Japan Villas | Experience importance</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=3">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css"> <!-- Dark theme -->
@@ -14,6 +14,7 @@
     <script src="js/translations.js?v=2"></script>
     <script src="js/dataLoader.js?v=2"></script> <!-- Async Loader -->
     <script src="js/app.js?v=2"></script>
+    <script src="js/lang-dropdown.js"></script>
     <!-- Supabase Auth -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="js/auth.js?v=2"></script>
@@ -22,7 +23,10 @@
 <body class="home-page">
     <header>
         <div class="header-inner">
-            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <a href="index.html" class="nav-logo">
+                <span class="logo-desktop">JAPAN VILLAS.</span>
+                <span class="logo-mobile">JV.</span>
+            </a>
 
             <nav class="nav-center">
                 <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
@@ -31,8 +35,19 @@
             </nav>
 
             <div class="nav-right">
-                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
-                    EN</span>
+                <div class="lang-dropdown">
+                    <button class="lang-current" onclick="toggleLangDropdown(event)">
+                        <span id="current-lang-display">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="2,4 6,8 10,4"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-options" id="lang-options">
+                        <div class="lang-option" onclick="selectLanguage('en')">EN - English</div>
+                        <div class="lang-option" onclick="selectLanguage('jp')">JP - 日本語</div>
+                    </div>
+                </div>
                 <a href="#" class="btn-login desktop-only" data-i18n="nav.login">Login</a>
                 <button class="mobile-menu-btn" onclick="openMenu()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -99,20 +114,20 @@
                 </div>
             </section>
 
-            <!-- 2. Map Section (Existing but shifted) -->
-            <section class="hero">
-                <!-- Mapbox Container (Fixed to window) -->
-                <div id="mapbox-container"></div>
-                <!-- Token & Controls (hidden/adjusted) -->
-                <div id="token-prompt"
-                    style="position:fixed; bottom:20px; left:20px; z-index:1000; background:rgba(0,0,0,0.8); padding:1rem; border-radius:8px; display:none;">
-                    <p style="font-size:0.8rem; margin-bottom:0.5rem; color:#fff;">Enter Mapbox Token to View Map</p>
-                    <input type="text" id="mapbox-token-input" placeholder="pk.ey..."
-                        style="padding:4px; border-radius:4px; border:none;">
-                    <button id="mapbox-token-btn" style="padding:4px 8px; cursor:pointer;">Go</button>
-                    <p style="font-size:0.7rem; color:#aaa; margin-top:4px;">(This is a client-side demo only)</p>
-                </div>
+            <!-- 2. Map Section (Moved out of hero to enable sticky) -->
+            <div id="mapbox-container"></div>
+            <!-- Token & Controls (hidden/adjusted) -->
+            <div id="token-prompt"
+                style="position:fixed; bottom:20px; left:20px; z-index:1000; background:rgba(0,0,0,0.8); padding:1rem; border-radius:8px; display:none;">
+                <p style="font-size:0.8rem; margin-bottom:0.5rem; color:#fff;">Enter Mapbox Token to View Map</p>
+                <input type="text" id="mapbox-token-input" placeholder="pk.ey..."
+                    style="padding:4px; border-radius:4px; border:none;">
+                <button id="mapbox-token-btn" style="padding:4px 8px; cursor:pointer;">Go</button>
+                <p style="font-size:0.7rem; color:#aaa; margin-top:4px;">(This is a client-side demo only)</p>
+            </div>
 
+            <!-- Hidden Hero Section (kept for map initialization JS) -->
+            <section class="hero" style="display: none;">
                 <div class="hero-content">
                     <span class="subtitle" style="letter-spacing: 0.3em; opacity: 0.8;"
                         data-i18n="hero.subtitle">JAPANVILLAS</span>
@@ -218,7 +233,8 @@
         <div class="search-modal-body">
             <div class="search-input-group">
                 <label data-i18n="search.location">Where</label>
-                <input type="text" placeholder="Search destinations" class="search-input">
+                <input type="text" placeholder="Search destinations" class="search-input"
+                    data-i18n-placeholder="search.location.placeholder">
             </div>
             <div class="search-input-group">
                 <label data-i18n="search.dates">When</label>
@@ -229,15 +245,7 @@
                 <div class="guest-display" data-i18n="search.guests.val">Add guests</div>
             </div>
 
-            <div class="search-filters-section">
-                <h3>Filters</h3>
-                <div class="filter-chips">
-                    <button class="filter-chip" data-i18n="stays.filter.mountain">Mountain</button>
-                    <button class="filter-chip" data-i18n="stays.filter.ocean">Ocean</button>
-                    <button class="filter-chip" data-i18n="stays.filter.lake">Lake</button>
-                    <button class="filter-chip" data-i18n="stays.filter.city">City</button>
-                </div>
-            </div>
+
         </div>
         <div class="search-modal-footer">
             <button class="btn-clear" onclick="clearSearch()">Clear</button>
@@ -247,7 +255,10 @@
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="mobile-menu">
         <div class="mobile-menu-header">
-            <a href="index.html" class="nav-logo">JAPAN VILLAS.</a>
+            <a href="index.html" class="nav-logo">
+                <span class="logo-desktop">JAPAN VILLAS.</span>
+                <span class="logo-mobile">JV.</span>
+            </a>
             <button class="btn-close-menu" onclick="closeMenu()">×</button>
         </div>
         <div class="mobile-menu-links">
