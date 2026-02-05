@@ -25,19 +25,42 @@ window.initSearchInputs = () => {
         });
     }
 
-    // 2. Autocomplete
-    window.initSearchAutocomplete();
+    // 2. Autocomplete - Main Search
+    window.initSearchAutocomplete('.search-modal .search-input');
+
+    // 3. Header Search
+    window.initHeaderSearch();
 };
 
-window.initSearchAutocomplete = () => {
-    const input = document.querySelector('#search-modal .search-input');
+// Refactored to be reusable - can target any input selector
+window.initSearchAutocomplete = (selectorOrElement) => {
+    let input;
+    if (typeof selectorOrElement === 'string') {
+        input = document.querySelector(selectorOrElement);
+    } else {
+        input = selectorOrElement;
+    }
+
     if (!input) return;
 
-    // Create suggestions container
-    let suggestionsBox = document.createElement('div');
-    suggestionsBox.className = 'search-suggestions';
-    input.parentNode.style.position = 'relative'; // Ensure parent is relative
-    input.parentNode.appendChild(suggestionsBox);
+    // Create suggestions container if not exists (checked by class or ID)
+    // For header search, container exists in HTML. For modal, we create it dynamically if needed.
+    let suggestionsBox;
+
+    // Check if it's header search
+    if (input.classList.contains('header-search-input')) {
+        suggestionsBox = input.closest('.header-search-container').querySelector('.header-search-suggestions');
+    } else {
+        // Modal search logic (dynamic creation)
+        if (input.parentNode.querySelector('.search-suggestions')) {
+            suggestionsBox = input.parentNode.querySelector('.search-suggestions');
+        } else {
+            suggestionsBox = document.createElement('div');
+            suggestionsBox.className = 'search-suggestions';
+            input.parentNode.style.position = 'relative';
+            input.parentNode.appendChild(suggestionsBox);
+        }
+    }
 
     const renderSuggestions = (query) => {
         suggestionsBox.innerHTML = '';
@@ -70,7 +93,7 @@ window.initSearchAutocomplete = () => {
                 const title = lang === 'jp' ? p.name_jp : p.name;
                 const location = lang === 'jp' ? p.location_jp : p.location;
 
-                // Guidebook-style formatting: Title + Location context
+                // Guidebook-style formatting
                 div.innerHTML = `
                     <div class="suggestion-content">
                         <div class="suggestion-title">${title}</div>
@@ -81,6 +104,8 @@ window.initSearchAutocomplete = () => {
                 div.addEventListener('click', () => {
                     input.value = title;
                     suggestionsBox.style.display = 'none';
+                    // Optional: Auto-search on click
+                    window.location.href = `property.html?id=${p.id}`;
                 });
 
                 suggestionsBox.appendChild(div);
@@ -97,15 +122,30 @@ window.initSearchAutocomplete = () => {
         renderSuggestions(e.target.value);
     });
 
-    // ... inside initSearchAutocomplete ...
+    // Close suggestions on blur (delayed to allow click)
+    input.addEventListener('blur', () => {
+        setTimeout(() => {
+            suggestionsBox.style.display = 'none';
+        }, 200);
+    });
 
     // Helper to perform search
     const performSearch = () => {
         const query = input.value.trim();
-        const dateRange = document.getElementById('search-dates').innerText;
-        const guests = document.getElementById('search-guests').value;
 
-        if (!query && dateRange === "Add dates" && !guests) return; // Do nothing if empty
+        // Context specific params
+        let dateRange = "Add dates";
+        let guests = "";
+
+        // Only grab these if we are in the main modal
+        if (!input.classList.contains('header-search-input')) {
+            const dEl = document.getElementById('search-dates');
+            if (dEl) dateRange = dEl.innerText;
+            const gEl = document.getElementById('search-guests');
+            if (gEl) guests = gEl.value;
+        }
+
+        if (!query && dateRange === "Add dates" && !guests) return;
 
         const props = window.properties || [];
         const lowerQuery = query.toLowerCase();
@@ -123,7 +163,6 @@ window.initSearchAutocomplete = () => {
             const params = new URLSearchParams();
             if (query) params.append('q', query);
 
-            // Parse dates only if valid (not default text)
             if (dateRange && dateRange !== "Add dates" && !dateRange.includes("dates")) {
                 params.append('dates', dateRange);
             }
@@ -142,16 +181,49 @@ window.initSearchAutocomplete = () => {
         }
     });
 
-    // Trigger on Submit Button (if exists in modal)
-    const submitBtn = document.querySelector('.btn-search-submit');
-    if (submitBtn) {
-        // Clone to remove old listeners
-        const newBtn = submitBtn.cloneNode(true);
-        submitBtn.parentNode.replaceChild(newBtn, submitBtn);
-        newBtn.addEventListener('click', performSearch);
+    // Main modal submit button logic remains separate or can be attached here if needed
+    if (!input.classList.contains('header-search-input')) {
+        const submitBtn = document.querySelector('.btn-search-submit');
+        if (submitBtn) {
+            const newBtn = submitBtn.cloneNode(true);
+            submitBtn.parentNode.replaceChild(newBtn, submitBtn);
+            newBtn.addEventListener('click', performSearch);
+        }
     }
 };
 
+window.initHeaderSearch = () => {
+    const headerInput = document.querySelector('.header-search-input');
+    if (headerInput) {
+        window.initSearchAutocomplete(headerInput);
+
+        // Add scroll observer
+        // Add scroll observer
+        // Observe the HERO SEARCH BAR, not the hero background
+        const heroSearch = document.querySelector('.hero-search-container');
+
+        if (heroSearch) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // console.log('Observer:', entry.isIntersecting, entry.boundingClientRect.top);
+
+                    // Simple logic: if not intersecting and we've scrolled past it (top is negative)
+                    if (!entry.isIntersecting && entry.boundingClientRect.top < 0) {
+                        document.body.classList.add('show-header-search');
+                    } else if (entry.isIntersecting) {
+                        document.body.classList.remove('show-header-search');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0,
+                rootMargin: "0px"
+            });
+
+            observer.observe(heroSearch);
+        }
+    }
+};
 
 // Initialize immediately if DOM is ready, or add to load
 if (document.readyState === 'loading') {

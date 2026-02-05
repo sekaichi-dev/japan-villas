@@ -10,7 +10,8 @@ const icons = {
     wifi: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>`,
     parking: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/><path d="M9 15h6"/></svg>`, // Generic car/parking feel
     check: `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
-    calendar: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`
+    calendar: `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>`,
+    size: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>`
 };
 
 // --- I18N LOGIC ---
@@ -62,6 +63,12 @@ window.toggleLanguage = (targetLang) => {
     }
     if (window.updatePropertyList) {
         window.updatePropertyList(window.properties);
+    }
+
+    // Refresh Detail View if active
+    const detailView = document.getElementById('detail-view');
+    if (detailView && detailView.classList.contains('active') && window.currentPropertyId) {
+        window.openProperty(window.currentPropertyId);
     }
 };
 
@@ -397,6 +404,7 @@ window.initApp = () => {
 
     // 1. Open Property SPA Handler (Used by BOTH pages)
     window.openProperty = (id) => {
+        window.currentPropertyId = id; // Track active property
         const property = window.properties.find(p => p.id === id);
         if (!property) return;
         const detailView = document.getElementById('detail-view');
@@ -416,10 +424,10 @@ window.initApp = () => {
         // Localized UI Labels
         const isJp = window.currentLang === 'jp';
         const labels = {
-            bedrooms: isJp ? 'ベッドルーム' : 'Bedrooms',
-            bathrooms: isJp ? 'バスルーム' : 'Bathrooms',
+            bedrooms: isJp ? 'ベッド' : 'Beds',
+            bathrooms: isJp ? '風呂' : 'Baths',
             guests: isJp ? '定員' : 'Guests',
-            wifi: isJp ? '高速WiFi' : 'Fast WiFi',
+            wifi: isJp ? 'WiFi' : 'WiFi',
             parking: isJp ? '駐車場' : 'Parking',
             about: isJp ? 'この宿泊施設について' : 'About this stay',
             experience: isJp
@@ -432,12 +440,45 @@ window.initApp = () => {
         };
 
         content.innerHTML = `
-            <div class="detail-hero">
-                <img src="${property.images[0]}" alt="${name}">
-                <div class="container detail-overlay-content">
-                    <span class="subtitle">${location}</span>
-                    <h1 style="font-size: 3rem; text-shadow: 0 4px 20px rgba(0,0,0,0.8);">${name}</h1>
-                    <div class="key-facts">
+            <div class="detail-hero" id="detail-hero-container-${property.id}">
+                <img id="detail-hero-img" src="${property.images[0]}" alt="${name}" style="transition: opacity 0.3s ease;">
+                
+                <!-- Slideshow Controls -->
+                <button class="detail-nav-btn prev" id="detail-prev-btn">
+                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                </button>
+                <button class="detail-nav-btn next" id="detail-next-btn">
+                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+                
+
+
+                <button class="detail-nav-btn next" id="detail-next-btn">
+                     <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                </button>
+            </div>
+            
+            <!-- Photo Counter (Fixed Top Right) -->
+            <div class="detail-photo-counter" id="detail-photo-counter">
+                1 / ${property.images.length}
+            </div>
+
+            <!-- Scroll Container Wrapper -->
+            <div class="detail-scroll-container" id="detail-scroll-container">
+            
+                <!-- Spacer for initial 50% slideshow visibility -->
+                <div class="sheet-spacer" id="sheet-spacer"></div>
+
+                <!-- Content Sheet (Slide Up Card) -->
+                <div class="detail-sheet" id="detail-sheet">
+                     <div class="sheet-header">
+                        <!-- Handle bar removed -->
+                     </div>
+                     <div class="container">
+                    <span class="subtitle" style="margin-top:1rem; display:block;">${location}</span>
+                    <h1 style="font-size: clamp(1.5rem, 4vw, 2.2rem); margin-top:0.5rem; text-shadow: none; line-height: 1.1;">${name}</h1>
+                    <div class="key-facts" style="margin-top:1rem; color:#ccc;">
+                         <div class="fact-item">${icons.size} ${property.details.size || '--'}m²</div>
                          <div class="fact-item">${icons.bed} ${property.details.bedrooms} ${labels.bedrooms}</div>
                          <div class="fact-item">${icons.bath} ${property.details.bath} ${labels.bathrooms}</div>
                          <div class="fact-item">${icons.guests} ${property.details.guests} ${labels.guests}</div>
@@ -445,21 +486,7 @@ window.initApp = () => {
                          <div class="fact-item">${icons.parking} ${labels.parking}</div>
                     </div>
                 </div>
-            </div>
             <div class="split-layout">
-                <div class="left-col">
-                    <h2 style="margin-bottom:1rem;">${labels.about}</h2>
-                    <p style="font-size:1.1rem; color:#ccc; line-height:1.8; margin-bottom:2rem;">
-                        ${description}
-                        <br><br>
-                        ${labels.experience}
-                    </p>
-                    <h3 style="margin-top:3rem;">${labels.amenitiesTitle}</h3>
-                    <div class="amenities-list" style="margin-top:1rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
-                        ${amenities.map(a => `<div style="color:#ddd; display:flex; align-items:center; gap:0.5rem;">${icons.check} ${a}</div>`).join('')}
-                    </div>
-                    <div style="margin-top:2rem; height:200px; background:#222; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#555;">${labels.mapPlaceholder}</div>
-                </div>
                 <div class="right-col">
                     <div class="booking-widget" id="booking-widget-${property.id}">
                         <div class="booking-header">
@@ -496,7 +523,32 @@ window.initApp = () => {
                          </div>
                     </div>
                 </div>
+                <div class="left-col">
+                    <h2 style="margin-bottom:1rem; font-size: 1.5rem;">${labels.about}</h2>
+                    <p style="font-size:1.1rem; color:#ccc; line-height:1.8; margin-bottom:2rem;">
+                        ${description}
+                        <br><br>
+                        ${labels.experience}
+                    </p>
+                    <h3 style="margin-top:3rem;">${labels.amenitiesTitle}</h3>
+                    <div class="amenities-list" style="margin-top:1rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                        ${amenities.map(a => `<div style="color:#ddd; display:flex; align-items:center; gap:0.5rem;">${icons.check} ${a}</div>`).join('')}
+                    </div>
+                <div class="left-col">
+                    <h2 style="margin-bottom:1rem; font-size: 1.5rem;">${labels.about}</h2>
+                    <p style="font-size:1.1rem; color:#ccc; line-height:1.8; margin-bottom:2rem;">
+                        ${description}
+                        <br><br>
+                        ${labels.experience}
+                    </p>
+                    <h3 style="margin-top:3rem;">${labels.amenitiesTitle}</h3>
+                    <div class="amenities-list" style="margin-top:1rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+                        ${amenities.map(a => `<div style="color:#ddd; display:flex; align-items:center; gap:0.5rem;">${icons.check} ${a}</div>`).join('')}
+                    </div>
+                    <div style="margin-top:2rem; height:200px; background:#222; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#555;">${labels.mapPlaceholder}</div>
+                </div>
             </div>
+            </div> <!-- End of detail-sheet -->
         `;
         detailView.classList.add('active');
         document.body.style.overflow = 'hidden';
@@ -525,16 +577,73 @@ window.initApp = () => {
                 // Button shows Earliest Check-in
                 btn.innerHTML = `<span style="display:flex; align-items:center; justify-content:center; gap:8px;">${icons.calendar} ${prefix} ${dateStr}</span>`;
                 btn.disabled = false;
-            } else {
                 btn.innerHTML = `<span style="color:#ff6b6b;">${window.currentLang === 'jp' ? '利用不可' : 'Unavailable'}</span>`;
                 btn.disabled = true;
             }
         })();
+
+        // --- SLIDESHOW LOGIC ---
+        let currentDetailSlide = 0;
+        const totalSlides = property.images.length;
+        const heroImg = document.getElementById('detail-hero-img');
+        const counter = document.getElementById('detail-photo-counter');
+        const prevBtn = document.getElementById('detail-prev-btn');
+        const nextBtn = document.getElementById('detail-next-btn');
+        const heroContainer = document.getElementById(`detail-hero-container-${property.id}`);
+
+        const updateSlide = (idx) => {
+            if (idx < 0) idx = totalSlides - 1;
+            if (idx >= totalSlides) idx = 0;
+            currentDetailSlide = idx;
+
+            heroImg.style.opacity = '0';
+            setTimeout(() => {
+                heroImg.src = property.images[currentDetailSlide];
+                heroImg.onload = () => { heroImg.style.opacity = '1'; };
+            }, 200);
+
+            counter.innerText = `${currentDetailSlide + 1} / ${totalSlides}`;
+        };
+
+        if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); updateSlide(currentDetailSlide - 1); };
+        if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); updateSlide(currentDetailSlide + 1); };
+
+        if (prevBtn) prevBtn.onclick = (e) => { e.stopPropagation(); updateSlide(currentDetailSlide - 1); };
+        if (nextBtn) nextBtn.onclick = (e) => { e.stopPropagation(); updateSlide(currentDetailSlide + 1); };
+
+        // Tap to Expand Logic
+        const scrollContainer = document.getElementById('detail-scroll-container');
+        const sheet = document.getElementById('detail-sheet');
+        const spacer = document.getElementById('sheet-spacer');
+
+        if (sheet && scrollContainer && spacer) {
+            sheet.addEventListener('click', (e) => {
+                // Only expand if currently at top (peek state)
+                // Allow clicking interactive elements inside without triggering this?
+                // Simple heuristic: if scrollTop is low (near 0), expand.
+                if (scrollContainer.scrollTop < 50) {
+                    // Scroll so spacer is hidden
+                    scrollContainer.scrollTo({
+                        top: spacer.offsetHeight,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        }
+
+        // Swipe Support
+        if (heroContainer && window.addSwipeHandlers) {
+            window.addSwipeHandlers(heroContainer, null, (dir) => {
+                if (dir === 'left') updateSlide(currentDetailSlide + 1);
+                if (dir === 'right') updateSlide(currentDetailSlide - 1);
+            });
+        }
     };
 
     document.getElementById('close-detail').addEventListener('click', () => {
         document.getElementById('detail-view').classList.remove('active');
         document.body.style.overflow = '';
+        window.currentPropertyId = null; // Clear active ID
     });
 
 
@@ -878,7 +987,7 @@ window.initApp = () => {
             inline: true,
             mode: "range",
             minDate: new Date().fp_incr(1), // Block today (Earliest is tomorrow)
-            showMonths: 2,
+            showMonths: window.innerWidth < 768 ? 1 : 2, // 1 month on mobile, 2 on desktop
             dateFormat: "Y-m-d",
             appendTo: container,
             disable: [
@@ -1113,14 +1222,56 @@ window.initApp = () => {
         window.cardImageState[id] = idx;
 
         // Update DOM
-        const imgEl = document.getElementById(`card-img-${id}`);
+        const imgEl = document.querySelector(`#property-card-${id} .card-image`);
         if (imgEl) {
             imgEl.style.opacity = '0';
             setTimeout(() => {
+                // Update Image
                 imgEl.src = property.images[idx];
                 imgEl.onload = () => { imgEl.style.opacity = '1'; };
             }, 200);
         }
+
+        // Update Counter
+        const counterEl = document.getElementById(`photo-counter-${id}`);
+        if (counterEl) {
+            counterEl.innerText = `${idx + 1} / ${property.images.length}`;
+        }
+    };
+
+    // --- SWIPE HANDLER ---
+    window.handleSwipe = (element, propertyId, direction) => {
+        if (direction === 'left') {
+            window.changeImage(null, propertyId, 'next');
+        } else if (direction === 'right') {
+            window.changeImage(null, propertyId, 'prev');
+        }
+    };
+
+    window.addSwipeHandlers = (element, propertyId) => {
+        let touchstartX = 0;
+        let touchendX = 0;
+
+        element.addEventListener('touchstart', (e) => {
+            touchstartX = e.changedTouches[0].screenX;
+        }, { passive: true }); // Passive allows scroll
+
+        element.addEventListener('touchend', (e) => {
+            touchendX = e.changedTouches[0].screenX;
+            handleGesture();
+        }, { passive: true });
+
+        const handleGesture = () => {
+            const threshold = 50; // Min distance to trigger
+            if (touchendX < touchstartX - threshold) {
+                window.handleSwipe(element, propertyId, 'left');
+            }
+            if (touchendX > touchstartX + threshold) {
+                window.handleSwipe(element, propertyId, 'right');
+            }
+        };
+
+        // Prevent click propagation on swipe (optional enhancement logic handled by threshold)
     };
 
     // --- HOME PAGE LOGIC ---
@@ -1314,9 +1465,12 @@ window.initApp = () => {
                 </button>
                 
                 <!-- Availability Badge with Loading Animation -->
-                <div class="availability-badge loading" data-badge-id="${property.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center; line-height: 1.6;">
+                <div class="availability-badge loading" data-badge-id="${property.id}" style="position: absolute; top: 12px; right: 12px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 8px; border-radius: 4px; font-size: 0.65rem; backdrop-filter: blur(4px); display: flex; letter-spacing: 0.05em; font-weight: 500; min-width: 50px; justify-content: center; line-height: 1.6; z-index: 2;">
                     <span class="loading-dots"><span></span><span></span><span></span></span>
                 </div>
+
+                <!-- Image Counter (Mobile/All) -->
+                <div id="counter-${property.id}" class="image-counter">1 / ${property.images.length}</div>
             </div>
 
             <div class="card-info">
@@ -1357,8 +1511,32 @@ window.initApp = () => {
             setTimeout(() => {
                 const cards = document.querySelectorAll('.property-card');
                 cards.forEach(c => {
+                    const id = c.getAttribute('data-id');
                     if (window.cardScrollObserver) window.cardScrollObserver.observe(c);
-                    c.classList.add('visible'); // Initial fade in needed for CSS opacity transition
+                    c.classList.add('visible');
+
+                    // Attach Swipe Handlers
+                    const imgWrapper = c.querySelector('.card-image-wrapper');
+                    if (imgWrapper && window.addSwipeHandlers) {
+                        window.addSwipeHandlers(imgWrapper, id);
+
+                        // Stop propagation on wrapper to prevent card click when swiping?
+                        // Actually, we want taps to open card. Swipes change image.
+                        // The click handler on parent is `onclick="openProperty..."`.
+                        // We need to stop propagation only if a swipe occurred.
+
+                        // Since `addSwipeHandlers` uses individual touch events, the `click` event usually follows `touchend`.
+                        // We can handle this by tracking if a swipe happened and blocking the click.
+                        // But `onclick` is on the parent div. 
+
+                        imgWrapper.addEventListener('click', (e) => {
+                            // If target is arrow button, it stops prop.
+                            // If simple tap, it bubbles to parent to open property.
+                            // Logic handled naturally unless we swiped.
+                            // Ideally, if a swipe happened, we should prevent click.
+                            // Let's rely on user intent for now.
+                        });
+                    }
                 });
             }, 200);
         }

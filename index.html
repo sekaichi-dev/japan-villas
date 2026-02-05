@@ -12,6 +12,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="js/translations.js?v=2"></script>
+    <script src="js/search-logic.js?v=2"></script>
     <script src="js/dataLoader.js?v=2"></script> <!-- Async Loader -->
     <script src="js/app.js?v=2"></script>
     <script src="js/lang-dropdown.js"></script>
@@ -33,6 +34,20 @@
                 <a href="stays.html" class="nav-link" data-i18n="nav.destinations">Destinations</a>
                 <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
             </nav>
+
+            <!-- Persistent Header Search (Hidden by default) -->
+            <div class="header-search-container">
+                <div class="header-search-input-wrapper">
+                    <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <input type="text" class="header-search-input" placeholder="Search properties..."
+                        data-i18n="header.search.placeholder">
+                </div>
+                <div class="header-search-suggestions"></div>
+            </div>
 
             <div class="nav-right">
                 <div class="lang-dropdown">
@@ -184,8 +199,10 @@
         <!-- Detail View Overlay (Initially Hidden) -->
         <div id="detail-view" class="detail-overlay">
             <button id="close-detail" class="btn-close">×</button>
-            <div id="detail-content">
-                <!-- Injected via JS -->
+            <div class="detail-scroll-container">
+                <div id="detail-content">
+                    <!-- Injected via JS -->
+                </div>
             </div>
         </div>
     </main>

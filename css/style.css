@@ -209,10 +209,159 @@ header {
 }
 
 header.scrolled {
-    background: rgba(10, 10, 10, 0.9);
-    /* Darker backdrop */
-    backdrop-filter: blur(12px);
+    background: #0a0a0a;
+    /* Solid background */
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Header Search Bar */
+.header-search-container {
+    position: relative;
+    /* Changed from absolute */
+    width: 450px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+    /* Center in flex container */
+    display: none;
+    /* Hide when not active to prevent visual glitches */
+}
+
+body.show-header-search .header-search-container {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    /* Show in flow */
+}
+
+body.show-header-search .nav-center {
+    display: none;
+    /* Remove from flow to make space */
+}
+
+.header-search-input-wrapper {
+    position: relative;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 0.4rem 1rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.2s ease;
+}
+
+.header-search-input-wrapper:focus-within {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    width: 320px;
+}
+
+.header-search-input {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.9rem;
+    width: 100%;
+    margin-left: 0.5rem;
+    outline: none;
+}
+
+.header-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.header-search-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1001;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Suggestion Styles (Reused) */
+.header-search-suggestions .suggestion-item {
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.header-search-suggestions .suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.header-search-suggestions .suggestion-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.header-search-suggestions .suggestion-title {
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.header-search-suggestions .suggestion-subtitle {
+    color: #888;
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+}
+
+/* Mobile Tweaks for Header Search */
+@media (max-width: 768px) {
+    .header-search-container {
+        position: absolute;
+        /* Force absolute on mobile to ignore flex flow */
+        left: 40%;
+        /* Adjusted left per request to fix overlap */
+        top: 50%;
+        /* Vertically centered */
+        transform: translate(-50%, -50%);
+        /* Centered on both axes relative to its position */
+        width: 170px;
+        /* Keep narrow width or fluid */
+        margin: 0;
+    }
+
+    /* Widen the suggestions dropdown on mobile */
+    .header-search-suggestions {
+        width: 280px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    body.show-header-search .header-search-container {
+        /* Ensure it fits on mobile header */
+        display: block;
+    }
+
+    /* On mobile, we might need to hide the logo or menu button if it's too tight? 
+       For now, let's just ensure it's centered and absolute so it doesn't push things.
+    */
+
+    .header-search-input-wrapper {
+        padding: 0.35rem 0.8rem;
+    }
+
+    .header-search-input-wrapper:focus-within {
+        width: 100%;
+        /* Don't expand on mobile to avoid overflow */
+    }
+
+    .header-search-input {
+        font-size: 0.8rem;
+    }
+
+    /* Ensure nav-center is hidden (it is by default on mobile usually, but careful) */
 }
 
 .header-inner {
@@ -1354,6 +1503,37 @@ body.stays-page {
         padding: 0 !important;
     }
 
+    /* Image Counter Style */
+    .image-counter {
+        position: absolute;
+        bottom: 12px;
+        right: 12px;
+        background: rgba(0, 0, 0, 0.6);
+        color: #fff;
+        padding: 4px 10px;
+        border-radius: 20px;
+        font-size: 0.7rem;
+        backdrop-filter: blur(4px);
+        font-weight: 500;
+        letter-spacing: 0.05em;
+        pointer-events: none;
+        z-index: 5;
+    }
+
+    /* Disable hover effects on mobile to prevent double tap */
+    .home-page .property-card:hover {
+        transform: none !important;
+    }
+
+    .home-page .property-card .card-image-wrapper::after {
+        opacity: 0 !important;
+        /* Hide hover overlay */
+    }
+
+    /* Ensure buttons are always visible or hidden depending on design preference */
+    /* Counter handles indication, arrows can be hidden or keep consistent */
+
+
     .home-page .property-card {
         max-width: 100% !important;
         width: 100% !important;
@@ -1775,8 +1955,11 @@ body.stays-page {
     /* Subtract header height */
     background: #000;
     z-index: 5000;
-    overflow-y: auto;
-    /* Scrollable */
+    overflow: hidden;
+    /* Disable scroll on wrapper */
+    display: flex;
+    /* Flex layout */
+    flex-direction: column;
     transform: translateY(100%);
     transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.6s ease;
     opacity: 0;
@@ -1788,17 +1971,21 @@ body.stays-page {
 }
 
 .btn-close {
-    position: fixed;
+    position: absolute;
+    /* Scrolls with content */
     top: 1.5rem;
-    /* Balanced distance */
-    right: 1.5rem;
+    left: 1.5rem;
+    /* Left align to match overlay content */
     z-index: 5001;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: #fff;
-    font-size: 2rem;
-    width: 50px;
-    height: 50px;
+    font-size: 1.2rem;
+    /* Smaller icon */
+    width: 40px;
+    /* Smaller circle */
+    height: 40px;
+    /* Smaller circle */
     border-radius: 50%;
     cursor: pointer;
     display: flex;
@@ -1810,14 +1997,140 @@ body.stays-page {
 
 .btn-close:hover {
     background: var(--highlight-color);
-    color: #000;
 }
 
-/* Detail Content Layout (Wander Style) */
-.detail-hero {
-    height: 70vh;
-    position: relative;
+.detail-scroll-container {
+    position: fixed;
+    top: 90px;
+    /* Stick below close button */
+    left: 0;
     width: 100%;
+    bottom: 0;
+    overflow-y: auto;
+    z-index: 10;
+    padding-top: 0;
+    /* Handled by spacer */
+    overscroll-behavior: contain;
+    border-radius: 24px 24px 0 0;
+    /* Clip content at the top sticky edge */
+}
+
+.sheet-spacer {
+    height: calc(50vh - 90px);
+    /* Adjust spacer so sheet starts at 50% screen */
+    width: 100%;
+    pointer-events: none;
+    /* Let clicks pass through to slideshow if needed? No, standard behavior */
+    /* transparent */
+}
+
+.detail-hero {
+    height: 100vh;
+    /* Full screen background */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 0;
+}
+
+.detail-sheet {
+    position: relative;
+    background: #000;
+    min-height: 100vh;
+    padding-bottom: 6rem;
+    /* Box shadow removed as requested */
+    box-shadow: none;
+    border-radius: 24px 24px 0 0;
+    /* Restore rounded corners */
+}
+
+/* Sticky Header Wrapper for the "Card Top" */
+/* Sticky Header Wrapper for the "Card Top" */
+.sheet-header {
+    position: -webkit-sticky;
+    /* for Safari */
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    /* High z-index */
+    background: #000;
+    border-radius: 24px 24px 0 0;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    margin-bottom: 0;
+    width: 100%;
+    display: block;
+    /* Box shadow removed */
+    box-shadow: none;
+}
+
+/* Handle bar visual */
+.sheet-handle-bar {
+    width: 40px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    margin: 0 auto;
+    /* Margin handled by padding in header */
+}
+
+/* Ensure Nav Buttons are accessible in the gap */
+.detail-nav-btn {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    backdrop-filter: blur(4px);
+}
+
+.detail-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.detail-nav-btn.prev {
+    left: 2rem;
+}
+
+.detail-nav-btn.next {
+    right: 2rem;
+}
+
+/* Move counter to Top Right (Fixed) */
+.detail-photo-counter {
+    position: fixed;
+    top: 1.5rem;
+    bottom: auto;
+    right: 1.5rem;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    backdrop-filter: blur(8px);
+    z-index: 5002;
+    /* High z-index to stay above everything */
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .detail-nav-btn {
+        display: none;
+        /* Hide arrows on mobile, rely on swipe */
+    }
 }
 
 .detail-hero img {
@@ -1829,11 +2142,18 @@ body.stays-page {
 .detail-overlay-content {
     position: absolute;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    padding: 4rem;
-    /* Increased padding */
+    max-width: 1200px;
+    /* Match split-layout constraint */
+    padding: 4rem 2rem;
+    /* Match split-layout horizontal padding */
     background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Force left alignment */
 }
 
 .detail-title {
@@ -1844,7 +2164,10 @@ body.stays-page {
 
 .key-facts {
     display: flex;
-    gap: 2rem;
+    flex-wrap: wrap;
+    /* Allow wrapping to new rows */
+    gap: 1rem;
+    /* Reduced gap for better multi-row packing */
     margin-top: 2rem;
 }
 
@@ -1861,7 +2184,8 @@ body.stays-page {
 
 .split-layout {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 2fr;
+    /* Widget (Left/Top) gets 1fr, Content gets 2fr */
     gap: 4rem;
     max-width: 1200px;
     margin: 4rem auto;

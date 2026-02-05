@@ -30,7 +30,7 @@ const PROPERTY_CATALOG = {
         amenities: ["Ski-in/Ski-out", "Mt. Yotei View", "Private Onsen", "Fireplace", "Concierge"],
         amenities_jp: ["スキーイン/アウト", "羊蹄山ビュー", "専用温泉", "暖炉", "コンシェルジュ"],
         features: ["Mountain", "Ski", "Countryside"],
-        details: { guests: 8, bedrooms: 4, bath: 4 },
+        details: { guests: 8, bedrooms: 4, bath: 4, size: 240 },
         coordinates: { top: "20%", left: "78%" },
         instagram: "https://www.instagram.com/mountainvilla_niseko_/"
     },
@@ -50,7 +50,7 @@ const PROPERTY_CATALOG = {
         amenities: ["Lake Access", "Wood Stove", "BBQ Deck", "Canoe", "Pet Friendly"],
         amenities_jp: ["湖へのアクセス", "薪ストーブ", "BBQデッキ", "カヌー", "ペット可"],
         features: ["Lake", "Countryside", "Mountain"],
-        details: { guests: 6, bedrooms: 3, bath: 2 },
+        details: { guests: 6, bedrooms: 3, bath: 2, size: 120 },
         coordinates: { top: "48%", left: "62%" },
         instagram: "https://www.instagram.com/the__lake__house__/"
     },
@@ -70,7 +70,7 @@ const PROPERTY_CATALOG = {
         amenities: ["Coworking Space", "Community Kitchen", "Pet Friendly", "Lake View", "Sauna"],
         amenities_jp: ["コワーキング", "共有キッチン", "ペット可", "レイクビュー", "サウナ"],
         features: ["Lake", "Countryside"],
-        details: { guests: 2, bedrooms: 1, bath: 1 },
+        details: { guests: 2, bedrooms: 1, bath: 1, size: 40 },
         coordinates: { top: "50%", left: "63%" },
         instagram: "https://www.instagram.com/the_lake_side_nojiriko/"
     },
@@ -88,7 +88,7 @@ const PROPERTY_CATALOG = {
         amenities: ["Oceanfront", "Sunset View", "Roof Terrace", "Designer Furniture", "Free Parking"],
         amenities_jp: ["オーシャンフロント", "サンセット", "ルーフテラス", "デザイナー家具", "無料駐車場"],
         features: ["Ocean", "Beach", "City"],
-        details: { guests: 4, bedrooms: 2, bath: 1 },
+        details: { guests: 4, bedrooms: 2, bath: 1, size: 85 },
         coordinates: { top: "60%", left: "65%" },
         instagram: "https://www.instagram.com/sajimastay/"
     },
@@ -105,7 +105,7 @@ const PROPERTY_CATALOG = {
         amenities: ["Garden View", "Hinoki Bath", "Tatami Rooms", "Tea Set", "Bicycles"],
         amenities_jp: ["庭園ビュー", "檜風呂", "畳の部屋", "茶器セット", "自転車"],
         features: ["City", "Countryside"],
-        details: { guests: 5, bedrooms: 3, bath: 2 },
+        details: { guests: 5, bedrooms: 2, bath: 1, size: 90 },
         coordinates: { top: "62%", left: "58%" }
     }
 };
