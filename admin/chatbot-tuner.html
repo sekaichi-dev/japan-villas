@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chatbot Tuner - Admin</title>
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="../css/style.css">
+    <!-- Tailwind CSS (Utility only, colors overridden) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Override Tailwind Defaults with Site Variables */
+        body {
+            background-color: var(--bg-color) !important;
+            color: var(--text-color) !important;
+            font-family: var(--font-main) !important;
+        }
+
+        /* Semantic Colors Mapping */
+        .bg-site {
+            background-color: var(--bg-color);
+        }
+
+        .bg-card {
+            background-color: var(--card-bg);
+        }
+
+        .border-site {
+            border-color: var(--border-color);
+        }
+
+        .text-site {
+            color: var(--text-color);
+        }
+
+        .text-muted {
+            color: #888;
+        }
+
+        .text-accent {
+            color: var(--accent-color);
+        }
+
+        /* Component Styles */
+        header {
+            background-color: rgba(10, 10, 10, 0.8) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-color);
+        }
+
+        /* Inputs */
+        input,
+        textarea,
+        select {
+            background-color: var(--card-bg) !important;
+            border: 1px solid var(--border-color) !important;
+            color: var(--text-color) !important;
+            font-family: var(--font-main);
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--accent-color) !important;
+            box-shadow: 0 0 0 2px rgba(201, 168, 97, 0.2);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #000;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-color);
+        }
+
+        /* Chat Bubbles */
+        .chat-container {
+            background-color: var(--bg-color);
+        }
+
+        .chat-bubble {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            position: relative;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .user-bubble {
+            background-color: var(--accent-color);
+            color: #000;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+            font-weight: 500;
+        }
+
+        .ai-bubble {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+            border: 1px solid var(--border-color);
+        }
+
+        .save-brain-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--accent-color);
+            color: #000;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .ai-bubble:hover .save-brain-btn {
+            opacity: 1;
+        }
+
+        /* Admin Panels */
+        .admin-panel {
+            background-color: var(--bg-color);
+            border-left: 1px solid var(--border-color);
+        }
+
+        .example-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: border-color 0.3s;
+        }
+
+        .example-card:hover {
+            border-color: var(--accent-color);
+        }
+    </style>
+</head>
+
+<body class="h-screen flex flex-col overflow-hidden text-site bg-site">
+
+    <!-- Header -->
+    <header class="h-16 flex items-center justify-between px-6 shrink-0 z-50">
+        <div class="flex items-center gap-3">
+            <span class="text-2xl">🤖</span>
+            <h1 class="font-display font-medium text-xl tracking-wide">Claude 3 Haiku Tuner</h1>
+        </div>
+        <div class="flex gap-4 items-center">
+            <button id="reset-chat-btn" class="text-sm text-muted hover:text-white transition-colors">Reset
+                Chat</button>
+            <a href="/"
+                class="text-sm text-accent hover:text-white transition-colors uppercase tracking-widest text-xs font-medium">Back
+                to Site</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex overflow-hidden">
+
+        <!-- Left Pane: Chat Simulator -->
+        <section class="w-1/2 flex flex-col border-r border-site relative">
+            <div class="absolute inset-0 z-0 opacity-20 pointer-events-none"
+                style="background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 70%);"></div>
+
+            <div class="p-4 border-b border-site flex justify-between items-center z-10 bg-site/80 backdrop-blur-sm">
+                <h2 class="font-display text-lg tracking-wide">Simulator</h2>
+                <div class="text-xs text-muted uppercase tracking-widest">Guest Mode</div>
+            </div>
+
+            <!-- Chat Log -->
+            <div id="chat-log" class="flex-1 overflow-y-auto p-6 flex flex-col space-y-4 z-10">
+                <!-- Messages will appear here -->
+                <div class="ai-bubble chat-bubble self-start">
+                    Hello! I am the Japan Villas AI assistant. How can I help you today?
+                </div>
+            </div>
+
+            <!-- Input Area -->
+            <div class="p-4 border-t border-site z-10 bg-site">
+                <form id="chat-form" class="flex gap-3">
+                    <input type="text" id="user-input"
+                        class="flex-1 rounded-full px-5 py-3 text-sm focus:ring-1 focus:ring-accent"
+                        placeholder="Type a message to test..." autocomplete="off">
+                    <button type="submit" class="btn-primary px-6 py-2 rounded-full font-medium text-sm">
+                        Send
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Right Pane: Brain Settings -->
+        <section class="w-1/2 flex flex-col admin-panel">
+            <div class="p-4 border-b border-site flex justify-between items-center bg-site">
+                <h2 class="font-display text-lg tracking-wide">Brain Settings</h2>
+                <button id="save-settings-btn"
+                    class="btn-primary text-xs px-4 py-2 rounded-full shadow-lg flex items-center gap-2">
+                    <span>Save Configuration</span>
+                </button>
+            </div>
+
+            <div class="flex-1 overflow-y-auto p-6 space-y-8">
+
+                <!-- System Prompt -->
+                <div>
+                    <label class="block text-xs font-medium text-accent uppercase tracking-widest mb-3">System
+                        Prompt</label>
+                    <textarea id="system-prompt" class="w-full h-48 rounded-xl p-4 text-sm font-mono leading-relaxed"
+                        placeholder="You are a helpful assistant..."></textarea>
+                    <p class="text-xs text-muted mt-2">Define the AI's persona, tone, and constraints.</p>
+                </div>
+
+                <!-- Guidebook Context -->
+                <div class="flex items-center gap-4 p-4 bg-card border border-site rounded-xl">
+                    <input type="checkbox" id="use-guidebook" class="w-5 h-5 accent-[#C9A861] rounded cursor-pointer">
+                    <div>
+                        <label for="use-guidebook" class="block text-sm font-medium text-white cursor-pointer">Include
+                            Guidebook Context</label>
+                        <p class="text-xs text-muted mt-0.5">Injects property details and local guide info into the
+                            prompt.</p>
+                    </div>
+                </div>
+
+                <!-- Training Examples -->
+                <div>
+                    <div class="flex justify-between items-center mb-4">
+                        <label class="block text-xs font-medium text-accent uppercase tracking-widest">Training
+                            Examples</label>
+                        <span id="example-count"
+                            class="bg-card border border-site text-muted text-xs px-2 py-1 rounded-full">0
+                            examples</span>
+                    </div>
+
+                    <div id="examples-list" class="space-y-4">
+                        <!-- Examples will be rendered here -->
+                        <div class="text-center py-8 text-muted text-sm border border-dashed border-site rounded-xl">
+                            No examples yet. Chat with the AI and click "🧠" to save good responses.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="./chatbot-tuner.js"></script>
+</body>
+
+</html>

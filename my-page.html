@@ -389,8 +389,19 @@
                 <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
             </nav>
             <div class="nav-right">
-                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
-                    EN</span>
+                <div class="lang-dropdown">
+                    <button class="lang-current" onclick="toggleLangDropdown(event)">
+                        <span id="current-lang-display">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="2,4 6,8 10,4"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-options" id="lang-options">
+                        <div class="lang-option" onclick="selectLanguage('en')">EN - English</div>
+                        <div class="lang-option" onclick="selectLanguage('jp')">JP - 日本語</div>
+                    </div>
+                </div>
                 <a href="/my-page.html" class="btn-login desktop-only" id="header-auth-btn" data-i18n="nav.mypage">My
                     Page</a>
             </div>
@@ -549,6 +560,7 @@
 
     <!-- Scripts -->
     <script src="js/auth.js"></script>
+    <script src="js/lang-dropdown.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const skeletonState = document.getElementById('skeleton-state');

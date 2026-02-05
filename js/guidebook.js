@@ -1781,6 +1781,12 @@ window.switchCategory = function (catId, preserveScroll = false) {
         }
     }
 
+    // Reset scroll position to top when switching categories manually
+    // If preserveScroll is true (e.g. used by navigateToItem), we skip this
+    if (!preserveScroll) {
+        window.scrollTo({ top: 0, behavior: 'auto' }); // Instant jump preferred for tab switch, or smooth
+    }
+
     // Info components
     const propertyInfo = document.getElementById('property-info'); // Note: property-info ID might not exist in HTML yet, relying on Hero mainly for 'info'
 
@@ -1839,7 +1845,7 @@ function renderSidebar(catId) {
             const itemTitle = getLocalizedText(item.title);
             const icon = ICONS[item.icon] || '';
             html += `
-                <a href="#item-access-${index}" class="sidebar-subitem" onclick="scrollToId('item-access-${index}')">
+                <a href="#" class="sidebar-subitem" onclick="scrollToId('item-access-${index}', event)">
                     ${icon} ${itemTitle}
                 </a>
             `;
@@ -1848,7 +1854,7 @@ function renderSidebar(catId) {
         guidebookData.services.forEach(service => {
             const icon = ICONS[service.icon] || ICONS.amenities || '';
             html += `
-                <a href="#service-${service.id}" class="sidebar-subitem" onclick="scrollToId('service-${service.id}')">
+                <a href="#" class="sidebar-subitem" onclick="scrollToId('service-${service.id}', event)">
                     ${icon} ${getLocalizedText(service.name)}
                 </a>
             `;
@@ -1860,7 +1866,7 @@ function renderSidebar(catId) {
             section.items.forEach((item, index) => {
                 const icon = ICONS[item.icon] || '';
                 html += `
-                    <button class="sidebar-subitem" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;" onclick="scrollToId('item-${catId}-${index}')">
+                    <button class="sidebar-subitem" style="background:none; border:none; width:100%; text-align:left; cursor:pointer;" onclick="scrollToId('item-${catId}-${index}', event)">
                         ${icon} ${getLocalizedText(item.title)}
                     </button>
                 `;
@@ -1871,21 +1877,68 @@ function renderSidebar(catId) {
     sidebarList.innerHTML = html;
 }
 
+// Helper for offsets (Header + TopNav + Buffer)
+const SCROLL_OFFSET_MOBILE = 150;
+const SCROLL_OFFSET_DESKTOP = 160;
+
+function getScrollOffset() {
+    if (window.innerWidth <= 768) return 180;
+
+    // Dynamically measure header and nav heights for accuracy
+    const header = document.querySelector('.guidebook-header');
+    const topNav = document.querySelector('.top-nav-container');
+
+    let totalOffset = 0;
+    if (header) totalOffset += header.offsetHeight;
+    if (topNav) totalOffset += topNav.offsetHeight;
+
+    // Add a comfortable buffer (20px)
+    return totalOffset + 20;
+}
+
 // Helper for smooth scrolling within the tab
-window.scrollToId = function (id) {
-    const el = document.getElementById(id);
-    if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        // Also open accordion if it is one
-        if (el.classList.contains('accordion-item')) {
-            el.classList.add('open');
-        }
+window.scrollToId = function (id, event) {
+    if (event) event.preventDefault();
+
+    // Close sidebar if open (mobile)
+    const sidebar = document.getElementById('guidebook-sidebar');
+    if (sidebar && sidebar.classList.contains('open')) {
+        sidebar.classList.remove('open');
+        document.getElementById('sidebar-toggle')?.classList.remove('active');
+        document.querySelector('.sidebar-overlay')?.classList.remove('visible');
     }
+
+    setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+            // Force manual calculation to guarantee offset
+            const elementPosition = el.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - getScrollOffset();
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+
+            // Also open accordion if it is one
+            if (el.classList.contains('accordion-item')) {
+                el.classList.add('open');
+            }
+        }
+    }, 300);
 }
 
 window.scrollToElement = function (id) {
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) {
+        const elementPosition = el.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - getScrollOffset();
+
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: "smooth"
+        });
+    }
 }
 
 // ============================================
@@ -2252,11 +2305,23 @@ window.navigateToSearchResult = function (sectionId, itemId) {
         }
     }
 
+    // Since we are navigating to a specific item, we expect scrollIntoView to handle it.
+    // However, switchCategory will now reset scroll to top. 
+    // We need to ensure scrollIntoView runs AFTER that reset completes.
+
     // Scroll to the specific item after a short delay (allow DOM to update)
     setTimeout(() => {
         const element = document.getElementById(itemId);
         if (element) {
-            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // Use manual offset calculation instead of scrollIntoView
+            const elementPosition = element.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - getScrollOffset();
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+
             // Add a brief highlight effect
             element.style.boxShadow = '0 0 0 2px var(--gb-accent)';
             setTimeout(() => {

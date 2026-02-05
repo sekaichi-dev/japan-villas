@@ -103,8 +103,8 @@
 
 /* Global Content Layout */
 .guidebook-layout .guidebook-content {
-    padding-top: 140px;
-    /* 60px header + 50px section nav + 30px spacing */
+    padding-top: 100px !important;
+    /* Balanced spacing to clear 82px header stack */
 }
 
 .guidebook-layout.has-hero .guidebook-content {
@@ -244,8 +244,8 @@
     }
 
     .guidebook-layout .guidebook-content {
-        padding-top: 120px;
-        /* 44px header + 38px section nav + spacing */
+        padding-top: 100px !important;
+        /* Balanced spacing to clear 82px header stack */
     }
 
     .guidebook-layout.has-hero .guidebook-content {
@@ -258,8 +258,9 @@
     }
 
     .guidebook-section,
-    .accordion-item {
-        scroll-margin-top: 82px;
+    .accordion-item,
+    .content-card {
+        scroll-margin-top: 150px;
     }
 
     .guidebook-sidebar {
@@ -703,10 +704,11 @@
 }
 
 /* Section Styling */
-.guidebook-section {
+.guidebook-section,
+.content-card {
     margin-bottom: 2.5rem;
-    scroll-margin-top: 110px;
-    /* Header (60) + TopNav (50) */
+    scroll-margin-top: 160px;
+    /* Header (60) + TopNav (50) + Buffer (50) */
 }
 
 .section-title {
@@ -714,7 +716,7 @@
     font-size: 1.6rem;
     font-weight: 600;
     margin: 0 0 1rem 0;
-    padding-bottom: 0.75rem;
+    padding: 0 1rem 0.75rem 1rem;
     border-bottom: 1px solid var(--gb-border);
 }
 
@@ -898,6 +900,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
+    padding: 0 1rem;
 }
 
 .content-card {

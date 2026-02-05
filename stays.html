@@ -35,8 +35,19 @@
                 <a href="contact.html" class="nav-link" data-i18n="nav.contact">Contact</a>
             </nav>
             <div class="nav-right">
-                <span class="lang-toggle" onclick="toggleLanguage()" style="cursor:pointer;" data-i18n="nav.lang">JP /
-                    EN</span>
+                <div class="lang-dropdown">
+                    <button class="lang-current" onclick="toggleLangDropdown(event)">
+                        <span id="current-lang-display">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="2,4 6,8 10,4"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-options" id="lang-options">
+                        <div class="lang-option" onclick="selectLanguage('en')">EN - English</div>
+                        <div class="lang-option" onclick="selectLanguage('jp')">JP - 日本語</div>
+                    </div>
+                </div>
                 <a href="#" class="btn-login desktop-only" data-i18n="nav.login">Login</a>
                 <button class="mobile-menu-btn" onclick="openMenu()">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -209,6 +220,7 @@
             <a href="#" class="mobile-login" onclick="closeMenu()">Login</a>
         </div>
     </div>
+    <script src="js/lang-dropdown.js"></script>
 </body>
 
 </html>
