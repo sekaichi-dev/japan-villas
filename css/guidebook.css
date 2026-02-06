@@ -15,6 +15,49 @@
     --gb-radius-sm: 8px;
 }
 
+/* ============================================
+   iOS SAFARI FORCEFUL RESETS
+   Fixes blue button/icon rendering issues
+   ============================================ */
+summary,
+summary::-webkit-details-marker,
+.living-accordion summary,
+.resort-list .living-accordion summary,
+.neighborhood-more summary,
+.dining-accordion-header {
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-radius: 0 !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* Prevent blue text/icon on interaction */
+summary:active,
+summary:focus,
+summary:hover,
+summary:visited {
+    outline: none !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    /* Do NOT force color here to preserve specific hover states */
+}
+
+/* Force icon colors to prevent default blue */
+.living-accordion summary::after,
+.resort-list .living-accordion>summary::after {
+    /* Ensure icon color stays consistent */
+    -webkit-text-fill-color: currentColor;
+}
+
+summary:focus-visible {
+    outline: none !important;
+}
+
 /* Base Layout */
 .guidebook-page {
     background: var(--gb-bg);
@@ -963,6 +1006,7 @@
     font-size: 1.25rem;
     color: var(--gb-text-muted);
     transition: transform 0.3s ease;
+    font-style: normal;
 }
 
 .accordion-item.open .accordion-icon {
@@ -1188,6 +1232,14 @@
     font-weight: 600;
     border-left: 3px solid var(--gb-accent);
     padding-left: 0.75rem;
+}
+
+.guide-sub-title.gold-underline {
+    border-left: none;
+    padding-left: 0;
+    border-bottom: 2px solid var(--gb-accent);
+    padding-bottom: 4px;
+    display: inline-block;
 }
 
 /* Resort List Styling */
@@ -1495,6 +1547,8 @@
     transition: transform 0.2s;
     /* Ensure it aligns well */
     display: inline-block;
+    color: var(--gb-text-muted);
+    font-style: normal;
 }
 
 .living-accordion[open] summary::after {
@@ -1516,6 +1570,22 @@
 /* ============================================
    SKI RESORTS ACCORDION STYLING
    ============================================ */
+
+/* Restore section divider/underline for Ski Resorts */
+.resort-list {
+    position: relative;
+    padding-top: 0.5rem;
+}
+
+.resort-list::before {
+    content: '';
+    display: block;
+    width: 50%;
+    height: 1px;
+    background: var(--gb-accent);
+    margin-bottom: 2rem;
+    /* Space below line */
+}
 
 /* Remove default list marker bullet */
 .resort-list .living-accordion summary {

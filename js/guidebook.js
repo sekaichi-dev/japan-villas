@@ -181,10 +181,12 @@ const guidebookData = {
             },
             {
                 icon: "train",
-                title: { en: "From Kurohime Station", jp: "黒姫駅から" },
+                title: { en: "By Train", jp: "電車で来る場合" },
                 content: {
-                    en: `<p>35 minutes from Nagano Station via Shinano Railway Kita-Shinano Line.</p>`,
-                    jp: `<p>長野駅よりしなの鉄道北しなの線で35分</p>`
+                    en: `<p>・From Nagano Station, take the Shinano Railway Kita-Shinano Line for approximately 35 minutes.<br>
+                        ・After arriving at Kurohime Station, please take a taxi to the property.</p>`,
+                    jp: `<p>・長野駅よりしなの鉄道北しなの線で約35分。<br>
+                        ・黒姫駅到着後は、タクシーをご利用ください。</p>`
                 }
             },
             {
@@ -206,7 +208,26 @@ const guidebookData = {
             id: "facility",
             title: { en: "Room & Equipment Guide", jp: "各部屋と備品のご案内" },
             items: [
-
+                {
+                    icon: "info",
+                    title: { en: "Room & Equipment Overview", jp: "施設・設備の概要" },
+                    content: {
+                        en: `<p>Below is the floor plan of the property.<br>Using this layout, we will introduce each room and the equipment available throughout the house.</p>
+                             <div class="floor-plans" style="margin-top: 1rem;">
+                                 <p style="margin-bottom: 0.25rem; font-weight: bold;">1st Floor Plan</p>
+                                 <img src="img/floor_plan_1f.png" alt="1st Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
+                                 <p style="margin-bottom: 0.25rem; font-weight: bold;">2nd Floor Plan</p>
+                                 <img src="img/floor_plan_2f.png" alt="2nd Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
+                             </div>`,
+                        jp: `<p>施設の平面図です。<br>このレイアウトに沿って、各部屋と設備をご紹介します。</p>
+                             <div class="floor-plans" style="margin-top: 1rem;">
+                                 <p style="margin-bottom: 0.25rem; font-weight: bold;">1階 平面図</p>
+                                 <img src="img/floor_plan_1f.png" alt="1階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
+                                 <p style="margin-bottom: 0.25rem; font-weight: bold;">2階 平面図</p>
+                                 <img src="img/floor_plan_2f.png" alt="2階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
+                             </div>`
+                    }
+                },
                 {
                     icon: "tv",
                     title: { en: "Living Room", jp: "リビング" },
@@ -527,14 +548,16 @@ const guidebookData = {
                     icon: "fire",
                     title: { en: "Fireplace", jp: "暖炉" },
                     content: {
-                        en: `<p>Please watch the video guide to operate the fireplace.</p>
+                        en: `<img src="img/fireplace_main_view.jpg" alt="Fireplace" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                        <p>Please watch the video guide to operate the fireplace.</p>
                         
                         <div style="text-align: center; margin: 1.5rem 0;">
                             <a href="https://youtu.be/Tf3PxzmNuEg" target="_blank" style="font-size: 1.1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                         </div>
 
                         <p><strong>Important:</strong> Return gas cans to their original location. Ensure safety to prevent fire hazards.</p>`,
-                        jp: `<p>こちらの動画を参考に、暖炉を付けてください。</p>
+                        jp: `<img src="img/fireplace_main_view.jpg" alt="暖炉" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                        <p>こちらの動画を参考に、暖炉を付けてください。</p>
                         
                         <div style="text-align: center; margin: 1.5rem 0;">
                             <a href="https://youtu.be/mqgpitTxbFs?si=4oII_euTyGa-7ty7" target="_blank" style="font-size: 1.1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ 動画はこちら</a>
@@ -794,7 +817,8 @@ const guidebookData = {
                     icon: "bbq",
                     title: { en: "BBQ", jp: "BBQ" },
                     content: {
-                        en: `<p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.</p>
+                        en: `<img src="img/bbq_table_view.png" alt="BBQ Table View" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                        <p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.</p>
                         
                         <div style="margin-bottom: 1.5rem;">
                             <img src="img/bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
@@ -802,7 +826,8 @@ const guidebookData = {
                                 <a href="https://youtu.be/P64SbH-GK3I?si=z_PjtQ1tvNLq4oeN" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                             </div>
                         </div>`,
-                        jp: `<p>BBQに使用するチャッカマン・網・トングは、キッチン上部の棚にまとめて置いてあります。</p>
+                        jp: `<img src="img/bbq_table_view.png" alt="BBQテーブル" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                        <p>BBQに使用するチャッカマン・網・トングは、キッチン上部の棚にまとめて置いてあります。</p>
                         
                         <div style="margin-bottom: 1.5rem;">
                             <img src="img/bbq_shelf.png" alt="キッチンの棚" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
@@ -1009,7 +1034,7 @@ const guidebookData = {
                     icon: "restaurant",
                     title: { en: "Dining: Western & Cafe", jp: "食事：洋食・カフェ" },
                     content: {
-                        en: `<h4 class="guide-sub-title">Italian</h4>
+                        en: `<h4 class="guide-sub-title gold-underline">Italian</h4>
                                                                         <details class="living-accordion">
                                                                             <summary>
                                                                                 <div>
@@ -1023,7 +1048,7 @@ const guidebookData = {
                                                                                 <li><strong>Restaurant Rudolf</strong><br><a href="https://maps.app.goo.gl/C2N41Ku3MATQNBcF8" target="_blank">View Map</a></li>
                                                                             </ul>
                                                                         </details>
-                                                                        <h4 class="guide-sub-title">Hamburger & Western</h4>
+                                                                        <h4 class="guide-sub-title gold-underline">Hamburger & Western</h4>
                                                                         <details class="living-accordion">
                                                                             <summary>
                                                                                 <div>
@@ -1036,7 +1061,7 @@ const guidebookData = {
                                                                                 <li><strong>Lumber jack</strong><br><a href="https://maps.app.goo.gl/woFffzQ9f1bkPExx8" target="_blank">View Map</a></li>
                                                                             </ul>
                                                                         </details>
-                                                                        <h4 class="guide-sub-title">Cafe & Bakery</h4>
+                                                                        <h4 class="guide-sub-title gold-underline">Cafe & Bakery</h4>
                                                                         <details class="living-accordion">
                                                                             <summary>
                                                                                 <div>
@@ -1047,8 +1072,9 @@ const guidebookData = {
                                                                             <ul class="guide-list neighborhood-list two-col" style="margin-top: 1rem;">
                                                                                 <li><strong>EN Bakery 39</strong><br><a href="https://maps.app.goo.gl/H1krSAdkcu498NXM6" target="_blank">View Map</a></li>
                                                                             </ul>
-                                                                        </details>`,
-                        jp: `<h4 class="guide-sub-title">イタリアン</h4>
+                                                                        </details>
+`,
+                        jp: `<h4 class="guide-sub-title gold-underline">イタリアン</h4>
                                                                         <details class="living-accordion">
                                                                             <summary>
                                                                                 <div>
@@ -1075,7 +1101,7 @@ const guidebookData = {
                                                                                 </li>
                                                                             </ul>
                                                                         </details>
-                                                                        <h4 class="guide-sub-title">ハンバーガー・洋食</h4>
+                                                                        <h4 class="guide-sub-title gold-underline">ハンバーガー・洋食</h4>
                                                                         <details class="living-accordion">
                                                                             <summary>
                                                                                 <div>
@@ -1097,7 +1123,7 @@ const guidebookData = {
                                                                                 </li>
                                                                             </ul>
                                                                         </details>
-                                                                        <h4 class="guide-sub-title">カフェ・パン屋</h4>
+                                                                        <h4 class="guide-sub-title gold-underline">カフェ・パン屋</h4>
                                                                         <details class="living-accordion">
                                                                             <summary>
                                                                                 <div>
@@ -1642,14 +1668,26 @@ const guidebookData = {
                     content: {
                         en: `<p>If the power goes out, a breaker may have tripped.Please follow these steps to restore power:</p>
                                                                         <p>1. Find the tripped breaker (near the entrance) and push it all the way DOWN.</p>
-                                                                        <img src="img/breaker_step_1.jpg" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 0 auto 1rem;">
+                                                                        <details class="living-accordion" style="margin-bottom: 1rem;">
+                                                                            <summary>View Image</summary>
+                                                                            <img src="img/breaker_step_2.jpg" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                        </details>
                                                                             <p>2. Then push it all the way UP to "ON".<br>👉 It should click into place.</p>
-                                                                            <img src="img/breaker_step_2.jpg" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 0 auto 1rem;">`,
+                                                                            <details class="living-accordion">
+                                                                                <summary>View Image</summary>
+                                                                                <img src="img/breaker_step_1.jpg" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                            </details>`,
                         jp: `<p>電気が突然使えなくなった場合、ブレーカーが落ちている可能性があります。<br>以下の手順で復旧してください。</p>
                                                                                 <p>① 玄関付近にあるブレーカーのうち、落ちているものを一度いちばん下まで下げてください。</p>
-                                                                                <img src="img/breaker_step_1.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 0 auto 1rem;">
+                                                                                <details class="living-accordion" style="margin-bottom: 1rem;">
+                                                                                    <summary>画像を表示</summary>
+                                                                                    <img src="img/breaker_step_2.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                </details>
                                                                                     <p>② その後、しっかり上まで上げて「ON」にしてください。<br>👉 カチッと音がすればOKです。</p>
-                                                                                    <img src="img/breaker_step_2.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 0 auto 1rem;">`
+                                                                                    <details class="living-accordion">
+                                                                                        <summary>画像を表示</summary>
+                                                                                        <img src="img/breaker_step_1.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                    </details>`
                     }
                 },
                 {
@@ -2093,24 +2131,30 @@ function renderSections() {
             const itemTitle = getLocalizedText(item.title) || item.title;
             const itemContent = getLocalizedText(item.content) || item.content;
             const iconHtml = item.icon && ICONS[item.icon] ? ICONS[item.icon] : '';
+
+            // Check if this is a Dining section header
+            const isDiningHeader = itemTitle.startsWith("Dining") || itemTitle.includes("食事");
+            const headerClass = isDiningHeader ? "card-header gold-underline dining-header" : "card-header";
+
             if (item.collapsible) {
                 return `
                             <details class="content-card living-accordion" id="item-${section.id}-${index}" open>
-                                <summary class="card-header" style="justify-content: space-between;">${iconHtml} ${itemTitle}</summary>
+                                <summary class="${headerClass}" style="justify-content: space-between;">${iconHtml} ${itemTitle}</summary>
                                 <div class="card-body">
                                     ${itemContent}
                                 </div>
                             </details>
                         `;
-            }
-            return `
+            } else {
+                return `
                             <div class="content-card" id="item-${section.id}-${index}">
-                                <h3 class="card-header">${iconHtml} ${itemTitle}</h3>
+                                <h3 class="${headerClass}">${iconHtml} ${itemTitle}</h3>
                                 <div class="card-body">
                                     ${itemContent}
                                 </div>
                             </div>
                         `;
+            }
         }).join('')}
                                                                                             </div>
                                                                                         </section>
