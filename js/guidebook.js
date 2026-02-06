@@ -175,8 +175,9 @@ const guidebookData = {
                 content: {
                     en: `<p>5 minutes from Nojiriko IC on the Joshinetsu Expressway.</p>
                         <p>Car rental is also available at Nagano Station.</p>`,
-                    jp: `<p>上信越自動車道の野尻湖インターから車で5分</p>
-                        <p>長野駅でレンタカーを借りることも可能です。</p>`
+                    jp: `<p>・上信越自動車道「野尻湖IC」から車で約5分。<br>
+                        ・長野駅からは車で約40分と、アクセスも良好です。<br>
+                        ・長野駅周辺ではレンタカーの手配も可能なので、電車でお越しの方も安心してご利用いただけます。</p>`
                 }
             },
             {
@@ -803,13 +804,19 @@ const guidebookData = {
                             <strong>Rules:</strong> Quiet hours after 10 PM. No jumping into the lake (dangerous). Do not bury alcohol in snow.
                         </div>`,
                         jp: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
-                        <p><strong>【フランス輸入サウナチェア（Lafuma MOBILIER）4台完備】</strong>こだわりの水風呂につかった後は、ゆったりとした時間をおくつろぎ下さい。</p>
-                        <p>サイドテーブル2台完備、特注ウッドテーブル完備。</p>
+                        <p>こだわりの水風呂を楽しんだ後は、バルコニーでゆったりとした癒しの時間をお過ごしください。</p>
+                        <p>フランス輸入の高品質サウナチェアをはじめ、くつろぎのための設備を充実させています。</p>
 
-                        <p>固定式シャワー完備（冬季使用不可）</p>
+                        <p>・フランス輸入サウナチェア（Lafuma MOBILIER）4台完備<br>
+                        ・サイドテーブル 2台完備<br>
+                        ・特注ウッドテーブル完備<br>
+                        ・固定式シャワー完備（※冬季は使用不可）</p>
                         
                         <div class="warning-box">
-                            <strong>注意事項:</strong> 夜22時以降はバルコニーではお静かにお過ごしください。日が暮れてから、湖に飛び込むのは大変危険なので厳禁です。雪の中にお酒を埋めて冷やすのはご遠慮ください。
+                            <strong>【注意事項】</strong><br>
+                            夜22時以降は、バルコニーではお静かにお過ごしください。<br>
+                            日没後に湖へ飛び込む行為は大変危険なため、固く禁止しております。<br>
+                            また、雪の中にお酒を埋めて冷やす行為はご遠慮ください。
                         </div>`
                     }
                 },
@@ -817,20 +824,18 @@ const guidebookData = {
                     icon: "bbq",
                     title: { en: "BBQ", jp: "BBQ" },
                     content: {
-                        en: `<img src="img/bbq_table_view.png" alt="BBQ Table View" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
-                        <p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.</p>
+                        en: `<p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.</p>
                         
                         <div style="margin-bottom: 1.5rem;">
-                            <img src="img/bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                            <img src="img/bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
                             <div style="text-align: center;">
-                                <a href="https://youtu.be/P64SbH-GK3I?si=z_PjtQ1tvNLq4oeN" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
+                                <a href="https://youtu.be/P64SbH-GK3I?si=z_PJTQ1tvNLq4oeN" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                             </div>
                         </div>`,
-                        jp: `<img src="img/bbq_table_view.png" alt="BBQテーブル" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
-                        <p>BBQに使用するチャッカマン・網・トングは、キッチン上部の棚にまとめて置いてあります。</p>
+                        jp: `<p>BBQに使用するチャッカマン・網・トングは、キッチン上部の棚にまとめて置いてあります。<br>ご利用方法については、下記の動画よりご確認ください。</p>
                         
                         <div style="margin-bottom: 1.5rem;">
-                            <img src="img/bbq_shelf.png" alt="キッチンの棚" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                            <img src="img/bbq_shelf.png" alt="キッチンの棚" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/wdCWkTrMGVM?si=5DMPr1CN-Xbc3pBE" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ 動画はこちら</a>
                             </div>

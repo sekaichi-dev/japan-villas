@@ -34,23 +34,50 @@ summary::-webkit-details-marker,
     outline: none !important;
     border-radius: 0 !important;
     -webkit-tap-highlight-color: transparent !important;
+    list-style: none !important;
+    cursor: pointer;
+}
+
+/* Hide default marker */
+details>summary {
+    list-style: none !important;
+}
+
+details>summary::-webkit-details-marker {
+    display: none !important;
 }
 
 /* Prevent blue text/icon on interaction */
 summary:active,
 summary:focus,
 summary:hover,
-summary:visited {
+summary:visited,
+summary * {
     outline: none !important;
     box-shadow: none !important;
     background: transparent !important;
-    /* Do NOT force color here to preserve specific hover states */
+    -webkit-tap-highlight-color: transparent !important;
 }
 
-/* Force icon colors to prevent default blue */
+/* Force specific colors for the toggle icon/text to avoid blue link default */
+summary,
+summary span,
+summary div,
+summary strong {
+    color: inherit !important;
+    /* Forces it to use the parent text color (white/gray) instead of blue link */
+}
+
+/* Specific fix for the '▶' character if it's treated as text */
+.show-more,
+.show-less {
+    color: var(--gb-accent) !important;
+    /* Or use a subtle gray if preferred, but not blue */
+}
+
+/* Ensure icon colors stay consistent */
 .living-accordion summary::after,
 .resort-list .living-accordion>summary::after {
-    /* Ensure icon color stays consistent */
     -webkit-text-fill-color: currentColor;
 }
 
