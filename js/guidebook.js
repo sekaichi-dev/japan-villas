@@ -212,13 +212,47 @@ const guidebookData = {
                     title: { en: "Living Room", jp: "リビング" },
                     content: {
                         en: `<img src="img/room_living_final_locked.jpg" alt="Living Room" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 1rem; object-fit: cover;">
-                        <p><strong>DAM Karaoke System:</strong> Equipped with 4 remotes, 2 microphones, tambourines, maracas, smoke items, and mic stands. (Available anytime, please mind volume at night.)</p>
-                        <p><strong>BOSE Speakers:</strong> Bluetooth compatible.</p>
-                        <p><strong>85-inch TV:</strong> Netflix, Prime Video, Hulu, U-NEXT, Rakuten TV, ABEMA available (please log in with your own account).</p>
-                        <p><strong>HALO Sofa:</strong> Luxurious feather down sofa for cloud-like comfort.</p>
-                        <p><strong>HALO Dining Table:</strong> Upcycled Georgian-style table made from historic British timber.</p>
-                        <p><strong>DR.VRANJES Diffuser:</strong> Enjoy high-quality fragrances.</p>
-                        <p><strong>Board Games:</strong> Cards and various games available.</p>`,
+                        <p style="margin-bottom: 0.5rem;">Enjoy these features in the Living Room</p>
+                        
+                        <details class="living-accordion">
+                            <summary>・Professional DAM Karaoke System (4 Microphones)</summary>
+                            <p>Equipped with 4 remotes, 2 microphones, tambourines, maracas, smoke items, and mic stands for large groups. (Available anytime, please mind volume at night.)</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・BOSE Speaker Powerful Sound</summary>
+                            <p>Bluetooth compatible.</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・85-inch TV for Movies (Netflix, etc.)</summary>
+                            <p>Netflix, Prime Video, Hulu, U-NEXT, Rakuten TV, ABEMA available (please log in with your own account).</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・British HALO Sofa - Supreme Comfort</summary>
+                            <p>Luxurious feather down sofa from British furniture brand HALO. Experience cloud-like comfort you won't want to leave.</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・DR.VRANJES Premium Fragrance</summary>
+                            <p>Enjoy high-quality fragrances.</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・British HALO Dining Table</summary>
+                            <p>Georgian-style table from British furniture brand HALO. Upcycled from historic British timber (beams and pillars from actual British homes), with natural knots and nail marks adding character. Perfect for precious moments with friends and family.</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・Owner's Curated Interior</summary>
+                            <p>Features the owner's carefully selected items for board sports enthusiasts. (Some items are fragile. Please ensure small children do not touch them.)</p>
+                        </details>
+
+                        <details class="living-accordion">
+                            <summary>・Board Games & Cards Available</summary>
+                            <p>Board games, cards, and various games available.</p>
+                        </details>`,
                         jp: `<img src="img/room_living_final_locked.jpg" alt="リビングルーム" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 1rem; object-fit: cover;">
                         <p style="margin-bottom: 0.5rem;">リビングでは、こちらをお楽しみください</p>
                         
@@ -615,11 +649,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/water_heater_1.png" alt="Kitchen Control Panel" style="width: 60%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/water_heater_1.png" alt="Kitchen Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Control Panel (Kitchen)</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/water_heater_2.png" alt="Bathroom Control Panel" style="width: 60%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/water_heater_2.png" alt="Bathroom Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Control Panel (Bathroom)</p>
                             </div>
                         </div>
@@ -630,11 +664,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/water_heater_1.png" alt="キッチン給湯パネル" style="width: 60%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/water_heater_1.png" alt="キッチン給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">キッチン給湯パネル</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/water_heater_2.png" alt="浴室給湯パネル" style="width: 60%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/water_heater_2.png" alt="浴室給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">浴室給湯パネル</p>
                             </div>
                         </div>
@@ -737,7 +771,7 @@ const guidebookData = {
                     icon: "sightseeing",
                     title: { en: "Balcony", jp: "バルコニー" },
                     content: {
-                        en: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 50%; display: block; margin: 0 auto 1rem;">
+                        en: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
                         <p><strong>Lafuma Sauna Chairs (x4):</strong> Relax after the cold bath under the stars.</p>
                         <p><strong>Amenities:</strong> Side tables, Custom wood table.</p>
                         <p><strong>Overhead Shower:</strong> Cold water shower available (except winter).</p>
@@ -745,7 +779,7 @@ const guidebookData = {
                         <div class="warning-box">
                             <strong>Rules:</strong> Quiet hours after 10 PM. No jumping into the lake (dangerous). Do not bury alcohol in snow.
                         </div>`,
-                        jp: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 50%; display: block; margin: 0 auto 1rem;">
+                        jp: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
                         <p><strong>【フランス輸入サウナチェア（Lafuma MOBILIER）4台完備】</strong>こだわりの水風呂につかった後は、ゆったりとした時間をおくつろぎ下さい。</p>
                         <p>サイドテーブル2台完備、特注ウッドテーブル完備。</p>
 
@@ -889,12 +923,12 @@ const guidebookData = {
                         <strong>Trash Location:</strong> Please place sorted trash in the designated area shown in the red frame below.<br>
                         <strong>At Checkout:</strong> Please gather all trash and leave it near the designated area in the living room.<br>
                         <strong>Long-term Guests:</strong> If you need trash collection, please contact us via the booking site.</p>
-                        <img src="img/trash_location.jpg" alt="Trash Location" class="living-image" loading="lazy" style="width: 50%; display: block; margin: 1rem auto 0; border-radius: 6px;">`,
+                        <img src="img/trash_location.jpg" alt="Trash Location" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">`,
                         jp: `<p><strong>分別：</strong>可燃ゴミ、不燃ゴミ、缶、ペットボトル、瓶<br>
                         <strong>ゴミの置き場所：</strong>画像の赤枠で示された場所にまとめて置いてください。<br>
                         <strong>チェックアウト時：：</strong>ゴミはすべてリビングの赤枠付近に一箇所にまとめてください。<br>
                         <strong>長期滞在のお客様：</strong>ゴミの回収が必要な際は、予約サイトのメッセージよりご連絡ください。</p>
-                        <img src="img/trash_location.jpg" alt="ゴミ置き場" class="living-image" loading="lazy" style="width: 50%; display: block; margin: 1rem auto 0; border-radius: 6px;">`
+                        <img src="img/trash_location.jpg" alt="ゴミ置き場" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">`
                     }
                 }
             ]
@@ -1091,12 +1125,36 @@ const guidebookData = {
                     Japanese(Soba, etc.) <span class="accordion-icon">▶</span>
                 </h4>
                 <ul class="guide-list neighborhood-list two-col">
-                    <li><strong>Issa Shokudo</strong><br><a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Shinanoya (Soba)</strong><br><a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Restaurant Kiju</strong><br><a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Sobadokoro Takasawa</strong><br><a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Jurin (Tonkatsu)</strong><br><a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Kirakuen</strong><br><a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">View Map</a></li>
+                    <li>
+                        <strong>Issa Shokudo</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 3 min / On foot: 16 min)</div>
+                        <a href="https://maps.app.goo.gl/XLfyapZ5Q18Sbtfx6" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Shinanoya (Soba)</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 8 min)</div>
+                        <a href="https://maps.app.goo.gl/ygT2EQkCH6XDHxE68" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Restaurant Kiju</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 3 min / On foot: 29 min)</div>
+                        <a href="https://maps.app.goo.gl/uDQRMJ9VLrtyq6Pt5" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Sobadokoro Takasawa</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 10 min)</div>
+                        <a href="https://maps.app.goo.gl/VDjwwczuSCyfd3bj7" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Jurin (Tonkatsu)</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 10 min)</div>
+                        <a href="https://maps.app.goo.gl/5VVSB9mKbypkdTtt8" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Kirakuen</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 15 min)</div>
+                        <a href="https://maps.app.goo.gl/v2sRJLwR4KmqceD27" target="_blank">View Map</a>
+                    </li>
                 </ul>
             </div>
             
@@ -1105,10 +1163,26 @@ const guidebookData = {
                     Sushi & Yakiniku <span class="accordion-icon">▶</span>
                 </h4>
                 <ul class="guide-list neighborhood-list two-col">
-                    <li><strong>Kitokito Sushi</strong><br><a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Yakiniku Toyooka</strong><br><a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Echigoya</strong><br><a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Yakiniku Otagiri</strong><br><a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">View Map</a></li>
+                    <li>
+                        <strong>Kitokito Sushi</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 25 min)</div>
+                        <a href="https://maps.app.goo.gl/YQjLdV7eNGG9yF6E9" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Yakiniku Toyooka</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 22 min)</div>
+                        <a href="https://maps.app.goo.gl/LxeKEXAFVqEAAJ4f9" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Echigoya</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 21 min)</div>
+                        <a href="https://maps.app.goo.gl/3gspUgVzZQreVQ8Z7" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Yakiniku Otagiri</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 32 min)</div>
+                        <a href="https://maps.app.goo.gl/u5Lh6yn9c2V2ErtZ8" target="_blank">View Map</a>
+                    </li>
                 </ul>
             </div>
 
@@ -1117,8 +1191,16 @@ const guidebookData = {
                     Chinese & Ramen <span class="accordion-icon">▶</span>
                 </h4>
                 <ul class="guide-list neighborhood-list two-col">
-                    <li><strong>Eika (Machichuka)</strong><br><a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Arakin Ramen</strong><br><a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">View Map</a></li>
+                    <li>
+                        <strong>Eika (Machichuka)</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 11 min)</div>
+                        <a href="https://maps.app.goo.gl/GKcWKjfZFrXxD9xP9" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Arakin Ramen</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 10 min)</div>
+                        <a href="https://maps.app.goo.gl/royTk9WKLCv81MS49" target="_blank">View Map</a>
+                    </li>
                 </ul>
             </div>
 
@@ -1127,8 +1209,16 @@ const guidebookData = {
                     Izakaya <span class="accordion-icon">▶</span>
                 </h4>
                 <ul class="guide-list neighborhood-list two-col">
-                    <li><strong>Tamaki</strong><br><a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">View Map</a></li>
-                    <li style="display:none" class="hidden-item"><strong>Nihontei</strong><br><a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">View Map</a></li>
+                    <li>
+                        <strong>Tamaki</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 9 min)</div>
+                        <a href="https://maps.app.goo.gl/QCEC39Y7BKbni2u9A" target="_blank">View Map</a>
+                    </li>
+                    <li style="display:none" class="hidden-item">
+                        <strong>Nihontei</strong>
+                        <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 5 min)</div>
+                        <a href="https://maps.app.goo.gl/AevwtYUQZE3ZgBXq6" target="_blank">View Map</a>
+                    </li>
                 </ul>
             </div>`,
                         jp: `<div class="dining-accordion-group">
@@ -1258,7 +1348,7 @@ const guidebookData = {
                 },
                 {
                     icon: "sightseeing",
-                    collapsible: true,
+
                     title: { en: "Ski Resorts", jp: "スキー場" },
                     content: {
                         en: `<div class="resort-list">
@@ -1461,10 +1551,12 @@ const guidebookData = {
                     content: {
                         en: `<p><strong>Unauthorized Extension:</strong> Please adhere to check -in /out times. ¥10,000 per 30 min charged for unauthorized extensions.</p>
                                                                         <p><strong>Fire:</strong> Use of fire indoors is prohibited (except kitchen stove).</p>
-                                                                        <p><strong>Restricted Areas:</strong> Guests are not allowed on the 3rd floor.</p>`,
+                                                                        <p><strong>Restricted Areas:</strong> Guests are not allowed on the 3rd floor.</p>
+                                                                        <img src="img/no_entry_3rd_floor_gate.jpg" alt="3rd Floor Gate" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
                         jp: `<p><strong>無断延長:</strong> 予約時間内の入退室をお願いします。無断延長は30分につき1万円を請求します。</p>
                                                                         <p><strong>火気の利用:</strong> 室内での火気利用は禁止です（キッチンコンロを除く）。</p>
-                                                                        <p><strong>立入禁止:</strong> 3階は管理上の理由により立ち入りできません。</p>`
+                                                                        <p><strong>立入禁止:</strong> 3階は管理上の理由により立ち入りできません。</p>
+                                                                        <img src="img/no_entry_3rd_floor_gate.jpg" alt="3階ゲート" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -1472,20 +1564,16 @@ const guidebookData = {
                     title: { en: "Important Notes", jp: "注意事項" },
                     content: {
                         en: `<ul class="guide-list">
-                                                                            <li>Do not take amenities home. You may be charged for missing items.</li>
-                                                                            <li>Do not wear shoes indoors.</li>
-                                                                            <li>Be mindful of noise when windows/door are open.</li>
-                                                                            <li>Restrooms (men/women separate) are on the 1st floor.</li>
-                                                                            <li>No security cameras. Please manage your own valuables.</li>
-                                                                            <li>Please respect our neighbors.</li>
+                                                                            <li>① Do not take amenities home. You may be charged for unauthorized removal.</li>
+                                                                            <li>② Do not enter with shoes on.</li>
+                                                                            <li>③ Be mindful of noise when windows or the entrance are open.</li>
+                                                                            <li>④ There are no security cameras. Please manage your own valuables.</li>
                                                                         </ul>`,
                         jp: `<ul class="guide-list">
-                                                                            <li>備品は持ち帰らないでください。無断持ち出しは請求対象となる場合があります。</li>
-                                                                            <li>靴で室内には入らないでください。</li>
-                                                                            <li>窓、玄関を開放しての騒音はご注意ください。</li>
-                                                                            <li>お手洗い、トイレは1階(男女別)をご利用くださいませ。</li>
-                                                                            <li>防犯カメラは設置しておりません。貴重品の管理はご利用者様で行ってください。</li>
-                                                                            <li>周辺住人に対しての迷惑行為はお控えください。</li>
+                                                                            <li>① 備品は持ち帰らないでください。無断持ち出しは請求対象となる場合があります。</li>
+                                                                            <li>② 靴で室内には入らないでください。</li>
+                                                                            <li>③ 窓、玄関を開放しての騒音はご注意ください。</li>
+                                                                            <li>④ 防犯カメラは設置しておりません。貴重品の管理はご利用者様で行ってください。</li>
                                                                         </ul>`,
                     }
                 },
