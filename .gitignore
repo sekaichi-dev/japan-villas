@@ -1,2 +1,9 @@
+# Vercel
 .vercel
+
+# Environment Variables (DO NOT COMMIT)
+.env
 .env*.local
+
+# Dependencies
+node_modules/

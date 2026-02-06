@@ -1,58 +1,84 @@
+const { createClient } = require('@supabase/supabase-js');
 
-// This file delegates to admin-chat.js for logic, or can be standalone.
-// Since we combined logic in admin-chat.js for the draft, we can import it.
-// Assuming the user's setup routes /api/files automatically.
+// CORS headers for Vercel
+const corsHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+};
 
-const adminHandler = require('./admin-chat.js');
+export default async function handler(req, res) {
+    // Handle CORS preflight
+    if (req.method === 'OPTIONS') {
+        return res.status(200).setHeader('Access-Control-Allow-Origin', '*')
+            .setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+            .setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+            .end();
+    }
 
-module.exports = async (req, res) => {
-    // Manually force the 'bot-settings' path context if needed, 
-    // or just let the handler router decide.
-    // Ideally this file handles just settings.
+    // Set CORS headers for all responses
+    Object.entries(corsHeaders).forEach(([key, value]) => {
+        res.setHeader(key, value);
+    });
 
-    // For this implementation, I'll copy the specific settings logic here 
-    // so `api/bot-settings` works as a standalone endpoint file.
-
-    const { createClient } = require('@supabase/supabase-js');
+    // Initialize Supabase
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseKey = process.env.SUPABASE_KEY;
+
+    if (!supabaseUrl || !supabaseKey) {
+        return res.status(500).json({ error: 'Missing Supabase configuration' });
+    }
+
     const supabase = createClient(supabaseUrl, supabaseKey);
 
-    if (req.method === 'GET') {
-        const { data, error } = await supabase
-            .from('bot_settings')
-            .select('*')
-            .single();
+    try {
+        if (req.method === 'GET') {
+            // Fetch bot settings (singleton row)
+            const { data, error } = await supabase
+                .from('bot_settings')
+                .select('*')
+                .single();
 
-        if (error && error.code !== 'PGRST116') {
-            return res.status(500).json({ error: error.message });
+            if (error && error.code !== 'PGRST116') {
+                // PGRST116 = no rows returned, which is fine
+                return res.status(500).json({ error: error.message });
+            }
+
+            // Return data or default values
+            return res.status(200).json(data || {
+                system_prompt: "You are a helpful assistant for Japan Villas.",
+                use_guidebook: true,
+                training_examples: []
+            });
+
+        } else if (req.method === 'POST') {
+            // Update bot settings
+            const { system_prompt, use_guidebook, training_examples } = req.body;
+
+            // Upsert to singleton row (ID = 1)
+            const payload = {
+                id: 1,
+                system_prompt,
+                use_guidebook,
+                training_examples
+            };
+
+            const { data, error } = await supabase
+                .from('bot_settings')
+                .upsert(payload)
+                .select();
+
+            if (error) {
+                return res.status(500).json({ error: error.message });
+            }
+
+            return res.status(200).json(data[0]);
+
+        } else {
+            return res.status(405).json({ error: 'Method not allowed' });
         }
-
-        return res.status(200).json(data || {
-            system_prompt: "",
-            use_guidebook: true,
-            training_examples: []
-        });
-
-    } else if (req.method === 'POST') {
-        const { system_prompt, use_guidebook, training_examples } = req.body;
-
-        // Upsert Singleton (ID=1)
-        const payload = {
-            id: 1,
-            system_prompt,
-            use_guidebook,
-            training_examples
-        };
-
-        const { data, error } = await supabase
-            .from('bot_settings')
-            .upsert(payload)
-            .select();
-
-        if (error) {
-            return res.status(500).json({ error: error.message });
-        }
-        return res.status(200).json(data[0]);
+    } catch (error) {
+        console.error('Bot settings error:', error);
+        return res.status(500).json({ error: error.message });
     }
-};
+}
