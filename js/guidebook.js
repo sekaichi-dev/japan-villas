@@ -173,8 +173,9 @@ const guidebookData = {
                 icon: "car",
                 title: { en: "By Car", jp: "車で来る場合" },
                 content: {
-                    en: `<p>5 minutes from Nojiriko IC on the Joshinetsu Expressway.</p>
-                        <p>Car rental is also available at Nagano Station.</p>`,
+                    en: `<p>・Approx. 5 min by car from "Nojiriko IC" on Joshinetsu Expressway.<br>
+                        ・Approx. 40 min by car from Nagano Station.<br>
+                        ・Car rentals are available around Nagano Station, making it convenient for train travelers.</p>`,
                     jp: `<p>・上信越自動車道「野尻湖IC」から車で約5分。<br>
                         ・長野駅からは車で約40分と、アクセスも良好です。<br>
                         ・長野駅周辺ではレンタカーの手配も可能なので、電車でお越しの方も安心してご利用いただけます。</p>`
@@ -643,7 +644,7 @@ const guidebookData = {
                             </div>
                         </div>
 
-                        <p>Manual available here.</p>`,
+`,
                         jp: `<p>こちらの手順で洗濯と乾燥が可能です。②の際に洗濯・洗乾燥・乾燥の三つよりコースがお選びできます。</p>
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
@@ -661,7 +662,7 @@ const guidebookData = {
                             </div>
                         </div>
 
-                        <p>取扱説明書はこちら。</p>`
+`
                     }
                 },
                 {
@@ -796,9 +797,13 @@ const guidebookData = {
                     title: { en: "Balcony", jp: "バルコニー" },
                     content: {
                         en: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
-                        <p><strong>Lafuma Sauna Chairs (x4):</strong> Relax after the cold bath under the stars.</p>
-                        <p><strong>Amenities:</strong> Side tables, Custom wood table.</p>
-                        <p><strong>Overhead Shower:</strong> Cold water shower available (except winter).</p>
+                        <p>After enjoying the cold bath, spend a relaxing time on the balcony.</p>
+                        <p>Equipped with high-quality French sauna chairs and other amenities for your relaxation.</p>
+                        
+                        <p>・4 French Sauna Chairs (Lafuma MOBILIER)<br>
+                        ・2 Side Tables<br>
+                        ・Custom Wood Table<br>
+                        ・Fixed Shower (※Not available in winter)</p>
                         
                         <div class="warning-box">
                             <strong>Rules:</strong> Quiet hours after 10 PM. No jumping into the lake (dangerous). Do not bury alcohol in snow.
@@ -824,7 +829,7 @@ const guidebookData = {
                     icon: "bbq",
                     title: { en: "BBQ", jp: "BBQ" },
                     content: {
-                        en: `<p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.</p>
+                        en: `<p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.<br>Please refer to the video below for usage instructions.</p>
                         
                         <div style="margin-bottom: 1.5rem;">
                             <img src="img/bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
