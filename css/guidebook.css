@@ -1512,3 +1512,72 @@
     /* Slight indent */
     padding-right: 0.5rem;
 }
+
+/* ============================================
+   SKI RESORTS ACCORDION STYLING
+   ============================================ */
+
+/* Remove default list marker bullet */
+.resort-list .living-accordion summary {
+    list-style: none;
+}
+
+.resort-list .living-accordion summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Custom summary layout for ski resorts */
+.resort-list .living-accordion>summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    cursor: pointer;
+    border-bottom: 2px solid var(--gb-accent);
+}
+
+/* Resort name styling */
+.resort-list .living-accordion>summary>div {
+    flex: 1;
+}
+
+/* Custom icon (right-aligned) */
+.resort-list .living-accordion>summary::after {
+    content: '▶';
+    font-size: 0.8em;
+    color: var(--gb-text);
+    transition: transform 0.25s ease;
+    margin-left: 1rem;
+}
+
+/* Rotate icon on open */
+.resort-list .living-accordion[open]>summary::after {
+    transform: rotate(90deg);
+}
+
+/* Accordion body styling */
+.resort-list .living-accordion .accordion-body {
+    padding: 0.75rem 0.5rem;
+}
+
+/* Improved description text readability */
+.resort-list .living-accordion .resort-desc {
+    color: #e8e8e8;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 0.75rem;
+}
+
+/* Gold underline for map link */
+.resort-list .living-accordion .accordion-body a {
+    color: var(--gb-accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--gb-accent);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+.resort-list .living-accordion .accordion-body a:hover {
+    color: var(--gb-accent-hover);
+    border-color: var(--gb-accent-hover);
+}
