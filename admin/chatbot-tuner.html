@@ -252,33 +252,62 @@
                 </div>
 
                 <!-- Guidebook Context -->
-                <div class="flex items-center gap-4 p-4 bg-card border border-site rounded-xl">
-                    <input type="checkbox" id="use-guidebook" class="w-5 h-5 accent-[#C9A861] rounded cursor-pointer">
-                    <div>
-                        <label for="use-guidebook" class="block text-sm font-medium text-white cursor-pointer">Include
-                            Guidebook Context</label>
-                        <p class="text-xs text-muted mt-0.5">Injects property details and local guide info into the
-                            prompt.</p>
-                    </div>
-                </div>
-
-                <!-- Training Examples -->
-                <div>
-                    <div class="flex justify-between items-center mb-4">
-                        <label class="block text-xs font-medium text-accent uppercase tracking-widest">Training
-                            Examples</label>
-                        <span id="example-count"
-                            class="bg-card border border-site text-muted text-xs px-2 py-1 rounded-full">0
-                            examples</span>
-                    </div>
-
-                    <div id="examples-list" class="space-y-4">
-                        <!-- Examples will be rendered here -->
-                        <div class="text-center py-8 text-muted text-sm border border-dashed border-site rounded-xl">
-                            No examples yet. Chat with the AI and click "🧠" to save good responses.
+                <div class="p-4 bg-card border border-site rounded-xl">
+                    <div class="flex items-center gap-4 mb-2">
+                        <input type="checkbox" id="use-guidebook"
+                            class="w-5 h-5 accent-[#C9A861] rounded cursor-pointer">
+                        <div class="flex flex-col flex-1">
+                            <label for="use-guidebook"
+                                class="block text-sm font-medium text-white cursor-pointer">Include
+                                Guidebook Context</label>
+                            <span id="guidebook-status" class="text-xs text-gray-400 mt-1">⏳ Loading guidebook...</span>
+                            <p class="text-xs text-muted mt-0.5">Injects property details and local guide info into the
+                                prompt.</p>
                         </div>
+                        <button id="inspect-data-btn"
+                            class="px-3 py-1.5 bg-gray-700 hover:bg-gray-600 text-white rounded text-xs font-medium transition-colors">
+                            🔍 Inspect
+                        </button>
+                    </div>
+                    <!-- Data Preview Area (Hidden by default) -->
+                    <div id="data-preview-container" class="hidden mt-3">
+                        <label class="block text-xs text-gray-400 mb-1">Loaded Data Preview (first 1000 chars):</label>
+                        <pre id="data-preview"
+                            class="bg-gray-900 border border-gray-600 rounded p-3 text-xs text-green-400 font-mono overflow-auto max-h-64 whitespace-pre-wrap"></pre>
                     </div>
                 </div>
+
+                <!-- Guidebook Search Tool -->
+                <div class="p-4 bg-card border border-site rounded-xl">
+                    <label class="block text-sm font-medium text-white mb-2">🔍 Search Loaded Content</label>
+                    <div class="flex gap-2 mb-2">
+                        <input type="text" id="search-keyword" placeholder="Search keyword (e.g., Wifi)..."
+                            class="flex-1 bg-gray-800 border border-gray-600 rounded px-3 py-1.5 text-sm text-white focus:outline-none focus:border-[#C9A861]">
+                        <button id="search-btn"
+                            class="px-4 py-1.5 bg-[#C9A861] text-black rounded text-sm font-medium hover:bg-[#d4b56f] transition-colors">
+                            Check
+                        </button>
+                    </div>
+                    <div id="search-result"
+                        class="text-xs text-gray-400 bg-gray-800 rounded p-2 min-h-[60px] max-h-[120px] overflow-y-auto font-mono whitespace-pre-wrap">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Training Examples -->
+            <div>
+                <div class="flex justify-between items-center mb-4">
+                    <label class="block text-xs font-medium text-accent uppercase tracking-widest">Training
+                        Examples</label>
+                </div>
+
+                <div id="examples-list" class="space-y-4">
+                    <!-- Examples will be rendered here -->
+                    <div class="text-center py-8 text-muted text-sm border border-dashed border-site rounded-xl">
+                        No examples yet. Chat with the AI and click "🧠" to save good responses.
+                    </div>
+                </div>
+            </div>
 
             </div>
         </section>

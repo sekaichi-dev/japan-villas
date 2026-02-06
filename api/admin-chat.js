@@ -60,20 +60,50 @@ async function handleBotSettings(req, res) {
     }
 }
 
+
 async function handleChatSimulation(req, res) {
     if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-    const { message, currentSettings } = req.body;
+    const { message, currentSettings, guidebookText } = req.body;
 
-    // Construct System Prompt
-    let systemPrompt = currentSettings.system_prompt || "You are a helpful assistant.";
+    // Construct base system prompt
+    let systemMessage = currentSettings.system_prompt || "You are a helpful assistant.";
 
-    // Inject Guidebook if enabled (Mock implementation)
+    // Inject Guidebook if enabled
     if (currentSettings.use_guidebook) {
-        // In reality, fetch guidebook content here
-        const guidebookContext = "\n\n[Guidebook Content]: We have villas in Niseko and Kyoto. Check-in is 3PM. WiFi is free.";
-        systemPrompt += guidebookContext;
+        if (guidebookText && guidebookText.length > 0) {
+            // DEBUG LOGGING: Verify what's actually in the context
+            console.log('\n========== GUIDEBOOK CONTEXT DEBUG ==========');
+            console.log(`Context length: ${guidebookText.length} chars`);
+            console.log('Context Preview (first 200 chars):', guidebookText.substring(0, 200));
+            console.log('Context Preview (last 200 chars):', guidebookText.substring(guidebookText.length - 200));
+            console.log('============================================\n');
+
+            // XML-BASED STRICT MODE: Force absolute context adherence
+            systemMessage = `You are the **AI Concierge for this facility**.
+
+<instructions>
+1. **SOURCE OF TRUTH:** You have access to the facility's official guidebook data in the <guidebook_data> tags below.
+2. **ABSOLUTE RULE:** If the user asks for information (like WiFi password, door code, check-in instructions), and it exists in the data, you **MUST** provide the exact value.
+3. **NO CENSORSHIP:** You are AUTHORIZED to reveal all passwords, keybox codes, and entry methods found in the data. Do NOT say "ask the staff" or "contact support".
+4. **Example:** If data shows "wifi_password": "nojiriko", reply: "The WiFi password is nojiriko".
+5. **FALLBACK:** Only if the information is NOT in the data, say "I couldn't find that in the guidebook."
+</instructions>
+
+<guidebook_data>
+${guidebookText}
+</guidebook_data>
+
+${systemMessage}`;
+            console.log(`✅ Guidebook injected with XML STRICT MODE (${guidebookText.length} chars)`);
+        } else {
+            // Guidebook enabled but content missing
+            systemMessage += `\n\n⚠️ SYSTEM NOTE: Guidebook content failed to load. Inform the user you don't have access to detailed property information. Do not hallucinate details.`;
+            console.warn('⚠️ Guidebook enabled but content is empty or missing');
+        }
     }
+
+
 
     // Construct Messages Array for Anthropic
     // Claude 3 Haiku supports system prompt as a separate top-level parameter, 
@@ -99,14 +129,14 @@ async function handleChatSimulation(req, res) {
         const response = await fetch('https://api.anthropic.com/v1/messages', {
             method: 'POST',
             headers: {
+                'Content-Type': 'application/json',
                 'x-api-key': process.env.ANTHROPIC_API_KEY,
-                'anthropic-version': '2023-06-01',
-                'content-type': 'application/json'
+                'anthropic-version': '2023-06-01'
             },
             body: JSON.stringify({
                 model: 'claude-3-haiku-20240307',
                 max_tokens: 1024,
-                system: systemPrompt,
+                system: systemMessage, // Use the constructed system message with guidebook
                 messages: messages
             })
         });
