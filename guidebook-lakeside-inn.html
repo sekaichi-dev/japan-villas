@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guest Guidebook | Japan Villas</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/guidebook.css">
+    <script src="js/translations.js"></script>
+    <!-- Supabase Auth -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/auth.js"></script>
+    <script>
+        function toggleMobileMenu() {
+            const dropdown = document.getElementById('mobileMenuDropdown');
+            dropdown.classList.toggle('active');
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function (event) {
+            const dropdown = document.getElementById('mobileMenuDropdown');
+            const btn = document.querySelector('.mobile-menu-btn');
+
+            if (dropdown && dropdown.classList.contains('active')) {
+                if (!dropdown.contains(event.target) && !btn.contains(event.target)) {
+                    dropdown.classList.remove('active');
+                }
+            }
+        });
+    </script>
+</head>
+
+<body class="guidebook-page">
+    <!-- Global Header -->
+    <header class="guidebook-header">
+        <div class="header-inner">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-desktop">JAPAN VILLAS.</span>
+                <span class="logo-mobile">JV.</span>
+            </a>
+            <div class="header-search">
+                <input type="text" id="guidebook-search" class="search-input" placeholder="Search guidebook..."
+                    autocomplete="off">
+                <div class="search-results" id="search-results"></div>
+            </div>
+            <div class="nav-right desktop-nav">
+                <div class="lang-dropdown">
+                    <button class="lang-current" onclick="toggleLangDropdown(event)">
+                        <span id="current-lang-display">EN</span>
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <polyline points="2,4 6,8 10,4"></polyline>
+                        </svg>
+                    </button>
+                    <div class="lang-options" id="lang-options">
+                        <div class="lang-option" onclick="selectLanguage('en')">EN - English</div>
+                        <div class="lang-option" onclick="selectLanguage('jp')">JP - 日本語</div>
+                    </div>
+                </div>
+                <a href="#" class="btn-login" data-i18n="nav.login">Login</a>
+            </div>
+            <div class="nav-right mobile-nav">
+                <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                    <!-- Globe Icon -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <line x1="2" y1="12" x2="22" y2="12"></line>
+                        <path
+                            d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z">
+                        </path>
+                    </svg>
+                    <span id="mobile-lang-label"
+                        style="font-size: 0.8rem; font-weight: 500; margin-left: 4px;">EN</span>
+                </button>
+                <div class="mobile-menu-dropdown" id="mobileMenuDropdown">
+                    <a href="#" class="menu-item" onclick="toggleLanguage('jp'); return false;">JPN</a>
+                    <a href="#" class="menu-item" onclick="toggleLanguage('en'); return false;">ENG</a>
+                    <a href="#" class="menu-item" data-i18n="nav.login">Login</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Top Horizontal Navigation -->
+    <div id="top-nav-container" class="top-nav-container"></div>
+
+
+    <!-- Hero Section -->
+    <section class="guidebook-hero">
+        <div class="hero-image-container">
+            <img src="img/lakesideinn/main.jpg" alt="Property Hero" class="hero-image"
+                style="object-position: center 15%;">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="property-name" id="property-name">LAKE HOUSE Nojiriko</h1>
+            <p class="welcome-message" id="welcome-message">Welcome! Here's everything you need for your stay.</p>
+        </div>
+    </section>
+
+    <!-- GitBook-style Layout Container -->
+    <div class="guidebook-layout">
+        <!-- Sidebar Navigation -->
+        <aside class="guidebook-sidebar" id="guidebook-sidebar">
+            <div class="sidebar-header">
+                <h3 class="sidebar-title" data-i18n="guidebook.sidebar.title">Guidebook</h3>
+                <span class="sidebar-subtitle" data-i18n="guidebook.sidebar.subtitle">Guest Guidebook</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#access" class="sidebar-item active">
+                    <span class="sidebar-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text" data-i18n="guidebook.nav.access">Access</span>
+                </a>
+                <a href="#facility" class="sidebar-item">
+                    <span class="sidebar-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text" data-i18n="guidebook.nav.facilities">Facilities</span>
+                </a>
+                <a href="#neighborhood" class="sidebar-item">
+                    <span class="sidebar-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+                            <line x1="8" y1="2" x2="8" y2="18"></line>
+                            <line x1="16" y1="6" x2="16" y2="22"></line>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text" data-i18n="guidebook.nav.neighborhood">Neighborhood</span>
+                </a>
+                <a href="#rules" class="sidebar-item">
+                    <span class="sidebar-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text" data-i18n="guidebook.nav.rules">House Rules</span>
+                </a>
+                <a href="#faq" class="sidebar-item">
+                    <span class="sidebar-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text" data-i18n="guidebook.nav.faq">FAQ</span>
+                </a>
+                <a href="#services" class="sidebar-item">
+                    <span class="sidebar-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                            </polygon>
+                        </svg>
+                    </span>
+                    <span class="sidebar-text" data-i18n="guidebook.nav.services">Services</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Mobile Toggle Button -->
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle menu">
+            <span class="toggle-icon">☰</span>
+        </button>
+
+        <!-- Main Content -->
+        <main class="guidebook-content">
+            <!-- Sections will be generated by JS -->
+            <div id="sections-container"></div>
+
+            <!-- Optional Services / Upsell Section -->
+            <section class="guidebook-section services-section" id="services">
+                <h2 class="section-title" data-i18n="guidebook.services.title">Optional Services</h2>
+                <p class="section-subtitle" data-i18n="guidebook.services.subtitle">Enhance your stay</p>
+                <div class="services-grid" id="services-grid">
+                    <!-- Generated by JS -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="guidebook-footer">
+        <div class="footer-content">
+            <p data-i18n="guidebook.footer.help">Need help? Contact your host</p>
+            <a href="tel:+81-XXX-XXXX" class="contact-btn">📞 <span data-i18n="guidebook.footer.call">Call
+                    Host</span></a>
+        </div>
+        <p class="copyright">© 2025 Japan Villas</p>
+    </footer>
+
+    <script src="js/guidebook-lakeside-inn.js"></script>
+    <script src="js/lang-dropdown.js"></script>
+</body>
+
+</html>
