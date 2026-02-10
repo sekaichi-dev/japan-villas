@@ -256,7 +256,6 @@ body.show-header-search .nav-center {
 .header-search-input-wrapper:focus-within {
     background: rgba(255, 255, 255, 0.15);
     border-color: rgba(255, 255, 255, 0.3);
-    width: 320px;
 }
 
 .header-search-input {
@@ -461,6 +460,35 @@ body.show-header-search .nav-center {
     border: 1px solid rgba(255, 255, 255, 0.2);
     padding: 1rem 2rem;
     border-radius: 50px;
+}
+
+/* Scroll-Triggered Mobile Menu (Desktop & Tablet) */
+/* When header search is visible (scrolled past hero), hide Auth Dropdown/Login Button and show Hamburger */
+body.show-header-search .auth-dropdown,
+body.show-header-search .btn-login {
+    display: none !important;
+}
+
+body.show-header-search .mobile-menu-btn {
+    display: flex !important;
+}
+
+/* Ensure mobile menu button is hidden by default on desktop (>768px) */
+@media (min-width: 769px) {
+    .mobile-menu-btn {
+        display: none;
+    }
+}
+
+/* Tablet Logo Override (769px - 1024px) - Use Abbreviated "JV" */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .logo-desktop {
+        display: none !important;
+    }
+
+    .logo-mobile {
+        display: block !important;
+    }
 }
 
 /* Old search-modal rules removed */
