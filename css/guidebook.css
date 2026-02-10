@@ -1678,3 +1678,60 @@ summary:focus-visible {
     color: var(--gb-accent-hover);
     border-color: var(--gb-accent-hover);
 }
+
+/* MV Niseko FAQ: Lake Houseと同じ“カードの余白”を強制 */
+details.content-card.living-accordion {
+    padding: 18px 18px !important;
+}
+
+details.content-card.living-accordion>summary.card-header {
+    padding: 14px 16px !important;
+}
+
+details.content-card.living-accordion .card-body {
+    padding: 12px 16px 16px !important;
+}
+
+/* summaryのデフォルト矢印を消す（Lake House寄せ） */
+details.content-card.living-accordion>summary::-webkit-details-marker {
+    display: none;
+}
+
+details.content-card.living-accordion>summary {
+    list-style: none;
+    cursor: pointer;
+}
+
+/* === FORCE: item-faq-0 をLake House風に（DOM構造に依存しない） === */
+#item-faq-0 {
+    padding: 0 !important;
+    /* 外枠の余白は消す */
+    overflow: hidden;
+    /* 角丸を綺麗に */
+}
+
+/* タイトル行（summary）をヘッダー化 */
+#item-faq-0>summary {
+    padding: 14px 16px !important;
+}
+
+/* 本文側（summary以外）に余白を入れる */
+#item-faq-0> :not(summary) {
+    padding: 12px 16px 16px !important;
+}
+
+/* デフォルト矢印を消す */
+#item-faq-0>summary::-webkit-details-marker {
+    display: none !important;
+}
+
+/* Disable interaction and hide custom chevron */
+#item-faq-0>summary {
+    list-style: none !important;
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+#item-faq-0>summary::after {
+    display: none !important;
+}
