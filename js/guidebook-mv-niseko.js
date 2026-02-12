@@ -1149,10 +1149,12 @@ const guidebookData = {
                     title: { en: "What if it's cold?", jp: "寒い時どうすればいいですか？" },
                     collapsible: true,
                     content: {
-                        en: `<p>If the room is cold, please try using the air conditioner first. Using the panel heater together will help keep the room warmer.</p>`,
-                        jp: `<p>お部屋が寒い場合は、まずエアコンの暖房運転をお試しください。<br>
-                            必要に応じてパネルヒーターも併用すると、より暖かくなります。</p>
-                            <p><a href="#" onclick="scrollToId('item-facility-1', event); return false;">👉 暖房・給湯器の案内はこちら</a></p>`
+                        en: `<p>1. For a comfortable stay, we recommend setting the panel heaters to "3-5" in the living room and "4 or higher" in the bedroom.</p>
+                        <p>2. Using the air conditioner in combination is also effective. However, please be careful as turning on all air conditioners in the bedrooms and living room simultaneously may cause the breaker to trip.</p>`,
+                        jp: `<p>1. リビングは「3〜5」、<br>
+                            寝室は「4以上」にパネルヒーターを設定いただくと快適にお過ごしいただけます。</p>
+                            <p>2. エアコンも合わせて併用していただくと暖かいので、お試しください。<br>
+                            なお、寝室とリビングのすべてのエアコンを同時にONにするとブレーカーが落ちる可能性がありますので、ご注意ください。</p>`
                     }
                 },
                 {

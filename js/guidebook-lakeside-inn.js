@@ -2786,3 +2786,94 @@ window.toggleNeighborhoodExtra = function (btn) {
     }
 };
 
+
+// ============================================
+// MOBILE NEIGHBORHOOD TOGGLE FIX (Robust)
+// ============================================
+(function() {
+    // 1. Function to initialize the Neighborhood Supermarket section
+    function initNeighborhoodSupermarket() {
+        if (window.innerWidth > 768) return; // Mobile only
+
+        // Find the section by text content to be safe
+        const headings = Array.from(document.querySelectorAll('strong, h3, h4, .guide-sub-title'));
+        const targetHeading = headings.find(el => 
+            el.textContent.includes('Supermarkets & Daily Goods') || 
+            el.textContent.includes('生活用品・スーパー')
+        );
+
+        if (!targetHeading) return;
+
+        // Navigate to the list container
+        // Structure: Item Container -> Content -> UL
+        // Usually targetHeading is inside a strong or h4, and the ul is close by.
+        // In the current JS string structure:
+        // Item -> Title (hidden or separate) -> Content -> UL
+        // Actually, the strong tag "Supermarkets & Daily Goods" might be the title rendered by guidebook.js
+        // Let's look for the UL specifically.
+
+        // Strategy: Find the UL that contains "7-Eleven Nojiriko" or "セブンイレブン 野尻湖店"
+        const listItems = Array.from(document.querySelectorAll('li'));
+        const anchorItem = listItems.find(li => 
+            li.textContent.includes('7-Eleven Nojiriko') || 
+            li.textContent.includes('セブンイレブン 野尻湖店')
+        );
+
+        if (!anchorItem) return;
+
+        const ul = anchorItem.closest('ul');
+        if (!ul) return;
+
+        // Apply classes to items
+        const items = Array.from(ul.children);
+        items.forEach((li, index) => {
+            if (index < 3) {
+                // Top 3 fixed
+                li.classList.remove('mobile-extra-item');
+                li.style.display = ''; // Reset display
+            } else {
+                // Others hidden
+                li.classList.add('mobile-extra-item');
+                // Ensure default state is closed
+                if (!ul.nextElementSibling || !ul.nextElementSibling.classList.contains('neighborhood-show-more-container') || ul.nextElementSibling.getAttribute('data-expanded') !== 'true') {
+                    li.classList.remove('open');
+                }
+            }
+        });
+
+        // Ensure toggle button exists
+        let toggleBtn = ul.nextElementSibling;
+        if (!toggleBtn || !toggleBtn.classList.contains('neighborhood-show-more-container')) {
+            // Create if missing
+            const lang = window.currentLang || 'en';
+            toggleBtn = document.createElement('div');
+            toggleBtn.className = 'neighborhood-show-more-container';
+            toggleBtn.setAttribute('onclick', 'window.toggleNeighborhoodExtra(this)');
+            toggleBtn.innerHTML = `
+                <span class="show-more-text">${lang === 'jp' ? 'その他を見る' : 'Show More'}</span>
+                <span class="show-more-icon">▼</span>
+            `;
+            ul.parentNode.insertBefore(toggleBtn, ul.nextSibling);
+        }
+    }
+
+    // 2. Observer to re-run when DOM changes (Tab switch)
+    const observer = new MutationObserver((mutations) => {
+        let shouldInit = false;
+        mutations.forEach(mutation => {
+            if (mutation.addedNodes.length > 0) shouldInit = true;
+        });
+        if (shouldInit) {
+             // Debounce slightly
+             setTimeout(initNeighborhoodSupermarket, 100);
+        }
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    // 3. Initial run
+    document.addEventListener('DOMContentLoaded', initNeighborhoodSupermarket);
+    // Also run immediately in case DOM is ready
+    initNeighborhoodSupermarket();
+
+})();

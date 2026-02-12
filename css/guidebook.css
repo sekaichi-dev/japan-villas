@@ -2388,58 +2388,55 @@ details.content-card.living-accordion>summary {
         transition: transform 0.3s ease;
     }
 }
+
 /* ============================================
    MOBILE NEIGHBORHOOD BUTTON STYLES
    Convert "View Map" links to mini arrow buttons
    ============================================ */
 @media (max-width: 768px) {
-    /* Ensure list item handles button positioning */
+
     .neighborhood-list li {
         position: relative;
-        padding-right: 50px; /* Space for the button */
+        padding-right: 56px;
     }
 
-    /* Transform the link into a mini button */
-    .neighborhood-list li a {
-        position: absolute;
-        top: 50%;
-        right: 0;
-        transform: translateY(-50%);
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 8px;
-        /* Hide original text */
-        color: transparent;
-        font-size: 0;
-        text-decoration: none;
-        border: none; 
-        transition: all 0.2s ease;
+    .neighborhood-list li a,
+    .neighborhood-list li button {
+        position: absolute !important;
+        top: 50% !important;
+        right: 12px !important;
+        transform: translateY(-50%) !important;
+
+        width: 34px !important;
+        height: 34px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+
+        background: rgba(255, 255, 255, 0.1) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        border-radius: 10px !important;
+
+        color: transparent !important;
+        font-size: 0 !important;
+        text-decoration: none !important;
+        padding: 0 !important;
+        box-shadow: none !important;
+
+        transition: transform .15s ease, background .15s ease !important;
     }
 
-    /* Add the arrow icon */
-    .neighborhood-list li a::after {
-        content: '▶';
-        font-size: 14px;
-        color: var(--gb-text-muted); /* Muted color for elegance */
-        margin-left: 2px; /* Visual optical adjustment */
-        opacity: 0.8;
+    .neighborhood-list li a::after,
+    .neighborhood-list li button::after {
+        content: "▶";
+        font-size: 13px;
+        color: var(--gb-text-muted);
+        opacity: .85;
     }
 
-    /* Hover/Active states */
     .neighborhood-list li a:active,
-    .neighborhood-list li a:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: translateY(-50%) scale(0.95);
-        border: none;
-        color: transparent;
-    }
-    
-    .neighborhood-list li a:hover::after {
-        color: var(--gb-text);
-        opacity: 1;
+    .neighborhood-list li button:active {
+        transform: translateY(-50%) scale(0.95) !important;
+        background: rgba(255, 255, 255, 0.18) !important;
     }
 }
