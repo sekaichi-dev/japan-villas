@@ -1152,9 +1152,9 @@ const guidebookData = {
                         en: `<p>1. For a comfortable stay, we recommend setting the panel heaters to "3-5" in the living room and "4 or higher" in the bedroom.</p>
                         <p>2. Using the air conditioner in combination is also effective. However, please be careful as turning on all air conditioners in the bedrooms and living room simultaneously may cause the breaker to trip.</p>`,
                         jp: `<p>1. リビングは「3〜5」、<br>
-                            寝室は「4以上」にパネルヒーターを設定いただくと快適にお過ごしいただけます。</p>
-                            <p>2. エアコンも合わせて併用していただくと暖かいので、お試しください。<br>
-                            なお、寝室とリビングのすべてのエアコンを同時にONにするとブレーカーが落ちる可能性がありますので、ご注意ください。</p>`
+寝室は「4以上」にパネルヒーターを設定いただくと快適にお過ごしいただけます。</p>
+<p>2. エアコンも合わせて併用していただくと暖かいので、お試しください。<br>
+なお、寝室とリビングのすべてのエアコンを同時にONにするとブレーカーが落ちる可能性がありますので、ご注意ください。</p>`
                     }
                 },
                 {
