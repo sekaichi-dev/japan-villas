@@ -179,15 +179,15 @@ const guidebookData = {
                 title: { en: "Taxi from Kutchan Station", jp: "倶知安駅からタクシー" },
                 content: {
                     en: `<p><strong>IBS Limousine Niseko Office</strong><br>
-                        TEL: 0136-55-8602</p>
+                        TEL: <a href="tel:0136558602" class="phone-link" style="color: inherit; text-decoration: none;">0136-55-8602</a></p>
                         <p><strong>World Kotsu Co., Ltd.</strong><br>
-                        TEL: 0136-33-2114</p>
+                        TEL: <a href="tel:0136332114" class="phone-link" style="color: inherit; text-decoration: none;">0136-33-2114</a></p>
                         <p>The taxi app "GO" is available during the winter season (mid-December to mid-March)..<br>
                         If you plan to use a taxi, we recommend downloading the app in advance.</p>`,
                     jp: `<p><strong>（株）アイビーエスリムジン ニセコ営業所</strong><br>
-                        TEL：0136-55-8602</p>
+                        TEL：<a href="tel:0136558602" class="phone-link" style="color: inherit; text-decoration: none;">0136-55-8602</a></p>
                         <p><strong>ワールド交通株式会社</strong><br>
-                        TEL：0136-33-2114</p>
+                        TEL：<a href="tel:0136332114" class="phone-link" style="color: inherit; text-decoration: none;">0136-33-2114</a></p>
                         <p>毎年 12月中旬〜3月中旬 の冬季期間中は、配車アプリ「GO」をご利用いただけます。<br>
                         タクシーでの移動を予定されている方は、事前にアプリをダウンロードしておくことをおすすめします。</p>`
                 }
@@ -1101,8 +1101,8 @@ const guidebookData = {
                     icon: "phone",
                     title: { en: "Emergency Contact", jp: "緊急時連絡先" },
                     content: {
-                        en: `<p><strong>Manager (Matsumoto):</strong> 070-8487-6820</p>`,
-                        jp: `<p><strong>管理者 (松本):</strong> 070-8487-6820</p>`
+                        en: `<p><strong>Manager (Matsumoto):</strong> <a href="tel:07084876820" class="phone-link" style="color: inherit; text-decoration: none;">070-8487-6820</a></p>`,
+                        jp: `<p><strong>管理者 (松本):</strong> <a href="tel:07084876820" class="phone-link" style="color: inherit; text-decoration: none;">070-8487-6820</a></p>`
                     }
                 }
             ]

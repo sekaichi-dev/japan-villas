@@ -2318,3 +2318,128 @@ details.content-card.living-accordion>summary {
 .entrance-img:hover {
     transform: scale(1.02);
 }
+
+/* ============================================
+   NEIGHBORHOOD MOBILE TOGGLE
+   ============================================ */
+.neighborhood-show-more-container {
+    display: none;
+}
+
+@media (max-width: 768px) {
+
+    /* Ensure the list wrapper is block so height transitions work on items */
+    .neighborhood-list.two-col {
+        display: block !important;
+        grid-template-columns: none !important;
+        gap: 0 !important;
+        /* Remove grid gap, use margins */
+    }
+
+    .mobile-extra-item {
+        max-height: 0;
+        opacity: 0;
+        margin: 0 !important;
+        padding: 0 !important;
+        border: none !important;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease, margin 0.3s ease, padding 0.3s ease;
+        visibility: hidden;
+    }
+
+    .mobile-extra-item.open {
+        max-height: 200px;
+        /* Sufficient for single list item */
+        opacity: 1;
+        margin-bottom: 1rem !important;
+        /* Restore */
+        padding-bottom: 0.75rem !important;
+        /* Restore */
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        visibility: visible;
+    }
+
+    .neighborhood-show-more-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0.75rem;
+        margin-top: 0.5rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: var(--gb-radius);
+        cursor: pointer;
+        color: var(--gb-accent);
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .neighborhood-show-more-container:active {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .show-more-icon {
+        display: inline-block;
+        font-size: 0.7rem;
+        transition: transform 0.3s ease;
+    }
+}
+/* ============================================
+   MOBILE NEIGHBORHOOD BUTTON STYLES
+   Convert "View Map" links to mini arrow buttons
+   ============================================ */
+@media (max-width: 768px) {
+    /* Ensure list item handles button positioning */
+    .neighborhood-list li {
+        position: relative;
+        padding-right: 50px; /* Space for the button */
+    }
+
+    /* Transform the link into a mini button */
+    .neighborhood-list li a {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translateY(-50%);
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        /* Hide original text */
+        color: transparent;
+        font-size: 0;
+        text-decoration: none;
+        border: none; 
+        transition: all 0.2s ease;
+    }
+
+    /* Add the arrow icon */
+    .neighborhood-list li a::after {
+        content: '▶';
+        font-size: 14px;
+        color: var(--gb-text-muted); /* Muted color for elegance */
+        margin-left: 2px; /* Visual optical adjustment */
+        opacity: 0.8;
+    }
+
+    /* Hover/Active states */
+    .neighborhood-list li a:active,
+    .neighborhood-list li a:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateY(-50%) scale(0.95);
+        border: none;
+        color: transparent;
+    }
+    
+    .neighborhood-list li a:hover::after {
+        color: var(--gb-text);
+        opacity: 1;
+    }
+}

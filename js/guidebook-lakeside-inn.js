@@ -1043,37 +1043,40 @@ const guidebookData = window.guidebookData = {
                                     <a href="https://maps.app.goo.gl/AwKBxDQRZknxXWaUA" target="_blank">View Map</a>
                                 </li>
                                 <li>
-                                    <strong>7-Eleven Shinanomachi Furuma</strong>
-                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(8 min drive)</div>
-                                    <a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">View Map</a>
-                                </li>
-                                <li>
                                     <strong>Matsumoto Kiyoshi Furuma</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(8 min drive)</div>
                                     <a href="https://maps.app.goo.gl/RsZJ9Vxb7pGENTUQ7" target="_blank">View Map</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
+                                    <strong>7-Eleven Shinanomachi Furuma</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(8 min drive)</div>
+                                    <a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">View Map</a>
+                                </li>
+                                <li class="mobile-extra-item">
                                     <strong>Komeri Shinanomachi</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(8 min drive)</div>
                                     <a href="https://maps.app.goo.gl/qUL7xc5uUWoJMPw79" target="_blank">View Map</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
                                     <strong>Minemura Sake Shop</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(8 min drive)</div>
                                     <a href="https://maps.app.goo.gl/GmhirMwhEaAkA3SRA" target="_blank">View Map</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
                                     <strong>Daiichi Supermarket Furuma</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(8 min drive)</div>
                                     <a href="https://maps.app.goo.gl/oroYjsQDXvs9zWwn6" target="_blank">View Map</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
                                     <strong>Coin Laundry (Laundryia)</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(10 min drive)</div>
-
                                     <a href="https://maps.app.goo.gl/2HAPqQzSKDrrxgQc9" target="_blank">View Map</a>
                                 </li>
-                            </ul>`,
+                            </ul>
+                            <div class="neighborhood-show-more-container" onclick="window.toggleNeighborhoodExtra(this)">
+                                <span class="show-more-text">Show More</span>
+                                <span class="show-more-icon">▼</span>
+                            </div>`,
                         jp: `<ul class="guide-list neighborhood-list two-col">
                                 <li>
                                     <strong>セブンイレブン 野尻湖店</strong>
@@ -1086,37 +1089,40 @@ const guidebookData = window.guidebookData = {
                                     <a href="https://maps.app.goo.gl/AwKBxDQRZknxXWaUA" target="_blank">地図を見る</a>
                                 </li>
                                 <li>
-                                    <strong>セブンイレブン 信濃町古間店</strong>
-                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
-                                    <a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">地図を見る</a>
-                                </li>
-                                <li>
                                     <strong>マツモトキヨシ 古間店</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
                                     <a href="https://maps.app.goo.gl/RsZJ9Vxb7pGENTUQ7" target="_blank">地図を見る</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
+                                    <strong>セブンイレブン 信濃町古間店</strong>
+                                    <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
+                                    <a href="https://maps.app.goo.gl/MWjSvAo96oqHvm9m7" target="_blank">地図を見る</a>
+                                </li>
+                                <li class="mobile-extra-item">
                                     <strong>ホームセンター（コメリ 信濃町店）</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
                                     <a href="https://maps.app.goo.gl/qUL7xc5uUWoJMPw79" target="_blank">地図を見る</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
                                     <strong>みねむら酒店</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
                                     <a href="https://maps.app.goo.gl/GmhirMwhEaAkA3SRA" target="_blank">地図を見る</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
                                     <strong>スーパーマーケット（第一スーパー 古間店）</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で8分)</div>
                                     <a href="https://maps.app.goo.gl/oroYjsQDXvs9zWwn6" target="_blank">地図を見る</a>
                                 </li>
-                                <li>
+                                <li class="mobile-extra-item">
                                     <strong>コインランドリー（Laundryia）</strong>
                                     <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で10分)</div>
-
                                     <a href="https://maps.app.goo.gl/2HAPqQzSKDrrxgQc9" target="_blank">地図を見る</a>
                                 </li>
-                            </ul>`
+                            </ul>
+                            <div class="neighborhood-show-more-container" onclick="window.toggleNeighborhoodExtra(this)">
+                                <span class="show-more-text">その他を見る</span>
+                                <span class="show-more-icon">▼</span>
+                            </div>`
                     }
                 },
                 {
@@ -2739,4 +2745,44 @@ window.toggleDiningAccordion = function (headerElement) {
     }
 };
 
+window.toggleNeighborhoodExtra = function (btn) {
+    const container = btn.closest('.guidebook-section') || document.body;
+    // Find the previous sibling which is the UL
+    // The button is immediately after the UL in the new HTML structure
+    const list = btn.previousElementSibling;
+
+    if (!list || !list.classList.contains('neighborhood-list')) {
+        console.warn('Neighborhood list not found');
+        return;
+    }
+
+    const hiddenItems = list.querySelectorAll('.mobile-extra-item');
+    const isExpanded = btn.getAttribute('data-expanded') === 'true';
+    const textSpan = btn.querySelector('.show-more-text');
+    const iconSpan = btn.querySelector('.show-more-icon');
+
+    if (isExpanded) {
+        // Collapse
+        hiddenItems.forEach(item => {
+            item.classList.remove('open');
+        });
+        btn.setAttribute('data-expanded', 'false');
+
+        // Update text based on lang
+        const lang = window.currentLang || 'en';
+        if (textSpan) textSpan.textContent = lang === 'jp' ? 'その他を見る' : 'Show Others';
+        if (iconSpan) iconSpan.style.transform = 'rotate(0deg)';
+
+    } else {
+        // Expand
+        hiddenItems.forEach(item => {
+            item.classList.add('open');
+        });
+        btn.setAttribute('data-expanded', 'true');
+
+        const lang = window.currentLang || 'en';
+        if (textSpan) textSpan.textContent = lang === 'jp' ? '閉じる' : 'Close';
+        if (iconSpan) iconSpan.style.transform = 'rotate(180deg)';
+    }
+};
 
