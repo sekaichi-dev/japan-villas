@@ -776,7 +776,7 @@ summary:focus-visible {
 /* Section Styling */
 .guidebook-section,
 .content-card {
-    margin-bottom: 2.5rem;
+    margin-bottom: 48px;
     scroll-margin-top: 160px;
     /* Header (60) + TopNav (50) + Buffer (50) */
 }
@@ -1702,36 +1702,619 @@ details.content-card.living-accordion>summary {
     cursor: pointer;
 }
 
-/* === FORCE: item-faq-0 をLake House風に（DOM構造に依存しない） === */
-#item-faq-0 {
+/* === FORCE: FAQ items to Lake House style (Card UI, Non-interactive) === */
+[id^="item-faq-"] {
     padding: 0 !important;
-    /* 外枠の余白は消す */
+    /* Remove outer padding */
     overflow: hidden;
-    /* 角丸を綺麗に */
+    /* Clean rounded corners */
 }
 
-/* タイトル行（summary）をヘッダー化 */
-#item-faq-0>summary {
+/* Header styling */
+[id^="item-faq-"]>summary {
     padding: 14px 16px !important;
-}
-
-/* 本文側（summary以外）に余白を入れる */
-#item-faq-0> :not(summary) {
-    padding: 12px 16px 16px !important;
-}
-
-/* デフォルト矢印を消す */
-#item-faq-0>summary::-webkit-details-marker {
-    display: none !important;
-}
-
-/* Disable interaction and hide custom chevron */
-#item-faq-0>summary {
     list-style: none !important;
     cursor: default !important;
     pointer-events: none !important;
+    justify-content: flex-start !important;
+    /* Left Align */
+    gap: 12px;
 }
 
-#item-faq-0>summary::after {
+/* Body styling */
+[id^="item-faq-"]> :not(summary) {
+    padding: 12px 16px 16px !important;
+}
+
+/* Hide default markers and custom chevrons */
+[id^="item-faq-"]>summary::-webkit-details-marker,
+[id^="item-faq-"]>summary::after {
     display: none !important;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    cursor: pointer;
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 90vh;
+    animation-name: zoom;
+    animation-duration: 0.3s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes zoom {
+    from {
+        transform: translate(-50%, -50%) scale(0)
+    }
+
+    to {
+        transform: translate(-50%, -50%) scale(1)
+    }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.click-to-enlarge {
+    font-size: 0.8em;
+    color: #888;
+    margin-bottom: 0.2rem;
+    text-align: right;
+}
+
+/* Kitchen Accordion List UI */
+.kitchen-ui-container {
+    padding: 0;
+    margin-top: 1rem;
+    border: none;
+    background: transparent;
+}
+
+.kitchen-intro-text {
+    color: var(--gb-text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.kitchen-accordion-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.kitchen-accordion-item {
+    background: var(--gb-card-bg);
+    border: 1px solid var(--gb-border);
+    border-radius: var(--gb-radius);
+    overflow: hidden;
+    transition: border-color 0.2s;
+}
+
+.kitchen-accordion-item.active {
+    border-color: var(--gb-accent);
+}
+
+.kitchen-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: none;
+    color: var(--gb-text);
+    font-size: 1rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.kitchen-accordion-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.kitchen-header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.kitchen-accordion-header::after {
+    content: '▶';
+    font-size: 0.8em;
+    color: var(--gb-text-muted);
+    transition: transform 0.3s ease;
+    margin-left: 1rem;
+}
+
+.kitchen-accordion-item.active .kitchen-accordion-header::after {
+    transform: rotate(90deg);
+}
+
+.kitchen-accordion-body {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+}
+
+.kitchen-accordion-item.active .kitchen-accordion-body {
+    max-height: 2000px;
+    opacity: 1;
+}
+
+.kitchen-body-inner {
+    padding: 1.25rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.kitchen-item-desc {
+    color: var(--gb-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.kitchen-steps {
+    list-style: decimal;
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gb-text);
+}
+
+.kitchen-steps li {
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* Nested Image Accordion */
+.kitchen-image-accordion {
+    margin-top: 0.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-accordion-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.75rem 0;
+    background: transparent;
+    border: none;
+    color: var(--gb-accent);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    text-align: left;
+}
+
+.image-accordion-toggle:hover {
+    color: var(--gb-accent-hover);
+}
+
+.image-accordion-toggle::after {
+    content: '▶';
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+    color: var(--gb-accent);
+}
+
+.image-accordion-toggle.active::after {
+    transform: rotate(90deg);
+}
+
+.image-accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+}
+
+.image-accordion-content.active {
+    max-height: 800px;
+}
+
+.kitchen-img-wrapper {
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: var(--gb-radius-sm);
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.kitchen-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.kitchen-img:hover {
+    transform: scale(1.02);
+}
+
+
+.kitchen-intro-text {
+    color: var(--gb-text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+.kitchen-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    justify-content: center;
+}
+
+.kitchen-tab-btn {
+    background: var(--gb-card-bg);
+    border: 1px solid var(--gb-border);
+    color: var(--gb-text-muted);
+    padding: 0.7rem 1.2rem;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.kitchen-tab-btn:hover {
+    border-color: var(--gb-accent);
+    color: var(--gb-text);
+}
+
+/* Hover gold line effect */
+.kitchen-tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background: var(--gb-accent);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    border-radius: 2px;
+}
+
+.kitchen-tab-btn:hover::after {
+    transform: scaleX(1);
+}
+
+.kitchen-tab-btn.active {
+    background: rgba(201, 168, 97, 0.15);
+    /* Subtle gold background */
+    border-color: var(--gb-accent);
+    color: var(--gb-accent);
+    box-shadow: 0 0 15px rgba(201, 168, 97, 0.1);
+}
+
+.kitchen-tab-btn.active::after {
+    transform: scaleX(1);
+}
+
+.kitchen-contents-area {
+    position: relative;
+    min-height: 200px;
+}
+
+.kitchen-item-content {
+    display: none;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.kitchen-item-content.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.kitchen-item-header {
+    margin-bottom: 1.25rem;
+}
+
+.kitchen-item-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--gb-accent);
+}
+
+.kitchen-item-desc {
+    color: var(--gb-text-muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.kitchen-steps {
+    margin: 1.5rem 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: kitchen-counter;
+}
+
+.kitchen-steps li {
+    margin-bottom: 0.8rem;
+    position: relative;
+    padding-left: 2.2rem;
+    line-height: 1.6;
+    color: var(--gb-text);
+    font-size: 0.95rem;
+}
+
+.kitchen-steps li::before {
+    counter-increment: kitchen-counter;
+    content: counter(kitchen-counter);
+    position: absolute;
+    left: 0;
+    top: 0.1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--gb-accent);
+    color: #000;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+.kitchen-images {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-top: 2rem;
+}
+
+.kitchen-img-wrapper {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--gb-radius);
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.kitchen-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    cursor: pointer;
+    transition: transform 0.4s ease;
+}
+
+.kitchen-img:hover {
+    transform: scale(1.03);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .kitchen-tabs {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.5rem;
+    }
+
+    .kitchen-tab-btn {
+        text-align: left;
+        padding: 0.8rem 1.5rem;
+    }
+
+    .kitchen-tab-btn::after {
+        left: 0;
+        width: 4px;
+        height: 100%;
+        bottom: 0;
+        top: 0;
+        transform: scaleY(0);
+        transform-origin: top;
+    }
+
+    .kitchen-tab-btn:hover::after,
+    .kitchen-tab-btn.active::after {
+        transform: scaleY(1);
+    }
+
+    .kitchen-images {
+        grid-template-columns: 1fr;
+    }
+
+    .kitchen-img-wrapper {
+        aspect-ratio: 4 / 3;
+    }
+}
+
+/* Panel Heater Layout */
+/* Panel Heater Layout */
+.panel-heater-images {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 32px 0;
+}
+
+.panel-heater-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+/* Increased specificity to override .guidebook-section img */
+.panel-heater-images .panel-heater-img {
+    width: 100%;
+    height: auto;
+    border-radius: var(--gb-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    object-fit: cover;
+}
+
+.panel-heater-images .panel-heater-img:hover {
+    transform: scale(1.02);
+}
+
+.panel-heater-caption {
+    margin-top: 8px;
+    font-size: 0.9em;
+    color: var(--gb-text-muted);
+    text-align: center;
+}
+
+@media (min-width: 769px) {
+    .panel-heater-images {
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .panel-heater-images .panel-heater-img {
+        /* Enforce equal height using aspect-ratio */
+        aspect-ratio: 4 / 3;
+        height: auto;
+        width: 100%;
+    }
+}
+
+/* Balcony Image */
+.balcony-img {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: var(--gb-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    /* Default (Mobile) */
+    aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 769px) {
+    .balcony-img {
+        aspect-ratio: 16 / 9;
+    }
+}
+
+/* Trash Image */
+.trash-img {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: var(--gb-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    /* Default (Mobile) */
+    aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 769px) {
+    .trash-img {
+        aspect-ratio: 11 / 9;
+    }
+}
+
+.trash-img:hover {
+    transform: scale(1.02);
+}
+
+/* Changing Room Image */
+.changing-img {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: var(--gb-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    /* Default (Mobile) */
+    aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 769px) {
+    .changing-img {
+        aspect-ratio: 13 / 9;
+    }
+}
+
+.changing-img:hover {
+    transform: scale(1.02);
+}
+
+
+/* Entrance Image */
+.entrance-img {
+    width: 100%;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    border-radius: var(--gb-radius);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    /* Default (Mobile) */
+    aspect-ratio: 4 / 5;
+}
+
+@media (min-width: 769px) {
+    .entrance-img {
+        aspect-ratio: 11 / 9;
+    }
+}
+
+.entrance-img:hover {
+    transform: scale(1.02);
 }

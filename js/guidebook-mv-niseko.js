@@ -200,29 +200,285 @@ const guidebookData = {
             title: { en: "Room & Equipment Guide", jp: "各部屋と備品のご案内" },
             items: [
                 {
-                    icon: "tv",
-                    title: { en: "Living Room", jp: "リビング" },
+                    icon: "door",
+                    title: { en: "Entrance", jp: "玄関" },
                     content: {
-                        en: `<p>Enjoy your stay in the spacious living room.</p>
-                            <p><img src="img/mv_niseko/living.jpg" style="width:100%; border-radius:12px; margin-top:1rem;" alt="Living Room"></p>`,
-                        jp: `<p>広々としたリビングでおくつろぎください。</p>
-                            <p><img src="img/mv_niseko/living.jpg" style="width:100%; border-radius:12px; margin-top:1rem;" alt="Living Room"></p>`
+                        en: `<p><img src="img/mv_niseko/entrance.jpg" class="entrance-img" loading="lazy" alt="Entrance" onclick="openLightbox(this.src)"></p>
+                            <p>This is the entrance space.<br>
+                            Please remove your shoes here and change into indoor slippers before entering.</p>
+                            <p>The tiled floor has floor heating, making it suitable for drying wet shoes or ski/snowboard equipment.</p>
+                            <p>Please remove snow and moisture in the entrance area before proceeding inside.</p>`,
+                        jp: `<p><img src="img/mv_niseko/entrance.jpg" class="entrance-img" loading="lazy" alt="玄関" onclick="openLightbox(this.src)"></p>
+                            <p>こちらが玄関スペースです。<br>
+                            玄関では必ず靴を脱いで、室内用スリッパに履き替えてからお入りください。</p>
+                            <p>床のタイル部分には床暖房が入っており、<br>
+                            濡れた靴やスキー・スノーボード用品を乾かすのにも適しています。</p>
+                            <p>雪や水分は玄関内で落としてから、室内へお進みください。</p>`
                     }
                 },
                 {
-                    icon: "water",
-                    title: { en: "Heating & Water Heater", jp: "暖房・給湯器" },
+                    icon: "tv",
+                    title: { en: "Living Room", jp: "リビング" },
                     content: {
-                        en: `<p>Instructions for heating and hot water system. Detailed manual is available inside the villa.</p>`,
-                        jp: `<p>暖房と給湯器の操作方法です。詳細なマニュアルは室内にございます。</p>`
+                        en: `<p><img src="img/mv_niseko/living.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Living Room"></p>
+                            <p>A living room equipped with air conditioning and panel heaters for comfort in any season.<br>
+                            Featuring a spacious sofa, dining table, and TV, it is the perfect space for family and group gatherings and meals.</p>
+                            <p>Enjoy a relaxing time while gazing at the magnificent view of Mt. Yotei and the nature of the four seasons through the wide windows.</p>`,
+                        jp: `<p><img src="img/mv_niseko/living.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Living Room"></p>
+                            <p>エアコン、パネルヒーターを完備した、季節を問わず快適にお過ごしいただけるリビングルームです。<br>
+                            ゆったりとしたソファー、ダイニングテーブル、テレビを備え、<br>
+                            ご家族やグループでの団らんや食事の時間に最適な空間となっています。</p>
+                            <p>窓一面には羊蹄山の雄大な景色が広がり、<br>
+                            四季折々の自然を眺めながら、くつろぎのひとときをお楽しみいただけます。</p>`
+                    }
+                },
+                {
+                    icon: "rooms",
+                    title: { en: "Bedroom 1", jp: "寝室1" },
+                    content: {
+                        en: `<p><img src="img/mv_niseko/bedroom1.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Bedroom 1"></p>
+                            <p>A relaxing bedroom equipped with one double bed.<br>
+                            It features air conditioning and panel heaters, ensuring a comfortable sleep in any season.</p>
+                            <p>This simple and quiet space allows you to slowly heal the fatigue of your journey.</p>`,
+                        jp: `<p><img src="img/mv_niseko/bedroom1.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="寝室1"></p>
+                            <p>ダブルベッド1台を備えた、落ち着いた雰囲気のベッドルームです。<br>
+                            エアコンとパネルヒーターを完備しており、季節を問わず快適にお休みいただけます。</p>
+                            <p>シンプルで静かな空間のため、旅の疲れをゆっくりと癒していただけます。</p>`
+                    }
+                },
+                {
+                    icon: "rooms",
+                    title: { en: "Bedroom 2", jp: "寝室2" },
+                    content: {
+                        en: `<p><img src="img/mv_niseko/bedroom2.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Bedroom 2"></p>
+                            <p>A bright and easy-to-use bedroom equipped with two single beds.<br>
+                            Equipped with air conditioning and panel heaters, you can stay comfortably even in the winter.</p>
+                            <p>Natural light fills the room from the window, offering a refreshing wake-up in the morning.<br>
+                            This room is ideal for families or friends.</p>`,
+                        jp: `<p><img src="img/mv_niseko/bedroom2.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="寝室2"></p>
+                            <p>シングルベッド2台を備えた、明るく使い勝手の良いベッドルームです。<br>
+                            エアコンとパネルヒーターを完備しており、冬場も快適にお過ごしいただけます。</p>
+                            <p>窓からは自然光が入り、朝はすっきりとした目覚めをお楽しみいただけます。<br>
+                            ご家族やご友人同士でのご利用に適したお部屋です。</p>`
+                    }
+                },
+                {
+                    icon: "kitchen",
+                    id: "kitchen",
+                    title: { en: "Kitchen", jp: "キッチン" },
+                    content: {
+                        en: "Loading kitchen info...",
+                        jp: "キッチン情報を読み込み中..."
+                    }
+                },
+                {
+                    icon: "trash",
+                    title: { en: "Trash Bins", jp: "ゴミ箱" },
+                    content: {
+                        en: `<p><img src="img/mv_niseko/trash_bins_kitchen.jpg" class="trash-img" loading="lazy" alt="Trash Bins" onclick="openLightbox(this.src)"></p>
+                            <p>Trash bins are available in the kitchen.<br>
+                            Please sort your trash according to the rules below during your stay.</p>
+                            <ol style="padding-left: 1.5rem; line-height: 1.6; margin: 1rem 0;">
+                                <li style="margin-bottom: 0.5rem;"><strong>Burnable & Non-burnable: Same bag</strong></li>
+                                <li><strong>PET bottles, Cans, Bottles: Same bag</strong></li>
+                            </ol>
+                            <p>Trash bags are provided in the kitchen.<br>
+                            We appreciate your cooperation in sorting trash.</p>`,
+                        jp: `<p><img src="img/mv_niseko/trash_bins_kitchen.jpg" class="trash-img" loading="lazy" alt="ゴミ箱" onclick="openLightbox(this.src)"></p>
+                            <p>キッチンにゴミ箱をご用意しています。<br>
+                            滞在中に出たゴミは、下記の分別ルールに従ってご利用ください。</p>
+                            <ol style="padding-left: 1.5rem; line-height: 1.6; margin: 1rem 0;">
+                                <li style="margin-bottom: 0.5rem;"><strong>不燃ゴミ・可燃ゴミ：同じ袋</strong></li>
+                                <li><strong>ペットボトル・缶・ビン：同じ袋</strong></li>
+                            </ol>
+                            <p>ゴミ袋はキッチン内にご用意しています。<br>
+                            分別にご協力をお願いいたします。</p>`
+                    }
+                },
+                {
+                    icon: "bath",
+                    title: { en: "Changing Room", jp: "脱衣所" },
+                    content: {
+                        en: `<p>A changing space equipped with a washing machine and heating.<br>
+                            It can be used for changing after skiing/snowboarding and for drying wet clothes.</p>
+                            
+                            <h4 class="guide-sub-title">Changing Room Overview</h4>
+                            <p>Changing room equipped with a washing machine.<br>
+                            The room is heated, making it comfortable even in winter.<br>
+                            Convenient for changing after skiing/snowboarding and temporarily drying wear.</p>
+                            <p class="click-to-enlarge">Click image to enlarge</p>
+                            <p><img src="img/mv_niseko/changing_room_overview.jpg" class="changing-img" loading="lazy" alt="Changing Room" onclick="openLightbox(this.src)"></p>
+
+                            <h4 class="guide-sub-title">Floor Heating (Entrance & Changing Room)</h4>
+                            <p>Floor heating is installed in the tiled areas of the entrance and changing room.<br>
+                            Suitable for drying wet shoes and ski/snowboard equipment, keeping your feet warm.</p>
+                            <p><strong>During the winter snowboard season, please set the floor heating to "4".</strong></p>
+                            <p class="click-to-enlarge">Click image to enlarge</p>
+                            <p><img src="img/mv_niseko/floor_heating_panel.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="Floor Heating Panel" onclick="openLightbox(this.src)"></p>
+
+                            <h4 class="guide-sub-title">Floor Heating Controller</h4>
+                            <p>Floor heating is operated from the panel on the wall.<br>
+                            Use the On/Off button for power and adjust temperature with up/down buttons.</p>
+                            <p>Setting it to <strong>"4 or higher"</strong> in winter ensures a comfortable temperature for the entrance and changing room.</p>`,
+
+                        jp: `<p>洗濯機や暖房設備を備えた脱衣スペースです。<br>
+                            スキー・スノーボード後の着替えや、濡れた衣類の乾燥にもご利用いただけます。</p>
+                            
+                            <h4 class="guide-sub-title">脱衣所スペース</h4>
+                            <p>洗濯機を設置した脱衣所です。<br>
+                            室内は暖房が効いており、冬場でも快適にご利用いただけます。<br>
+                            スキー・スノーボード後の着替えや、ウェアの一時乾燥にも便利なスペースです。</p>
+                            <p class="click-to-enlarge">※画像をタップして拡大</p>
+                            <p><img src="img/mv_niseko/changing_room_overview.jpg" class="changing-img" loading="lazy" alt="脱衣所" onclick="openLightbox(this.src)"></p>
+
+                            <h4 class="guide-sub-title">床暖房（玄関・脱衣所）</h4>
+                            <p>玄関および脱衣所の床タイル部分には床暖房を設置しています。<br>
+                            濡れた靴やスキー・スノーボード用品の乾燥にも適しており、冬場でも足元が冷えにくい仕様です。</p>
+                            <p><strong>冬のスノーボードシーズン中は、床暖房の設定を「4」にしてご利用ください。</strong></p>
+                            <p class="click-to-enlarge">※画像をタップして拡大</p>
+                            <p><img src="img/mv_niseko/floor_heating_panel.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="床暖房" onclick="openLightbox(this.src)"></p>
+
+                            <h4 class="guide-sub-title">床暖房 操作パネルについて</h4>
+                            <p>床暖房の操作は、壁に設置されたパネルから行えます。<br>
+                            「入／切」ボタンで電源を操作し、温度設定は上下ボタンで調整してください。</p>
+                            <p>冬場は<strong>「4以上」</strong>を目安にご設定ください。<br>
+                            雪を室内に持ち込んでしまった場合や、<br>
+                            玄関でブーツやスノーボードを乾燥させる際は、<br>
+                            状況に応じて高めに調整してください。</p>`
+                    }
+                },
+                {
+                    icon: "bath",
+                    title: { en: "Bathroom", jp: "風呂" },
+                    content: {
+                        en: `<p><img src="img/mv_niseko/bathroom.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem; cursor:pointer;" alt="Bathroom" onclick="openLightbox(this.src)"></p>
+                            <p>A bathroom with a panoramic view of Mt. Yotei through the window.<br>
+                            Enjoy a relaxing bath while gazing at the majestic scenery during the day and the quiet atmosphere at night.</p>
+                            
+                            <h4 class="guide-sub-title">How to Use the Water Heater (Bathroom)</h4>
+                            <p><img src="img/mv_niseko/bath_water_heater.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="Water Heater Instructions" onclick="openLightbox(this.src)"></p>`,
+                        jp: `<p><img src="img/mv_niseko/bathroom.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem; cursor:pointer;" alt="風呂" onclick="openLightbox(this.src)"></p>
+                            <p>窓一面に羊蹄山を望むバスルームです。<br>
+                            昼は雄大な景色を、夜は静かな時間を楽しみながら、<br>
+                            ゆったりとご入浴いただけます。</p>`
+                    }
+                },
+                {
+                    icon: "amenities",
+                    title: { en: "Amenities", jp: "アメニティ" },
+                    content: {
+                        en: `<ul style="list-style-type: disc; padding-left: 1.5rem; line-height: 1.8; margin: 0;">
+                                <li>Shampoo (Botanist)</li>
+                                <li>Conditioner (Botanist)</li>
+                                <li>Body Soap (Nivea)</li>
+                                <li>Bath Towel</li>
+                                <li>Body Towel</li>
+                                <li>Toothbrush</li>
+                            </ul>`,
+                        jp: `<ul style="list-style-type: disc; padding-left: 1.5rem; line-height: 1.8; margin: 0;">
+                                <li>シャンプー（Botanist）</li>
+                                <li>コンディショナー（Botanist）</li>
+                                <li>ボディーソープ（Nivea）</li>
+                                <li>バスタオル</li>
+                                <li>ボディタオル</li>
+                                <li>歯ブラシ</li>
+                            </ul>`
+                    }
+                },
+                {
+                    icon: "laundry",
+                    title: { en: "Washing Machine", jp: "洗濯機" },
+                    content: {
+                        en: `<p>You can wash and dry your clothes using the following steps.<br>
+                            In step 2, you can choose from "Wash", "Wash & Dry", or "Dry".</p>
+                            
+                            <div style="display: flex; gap: 0.5rem; overflow-x: auto;">
+                                <div style="flex: 1; min-width: 0;">
+                                    <img src="img/mv_niseko/laundry_step1_power.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 1">
+                                    <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">Step 1: Power</p>
+                                </div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <img src="img/mv_niseko/laundry_step2_course_en.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 2">
+                                    <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">Step 2: Course</p>
+                                </div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <img src="img/mv_niseko/laundry_step3_start.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 3">
+                                    <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">Step 3: Start</p>
+                                </div>
+                            </div>`,
+                        jp: `<p>こちらの手順で洗濯と乾燥が可能です。<br>
+                            ②の際に「洗濯」「洗濯・乾燥」「乾燥」の三つよりコースをお選びできます。</p>
+                            
+                            <div style="display: flex; gap: 0.5rem; overflow-x: auto;">
+                                <div style="flex: 1; min-width: 0;">
+                                    <img src="img/mv_niseko/laundry_step1_power.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順1">
+                                    <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">手順① 電源</p>
+                                </div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <img src="img/mv_niseko/laundry_step2_course_jp.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順2">
+                                    <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">手順② コース選択</p>
+                                </div>
+                                <div style="flex: 1; min-width: 0;">
+                                    <img src="img/mv_niseko/laundry_step3_start.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順3">
+                                    <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">手順③ スタート</p>
+                                </div>
+                            </div>`
+                    }
+                },
+
+                {
+                    icon: "ac",
+                    title: { en: "Panel Heater Usage (Winter Caution)", jp: "パネルヒーターの使い方（冬季のご注意）" },
+                    content: {
+                        en: `<div class="panel-heater-images">
+            <div class="panel-heater-item">
+                <img src="img/mv_niseko/panel_heater_location.jpg" class="panel-heater-img" loading="lazy" alt="Panel Heater Location" onclick="openLightbox(this.src)">
+                <p class="panel-heater-caption">Location</p>
+            </div>
+            <div class="panel-heater-item">
+                <img src="img/mv_niseko/panel_heater_dial.jpg" class="panel-heater-img" loading="lazy" alt="Panel Heater Dial" onclick="openLightbox(this.src)">
+                <p class="panel-heater-caption">Dial</p>
+            </div>
+        </div>
+        <p>Panel heaters are installed by the windows in each room and the living room.<br>
+        In winter, air conditioners alone may not be sufficient, so <strong>please make sure to use the panel heaters.</strong></p>
+        <p>You can adjust the temperature by turning the dial.</p>
+        <p>During the winter season,<br>
+        we recommend setting the <strong>Living Room to "3-5"</strong> and the <strong>Bedroom to "4 or higher"</strong> for comfort.</p>
+        <p>* The higher the number, the warmer it gets.<br>
+        * You can leave the setting as is after use.</p>`,
+                        jp: `<div class="panel-heater-images">
+            <div class="panel-heater-item">
+                <img src="img/mv_niseko/panel_heater_location.jpg" class="panel-heater-img" loading="lazy" alt="パネルヒーター設置場所" onclick="openLightbox(this.src)">
+                <p class="panel-heater-caption">設置場所</p>
+            </div>
+            <div class="panel-heater-item">
+                <img src="img/mv_niseko/panel_heater_dial.jpg" class="panel-heater-img" loading="lazy" alt="パネルヒーターダイヤル" onclick="openLightbox(this.src)">
+                <p class="panel-heater-caption">ダイヤル</p>
+            </div>
+        </div>
+        <p>各お部屋およびリビングには、窓際にパネルヒーターを設置しています。<br>
+        冬季はエアコンだけでは十分に暖まらないため、<strong>必ずパネルヒーターをご使用ください。</strong></p>
+        <p>ダイヤルを回して温度を調整できます。</p>
+        <p>冬のスノーシーズンは、<br>
+        リビングは<strong>「3〜5」</strong>、<br>
+        寝室は<strong>「4以上」</strong>に設定いただくと快適にお過ごしいただけます。</p>
+        <p>※ 数字が大きいほど暖かくなります。<br>
+        ※ 使用後は、そのままの設定で問題ありません。</p>`
                     }
                 },
                 {
                     icon: "bbq",
-                    title: { en: "BBQ", jp: "BBQ" },
+                    title: { en: "Balcony", jp: "バルコニー" },
                     content: {
-                        en: `<p>BBQ equipment is available for use. Enjoy outdoor cooking!</p>`,
-                        jp: `<p>BBQ設備をご利用いただけます。屋外での料理をお楽しみください。</p>`
+                        en: `<p><img src="img/mv_niseko/bbq_deck.jpg" class="balcony-img" loading="lazy" alt="Balcony" onclick="openLightbox(this.src)"></p>
+                            <p>Enjoy a BBQ on the roofed deck while admiring the scenery.<br>
+                            Please spend a relaxing time in an open space surrounded by nature.</p>
+                            <p><strong>* BBQ rental is available only from May to November.</strong></p>`,
+                        jp: `<p><img src="img/mv_niseko/bbq_deck.jpg" class="balcony-img" loading="lazy" alt="バルコニー" onclick="openLightbox(this.src)"></p>
+                            <p>屋根付きデッキで、景色を眺めながらBBQをお楽しみいただけます。<br>
+                            自然に囲まれた開放的な空間で、ゆったりとした時間をお過ごしください。</p>
+                            <p>※ バーベキューは <strong>5月から11月までの期間のみ</strong> 貸し出しております。</p>`
                     }
                 }
             ]
@@ -235,40 +491,48 @@ const guidebookData = {
                     icon: "goods",
                     title: { en: "Shopping & Daily Necessities", jp: "買い物・生活用品" },
                     content: {
-                        en: `<ul class="guide-list">
+                        en: `<ul class="guide-list neighborhood-list two-col">
                             <li>
-                                <strong>Seicomart Kutchan Takasago</strong> (4 min drive)<br>
-                                <a href="https://maps.app.goo.gl/U5MsDrgaQFfs3w5p9" target="_blank">View Map</a>
+                                <strong>Seicomart Kutchan Takasago</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 4 min)</div>
+                                <a href="https://maps.app.goo.gl/U5MsDrgaQFfs3w5p9" target="_blank" rel="noopener noreferrer">View Map</a>
                             </li>
                             <li>
-                                <strong>Tsuruha Drug Kutchan Minami</strong> (5 min drive)<br>
-                                <a href="https://maps.app.goo.gl/UFmHsAHdbNRMk7mj8" target="_blank">View Map</a>
+                                <strong>Tsuruha Drug Kutchan Minami</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 5 min)</div>
+                                <a href="https://maps.app.goo.gl/UFmHsAHdbNRMk7mj8" target="_blank" rel="noopener noreferrer">View Map</a>
                             </li>
                             <li>
-                                <strong>MaxValu Kutchan</strong> (5 min drive)<br>
-                                <a href="https://maps.app.goo.gl/hX8pHAyAKXf4FTk29" target="_blank">View Map</a>
+                                <strong>MaxValu Kutchan</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 5 min)</div>
+                                <a href="https://maps.app.goo.gl/hX8pHAyAKXf4FTk29" target="_blank" rel="noopener noreferrer">View Map</a>
                             </li>
                             <li>
-                                <strong>Hokuren Kutchan Self SS / JA Yotei</strong> (5 min drive)<br>
-                                <a href="https://maps.app.goo.gl/rWVgBkWJVYjGUSpy8" target="_blank">View Map</a>
+                                <strong>Hokuren Kutchan Self SS / JA Yotei</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(By car: 5 min)</div>
+                                <a href="https://maps.app.goo.gl/rWVgBkWJVYjGUSpy8" target="_blank" rel="noopener noreferrer">View Map</a>
                             </li>
                         </ul>`,
-                        jp: `<ul class="guide-list">
+                        jp: `<ul class="guide-list neighborhood-list two-col">
                             <li>
-                                <strong>セイコーマート倶知安高砂店</strong> (車で4分)<br>
-                                <a href="https://maps.app.goo.gl/U5MsDrgaQFfs3w5p9" target="_blank">地図を見る</a>
+                                <strong>セイコーマート倶知安高砂店</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で4分)</div>
+                                <a href="https://maps.app.goo.gl/U5MsDrgaQFfs3w5p9" target="_blank" rel="noopener noreferrer">地図を見る</a>
                             </li>
                             <li>
-                                <strong>ツルハドラッグ倶知安南店</strong> (車で5分)<br>
-                                <a href="https://maps.app.goo.gl/UFmHsAHdbNRMk7mj8" target="_blank">地図を見る</a>
+                                <strong>ツルハドラッグ倶知安南店</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で5分)</div>
+                                <a href="https://maps.app.goo.gl/UFmHsAHdbNRMk7mj8" target="_blank" rel="noopener noreferrer">地図を見る</a>
                             </li>
                             <li>
-                                <strong>マックスバリュ倶知安店</strong> (車で5分)<br>
-                                <a href="https://maps.app.goo.gl/hX8pHAyAKXf4FTk29" target="_blank">地図を見る</a>
+                                <strong>マックスバリュ倶知安店</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で5分)</div>
+                                <a href="https://maps.app.goo.gl/hX8pHAyAKXf4FTk29" target="_blank" rel="noopener noreferrer">地図を見る</a>
                             </li>
                             <li>
-                                <strong>ホクレン 倶知安セルフSS / JAようてい</strong> (車で5分)<br>
-                                <a href="https://maps.app.goo.gl/rWVgBkWJVYjGUSpy8" target="_blank">地図を見る</a>
+                                <strong>ホクレン 倶知安セルフSS / JAようてい</strong>
+                                <div style="margin-bottom: 0.5rem; font-size: 0.9em;">(車で5分)</div>
+                                <a href="https://maps.app.goo.gl/rWVgBkWJVYjGUSpy8" target="_blank" rel="noopener noreferrer">地図を見る</a>
                             </li>
                         </ul>`
                     }
@@ -753,17 +1017,17 @@ const guidebookData = {
                     icon: "info",
                     title: { en: "Important Notes", jp: "注意事項" },
                     content: {
-                        en: `<ul class="guide-list">
-                                <li>① Do not take items home. Authorized removal may be charged.</li>
-                                <li>② No shoes indoors.</li>
-                                <li>③ Be mindful of noise when windows/door are open.</li>
-                                <li>④ No security cameras. Manage valuables yourself.</li>
+                        en: `<ul class="guide-list" style="padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 8px;">① Do not take items home. Authorized removal may be charged.</li>
+                                <li style="margin-bottom: 8px;">② No shoes indoors.</li>
+                                <li style="margin-bottom: 8px;">③ Be mindful of noise when windows/door are open.</li>
+                                <li style="margin-bottom: 0;">④ No security cameras. Manage valuables yourself.</li>
                             </ul>`,
-                        jp: `<ul class="guide-list">
-                                <li>① 備品は持ち帰らないでください。無断持ち出しは請求対象となる場合があります。</li>
-                                <li>② 靴で室内には入らないでください。</li>
-                                <li>③ 窓・玄関を開放しての騒音にはご注意ください。</li>
-                                <li>④ 防犯カメラは設置していません。貴重品の管理はご利用者様で行ってください。</li>
+                        jp: `<ul class="guide-list" style="padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 8px;">① 備品は持ち帰らないでください。無断持ち出しは請求対象となる場合があります。</li>
+                                <li style="margin-bottom: 8px;">② 靴で室内には入らないでください。</li>
+                                <li style="margin-bottom: 8px;">③ 窓・玄関を開放しての騒音にはご注意ください。</li>
+                                <li style="margin-bottom: 0;">④ 防犯カメラは設置していません。貴重品の管理はご利用者様で行ってください。</li>
                             </ul>`
                     }
                 },
@@ -789,21 +1053,21 @@ const guidebookData = {
                     icon: "check",
                     title: { en: "Checkout Checklist", jp: "退出時チェックリスト" },
                     content: {
-                        en: `<ul class="guide-list">
-                                <li>① Reset furniture/items to original layout.</li>
-                                <li>② Sort trash.</li>
-                                <li>③ Empty fridge (take all food home).</li>
-                                <li>④ Turn off AC and lights.</li>
-                                <li>⑤ Check for belongings (cables, fridge, umbrella, etc.).</li>
-                                <li>⑥ Report any lost or broken items.</li>
+                        en: `<ul class="guide-list" style="padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 8px;">① Reset furniture/items to original layout.</li>
+                                <li style="margin-bottom: 8px;">② Sort trash.</li>
+                                <li style="margin-bottom: 8px;">③ Empty fridge (take all food home).</li>
+                                <li style="margin-bottom: 8px;">④ Turn off AC and lights.</li>
+                                <li style="margin-bottom: 8px;">⑤ Check for belongings (cables, fridge, umbrella, etc.).</li>
+                                <li style="margin-bottom: 0;">⑥ Report any lost or broken items.</li>
                             </ul>`,
-                        jp: `<ul class="guide-list">
-                                <li>① 机・椅子・小物を動かした場合は元のレイアウトに戻してください</li>
-                                <li>② ゴミは分別して置いてください</li>
-                                <li>③ 残った食材は冷蔵庫に残さず、すべてお持ち帰りください</li>
-                                <li>④ エアコン・電気などの電源をオフにしてください</li>
-                                <li>⑤ 忘れ物はありませんか？（充電ケーブル／冷蔵庫内／傘／衣類など）</li>
-                                <li>⑥ 備品の紛失・破損があった場合はご連絡ください</li>
+                        jp: `<ul class="guide-list" style="padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 8px;">① 机・椅子・小物を動かした場合は元のレイアウトに戻してください</li>
+                                <li style="margin-bottom: 8px;">② ゴミは分別して置いてください</li>
+                                <li style="margin-bottom: 8px;">③ 残った食材は冷蔵庫に残さず、すべてお持ち帰りください</li>
+                                <li style="margin-bottom: 8px;">④ エアコン・電気などの電源をオフにしてください</li>
+                                <li style="margin-bottom: 8px;">⑤ 忘れ物はありませんか？（充電ケーブル／冷蔵庫内／傘／衣類など）</li>
+                                <li style="margin-bottom: 0;">⑥ 備品の紛失・破損があった場合はご連絡ください</li>
                             </ul>`
                     }
                 },
@@ -822,14 +1086,14 @@ const guidebookData = {
                     title: { en: "Trash", jp: "ゴミ" },
                     content: {
                         en: `<p>Bins are in the kitchen. Please sort:</p>
-                            <ul class="guide-list">
-                                <li>- Combustible</li>
-                                <li>- Cans, Bottles, PET</li>
+                            <ul class="guide-list" style="padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 8px;">- Combustible</li>
+                                <li style="margin-bottom: 0;">- Cans, Bottles, PET</li>
                             </ul>`,
                         jp: `<p>ゴミ箱はキッチンに設置しています。分別にご協力をお願いいたします。</p>
-                            <ul class="guide-list">
-                                <li>・可燃ゴミ</li>
-                                <li>・ペットボトル・缶・びん</li>
+                            <ul class="guide-list" style="padding-left: 0; list-style: none;">
+                                <li style="margin-bottom: 8px;">・可燃ゴミ</li>
+                                <li style="margin-bottom: 0;">・ペットボトル・缶・びん</li>
                             </ul>`
                     }
                 },
@@ -850,7 +1114,7 @@ const guidebookData = {
                 {
                     icon: "rooms",
                     title: { en: "Change Guest Count", jp: "宿泊人数変更したいです。" },
-                    collapsible: true,
+                    collapsible: true, // Though strictly rendered static now
                     content: {
                         en: `<p><strong>For OTA bookings:</strong> Please contact each OTA platform directly.</p>
                             <p><strong>For official site bookings:</strong> Please contact us via chat or the email address used for booking.</p>`,
@@ -864,19 +1128,20 @@ const guidebookData = {
                     collapsible: true,
                     content: {
                         en: `<p>You may send luggage in advance as long as the delivery is scheduled after 12:00 PM on the day of your check-in. Please note that this is an unmanned facility and we cannot receive packages in person; they will be left at the entrance.</p>
-                            <p style="font-size: 0.9em; color: #ccc;">* Packages will be left at the entrance (unlocked area). We cannot be held responsible for any loss, so please do not send valuables.</p>
+                            <p>* Packages will be left at the entrance (unlocked area). We cannot be held responsible for any loss, so please do not send valuables.</p>
                             <p><strong>Address:</strong><br>
                             〒044-0075<br>
                             531-6 Fujimi, Kutchan-cho, Abuta-gun, Hokkaido</p>
                             <p><strong>Recipient:</strong><br>
                             Please include your check-in date and reservation name.</p>`,
-                        jp: `<p>ご宿泊日の当日12時以降の到着指定であれば、事前に送って頂いても大丈夫です。当施設は無人営業でお受け取りできないため、置き配になります。</p>
-                            <p style="font-size: 0.9em; color: #ccc;">※お荷物は玄関(施錠されていない場所)に届きますので、紛失の責任は負いかねます。貴重品類配送はお控えくださいませ。</p>
+                        jp: `<p>ご宿泊日の当日12時以降の到着指定であれば、事前にお送りいただいて問題ありません。<br>
+                            当施設は無人営業のためお受け取りができず、置き配での受領となります。</p>
+                            <p>※お荷物は玄関（施錠されていない場所）に届くため、紛失等の責任は負いかねます。<br>
+                            貴重品類の配送はお控えください。</p>
                             <p><strong>送付先：</strong><br>
-                            〒044-0075<br>
-                            北海道虻田郡倶知安町富士見５３１−６</p>
+                            〒044-0075 北海道虻田郡倶知安町富士見531-6</p>
                             <p><strong>宛名：</strong><br>
-                            宿泊日/ご予約名の記載をお願いいたします。</p>`
+                            宿泊日／ご予約名 の記載をお願いいたします。</p>`
                     }
                 },
                 {
@@ -884,10 +1149,10 @@ const guidebookData = {
                     title: { en: "What if it's cold?", jp: "寒い時どうすればいいですか？" },
                     collapsible: true,
                     content: {
-                        en: `<p>The room is equipped with air conditioning and panel heaters.</p>
-                            <p>If you feel cold, please check that the air conditioner is set to heating mode and the panel heater is turned on. Using both together will help keep the room comfortably warm.</p>`,
-                        jp: `<p>室内にはエアコンおよびパネルヒーターを設置しております。</p>
-                            <p>寒さを感じる場合は、エアコンの暖房設定とあわせて、パネルヒーターの電源が入っているかをご確認ください。併用していただくことで、より暖かくお過ごしいただけます。</p>`
+                        en: `<p>If the room is cold, please try using the air conditioner first. Using the panel heater together will help keep the room warmer.</p>`,
+                        jp: `<p>お部屋が寒い場合は、まずエアコンの暖房運転をお試しください。<br>
+                            必要に応じてパネルヒーターも併用すると、より暖かくなります。</p>
+                            <p><a href="#" onclick="scrollToId('item-facility-1', event); return false;">👉 暖房・給湯器の案内はこちら</a></p>`
                     }
                 },
                 {
@@ -895,24 +1160,29 @@ const guidebookData = {
                     title: { en: "Where is the water heater switch?", jp: "給湯器のスイッチはどこですか？" },
                     collapsible: true,
                     content: {
-                        en: `<p>The water heater switch is located inside the building.</p>
-                            <p>Please note there are some parts that should not be touched; please check the guide images for details. Only if it is accidentally turned off, please check the designated switch and turn it back ON.</p>
-                            <details class="living-accordion" style="margin-top: 1rem;">
-                                <summary>View Image</summary>
-                                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                                    <img src="img/water_heater_1.png" alt="Water Heater 1" class="living-image" style="width: 100%; max-width: 300px; border-radius: 8px;">
-                                    <img src="img/water_heater_2.png" alt="Water Heater 2" class="living-image" style="width: 100%; max-width: 300px; border-radius: 8px;">
+                        en: `<p>Please do not touch the water heater switch unless necessary.</p>`,
+                        jp: `<p>給湯器のスイッチは、通常は触らないでください。<br>
+                            もしお湯が出ない場合のみ、スイッチが「OFF」になっていないか確認してください。</p>
+                            
+                            <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;">
+                                <div style="flex: 1 1 30%; min-width: 140px;">
+                                    <p style="margin-bottom: 0.5rem; font-weight: bold; color: var(--gb-text-main); font-size: 0.9em; text-align: center;">① キッチン</p>
+                                    <img src="img/mv_niseko/heater_panel_kitchen.jpg" alt="Kitchen Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
                                 </div>
-                            </details>`,
-                        jp: `<p>給湯器のスイッチは館内に設置されています。</p>
-                            <p>触ってはいけない箇所がありますので、案内用の画像をご確認ください。万が一オフになっている場合のみ、指定されたスイッチをご確認の上、ONにしてください。</p>
-                            <details class="living-accordion" style="margin-top: 1rem;">
-                                <summary>画像を表示</summary>
-                                <div style="display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem;">
-                                    <img src="img/water_heater_1.png" alt="給湯器1" class="living-image" style="width: 100%; max-width: 300px; border-radius: 8px;">
-                                    <img src="img/water_heater_2.png" alt="給湯器2" class="living-image" style="width: 100%; max-width: 300px; border-radius: 8px;">
+                                <div style="flex: 1 1 30%; min-width: 140px;">
+                                    <p style="margin-bottom: 0.5rem; font-weight: bold; color: var(--gb-text-main); font-size: 0.9em; text-align: center;">② 脱衣所</p>
+                                    <img src="img/mv_niseko/heater_panel_dressing_room.jpg" alt="Dressing Room Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
                                 </div>
-                            </details>`
+                                <div style="flex: 1 1 30%; min-width: 140px;">
+                                    <p style="margin-bottom: 0.5rem; font-weight: bold; color: var(--gb-text-main); font-size: 0.9em; text-align: center;">③ 浴室</p>
+                                    <img src="img/mv_niseko/heater_panel_bathroom.jpg" alt="Bathroom Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 1.5rem; color: #ffffff; font-size: 0.9em; line-height: 1.6;">
+                                <p style="margin: 0;">※「運転」スイッチ以外は触らないでください。</p>
+                                <p style="margin: 0;">※冬季はお湯が出るまで10分以上かかる場合があります。あらかじめご了承ください。</p>
+                            </div>`
                     }
                 },
                 {
@@ -920,27 +1190,24 @@ const guidebookData = {
                     title: { en: "Power Outage / Breaker", jp: "電気が切れたんだけど、どうすればいいですか？" },
                     collapsible: true,
                     content: {
-                        en: `<p>If the power suddenly goes out, a breaker may have tripped. Please follow these steps to restore power:</p>
-                            <p>① Go to the changing room (the room before the bathroom) and push the tripped breaker in the upper right down once.</p>
-                            <details class="living-accordion" style="margin-bottom: 1rem;">
-                                <summary>View Image</summary>
-                                <img src="img/lakesideinn/breaker_step_2.jpg" alt="Step 1" class="living-image" loading="lazy" style="width: 100%; max-width: 400px; display: block; margin: 1rem auto 0; border-radius: 8px;">
-                            </details>
-                            <p>② Then push it all the way up to "ON". 👉 It should click into place.</p>
-                            <details class="living-accordion">
-                                <summary>View Image</summary>
-                                <img src="img/lakesideinn/breaker_step_1.jpg" alt="Step 2" class="living-image" loading="lazy" style="width: 100%; max-width: 400px; display: block; margin: 1rem auto 0; border-radius: 8px;">
-                            </details>`,
-                        jp: `<p>電気が突然使えなくなった場合、ブレーカーが落ちている可能性があります。以下の手順で復旧してください。</p>
-                            <p>① 脱衣所(浴室の手前の部屋)に入り、右上のブレーカーのうち、落ちているものを一度いちばん下まで下げてください。</p>
+                        en: `<p>If power goes out, check the breaker in the changing room.</p>`,
+                        jp: `<p>電気が突然使えなくなった場合、ブレーカーが落ちている可能性があります。<br>
+                            以下の手順で復旧してください。</p>
+                            
+                            <p style="margin-top: 1rem;"><strong>① 脱衣所（浴室の手前の部屋）に入り、右上にあるブレーカーを確認します。</strong><br>
+                            落ちているスイッチがあれば、一度いちばん下まで下げてください。</p>
+                            
                             <details class="living-accordion" style="margin-bottom: 1rem;">
                                 <summary>画像を表示</summary>
-                                <img src="img/lakesideinn/breaker_step_2.jpg" alt="手順1" class="living-image" loading="lazy" style="width: 100%; max-width: 400px; display: block; margin: 1rem auto 0; border-radius: 8px;">
+                                <img src="img/mv_niseko/__FILENAME_BREAKER_STEP1__.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
                             </details>
-                            <p>② その後、しっかり上まで上げて「ON」にしてください。👉 カチッと音がすればOKです。</p>
+
+                            <p><strong>② その後、しっかり上まで上げて「ON」にしてください。</strong><br>
+                            👉 カチッと音がすればOKです。</p>
+                            
                             <details class="living-accordion">
                                 <summary>画像を表示</summary>
-                                <img src="img/lakesideinn/breaker_step_1.jpg" alt="手順2" class="living-image" loading="lazy" style="width: 100%; max-width: 400px; display: block; margin: 1rem auto 0; border-radius: 8px;">
+                                <img src="img/mv_niseko/__FILENAME_BREAKER_STEP2__.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
                             </details>`
                     }
                 },
@@ -949,8 +1216,9 @@ const guidebookData = {
                     title: { en: "Transportation other than car", jp: "車以外の移動手段はありますか？" },
                     collapsible: true,
                     content: {
-                        en: `<p>During the winter season, the ride-hailing app "GO" is available. If you plan to use a taxi, we recommend downloading the app in advance.</p>`,
-                        jp: `<p>冬季期間中は配車アプリ「GO」が使用できます。タクシー利用予定の方は、事前にアプリをダウンロードしておくことをおすすめします。</p>`
+                        en: `<p>Ride-hailing app "GO" is available during winter (mid-Dec to mid-Mar).</p>`,
+                        jp: `<p>冬季期間（毎年12月中旬〜3月中旬）は、配車アプリ「GO」をご利用いただけます。<br>
+                            タクシーでの移動を予定されている方は、事前にアプリをダウンロードしておくことをおすすめします。</p>`
                     }
                 }
             ]
@@ -1060,6 +1328,195 @@ window.switchCategory = function (catId) {
     window.scrollTo({ top: 0, behavior: 'instant' });
 };
 
+// ============================================
+// KITCHEN ACCORDION UI LOGIC
+// ============================================
+// ============================================
+// KITCHEN ACCORDION UI LOGIC (Accordion List)
+// ============================================
+const kitchenItemsData = [
+    {
+        id: 'microwave',
+        iconKey: 'tv', // Placeholder shape
+        title: { jp: '電子レンジ', en: 'Microwave' },
+        desc: { jp: 'お食事の温め直しなどにご利用いただけます。', en: 'Can be used for reheating meals.' },
+        steps: {
+            jp: ['食品を中に入れます。', '「あたため」ボタン、または分数を指定します。', 'スタートボタンを押して開始します。'],
+            en: ['Place food inside.', 'Select "Reheat" or set the desired time.', 'Press the Start button to begin.']
+        },
+        images: ['img/mv_niseko/kitchen_microwave_single.jpg', 'img/mv_niseko/kitchen_appliances_set.jpg']
+    },
+    {
+        id: 'coffee',
+        iconKey: 'kitchen',
+        title: { jp: 'コーヒーメーカー', en: 'Coffee Maker' },
+        desc: { jp: '挽きたてのコーヒーをお楽しみいただけます。', en: 'Enjoy freshly brewed coffee.' },
+        steps: {
+            jp: ['背面のタンクに水を入れます。', 'お好みのカプセルまたは粉をセットします。', 'ボタンを押して抽出を開始します。'],
+            en: ['Fill the water tank on the back.', 'Set your preferred capsule or ground coffee.', 'Press the button to start brewing.']
+        },
+        images: ['img/mv_niseko/kitchen_appliances_set.jpg']
+    },
+    {
+        id: 'kettle',
+        iconKey: 'water',
+        title: { jp: '電気ケトル', en: 'Electric Kettle' },
+        desc: { jp: 'すぐにお湯を沸かすことができます。', en: 'Quickly boil water for tea or coffee.' },
+        steps: {
+            jp: ['ケトルに水を入れます（MAXを超えないように）。', 'ベースに置き、スイッチを押し下げます。', '沸き上がると自動でOFFになります。'],
+            en: ['Fill the kettle with water (do not exceed MAX).', 'Place it on the base and push the switch down.', 'It turns off automatically when boiled.']
+        },
+        images: ['img/mv_niseko/kitchen_kettle.jpg']
+    },
+    {
+        id: 'ricecooker',
+        iconKey: 'kitchen',
+        title: { jp: '炊飯器', en: 'Rice Cooker' },
+        desc: { jp: '美味しいご飯を炊くことができます。', en: 'Cook delicious rice for your meals.' },
+        steps: {
+            jp: ['お米を研いで内釜に入れます。', '目盛りに合わせて正確に水を入れます。', '「炊飯」ボタンを押して開始します。'],
+            en: ['Wash the rice and place it in the inner pot.', 'Add water accurately according to the inner scale.', 'Press the "Cook" button to start.']
+        },
+        images: ['img/mv_niseko/kitchen_ricecooker.jpg']
+    },
+    {
+        id: 'utensils',
+        iconKey: 'dishes',
+        title: { jp: '調理器具・カトラリー', en: 'Cooking Utensils & Cutlery' },
+        desc: { jp: '包丁、まな板、鍋、フライパン、お箸などが揃っています。', en: 'Knives, cutting boards, pots, pans, chopsticks, etc. are available.' },
+        steps: {
+            jp: ['引き出しや棚から必要なものをお選びください。', '使用後は必ず洗浄して乾かしてください。', '元の場所へ丁寧に戻してください。'],
+            en: ['Choose what you need from the drawers or shelves.', 'Always wash and dry them after use.', 'Please return them carefully to their original locations.']
+        },
+        images: ['img/mv_niseko/kitchen_tools_cutlery.jpg', 'img/mv_niseko/kitchen_pots_pans.jpg']
+    },
+    {
+        id: 'refrigerator',
+        iconKey: 'kitchen',
+        title: { jp: '冷蔵庫', en: 'Refrigerator' },
+        desc: { jp: 'お買上げの食材や飲み物の保管にご利用ください。', en: 'Please use it for storing your food and drinks.' },
+        steps: {
+            jp: ['扉を手前に引いて開けます。', '各スペースに食品を自由に収納してください。', 'チェックアウト時は中身をすべて空にしてください。'],
+            en: ['Pull the door toward you to open.', 'Store items in the available spaces.', 'Please ensure it is empty upon checkout.']
+        },
+        images: ['img/mv_niseko/kitchen_appliances_set.jpg']
+    },
+    {
+        id: 'stove',
+        iconKey: 'fire',
+        title: { jp: 'IHコンロ', en: 'IH Stove' },
+        desc: { jp: '安全で高火力な調理が可能なコンロです。', en: 'Safe and high-power stove for cooking.' },
+        steps: {
+            jp: ['主電源を「入」にします。', 'IH対応の鍋を置き、火力を調整します。', '使用後は表面が冷めるまで触れないでください。'],
+            en: ['Turn on the main power.', 'Place IH-compatible cookware and adjust the heat.', 'Do not touch the surface until it cools down after use.']
+        },
+        images: ['img/mv_niseko/kitchen_gas_grill.jpg']
+    }
+];
+
+function renderKitchenAccordion() {
+    const lang = getLang();
+    const introText = lang === 'jp' ? '使いたい家電を選んでください' : 'Please choose the appliance you want to use';
+
+    let itemsHtml = '';
+
+    kitchenItemsData.forEach((item) => {
+        const title = item.title[lang];
+        const desc = item.desc[lang];
+        const steps = item.steps[lang].map(step => `<li>${step}</li>`).join('');
+
+        // Icon logic
+        const iconKey = item.iconKey || 'kitchen';
+        const iconHtml = ICONS[iconKey] || ICONS['kitchen'];
+
+        // Nested Image Accordion
+        let imagesHtml = '';
+        if (item.images && item.images.length > 0) {
+            item.images.forEach((img, idx) => {
+                const label = item.images.length > 1
+                    ? (lang === 'jp' ? `画像を表示 (${idx + 1})` : `Show Image (${idx + 1})`)
+                    : (lang === 'jp' ? `画像を表示` : `Show Image`);
+
+                imagesHtml += `
+                    <div class="kitchen-image-accordion">
+                        <button class="image-accordion-toggle" onclick="toggleImageAccordion(this)">
+                            ${label}
+                        </button>
+                        <div class="image-accordion-content">
+                            <div class="kitchen-img-wrapper">
+                                <img data-src="${img}" class="kitchen-img lazy-kitchen" onclick="openLightbox('${img}')" alt="${title}">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        itemsHtml += `
+            <div class="kitchen-accordion-item" id="kitchen-item-${item.id}">
+                <button class="kitchen-accordion-header" onclick="toggleKitchenAccordion('${item.id}')">
+                    <span class="kitchen-header-left">${iconHtml} <span>${title}</span></span>
+                </button>
+                <div class="kitchen-accordion-body" id="kitchen-body-${item.id}">
+                    <div class="kitchen-body-inner">
+                        <p class="kitchen-item-desc">${desc}</p>
+                        <ul class="kitchen-steps">
+                            ${steps}
+                        </ul>
+                        ${imagesHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    return `
+        <div class="kitchen-ui-container">
+            <p class="kitchen-intro-text">${introText}</p>
+            <div class="kitchen-accordion-list">
+                ${itemsHtml}
+            </div>
+        </div>
+    `;
+}
+
+window.toggleKitchenAccordion = function (id) {
+    // 1. Exclusive Open (Close others)
+    document.querySelectorAll('.kitchen-accordion-item').forEach(item => {
+        const isTarget = (item.id === 'kitchen-item-' + id);
+        if (isTarget) {
+            if (item.classList.contains('active')) {
+                item.classList.remove('active');
+            } else {
+                item.classList.add('active');
+            }
+        } else {
+            item.classList.remove('active');
+        }
+    });
+};
+
+window.toggleImageAccordion = function (btn) {
+    const content = btn.nextElementSibling;
+    const isActive = btn.classList.contains('active');
+
+    if (isActive) {
+        btn.classList.remove('active');
+        content.classList.remove('active');
+    } else {
+        btn.classList.add('active');
+        content.classList.add('active');
+
+        // Lazy Load
+        const img = content.querySelector('img.lazy-kitchen');
+        if (img && img.dataset.src) {
+            img.src = img.dataset.src;
+            img.removeAttribute('data-src');
+        }
+    }
+};
+
+
 function renderSidebarItems(catId) {
     const nav = document.querySelector('.sidebar-nav');
     if (!nav) return;
@@ -1127,23 +1584,22 @@ function renderSections() {
 
         let itemsHtml = '';
         if (section.id === 'faq') {
-            // Render ONLY the first item: "Change Guest Count" - 1:1 Lake House Structure
-            // Using index 0
-            if (section.items.length > 0) {
-                const item = section.items[0];
+            // Render ALL items using 1:1 Lake House Structure (Static Cards)
+            itemsHtml = section.items.map((item, index) => {
                 const itemTitle = getLocalizedText(item.title) || item.title;
                 const itemContent = getLocalizedText(item.content) || item.content;
                 const iconHtml = item.icon && ICONS[item.icon] ? ICONS[item.icon] : '';
+                const itemId = `item-faq-${index}`; // ID format matches CSS [id^="item-faq-"]
 
-                itemsHtml = `
-                     <details class="content-card living-accordion" id="item-faq-0" open>
+                return `
+                     <details class="content-card living-accordion" id="${itemId}" open>
                          <summary class="card-header" style="justify-content: space-between;">${iconHtml} ${itemTitle}</summary>
                          <div class="card-body">
                              ${itemContent}
                          </div>
                      </details>
                  `;
-            }
+            }).join('');
         } else {
             // Standard rendering for other sections
             itemsHtml = section.items.map((item, index) => {
@@ -1152,6 +1608,12 @@ function renderSections() {
                 const iconHtml = item.icon && ICONS[item.icon] ? ICONS[item.icon] : '';
 
                 const itemId = item.id || `item-${section.id}-${index}`;
+
+                // Check for special interactive components
+                let finalContent = itemContent;
+                if (itemId === 'kitchen' || itemTitle.toLowerCase().includes('kitchen')) {
+                    finalContent = renderKitchenAccordion();
+                }
 
                 // Check if this is a Dining section header
                 const isDiningHeader = itemTitle.startsWith("Dining") || itemTitle.includes("食事");
@@ -1162,7 +1624,7 @@ function renderSections() {
                                     <details class="content-card living-accordion" id="${itemId}" open>
                                         <summary class="${headerClass}" style="justify-content: space-between;">${iconHtml} ${itemTitle}</summary>
                                         <div class="card-body">
-                                            ${itemContent}
+                                            ${finalContent}
                                         </div>
                                     </details>
                                 `;
@@ -1171,7 +1633,7 @@ function renderSections() {
                                     <div class="content-card" id="${itemId}">
                                         <h3 class="${headerClass}">${iconHtml} ${itemTitle}</h3>
                                         <div class="card-body">
-                                            ${itemContent}
+                                            ${finalContent}
                                         </div>
                                     </div>
                                 `;
@@ -1255,3 +1717,45 @@ window.navigateToSearchResult = (sid, id) => {
     setTimeout(() => scrollToId(id), 300);
     document.getElementById('search-results').classList.remove('active');
 };
+
+// ============================================
+// LIGHTBOX FUNCTIONALITY
+// ============================================
+function setupLightbox() {
+    // Inject modal HTML if not present
+    if (!document.getElementById('lightboxModal')) {
+        const modalHtml = `
+            <div id="lightboxModal" class="lightbox-modal" onclick="closeLightbox(event)">
+                <span class="lightbox-close">&times;</span>
+                <img class="lightbox-content" id="lightboxImg">
+            </div>
+        `;
+        document.body.insertAdjacentHTML('beforeend', modalHtml);
+    }
+}
+
+window.openLightbox = function (imageSrc) {
+    const modal = document.getElementById('lightboxModal');
+    const modalImg = document.getElementById('lightboxImg');
+    if (modal && modalImg) {
+        modal.style.display = "block";
+        modalImg.src = imageSrc;
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+    }
+};
+
+window.closeLightbox = function (event) {
+    // Close if clicked on background or close button
+    if (event.target.id === 'lightboxModal' || event.target.className === 'lightbox-close') {
+        const modal = document.getElementById('lightboxModal');
+        if (modal) {
+            modal.style.display = "none";
+            document.body.style.overflow = ""; // Restore scrolling
+        }
+    }
+};
+
+// Initialize Lightbox on load
+document.addEventListener('DOMContentLoaded', () => {
+    setupLightbox();
+});
