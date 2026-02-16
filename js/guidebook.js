@@ -2477,13 +2477,45 @@ window.navigateToSearchResult = function (sectionId, itemId) {
 // SERVICE HANDLERS
 // ============================================
 
-function handleServiceClick(serviceId) {
+async function handleServiceClick(serviceId) {
     const service = guidebookData.services.find(s => s.id === serviceId);
-    if (service) {
-        const serviceName = getLocalizedText(service.name);
-        alert(`Reserving: ${serviceName} \nPrice: ¥${service.price.toLocaleString()} \n\n(This is a demo - payment integration coming soon)`);
+    if (!service) return;
+
+    // ジャグジー（¥10,000）だけStripeに接続
+    if (service.price === 10000) {
+        try {
+            const res = await fetch("/api/create-checkout-session", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    productName: "Lake House Jacuzzi",
+                    amount: 10000,
+                    currency: "jpy",
+                    metadata: {
+                        property: "lake-house",
+                        option: "jacuzzi"
+                    }
+                })
+            });
+
+            const data = await res.json();
+
+            if (data.sessionId) {
+                // guidebook.html で定義した stripe を使用
+                stripe.redirectToCheckout({ sessionId: data.sessionId });
+            } else {
+                alert("決済開始に失敗しました");
+            }
+        } catch (error) {
+            console.error("Stripe error:", error);
+            alert("エラーが発生しました。もう一度お試しください。");
+        }
+
+    } else {
+        alert("このオプションはまだオンライン決済未対応です。");
     }
 }
+
 
 // ============================================
 // EXPORTS (for potential API use)
