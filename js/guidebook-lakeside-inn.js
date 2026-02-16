@@ -102,9 +102,17 @@ const guidebookData = window.guidebookData = {
         items: [
             {
                 icon: "checkin",
-                title: { en: "Check-in Guide", jp: "チェックイン・アウト方法" },
+                title: { en: "Check-in & Check-out", jp: "チェックイン・アウト方法" },
                 content: {
-                    en: `<p>Open the key box on the door using the code <strong>0123</strong>.</p>
+                    en: `<p><strong>If you arrive before 5:00 PM:</strong><br>
+                        Please check in at the café located on the property.<br>
+                        *The café is closed every Tuesday, so check-in at the café is not available on Tuesdays.<br><br>
+                        <strong>If you arrive after 5:00 PM or on Tuesday:</strong><br>
+                        Self check-in is required.<br>
+                        Please use the key box installed on the entrance door.<br>
+                        The key box code differs for each building and will be provided in advance via chat or email.<br><br>
+                        <strong>Check-out:</strong><br>
+                        After use, please return the key to the key box.</p>
                         <div class="keybox-container">
                             <img src="img/lakesideinn/checkin_exterior.jpg" alt="Keybox Location" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
                             <img src="img/lakesideinn/checkin_keybox.jpg" alt="Keybox Detail" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
@@ -2790,15 +2798,15 @@ window.toggleNeighborhoodExtra = function (btn) {
 // ============================================
 // MOBILE NEIGHBORHOOD TOGGLE FIX (Robust)
 // ============================================
-(function() {
+(function () {
     // 1. Function to initialize the Neighborhood Supermarket section
     function initNeighborhoodSupermarket() {
         if (window.innerWidth > 768) return; // Mobile only
 
         // Find the section by text content to be safe
         const headings = Array.from(document.querySelectorAll('strong, h3, h4, .guide-sub-title'));
-        const targetHeading = headings.find(el => 
-            el.textContent.includes('Supermarkets & Daily Goods') || 
+        const targetHeading = headings.find(el =>
+            el.textContent.includes('Supermarkets & Daily Goods') ||
             el.textContent.includes('生活用品・スーパー')
         );
 
@@ -2814,8 +2822,8 @@ window.toggleNeighborhoodExtra = function (btn) {
 
         // Strategy: Find the UL that contains "7-Eleven Nojiriko" or "セブンイレブン 野尻湖店"
         const listItems = Array.from(document.querySelectorAll('li'));
-        const anchorItem = listItems.find(li => 
-            li.textContent.includes('7-Eleven Nojiriko') || 
+        const anchorItem = listItems.find(li =>
+            li.textContent.includes('7-Eleven Nojiriko') ||
             li.textContent.includes('セブンイレブン 野尻湖店')
         );
 
@@ -2864,8 +2872,8 @@ window.toggleNeighborhoodExtra = function (btn) {
             if (mutation.addedNodes.length > 0) shouldInit = true;
         });
         if (shouldInit) {
-             // Debounce slightly
-             setTimeout(initNeighborhoodSupermarket, 100);
+            // Debounce slightly
+            setTimeout(initNeighborhoodSupermarket, 100);
         }
     });
 
