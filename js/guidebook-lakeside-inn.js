@@ -1974,7 +1974,7 @@ const guidebookData = window.guidebookData = {
     ],
     services: [
         {
-            id: 1,
+            id: "bbq",
             name: { en: "BBQ", jp: "BBQ" },
             price: 4000,
             description: {
@@ -2416,7 +2416,7 @@ function renderServices() {
                                                                                                     <h3 class="service-name">${serviceName}</h3>
                                                                                                     <p class="service-desc">${serviceDesc}</p>
                                                                                                     <p class="service-price">¥${service.price.toLocaleString()}</p>
-                                                                                                    <button class="service-btn" onclick="handleServiceClick(${service.id})">${reserveText}</button>
+                                                                                                    <button class="service-btn" onclick="handleServiceClick('${service.id}')">${reserveText}</button>
                                                                                                 </div>
                                                                                         </div>
                                                                                         `;
@@ -2706,7 +2706,7 @@ async function handleServiceClick(serviceId) {
     if (!service) return;
 
     // BBQ (¥4,000) only: Connect to Stripe
-    if (service.price === 4000) {
+    if (service.id === "bbq") {
         try {
             const res = await fetch("/api/create-checkout-session", {
                 method: "POST",
