@@ -2501,7 +2501,7 @@ async function handleServiceClick(serviceId) {
             const data = await res.json();
 
             if (data.sessionId) {
-                // guidebook.html で定義した stripe を使用
+                // guidebook-lake-house.html で定義した stripe を使用
                 stripe.redirectToCheckout({ sessionId: data.sessionId });
             } else {
                 alert("決済開始に失敗しました");

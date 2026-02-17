@@ -1,6 +1,6 @@
 /**
  * Guest Guidebook - JavaScript for Mountain Villa Niseko
- * Replicates the logic and UI structure of Lake House (guidebook.js)
+ * Replicates the logic and UI structure of Lake House (guidebook-lake-house.js)
  */
 
 window.currentLang = localStorage.getItem('siteLang') || 'en';

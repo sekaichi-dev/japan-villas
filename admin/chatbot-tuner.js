@@ -61,16 +61,16 @@ async function fetchGuidebookContent() {
     }
 
     try {
-        updateStatus("⚪️ Fetching guidebook.js...", "gray");
-        console.log('\n🔍 Starting VALIDATED guidebook.js fetch...');
+        updateStatus("⚪️ Fetching guidebook-lake-house.js...", "gray");
+        console.log('\n🔍 Starting VALIDATED guidebook-lake-house.js fetch...');
 
         // PATH HUNTING: Try multiple possible locations
         const paths = [
-            '../js/guidebook.js',     // Most likely (sibling folder)
-            './js/guidebook.js',      // Subfolder
-            '/js/guidebook.js',       // Root absolute
-            '../../js/guidebook.js',  // Up two levels
-            './guidebook.js'          // Fallback
+            '../js/guidebook-lake-house.js',     // Most likely (sibling folder)
+            './js/guidebook-lake-house.js',      // Subfolder
+            '/js/guidebook-lake-house.js',       // Root absolute
+            '../../js/guidebook-lake-house.js',  // Up two levels
+            './guidebook-lake-house.js'          // Fallback
         ];
         let jsCode = null;
         let successPath = null;
@@ -84,7 +84,7 @@ async function fetchGuidebookContent() {
                 console.log(`   Response length: ${text.length} chars`);
                 console.log(`   First 100 chars: "${text.substring(0, 100)}..."`);
 
-                // STRICT VALIDATION: Check if this is actually the guidebook.js file
+                // STRICT VALIDATION: Check if this is actually the guidebook-lake-house.js file
                 if (text.includes('const guidebookData')) {
                     console.log('   ✅ VALID: Contains "const guidebookData"');
                     jsCode = text;
@@ -101,10 +101,10 @@ async function fetchGuidebookContent() {
 
         // Check if we found a valid file
         if (!jsCode) {
-            throw new Error('Could not find valid guidebook.js in any path. All paths returned 404 or invalid content.');
+            throw new Error('Could not find valid guidebook-lake-house.js in any path. All paths returned 404 or invalid content.');
         }
 
-        console.log(`\n✅ Valid guidebook.js found at: ${successPath}`);
+        console.log(`\n✅ Valid guidebook-lake-house.js found at: ${successPath}`);
         console.log(`📄 File size: ${jsCode.length} chars`);
 
         // EXECUTION & PARSING: Convert const to window and eval

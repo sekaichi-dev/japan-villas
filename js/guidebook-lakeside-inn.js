@@ -2849,7 +2849,7 @@ window.toggleNeighborhoodExtra = function (btn) {
         // Usually targetHeading is inside a strong or h4, and the ul is close by.
         // In the current JS string structure:
         // Item -> Title (hidden or separate) -> Content -> UL
-        // Actually, the strong tag "Supermarkets & Daily Goods" might be the title rendered by guidebook.js
+        // Actually, the strong tag "Supermarkets & Daily Goods" might be the title rendered by guidebook-lake-house.js
         // Let's look for the UL specifically.
 
         // Strategy: Find the UL that contains "7-Eleven Nojiriko" or "セブンイレブン 野尻湖店"
