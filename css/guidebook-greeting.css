@@ -1,0 +1,63 @@
+/* ============================================
+   GREETING SECTION STYLES
+   ============================================ */
+
+/* Hide the main section title ("Greeting"/"挨拶") */
+#section-greeting .section-title {
+    display: none !important;
+}
+
+/* Container for the greeting message */
+#section-greeting .content-card {
+    max-width: 760px;
+    margin: 0 auto;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+}
+
+/* Hide the card header ("Message") - covers both h3 and summary */
+#section-greeting .content-card .card-header,
+#section-greeting .content-card h3,
+#section-greeting .content-card summary {
+    display: none !important;
+}
+
+/* Typography for the message body */
+#section-greeting .card-body {
+    white-space: normal;
+    /* Force normal wrapping */
+    font-size: 1rem;
+    line-height: 2.0;
+    letter-spacing: 0.02em;
+    color: rgba(255, 255, 255, 0.88);
+    text-align: left;
+    /* Recommended for readability */
+    padding: 2rem 1rem;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+}
+
+/* Pull up closer to hero */
+#section-greeting {
+    margin-top: -2rem !important;
+    /* Force closer to hero */
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    #section-greeting .card-body {
+        font-size: 0.95rem;
+        line-height: 1.9;
+        text-align: left;
+        /* Left align for mobile readability */
+        padding: 1.5rem 1rem;
+    }
+
+    #section-greeting .content-card {
+        padding: 0 1rem;
+    }
+}

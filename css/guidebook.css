@@ -13,6 +13,17 @@
     --gb-accent-hover: #dfc07a;
     --gb-radius: 12px;
     --gb-radius-sm: 8px;
+
+    /* Header Offsets for Fixed Nav */
+    --header-offset: 130px;
+    /* Default Desktop: ~60px header + 50px nav + buffer */
+}
+
+@media (max-width: 768px) {
+    :root {
+        --header-offset: 140px;
+        /* Mobile: ~44px header + ~38px nav + buffer */
+    }
 }
 
 /* ============================================
@@ -173,8 +184,7 @@ summary:focus-visible {
 
 /* Global Content Layout */
 .guidebook-layout .guidebook-content {
-    padding-top: 100px !important;
-    /* Balanced spacing to clear 82px header stack */
+    padding-top: var(--header-offset) !important;
 }
 
 .guidebook-layout.has-hero .guidebook-content {
@@ -314,12 +324,11 @@ summary:focus-visible {
     }
 
     .guidebook-layout .guidebook-content {
-        padding-top: 100px !important;
-        /* Balanced spacing to clear 82px header stack */
+        padding-top: var(--header-offset) !important;
     }
 
     .guidebook-layout.has-hero .guidebook-content {
-        padding-top: 1rem;
+        padding-top: 1rem !important;
     }
 
     .guidebook-hero {
@@ -330,7 +339,7 @@ summary:focus-visible {
     .guidebook-section,
     .accordion-item,
     .content-card {
-        scroll-margin-top: 150px;
+        scroll-margin-top: var(--header-offset);
     }
 
     .guidebook-sidebar {
@@ -556,6 +565,14 @@ summary:focus-visible {
     min-height: 250px;
     max-height: 400px;
     overflow: hidden;
+    margin-top: var(--header-offset);
+    /* Push hero down below header */
+}
+
+/* Ensure padding-top in content is removed/reduced when hero is present, to avoid double gap */
+.guidebook-layout.has-hero .guidebook-content {
+    padding-top: 1rem !important;
+    /* Keep small buffer */
 }
 
 .hero-image-container {
@@ -629,11 +646,10 @@ summary:focus-visible {
 /* Sidebar is now Sub-navigation (TOC style) */
 .guidebook-sidebar {
     position: fixed;
-    top: 110px;
-    /* Clear headers (60 + 50) */
+    top: var(--header-offset);
     left: 0;
     width: 260px;
-    height: calc(100vh - 110px);
+    height: calc(100vh - var(--header-offset));
     background: var(--gb-bg);
     /* Match main bg */
     border-right: 1px solid var(--gb-border);
@@ -777,8 +793,7 @@ summary:focus-visible {
 .guidebook-section,
 .content-card {
     margin-bottom: 48px;
-    scroll-margin-top: 160px;
-    /* Header (60) + TopNav (50) + Buffer (50) */
+    scroll-margin-top: var(--header-offset);
 }
 
 .section-title {
@@ -1164,7 +1179,11 @@ summary:focus-visible {
 }
 
 .contact-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-align: center;
     padding: 0.75rem 1.5rem;
     background: transparent;
     border: 1px solid var(--gb-accent);
@@ -2439,4 +2458,187 @@ details.content-card.living-accordion>summary {
         transform: translateY(-50%) scale(0.95) !important;
         background: rgba(255, 255, 255, 0.18) !important;
     }
+}
+
+
+.lh-time-block {
+    margin: 24px 0 14px;
+    padding: 12px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.lh-time-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    opacity: .9;
+    margin-bottom: 10px;
+}
+
+.lh-time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.lh-time-item {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.lh-time-label {
+    opacity: .7;
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+.lh-time-value {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.lh-time-sub {
+    margin-top: 6px;
+    opacity: .7;
+    font-size: 12px;
+}
+
+.lh-pill {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    font-size: 12px;
+}
+
+@media (max-width:768px) {
+    .lh-time-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Service Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: #1a1a1a;
+    color: #f0f0f0;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 16px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    z-index: 10;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    padding-right: 30px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 14px;
+}
+
+.modal-section {
+    margin-bottom: 20px;
+}
+
+.modal-label {
+    font-size: 13px;
+    color: var(--gb-accent);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.modal-text {
+    font-size: 15px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: pre-wrap;
+}
+
+.modal-action {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.modal-btn {
+    background: var(--gb-accent);
+    color: #000;
+    font-weight: 600;
+    padding: 12px 32px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    transition: transform 0.2s, opacity 0.2s;
+    width: 100%;
+}
+
+.modal-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
 }

@@ -93,7 +93,7 @@ window.translations = {
         "guidebook.services.subtitle": "Enhance your stay",
         "guidebook.services.reserve": "Reserve",
         "guidebook.footer.help": "Need help? Contact your host",
-        "guidebook.footer.call": "Call Host",
+        "guidebook.footer.call": "Chat with Host",
     },
     jp: {
         "nav.home": "ホーム",
@@ -188,6 +188,6 @@ window.translations = {
         "guidebook.services.subtitle": "",
         "guidebook.services.reserve": "予約する",
         "guidebook.footer.help": "お困りですか？ホストにご連絡ください",
-        "guidebook.footer.call": "ホストに電話",
+        "guidebook.footer.call": "ホストにチャットする",
     }
 };
