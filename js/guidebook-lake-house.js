@@ -1016,12 +1016,12 @@ const guidebookData = {
                         <strong>Trash Location:</strong> Please place sorted trash in the designated area shown in the red frame below.<br>
                         <strong>At Checkout:</strong> Please gather all trash and leave it near the designated area in the living room.<br>
                         <strong>Long-term Guests:</strong> If you need trash collection, please contact us via the booking site.</p>
-                        <img src="img/trash_location.jpg" alt="Trash Location" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">`,
+                        <img src="img/trashbox.png" alt="Trash Box" class="guidebook-image" loading="lazy">`,
                         jp: `<p><strong>分別：</strong>可燃ゴミ、不燃ゴミ、缶、ペットボトル、瓶<br>
                         <strong>ゴミの置き場所：</strong>画像の赤枠で示された場所にまとめて置いてください。<br>
-                        <strong>チェックアウト時：：</strong>ゴミはすべてリビングの赤枠付近に一箇所にまとめてください。<br>
+                        <strong>チェックアウト時：</strong>ゴミはすべてリビングの赤枠付近に一箇所にまとめてください。<br>
                         <strong>長期滞在のお客様：</strong>ゴミの回収が必要な際は、予約サイトのメッセージよりご連絡ください。</p>
-                        <img src="img/trash_location.jpg" alt="ゴミ置き場" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">`
+                        <img src="img/trashbox.png" alt="ゴミ箱" class="guidebook-image" loading="lazy">`
                     }
                 }
             ]
@@ -1697,11 +1697,13 @@ const guidebookData = {
                                                                         </ul>`,
                         jp: `<ul class="guide-list">
                                                                             <li>① 机や椅子、小物を動かされた場合は、元のレイアウトに戻してください</li>
-                                                                            <li>② ゴミ類は分別して置いてください</li>
-                                                                            <li>③ 残った食材は冷蔵庫に残さず、全てお持ち帰りください</li>
-                                                                            <li>④ エアコン、電気等の電源をオフにしてください</li>
-                                                                            <li>⑤ 忘れ物はありませんか?(充電ケーブル/冷蔵庫内/傘/洋服 等)</li>
-                                                                            <li>⑥ 備品の紛失、破損等があった場合はご連絡をお願い致します</li>
+                                                                            <li>② 残った食材は冷蔵庫に残さず、全てお持ち帰りください</li>
+                                                                            <li>③ エアコン、電気等の電源をオフにしてください</li>
+                                                                            <li>④ 忘れ物はありませんか?(充電ケーブル/冷蔵庫内/傘/洋服 等)</li>
+                                                                            <li>⑤ 備品の紛失、破損等があった場合はご連絡をお願い致します</li>
+                                                                            <li>⑥ ゴミは分別して画像のようにリビングルームに置いてください<br>
+                                                                                <img src="img/trashbox.png" alt="ゴミ箱" loading="lazy" style="width: 100%; max-width: 600px; display: block; margin: 16px auto 0; border-radius: 12px; height: auto;">
+                                                                            </li>
                                                                         </ul>`,
                     }
                 },

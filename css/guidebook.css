@@ -2642,3 +2642,12 @@ details.content-card.living-accordion>summary {
     opacity: 0.9;
     transform: translateY(-2px);
 }
+
+/* Guidebook Image */
+.guidebook-image {
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    margin-top: 16px;
+    height: auto;
+}
