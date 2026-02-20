@@ -116,7 +116,26 @@ const guidebookData = window.guidebookData = {
                         <div class="keybox-container">
                             <img src="img/lakesideinn/checkin_exterior.jpg" alt="Keybox Location" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
                             <img src="img/lakesideinn/checkin_keybox.jpg" alt="Keybox Detail" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
-                        </div>`,
+                        </div>
+                        <div class="lh-time-block">
+  <div class="lh-time-title">
+    <span class="lh-time-icon">🕒</span>
+    <span>Check-in / Check-out Time</span>
+  </div>
+  <div class="lh-time-grid">
+    <div class="lh-time-item">
+      <div class="lh-time-label">Check-in</div>
+      <div class="lh-time-value">15:00–</div>
+    </div>
+    <div class="lh-time-item">
+      <div class="lh-time-label">Check-out</div>
+      <div class="lh-time-value">–11:00</div>
+    </div>
+  </div>
+</div>
+<p>- Check-out is by 11:00.<br>
+Please return the key to the cafe staff upon departure.<br>
+If the staff is absent, please return the key to the key box and leave us a message.</p>`,
                     jp: `<p><strong>17:00までに到着される場合</strong><br>
                         敷地内に併設しているカフェにてチェックインをお願いいたします。<br>
                         ※毎週火曜日は定休日のため、カフェでのチェックインはできません。<br><br>
@@ -129,7 +148,26 @@ const guidebookData = window.guidebookData = {
                         <div class="keybox-container">
                             <img src="img/lakesideinn/checkin_exterior.jpg" alt="キーボックスの場所" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
                             <img src="img/lakesideinn/checkin_keybox.jpg" alt="キーボックス詳細" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
-                        </div>`
+                        </div>
+                        <div class="lh-time-block">
+  <div class="lh-time-title">
+    <span class="lh-time-icon">🕒</span>
+    <span>チェックイン・チェックアウト時間</span>
+  </div>
+  <div class="lh-time-grid">
+    <div class="lh-time-item">
+      <div class="lh-time-label">チェックイン</div>
+      <div class="lh-time-value">15:00〜</div>
+    </div>
+    <div class="lh-time-item">
+      <div class="lh-time-label">チェックアウト</div>
+      <div class="lh-time-value">〜11:00</div>
+    </div>
+  </div>
+</div>
+<p>・チェックアウトは11:00までとなっております。<br>
+ご退出の際は、基本的にカフェのスタッフへ鍵をお渡しください。<br>
+スタッフが不在の場合は、キーボックスへお戻しいただき、その旨をメッセージいただけますと幸いです。</p>`
                 }
             },
             {
@@ -446,6 +484,28 @@ const guidebookData = window.guidebookData = {
 
     // Main Guide Sections
     sections: [
+        {
+            id: "greeting",
+            title: { en: "Welcome", jp: "挨拶" },
+            items: [
+                {
+                    icon: "info",
+                    title: { en: "Message", jp: "メッセージ" },
+                    content: {
+                        en: `<p style="margin-bottom: 1.5rem;">Thank you very much for staying at LAKE SIDE INN Nojiriko.</p>
+                        <p style="margin-bottom: 1.5rem;">LAKE SIDE INN Nojiriko is a lakeside retreat villa located directly on Lake Nojiri, within a national park. Surrounded by nature that changes beautifully with each season, you can enjoy authentic Finnish-style sauna experiences, natural underground water baths, and special moments on the spacious wooden deck.</p>
+                        <p style="margin-bottom: 1.5rem;">Inside the villa, you will find a fireplace, karaoke, and board games. On the second floor, there are private bedrooms designed for comfort. It is an ideal space for families, group trips, or workations.</p>
+                        <p style="margin-bottom: 1.5rem;">While the host is not physically present during your stay and support is provided online, please feel free to contact us anytime if you need assistance.</p>
+                        <p>(Sincerely,<br>Customer Support & Cleaning Team)</p>`,
+                        jp: `<p style="margin-bottom: 1.5rem;">この度は LAKE SIDE INN Nojiriko にご宿泊いただき、誠にありがとうございます。</p>
+                        <p style="margin-bottom: 1.5rem;">LAKE SIDE INN Nojiriko は、野尻湖直結・国立公園内に佇むレイクサイドリトリートヴィラです。四季折々に表情を変える湖の自然に包まれながら、本格フィンランド式サウナや天然地下水の水風呂、広々としたウッドデッキで特別なひとときをお過ごしいただけます。</p>
+                        <p style="margin-bottom: 1.5rem;">室内には薪暖炉やカラオケ、ボードゲームを備え、2階には独立したベッドルームをご用意。ご家族やグループ旅行、ワーケーションにも最適な空間です。</p>
+                        <p style="margin-bottom: 1.5rem;">ホストは常駐しておらず、滞在中はオンラインでのご対応となりますが、お困りのことがございましたらいつでもお気軽にご連絡ください。</p>
+                        <p>（カスタマーサポート・清掃スタッフ一同より）</p>`
+                    }
+                }
+            ]
+        },
         {
             id: "facility",
             title: { en: "Room & Equipment Guide", jp: "各部屋と備品のご案内" },
@@ -1982,7 +2042,36 @@ const guidebookData = window.guidebookData = {
                 jp: "デッキでのBBQをお楽しみいただけます。\n※BBQグリルは全体で2台のみのご用意となりますので、あらかじめご了承ください。"
             },
             image: "img/lakesideinn/bbq.jpg",
-            icon: "bbq"
+            icon: "bbq",
+            modalDetails: {
+                title: { en: "BBQ Grill Information (¥4,000)", jp: "BBQコンロのご案内（4,000円）" },
+                overview: {
+                    en: "The BBQ grill provided is made by 'Weber'.<br>The price is ¥4,000 per grill.<br><br>※ Quantities are limited to 2 grills in total.<br>Please note that reservations are on a first-come, first-served basis.",
+                    jp: "使用するBBQコンロは「Weber（ウェーバー）」製です。<br>料金は1台4,000円となります。<br><br>※ 数に限りがあり、BBQコンロは2台のみのご用意となっております。<br>先着順となりますのでご了承ください。"
+                },
+                priceLabel: { en: "Price", jp: "料金" },
+                priceValue: "¥4,000",
+                periodLabel: { en: "1. Provided Items", jp: "1. 用意されているもの" },
+                periodValue: {
+                    en: "Paper plates, tongs, disposable chopsticks, paper towels, and wet wipes are provided.",
+                    jp: "紙皿・トング・割り箸・ペーパータオル・おしぼりをご用意しております。"
+                },
+                includesLabel: { en: "2. Rain Policy", jp: "2. 雨天時の対応" },
+                includesValue: {
+                    en: "May not be available in case of rain. A refund will be issued in such cases.",
+                    jp: "雨天時はご利用いただけない場合がございます。その際はご返金にて対応いたします。"
+                },
+                flowLabel: { en: "3. Seasonings", jp: "3. 調味料について" },
+                flowValue: {
+                    en: "Seasonings are not provided. Please bring your own.",
+                    jp: "調味料類はご用意しておりませんので、お客様ご自身でご持参ください。"
+                },
+                notesLabel: { en: "4. How to Use", jp: "4. 使用方法について" },
+                notesValue: {
+                    en: "Please check the BBQ section in the 'Room & Equipment Guide' tab for usage instructions.",
+                    jp: "使用方法は「各部屋と備品のご案内」タブ内のBBQセクションに記載しておりますので、そちらをご確認ください。"
+                }
+            }
         }
     ]
 };
@@ -2068,10 +2157,11 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTopNav();
     // Initialize New Navigation
     renderTopNav();
-    switchCategory('access'); // Default to access
+    switchCategory('greeting'); // Default to greeting
 });
 
 const categories = [
+    { id: 'greeting', title: { en: 'Welcome', jp: '挨拶' }, icon: 'info' },
     { id: 'access', title: { en: 'Access & WiFi', jp: 'アクセス ＆ WiFi' }, icon: 'address' },
     { id: 'services', title: { en: 'Optional Services', jp: '有料サービス' }, icon: 'amenities' },
     { id: 'facility', title: { en: 'Room & Equipment Guide', jp: '各部屋と備品のご案内' }, icon: 'rooms' },
@@ -2080,7 +2170,7 @@ const categories = [
     { id: 'faq', title: { en: 'FAQ', jp: 'よくある質問' }, icon: 'receipt' }
 ];
 
-let activeCategory = 'access';
+let activeCategory = 'greeting';
 
 function renderGuidebook() {
     renderPropertyInfo();
@@ -2125,11 +2215,11 @@ window.switchCategory = function (catId, preserveScroll = false) {
     // Hide all main containers first
     const layout = document.querySelector('.guidebook-layout');
     const hero = document.querySelector('.guidebook-hero');
-    const isAccess = (catId === 'access');
+    const isGreeting = (catId === 'greeting');
 
-    if (hero) hero.style.display = isAccess ? 'block' : 'none';
+    if (hero) hero.style.display = isGreeting ? 'block' : 'none';
     if (layout) {
-        if (isAccess) {
+        if (isGreeting) {
             layout.classList.add('has-hero');
         } else {
             layout.classList.remove('has-hero');
@@ -2410,13 +2500,13 @@ function renderServices() {
         const serviceName = getLocalizedText(service.name);
         const serviceDesc = getLocalizedText(service.description);
         return `
-                                                                                        <div class="service-card">
+                                                                                        <div class="service-card" style="cursor: pointer;" onclick="openServiceModal('${service.id}')">
                                                                                             <img src="${service.image}" alt="${serviceName}" class="service-image" loading="lazy">
                                                                                                 <div class="service-info">
                                                                                                     <h3 class="service-name">${serviceName}</h3>
                                                                                                     <p class="service-desc">${serviceDesc}</p>
                                                                                                     <p class="service-price">¥${service.price.toLocaleString()}</p>
-                                                                                                    <button class="service-btn" onclick="handleServiceClick('${service.id}')">${reserveText}</button>
+                                                                                                    <button class="service-btn" onclick="event.stopPropagation(); handleServiceClick('${service.id}')">${reserveText}</button>
                                                                                                 </div>
                                                                                         </div>
                                                                                         `;
@@ -2917,3 +3007,95 @@ window.toggleNeighborhoodExtra = function (btn) {
     initNeighborhoodSupermarket();
 
 })();
+
+// ============================================
+// SERVICE MODAL HELPER
+// ============================================
+
+function createServiceModal() {
+    if (document.getElementById('service-modal')) return;
+
+    const modalHTML = `
+    <div id="service-modal" class="modal-overlay" onclick="if(event.target === this) closeServiceModal()">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeServiceModal()">×</button>
+            <div id="service-modal-body" class="modal-body">
+                <!-- Content injected by JS -->
+            </div>
+        </div>
+    </div>`;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === "Escape") closeServiceModal();
+    });
+}
+
+window.openServiceModal = function (serviceId) {
+    const service = guidebookData.services.find(s => s.id === serviceId);
+    if (!service || !service.modalDetails) return;
+
+    createServiceModal(); // Ensure exists
+
+    const details = service.modalDetails;
+    const lang = getLang();
+    const t = window.translations ? window.translations[lang] : {};
+    const reserveBtnText = t['guidebook.services.reserve'] || (lang === 'jp' ? '予約する' : 'Reserve');
+
+    const getTxt = (obj) => getLocalizedText(obj);
+
+    const html = `
+        <div class="modal-title">${getTxt(details.title)}</div>
+        
+        <div class="modal-section">
+            <div class="modal-text">${getTxt(details.overview)}</div>
+        </div>
+
+        <div class="modal-section">
+             <div class="modal-label">${getTxt(details.priceLabel)}</div>
+             <div class="modal-text" style="font-size: 1.25em; font-weight: bold;">${getTxt(details.priceValue)}</div>
+        </div>
+        
+        <div class="modal-section">
+             <div class="modal-label">${getTxt(details.periodLabel)}</div>
+             <div class="modal-text">${getTxt(details.periodValue)}</div>
+        </div>
+
+        <div class="modal-section">
+             <div class="modal-label">${getTxt(details.includesLabel)}</div>
+             <div class="modal-text">${getTxt(details.includesValue)}</div>
+        </div>
+
+        <div class="modal-section">
+             <div class="modal-label">${getTxt(details.flowLabel)}</div>
+             <div class="modal-text">${getTxt(details.flowValue)}</div>
+        </div>
+
+        <div class="modal-section">
+             <div class="modal-label">${getTxt(details.notesLabel)}</div>
+             <div class="modal-text">${getTxt(details.notesValue)}</div>
+        </div>
+
+        <div class="modal-action">
+            <button class="modal-btn" onclick="handleServiceClick('${service.id}')">${reserveBtnText}</button>
+        </div>
+    `;
+
+    const body = document.getElementById('service-modal-body');
+    if (body) {
+        body.innerHTML = html;
+        const modal = document.getElementById('service-modal');
+        if (modal) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+    }
+};
+
+window.closeServiceModal = function () {
+    const modal = document.getElementById('service-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+};

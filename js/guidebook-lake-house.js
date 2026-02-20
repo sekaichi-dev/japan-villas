@@ -75,7 +75,7 @@ const ICONS = {
 const guidebookData = {
     propertyId: "557548",
     propertyName: "LAKE HOUSE Nojiriko",
-    heroImage: "./img/lake_house_main.jpg",
+    heroImage: "img/lake_house/lake_house_main.jpg",
     // Access Section (Bilingual) - Now as items array
     access: {
         id: "access",
@@ -87,8 +87,8 @@ const guidebookData = {
                 content: {
                     en: `<p>Open the key box on the door using the code <strong>0123</strong>.</p>
                         <div class="keybox-container">
-                            <img src="img/tlh-keybox1.jpg" alt="Keybox Location" class="guidebook-img">
-                            <img src="img/tlh-keybox2.jpg" alt="Keybox Detail" class="guidebook-img">
+                            <img src="img/lake_house/tlh-keybox1.jpg" alt="Keybox Location" class="guidebook-img">
+                            <img src="img/lake_house/tlh-keybox2.jpg" alt="Keybox Detail" class="guidebook-img">
                         </div>
                         <div class="lh-time-block">
   <div class="lh-time-title">
@@ -110,8 +110,8 @@ const guidebookData = {
 - Check-out is by 11:00. Please return the key to the key box upon departure to complete your check-out.</p>`,
                     jp: `<p style="font-weight: bold; font-size: 1.1em;">玄関ドアのドアノブに設置しているキーボックスは、暗証番号「<strong>0123</strong>」で解錠できます。</p>
                         <div class="keybox-container">
-                            <img src="img/tlh-keybox1.jpg" alt="キーボックスの場所" class="guidebook-img">
-                            <img src="img/tlh-keybox2.jpg" alt="キーボックス詳細" class="guidebook-img">
+                            <img src="img/lake_house/tlh-keybox1.jpg" alt="キーボックスの場所" class="guidebook-img">
+                            <img src="img/lake_house/tlh-keybox2.jpg" alt="キーボックス詳細" class="guidebook-img">
                         </div>
                         <div class="lh-time-block">
   <div class="lh-time-title">
@@ -144,7 +144,7 @@ const guidebookData = {
                                 <strong>Password:</strong> nojiriko</p>
                             </div>
                             <div class="wifi-image">
-                                <img src="img/tlh-wifi.png" alt="WiFi QR Code" class="guidebook-img">
+                                <img src="img/lake_house/tlh-wifi.png" alt="WiFi QR Code" class="guidebook-img">
                             </div>
                         </div>`,
                     jp: `<div class="wifi-container">
@@ -154,7 +154,7 @@ const guidebookData = {
                                 <strong>パスワード:</strong> nojiriko</p>
                             </div>
                             <div class="wifi-image">
-                                <img src="img/tlh-wifi.png" alt="WiFi QRコード" class="guidebook-img">
+                                <img src="img/lake_house/tlh-wifi.png" alt="WiFi QRコード" class="guidebook-img">
                             </div>
                         </div>`
                 }
@@ -200,9 +200,9 @@ const guidebookData = {
                 title: { en: "Parking", jp: "駐車場" },
                 content: {
                     en: `<p>Parking for 3 cars is available.</p>
-                        <img src="./img/parking_layout.jpg" alt="Parking Layout" class="access-image">`,
+                        <img src="img/lake_house/parking_layout.jpg" alt="Parking Layout" class="access-image">`,
                     jp: `<p>乗用車3台分を駐車できます。</p>
-                        <img src="./img/parking_layout.jpg" alt="駐車場配置図" class="access-image">`
+                        <img src="img/lake_house/parking_layout.jpg" alt="駐車場配置図" class="access-image">`
                 }
             },
             {
@@ -275,16 +275,16 @@ const guidebookData = {
                         en: `<p>Below is the floor plan of the property.<br>Using this layout, we will introduce each room and the equipment available throughout the house.</p>
                              <div class="floor-plans" style="margin-top: 1rem;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">1st Floor Plan</p>
-                                 <img src="img/floor_plan_1f.png" alt="1st Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
+                                 <img src="img/lake_house/floor_plan_1f.png" alt="1st Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">2nd Floor Plan</p>
-                                 <img src="img/floor_plan_2f.png" alt="2nd Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
+                                 <img src="img/lake_house/floor_plan_2f.png" alt="2nd Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
                              </div>`,
                         jp: `<p>施設の平面図です。<br>このレイアウトに沿って、各部屋と設備をご紹介します。</p>
                              <div class="floor-plans" style="margin-top: 1rem;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">1階 平面図</p>
-                                 <img src="img/floor_plan_1f.png" alt="1階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
+                                 <img src="img/lake_house/floor_plan_1f.png" alt="1階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">2階 平面図</p>
-                                 <img src="img/floor_plan_2f.png" alt="2階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
+                                 <img src="img/lake_house/floor_plan_2f.png" alt="2階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
                              </div>`
                     }
                 },
@@ -292,7 +292,7 @@ const guidebookData = {
                     icon: "tv",
                     title: { en: "Living Room", jp: "リビング" },
                     content: {
-                        en: `<img src="img/room_living_final_locked.jpg" alt="Living Room" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 1rem; object-fit: cover;">
+                        en: `<img src="img/lake_house/room_living_final_locked.jpg" alt="Living Room" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 1rem; object-fit: cover;">
                         <p style="margin-bottom: 0.5rem;">Enjoy these features in the Living Room</p>
                         
                         <details class="living-accordion">
@@ -334,7 +334,7 @@ const guidebookData = {
                             <summary>・Board Games & Cards Available</summary>
                             <p>Board games, cards, and various games available.</p>
                         </details>`,
-                        jp: `<img src="img/room_living_final_locked.jpg" alt="リビングルーム" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 1rem; object-fit: cover;">
+                        jp: `<img src="img/lake_house/room_living_final_locked.jpg" alt="リビングルーム" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 6px; margin-bottom: 1rem; object-fit: cover;">
                         <p style="margin-bottom: 0.5rem;">リビングでは、こちらをお楽しみください</p>
                         
                         <details class="living-accordion">
@@ -386,56 +386,56 @@ const guidebookData = {
                             <summary>Bedroom 1 (7.5 tatami)</summary>
                             <div class="accordion-body">
                                 <p>1 Double Bed, A/C, Bedside Table, Mini Fridge</p>
-                                <img src="img/room_bedroom_1.jpg" alt="Bedroom 1" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_1.jpg" alt="Bedroom 1" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>
                         <details class="living-accordion">
                             <summary>Bedroom 2 (7.5 tatami)</summary>
                             <div class="accordion-body">
                                 <p>2 Single Beds, A/C, Bedside Table, Mini Fridge</p>
-                                <img src="img/room_bedroom_2.jpg" alt="Bedroom 2" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_2.jpg" alt="Bedroom 2" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>
                         <details class="living-accordion">
                             <summary>Bedroom 3 (6.0 tatami)</summary>
                             <div class="accordion-body">
                                 <p>2 Single Beds, A/C, Bedside Table</p>
-                                <img src="img/room_bedroom_3.jpg" alt="Bedroom 3" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_3.jpg" alt="Bedroom 3" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>
                         <details class="living-accordion">
                             <summary>Bedroom 4 (9.0 tatami)</summary>
                             <div class="accordion-body">
                                 <p>2 Semi-Double Beds, A/C, Side Table, Mini Fridge, LCD TV</p>
-                                <img src="img/room_bedroom_4.jpg" alt="Bedroom 4" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_4.jpg" alt="Bedroom 4" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>`,
                         jp: `<details class="living-accordion">
                             <summary>寝室①【洋室7.5帖】</summary>
                             <div class="accordion-body">
                                 <p>ダブルベッド1台、エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
-                                <img src="img/room_bedroom_1.jpg" alt="寝室1" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_1.jpg" alt="寝室1" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>
                         <details class="living-accordion">
                             <summary>寝室②【洋室7.5帖】</summary>
                             <div class="accordion-body">
                                 <p>シングルベッド2台、エアコン、ベッドサイドテーブル、小型冷蔵庫</p>
-                                <img src="img/room_bedroom_2.jpg" alt="寝室2" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_2.jpg" alt="寝室2" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>
                         <details class="living-accordion">
                             <summary>寝室③【洋室6.0帖】</summary>
                             <div class="accordion-body">
                                 <p>シングルベッド2台、エアコン、ベッドサイドテーブル</p>
-                                <img src="img/room_bedroom_3.jpg" alt="寝室3" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_3.jpg" alt="寝室3" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>
                         <details class="living-accordion">
                             <summary>寝室④【洋室9.0帖】</summary>
                             <div class="accordion-body">
                                 <p>セミダブルベッド2台、エアコン、サイドテーブル、小型冷蔵庫、テレビ</p>
-                                <img src="img/room_bedroom_4.jpg" alt="寝室4" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
+                                <img src="img/lake_house/room_bedroom_4.jpg" alt="寝室4" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-top: 0.5rem;">
                             </div>
                         </details>`
                     }
@@ -446,117 +446,117 @@ const guidebookData = {
                     content: {
                         en: `<div class="kitchen-gallery">
                             <div class="gallery-item">
-                                <img src="img/kitchen_ih_stove.png" alt="IH Cooking Stove" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_ih_stove.png" alt="IH Cooking Stove" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>IH Cooking Stove</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_cookware.png" alt="Cooking Tools & Pots" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_cookware.png" alt="Cooking Tools & Pots" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Cooking Tools & Pots in Drawer</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_rice_cooker.png" alt="Rice Cooker" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_rice_cooker.png" alt="Rice Cooker" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Rice Cooker (ZOJIRUSHI)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_microwave.png" alt="Microwave" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_microwave.png" alt="Microwave" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Microwave (Panasonic)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_kettle.png" alt="Electric Kettle" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_kettle.png" alt="Electric Kettle" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Electric Kettle (T-fal)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_ih_panel.png" alt="IH Battery Cover" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_ih_panel.png" alt="IH Battery Cover" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Battery Replacement - Open this cover</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_batteries.png" alt="Spare Batteries" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_batteries.png" alt="Spare Batteries" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Spare Batteries Location</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_carbonated_server.png" alt="Sparkling Water Server" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_carbonated_server.png" alt="Sparkling Water Server" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Unlimited Sparkling Water Server - Pull the lever</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_fridge.jpg" alt="Refrigerator" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_fridge.jpg" alt="Refrigerator" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Refrigerator (Panasonic 470L)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_ice_maker.png" alt="HOSHIZAKI Ice Maker" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_ice_maker.png" alt="HOSHIZAKI Ice Maker" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>HOSHIZAKI Ice Maker (Commercial)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_tableware_bowls.png" alt="Tableware Bowls" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_tableware_bowls.png" alt="Tableware Bowls" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Tableware (Bowls & Deep Plates)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_tableware_plates.png" alt="Tableware Plates" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_tableware_plates.png" alt="Tableware Plates" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Tableware (Assorted Plates)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_pans_pots.png" alt="Pots and Pans" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_pans_pots.png" alt="Pots and Pans" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Pots, Pans & Strainer</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_hotplate_zojirushi.png" alt="Hot Plate" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_hotplate_zojirushi.png" alt="Hot Plate" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Hot Plate (ZOJIRUSHI)</strong></p>
                             </div>
                         </div>`,
                         jp: `<div class="kitchen-gallery">
                             <div class="gallery-item">
-                                <img src="img/kitchen_ih_stove.png" alt="IHコンロ" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_ih_stove.png" alt="IHコンロ" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>IHコンロ</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_cookware.png" alt="調理器具・鍋" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_cookware.png" alt="調理器具・鍋" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>調理器具・鍋（引き出し内）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_rice_cooker.png" alt="炊飯器" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_rice_cooker.png" alt="炊飯器" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>炊飯器（象印）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_microwave.png" alt="電子レンジ" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_microwave.png" alt="電子レンジ" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>電子レンジ (Panasonic)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_kettle.png" alt="電気ケトル" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_kettle.png" alt="電気ケトル" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>電気ケトル (T-fal)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_ih_panel.png" alt="IHコンロ電池カバー" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_ih_panel.png" alt="IHコンロ電池カバー" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>電池交換 - このカバーを開けてください</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_batteries.png" alt="予備電池" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_batteries.png" alt="予備電池" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>予備電池の保管場所</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_carbonated_server.png" alt="炭酸サーバー" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_carbonated_server.png" alt="炭酸サーバー" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>炭酸サーバー使い放題 - レバーを引いてください</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_fridge.jpg" alt="冷蔵庫" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_fridge.jpg" alt="冷蔵庫" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>冷蔵庫 (Panasonic 470L)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_ice_maker.png" alt="HOSHIZAKI製氷機" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_ice_maker.png" alt="HOSHIZAKI製氷機" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>HOSHIZAKI製氷機 (業務用)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_tableware_bowls.png" alt="食器類（木製ボウル・深皿）" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_tableware_bowls.png" alt="食器類（木製ボウル・深皿）" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>食器類（木製ボウル・深皿）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_tableware_plates.png" alt="食器類（平皿）" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_tableware_plates.png" alt="食器類（平皿）" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>食器類（取り皿・平皿各種）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_pans_pots.png" alt="鍋・フライパン" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_pans_pots.png" alt="鍋・フライパン" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>鍋・フライパン・ザル</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img src="img/kitchen_hotplate_zojirushi.png" alt="ホットプレート" class="guidebook-img" loading="lazy">
+                                <img src="img/lake_house/kitchen_hotplate_zojirushi.png" alt="ホットプレート" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>ホットプレート（象印）</strong></p>
                             </div>
                         </div>`
@@ -568,37 +568,37 @@ const guidebookData = {
                     content: {
                         en: `<div class="bedroom-grid">
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_detergent_box.jpg" alt="Detergent Box" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_detergent_box.jpg" alt="Detergent Box" loading="lazy">
                                     <p style="margin-top: 0.5rem;">1. Detergent is in the clear box.</p>
                                 </div>
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_detergent_in.jpg" alt="Place Detergent" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_detergent_in.jpg" alt="Place Detergent" loading="lazy">
                                     <p style="margin-top: 0.5rem;">2. Place detergent inside with dishes.</p>
                                 </div>
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_power_on.jpg" alt="Power On" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_power_on.jpg" alt="Power On" loading="lazy">
                                     <p style="margin-top: 0.5rem;">3. Press Power button to turn ON.</p>
                                 </div>
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_start.jpg" alt="Start Button" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_start.jpg" alt="Start Button" loading="lazy">
                                     <p style="margin-top: 0.5rem;">4. Press Start/Pause button to begin.</p>
                                 </div>
                             </div>`,
                         jp: `<div class="bedroom-grid">
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_detergent_box.jpg" alt="洗剤ボックス" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_detergent_box.jpg" alt="洗剤ボックス" loading="lazy">
                                     <p style="margin-top: 0.5rem;">① 洗剤は透明なボックスの中に入っています。</p>
                                 </div>
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_detergent_in.jpg" alt="洗剤投入" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_detergent_in.jpg" alt="洗剤投入" loading="lazy">
                                     <p style="margin-top: 0.5rem;">② 洗剤は食器と一緒に食洗機の中に入れてください。</p>
                                 </div>
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_power_on.jpg" alt="電源オン" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_power_on.jpg" alt="電源オン" loading="lazy">
                                     <p style="margin-top: 0.5rem;">③ 電源ボタンを先に押して、電源をオンにしてください。</p>
                                 </div>
                                 <div class="bedroom-item">
-                                    <img src="img/dishwasher_start.jpg" alt="スタート" loading="lazy">
+                                    <img src="img/lake_house/dishwasher_start.jpg" alt="スタート" loading="lazy">
                                     <p style="margin-top: 0.5rem;">④ 電源を入れた後に、スタートボタンを押してください。</p>
                                 </div>
                             </div>`
@@ -608,7 +608,7 @@ const guidebookData = {
                     icon: "fire",
                     title: { en: "Fireplace", jp: "暖炉" },
                     content: {
-                        en: `<img src="img/fireplace_main_view.jpg" alt="Fireplace" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                        en: `<img src="img/lake_house/fireplace_main_view.jpg" alt="Fireplace" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
                         <p>Please watch the video guide to operate the fireplace.</p>
                         
                         <div style="text-align: center; margin: 1.5rem 0;">
@@ -616,7 +616,7 @@ const guidebookData = {
                         </div>
 
                         <p><strong>Important:</strong> Return gas cans to their original location. Ensure safety to prevent fire hazards.</p>`,
-                        jp: `<img src="img/fireplace_main_view.jpg" alt="暖炉" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                        jp: `<img src="img/lake_house/fireplace_main_view.jpg" alt="暖炉" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
                         <p>こちらの動画を参考に、暖炉を付けてください。</p>
                         
                         <div style="text-align: center; margin: 1.5rem 0;">
@@ -636,15 +636,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/karaoke_power_1.png" alt="Power Button 1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/karaoke_power_1.png" alt="Power Button 1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン①<br>Power Button 1</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/karaoke_power_2.png" alt="Power Button 2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/karaoke_power_2.png" alt="Power Button 2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン②<br>Power Button 2</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/karaoke_power_3.png" alt="Power Button 3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/karaoke_power_3.png" alt="Power Button 3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン③<br>Power Button 3</p>
                             </div>
                         </div>
@@ -660,15 +660,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/karaoke_power_1.png" alt="電源ボタン1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/karaoke_power_1.png" alt="電源ボタン1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン①<br>Power Button 1</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/karaoke_power_2.png" alt="電源ボタン2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/karaoke_power_2.png" alt="電源ボタン2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン②<br>Power Button 2</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/karaoke_power_3.png" alt="電源ボタン3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/karaoke_power_3.png" alt="電源ボタン3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン③<br>Power Button 3</p>
                             </div>
                         </div>
@@ -689,15 +689,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/washing_new_1.png" alt="Step 1 Power" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/washing_new_1.png" alt="Step 1 Power" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Step 1: Power</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/washing_new_2_en.png" alt="Step 2 Select Course" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/washing_new_2_en.png" alt="Step 2 Select Course" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Step 2: Select Mode</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/washing_new_3.png" alt="Step 3 Start" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/washing_new_3.png" alt="Step 3 Start" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Step 3: Start</p>
                             </div>
                         </div>
@@ -707,15 +707,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/washing_new_1.png" alt="手順1 電源" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/washing_new_1.png" alt="手順1 電源" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">手順① 電源</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/washing_new_2_jp.png" alt="手順2 コース選択" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/washing_new_2_jp.png" alt="手順2 コース選択" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">手順② コース選択</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/washing_new_3.png" alt="手順3 スタート" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/washing_new_3.png" alt="手順3 スタート" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">手順③ スタート</p>
                             </div>
                         </div>
@@ -732,11 +732,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/water_heater_1.png" alt="Kitchen Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/water_heater_1.png" alt="Kitchen Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Control Panel (Kitchen)</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/water_heater_2.png" alt="Bathroom Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/water_heater_2.png" alt="Bathroom Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Control Panel (Bathroom)</p>
                             </div>
                         </div>
@@ -747,11 +747,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img src="img/water_heater_1.png" alt="キッチン給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/water_heater_1.png" alt="キッチン給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">キッチン給湯パネル</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/water_heater_2.png" alt="浴室給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/water_heater_2.png" alt="浴室給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">浴室給湯パネル</p>
                             </div>
                         </div>
@@ -765,7 +765,7 @@ const guidebookData = {
                     content: {
                         en: `<p>・Equipped with Jet Bath<br>
                         ・Bathroom equipped with 5-level dimming light</p>
-                        <img src="img/bath_water_heater_guide_en.png" alt="Bath Operation Guide" class="living-image" loading="lazy" style="width: 100%; border-radius: 6px; margin-top: 1rem;">`,
+                        <img src="img/lake_house/bath_water_heater_guide_en.png" alt="Bath Operation Guide" class="living-image" loading="lazy" style="width: 100%; border-radius: 6px; margin-top: 1rem;">`,
                         jp: `<p>・ジェットバス付き浴槽完備<br>
                         ・浴室内 5段階調光完備</p>`
                     }
@@ -778,11 +778,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 320px; margin: 0.5rem auto 1rem auto;">
                             <div style="text-align: center;">
-                                <img src="img/jacuzzi_1_panel_loc.png" alt="Switch Panel Location" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/jacuzzi_1_panel_loc.png" alt="Switch Panel Location" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Location</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/jacuzzi_2_panel_on_v2.png" alt="Switch Panel ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/jacuzzi_2_panel_on_v2.png" alt="Switch Panel ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Switch ON</p>
                             </div>
                         </div>
@@ -790,7 +790,7 @@ const guidebookData = {
                         <p>2. Turn on the Jacuzzi power button.</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img src="img/jacuzzi_3_main_power.png" alt="Jacuzzi Main Power" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img src="img/lake_house/jacuzzi_3_main_power.png" alt="Jacuzzi Main Power" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Power Button</p>
                         </div>
 
@@ -801,7 +801,7 @@ const guidebookData = {
                         <p><strong>Draining:</strong> Open Drain Valves 1 & 2. Drain completely after use.</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img src="img/jacuzzi_6_drain2.png" alt="Drain Valve 2" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img src="img/lake_house/jacuzzi_6_drain2.png" alt="Drain Valve 2" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Drain Valve 2</p>
                         </div>
 
@@ -815,11 +815,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 320px; margin: 0.5rem auto 1rem auto;">
                             <div style="text-align: center;">
-                                <img src="img/jacuzzi_1_panel_loc.png" alt="パネル場所" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/jacuzzi_1_panel_loc.png" alt="パネル場所" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">場所</p>
                             </div>
                             <div style="text-align: center;">
-                                <img src="img/jacuzzi_2_panel_on_v2.png" alt="電源ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img src="img/lake_house/jacuzzi_2_panel_on_v2.png" alt="電源ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ON</p>
                             </div>
                         </div>
@@ -827,7 +827,7 @@ const guidebookData = {
                         <p>② ジャグジー本体の電源を入れる。</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img src="img/jacuzzi_3_main_power.png" alt="ジャグジー電源ボタン" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img src="img/lake_house/jacuzzi_3_main_power.png" alt="ジャグジー電源ボタン" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン</p>
                         </div>
 
@@ -838,7 +838,7 @@ const guidebookData = {
                         <p><strong>&lt;排水する&gt;</strong> 排水弁①と排水弁②両方開けてください。※使用後は完全に排水をお願いします</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img src="img/jacuzzi_6_drain2.png" alt="排水弁2" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img src="img/lake_house/jacuzzi_6_drain2.png" alt="排水弁2" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">排水弁②</p>
                         </div>
 
@@ -854,7 +854,7 @@ const guidebookData = {
                     icon: "sightseeing",
                     title: { en: "Balcony", jp: "バルコニー" },
                     content: {
-                        en: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
+                        en: `<img src="img/lake_house/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
                         <p>After enjoying the cold bath, spend a relaxing time on the balcony.</p>
                         <p>Equipped with high-quality French sauna chairs and other amenities for your relaxation.</p>
                         
@@ -866,7 +866,7 @@ const guidebookData = {
                         <div class="warning-box">
                             <strong>Rules:</strong> Quiet hours after 10 PM. No jumping into the lake (dangerous). Do not bury alcohol in snow.
                         </div>`,
-                        jp: `<img src="img/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
+                        jp: `<img src="img/lake_house/balcony_overview_final.jpg" alt="Balcony View" class="living-image" loading="lazy" style="width: 100%; display: block; margin: 0 auto 1rem;">
                         <p>こだわりの水風呂を楽しんだ後は、バルコニーでゆったりとした癒しの時間をお過ごしください。</p>
                         <p>フランス輸入の高品質サウナチェアをはじめ、くつろぎのための設備を充実させています。</p>
 
@@ -890,7 +890,7 @@ const guidebookData = {
                         en: `<p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.<br>Please refer to the video below for usage instructions.</p>
                         
                         <div style="margin-bottom: 1.5rem;">
-                            <img src="img/bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
+                            <img src="img/lake_house/bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/P64SbH-GK3I?si=z_PJTQ1tvNLq4oeN" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                             </div>
@@ -898,7 +898,7 @@ const guidebookData = {
                         jp: `<p>BBQに使用するチャッカマン・網・トングは、キッチン上部の棚にまとめて置いてあります。<br>ご利用方法については、下記の動画よりご確認ください。</p>
                         
                         <div style="margin-bottom: 1.5rem;">
-                            <img src="img/bbq_shelf.png" alt="キッチンの棚" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
+                            <img src="img/lake_house/bbq_shelf.png" alt="キッチンの棚" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/wdCWkTrMGVM?si=5DMPr1CN-Xbc3pBE" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ 動画はこちら</a>
                             </div>
@@ -910,7 +910,7 @@ const guidebookData = {
                     title: { en: "Sauna", jp: "サウナ" },
                     content: {
                         en: `<div style="margin-bottom: 1.5rem;">
-                            <img src="img/sauna_interior.jpg" alt="Sauna Interior" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                            <img src="img/lake_house/sauna_interior.jpg" alt="Sauna Interior" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/ISriUrQr0fw" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                             </div>
@@ -932,7 +932,7 @@ const guidebookData = {
 
                         <p>Please return gas cans to basket.</p>`,
                         jp: `<div style="margin-bottom: 1.5rem;">
-                            <img src="img/sauna_interior.jpg" alt="サウナ室内" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                            <img src="img/lake_house/sauna_interior.jpg" alt="サウナ室内" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/v6iS16Tut7Y?si=uXCAuOMR2egn4KwT" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ 動画はこちら</a>
                             </div>
@@ -960,7 +960,7 @@ const guidebookData = {
                     title: { en: "Cold Bath", jp: "水風呂" },
                     content: {
                         en: `<div style="margin-bottom: 1.5rem;">
-                            <img src="img/coldbath_overview.jpg" alt="Cold Bath Overview" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                            <img src="img/lake_house/coldbath_overview.jpg" alt="Cold Bath Overview" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/Bcm0XWvI9-4?si=pK6SoINnkIhS33jO" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                             </div>
@@ -968,7 +968,7 @@ const guidebookData = {
                         
                         <p>Discover our custom-built cold bath, abundantly fed by pure natural underground water. With a consistent temperature of 14°C year-round and a continuous flow of 100L/min, this 140cm deep bath offers an exceptional way to cool down and rejuvenate after your sauna session.</p>`,
                         jp: `<div style="margin-bottom: 1.5rem;">
-                            <img src="img/coldbath_overview.jpg" alt="水風呂" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
+                            <img src="img/lake_house/coldbath_overview.jpg" alt="水風呂" loading="lazy" style="width: 100%; border-radius: 6px; display: block; margin-bottom: 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/G2KMmnzEasQ?si=L2suDgPHT5XI9gpG" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ 動画はこちら</a>
                             </div>
@@ -1016,12 +1016,12 @@ const guidebookData = {
                         <strong>Trash Location:</strong> Please place sorted trash in the designated area shown in the red frame below.<br>
                         <strong>At Checkout:</strong> Please gather all trash and leave it near the designated area in the living room.<br>
                         <strong>Long-term Guests:</strong> If you need trash collection, please contact us via the booking site.</p>
-                        <img src="img/trashbox.png" alt="Trash Box" class="guidebook-image" loading="lazy">`,
+                        <img src="img/lake_house/trashbox.png" alt="Trash Box" class="guidebook-image" loading="lazy">`,
                         jp: `<p><strong>分別：</strong>可燃ゴミ、不燃ゴミ、缶、ペットボトル、瓶<br>
                         <strong>ゴミの置き場所：</strong>画像の赤枠で示された場所にまとめて置いてください。<br>
                         <strong>チェックアウト時：</strong>ゴミはすべてリビングの赤枠付近に一箇所にまとめてください。<br>
                         <strong>長期滞在のお客様：</strong>ゴミの回収が必要な際は、予約サイトのメッセージよりご連絡ください。</p>
-                        <img src="img/trashbox.png" alt="ゴミ箱" class="guidebook-image" loading="lazy">`
+                        <img src="img/lake_house/trashbox.png" alt="ゴミ箱" class="guidebook-image" loading="lazy">`
                     }
                 }
             ]
@@ -1646,11 +1646,11 @@ const guidebookData = {
                         en: `<p><strong>Unauthorized Extension:</strong> Please adhere to check -in /out times. ¥10,000 per 30 min charged for unauthorized extensions.</p>
                                                                         <p><strong>Fire:</strong> Use of fire indoors is prohibited (except kitchen stove).</p>
                                                                         <p><strong>Restricted Areas:</strong> Guests are not allowed on the 3rd floor.</p>
-                                                                        <img src="img/no_entry_3rd_floor_gate.jpg" alt="3rd Floor Gate" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
+                                                                        <img src="img/lake_house/no_entry_3rd_floor_gate.jpg" alt="3rd Floor Gate" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
                         jp: `<p><strong>無断延長:</strong> 予約時間内の入退室をお願いします。無断延長は30分につき1万円を請求します。</p>
                                                                         <p><strong>火気の利用:</strong> 室内での火気利用は禁止です（キッチンコンロを除く）。</p>
                                                                         <p><strong>立入禁止:</strong> 3階は管理上の理由により立ち入りできません。</p>
-                                                                        <img src="img/no_entry_3rd_floor_gate.jpg" alt="3階ゲート" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
+                                                                        <img src="img/lake_house/no_entry_3rd_floor_gate.jpg" alt="3階ゲート" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -1702,7 +1702,7 @@ const guidebookData = {
                                                                             <li>④ 忘れ物はありませんか?(充電ケーブル/冷蔵庫内/傘/洋服 等)</li>
                                                                             <li>⑤ 備品の紛失、破損等があった場合はご連絡をお願い致します</li>
                                                                             <li>⑥ ゴミは分別して画像のようにリビングルームに置いてください<br>
-                                                                                <img src="img/trashbox.png" alt="ゴミ箱" loading="lazy" style="width: 100%; max-width: 600px; display: block; margin: 16px auto 0; border-radius: 12px; height: auto;">
+                                                                                <img src="img/lake_house/trashbox.png" alt="ゴミ箱" loading="lazy" style="width: 100%; max-width: 600px; display: block; margin: 16px auto 0; border-radius: 12px; height: auto;">
                                                                             </li>
                                                                         </ul>`,
                     }
@@ -1740,23 +1740,23 @@ const guidebookData = {
                                                                         <p>1. Find the tripped breaker (near the entrance) and push it all the way DOWN.</p>
                                                                         <details class="living-accordion" style="margin-bottom: 1rem;">
                                                                             <summary>View Image</summary>
-                                                                            <img src="img/breaker_step_2.jpg" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                            <img src="img/lake_house/breaker_step_2.jpg" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                         </details>
                                                                             <p>2. Then push it all the way UP to "ON".<br>👉 It should click into place.</p>
                                                                             <details class="living-accordion">
                                                                                 <summary>View Image</summary>
-                                                                                <img src="img/breaker_step_1.jpg" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                <img src="img/lake_house/breaker_step_1.jpg" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                             </details>`,
                         jp: `<p>電気が突然使えなくなった場合、ブレーカーが落ちている可能性があります。<br>以下の手順で復旧してください。</p>
                                                                                 <p>① 玄関付近にあるブレーカーのうち、落ちているものを一度いちばん下まで下げてください。</p>
                                                                                 <details class="living-accordion" style="margin-bottom: 1rem;">
                                                                                     <summary>画像を表示</summary>
-                                                                                    <img src="img/breaker_step_2.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                    <img src="img/lake_house/breaker_step_2.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                                 </details>
                                                                                     <p>② その後、しっかり上まで上げて「ON」にしてください。<br>👉 カチッと音がすればOKです。</p>
                                                                                     <details class="living-accordion">
                                                                                         <summary>画像を表示</summary>
-                                                                                        <img src="img/breaker_step_1.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                        <img src="img/lake_house/breaker_step_1.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                                     </details>`
                     }
                 },
@@ -1822,7 +1822,7 @@ const guidebookData = {
                 en: "Excellent jacuzzi with lake view. *Available Mar-Nov only",
                 jp: "湖を見ながら入るジャグジーは格別です。※3月~11月のみ利用可能"
             },
-            image: "./img/jacuzzi.jpg",
+            image: "img/lake_house/jacuzzi.jpg",
             icon: "bath",
             modalDetails: {
                 title: { en: "Jacuzzi (Paid)", jp: "ジャグジー（有料）" },

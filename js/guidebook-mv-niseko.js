@@ -57,7 +57,7 @@ const ICONS = {
 // ============================================
 const guidebookData = {
     propertyId: "MV_NISEKO",
-    propertyName: "Mountain Villa ニセコ / Mountain Villa Niseko",
+    propertyName: { en: "Mountain Villa Niseko", jp: "Mountain Villa ニセコ" },
     heroImage: "img/mv_niseko/hero.jpg",
     welcomeMessage: {
         en: "Welcome to Mountain Villa Niseko! Here's everything you need for your stay.",
@@ -77,7 +77,25 @@ const guidebookData = {
                         <div class="keybox-container">
                             <img src="img/mv_niseko/checkin_entrance.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Entrance">
                             <img src="img/mv_niseko/checkin_sesame_key.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Sesame Key">
-                        </div>`,
+                        </div>
+                        <div class="lh-time-block">
+  <div class="lh-time-title">
+    <span class="lh-time-icon">🕒</span>
+    <span>Check-in / Check-out Time</span>
+  </div>
+  <div class="lh-time-grid">
+    <div class="lh-time-item">
+      <div class="lh-time-label">Check-in</div>
+      <div class="lh-time-value">15:00–</div>
+    </div>
+    <div class="lh-time-item">
+      <div class="lh-time-label">Check-out</div>
+      <div class="lh-time-value">–11:00</div>
+    </div>
+  </div>
+</div>
+<p>- Since this is a self-check-in facility, you can check in anytime after 15:00.<br>
+- Check-out is by 11:00. Please return the key to the key box upon departure to complete your check-out.</p>`,
                     jp: `<p>玄関に設置されているセサミキーで解錠が可能です。<br>
                         チェックイン当日までに、チャットまたはメールにて<br>
                         4桁の暗証番号をお送りします。<br><br>
@@ -86,7 +104,25 @@ const guidebookData = {
                         <div class="keybox-container">
                             <img src="img/mv_niseko/checkin_entrance.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Entrance">
                             <img src="img/mv_niseko/checkin_sesame_key.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Sesame Key">
-                        </div>`
+                        </div>
+                        <div class="lh-time-block">
+  <div class="lh-time-title">
+    <span class="lh-time-icon">🕒</span>
+    <span>チェックイン・チェックアウト時間</span>
+  </div>
+  <div class="lh-time-grid">
+    <div class="lh-time-item">
+      <div class="lh-time-label">チェックイン</div>
+      <div class="lh-time-value">15:00〜</div>
+    </div>
+    <div class="lh-time-item">
+      <div class="lh-time-label">チェックアウト</div>
+      <div class="lh-time-value">〜11:00</div>
+    </div>
+  </div>
+</div>
+<p>・当施設はセルフチェックインとなっておりますので、15:00以降であればいつでもチェックインが可能です。<br>
+・チェックアウトは11:00までとなっております。ご退出の際は、鍵をキーボックスへお戻しいただければお手続き完了となります。</p>`
                 }
             },
             {
@@ -195,6 +231,28 @@ const guidebookData = {
         ]
     },
     sections: [
+        {
+            id: "greeting",
+            title: { en: "Welcome", jp: "挨拶" },
+            items: [
+                {
+                    icon: "info",
+                    title: { en: "Message", jp: "メッセージ" },
+                    content: {
+                        en: `<p style="margin-bottom: 1.5rem;">Thank you very much for staying at Mountain Villa Niseko.</p>
+                        <p style="margin-bottom: 1.5rem;">Mountain Villa Niseko is a retreat villa surrounded by the beautiful nature of Hokkaido. You can enjoy special moments while being embraced by nature that beautifully changes its expressions throughout the seasons.</p>
+                        <p style="margin-bottom: 1.5rem;">This private space is the perfect environment for families, group trips, and workations.</p>
+                        <p style="margin-bottom: 1.5rem;">While the host is not physically present during your stay and support is provided online, please feel free to contact us anytime if you need assistance.</p>
+                        <p>(Sincerely,<br>Customer Support & Cleaning Team)</p>`,
+                        jp: `<p style="margin-bottom: 1.5rem;">この度は Mountain Villa Niseko にご宿泊いただき、誠にありがとうございます。</p>
+                        <p style="margin-bottom: 1.5rem;">Mountain Villa Nisekoは、北海道の美しい自然に囲まれたリトリートヴィラです。四季折々に表情を変える自然に包まれながら、特別なひとときをお過ごしいただけます。</p>
+                        <p style="margin-bottom: 1.5rem;">貸切のプライベート空間で、ご家族やグループ旅行、ワーケーションにも最適な空間です。</p>
+                        <p style="margin-bottom: 1.5rem;">ホストは常駐しておらず、滞在中はオンラインでのご対応となりますが、お困りのことがございましたらいつでもお気軽にご連絡ください。</p>
+                        <p>（カスタマーサポート・清掃スタッフ一同より）</p>`
+                    }
+                }
+            ]
+        },
         {
             id: "facility",
             title: { en: "Room & Equipment Guide", jp: "各部屋と備品のご案内" },
@@ -1233,6 +1291,7 @@ const guidebookData = {
 // ============================================
 
 const categories = [
+    { id: 'greeting', title: { en: 'Welcome', jp: '挨拶' }, icon: 'info' },
     { id: 'access', title: { en: 'Access & WiFi', jp: 'アクセス ＆ WiFi' }, icon: 'address' },
     { id: 'facility', title: { en: 'Room & Equipment Guide', jp: '各部屋と備品のご案内' }, icon: 'rooms' },
     { id: 'neighborhood', title: { en: 'Neighborhood', jp: '周辺情報' }, icon: 'sightseeing' },
@@ -1240,7 +1299,7 @@ const categories = [
     { id: 'faq', title: { en: 'FAQ', jp: 'よくある質問' }, icon: 'receipt' }
 ];
 
-let activeCategory = 'access';
+let activeCategory = 'greeting';
 
 function getLang() {
     return window.currentLang || 'en';
@@ -1267,7 +1326,7 @@ function initApp() {
     updateLanguageLabel();
 
     // Default Tab
-    switchCategory('access');
+    switchCategory('greeting');
 
     // Init Search
     initSearch();
@@ -1311,11 +1370,11 @@ window.switchCategory = function (catId) {
     // Toggle Hero & Layout classes
     const layout = document.querySelector('.guidebook-layout');
     const hero = document.querySelector('.guidebook-hero');
-    const isAccess = (catId === 'access');
+    const isGreeting = (catId === 'greeting');
 
-    if (hero) hero.style.display = isAccess ? 'block' : 'none';
+    if (hero) hero.style.display = isGreeting ? 'block' : 'none';
     if (layout) {
-        if (isAccess) layout.classList.add('has-hero');
+        if (isGreeting) layout.classList.add('has-hero');
         else layout.classList.remove('has-hero');
     }
 
