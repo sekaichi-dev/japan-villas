@@ -1,3 +1,11 @@
+const IMG_BASE = 'img/mv_niseko/';
+const PROPERTY_KEY = 'mv_niseko';
+
+function resolveImagePaths() {
+    document.querySelectorAll('img[data-img]').forEach(img => {
+        img.src = IMG_BASE + img.getAttribute('data-img');
+    });
+}
 /**
  * Guest Guidebook - JavaScript for Mountain Villa Niseko
  * Replicates the logic and UI structure of Lake House (guidebook-lake-house.js)
@@ -58,7 +66,7 @@ const ICONS = {
 const guidebookData = {
     propertyId: "MV_NISEKO",
     propertyName: { en: "Mountain Villa Niseko", jp: "Mountain Villa ニセコ" },
-    heroImage: "img/mv_niseko/hero.jpg",
+    heroImage: "hero.jpg",
     welcomeMessage: {
         en: "Welcome to Mountain Villa Niseko! Here's everything you need for your stay.",
         jp: "Mountain Villa ニセコへようこそ！快適な滞在のための情報をご案内します。"
@@ -75,8 +83,8 @@ const guidebookData = {
                         We will send you a 4-digit PIN code via chat or email by the day of your check-in.<br><br>
                         After entering the PIN code, please press the 'Unlock' button on the bottom right to open the door.</p>
                         <div class="keybox-container">
-                            <img src="img/mv_niseko/checkin_entrance.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Entrance">
-                            <img src="img/mv_niseko/checkin_sesame_key.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Sesame Key">
+                            <img data-img="checkin_entrance.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Entrance">
+                            <img data-img="checkin_sesame_key.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Sesame Key">
                         </div>
                         <div class="lh-time-block">
   <div class="lh-time-title">
@@ -102,8 +110,8 @@ const guidebookData = {
                         暗証番号を入力後、右下の「解錠」ボタンを押して<br>
                         ドアを開けてください。</p>
                         <div class="keybox-container">
-                            <img src="img/mv_niseko/checkin_entrance.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Entrance">
-                            <img src="img/mv_niseko/checkin_sesame_key.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Sesame Key">
+                            <img data-img="checkin_entrance.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Entrance">
+                            <img data-img="checkin_sesame_key.jpg" class="guidebook-img" style="height: 100%; object-fit: cover;" alt="Sesame Key">
                         </div>
                         <div class="lh-time-block">
   <div class="lh-time-title">
@@ -135,7 +143,7 @@ const guidebookData = {
                                 <strong>Password:</strong> mountainv</p>
                             </div>
                             <div class="wifi-image">
-                                <img src="img/mv_niseko/wifi_qr.png" alt="WiFi QR Code" class="guidebook-img">
+                                <img data-img="wifi_qr.png" alt="WiFi QR Code" class="guidebook-img">
                             </div>
                         </div>`,
                     jp: `<div class="wifi-container">
@@ -144,7 +152,7 @@ const guidebookData = {
                                 <strong>パスワード:</strong> mountainv</p>
                             </div>
                             <div class="wifi-image">
-                                <img src="img/mv_niseko/wifi_qr.png" alt="WiFi QRコード" class="guidebook-img">
+                                <img data-img="wifi_qr.png" alt="WiFi QRコード" class="guidebook-img">
                             </div>
                         </div>`
                 }
@@ -164,9 +172,9 @@ const guidebookData = {
                 title: { en: "Parking", jp: "駐車場" },
                 content: {
                     en: `<p>Parking is available on site.<br>Up to 3 cars can be parked.</p>
-                        <p><img src="img/mv_niseko/parking.jpg" style="width:100%; border-radius:12px; margin-top:1rem;" alt="Parking"></p>`,
+                        <p><img data-img="parking.jpg" style="width:100%; border-radius:12px; margin-top:1rem;" alt="Parking"></p>`,
                     jp: `<p>敷地内に駐車場がございます。<br>乗用車3台分を駐車できます。</p>
-                        <p><img src="img/mv_niseko/parking.jpg" style="width:100%; border-radius:12px; margin-top:1rem;" alt="Parking"></p>`
+                        <p><img data-img="parking.jpg" style="width:100%; border-radius:12px; margin-top:1rem;" alt="Parking"></p>`
                 }
             },
             {
@@ -261,12 +269,12 @@ const guidebookData = {
                     icon: "door",
                     title: { en: "Entrance", jp: "玄関" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/entrance.jpg" class="entrance-img" loading="lazy" alt="Entrance" onclick="openLightbox(this.src)"></p>
+                        en: `<p><img data-img="entrance.jpg" class="entrance-img" loading="lazy" alt="Entrance" onclick="openLightbox(this.src)"></p>
                             <p>This is the entrance space.<br>
                             Please remove your shoes here and change into indoor slippers before entering.</p>
                             <p>The tiled floor has floor heating, making it suitable for drying wet shoes or ski/snowboard equipment.</p>
                             <p>Please remove snow and moisture in the entrance area before proceeding inside.</p>`,
-                        jp: `<p><img src="img/mv_niseko/entrance.jpg" class="entrance-img" loading="lazy" alt="玄関" onclick="openLightbox(this.src)"></p>
+                        jp: `<p><img data-img="entrance.jpg" class="entrance-img" loading="lazy" alt="玄関" onclick="openLightbox(this.src)"></p>
                             <p>こちらが玄関スペースです。<br>
                             玄関では必ず靴を脱いで、室内用スリッパに履き替えてからお入りください。</p>
                             <p>床のタイル部分には床暖房が入っており、<br>
@@ -278,11 +286,11 @@ const guidebookData = {
                     icon: "tv",
                     title: { en: "Living Room", jp: "リビング" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/living.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Living Room"></p>
+                        en: `<p><img data-img="living.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Living Room"></p>
                             <p>A living room equipped with air conditioning and panel heaters for comfort in any season.<br>
                             Featuring a spacious sofa, dining table, and TV, it is the perfect space for family and group gatherings and meals.</p>
                             <p>Enjoy a relaxing time while gazing at the magnificent view of Mt. Yotei and the nature of the four seasons through the wide windows.</p>`,
-                        jp: `<p><img src="img/mv_niseko/living.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Living Room"></p>
+                        jp: `<p><img data-img="living.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Living Room"></p>
                             <p>エアコン、パネルヒーターを完備した、季節を問わず快適にお過ごしいただけるリビングルームです。<br>
                             ゆったりとしたソファー、ダイニングテーブル、テレビを備え、<br>
                             ご家族やグループでの団らんや食事の時間に最適な空間となっています。</p>
@@ -294,11 +302,11 @@ const guidebookData = {
                     icon: "rooms",
                     title: { en: "Bedroom 1", jp: "寝室1" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/bedroom1.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Bedroom 1"></p>
+                        en: `<p><img data-img="bedroom1.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Bedroom 1"></p>
                             <p>A relaxing bedroom equipped with one double bed.<br>
                             It features air conditioning and panel heaters, ensuring a comfortable sleep in any season.</p>
                             <p>This simple and quiet space allows you to slowly heal the fatigue of your journey.</p>`,
-                        jp: `<p><img src="img/mv_niseko/bedroom1.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="寝室1"></p>
+                        jp: `<p><img data-img="bedroom1.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="寝室1"></p>
                             <p>ダブルベッド1台を備えた、落ち着いた雰囲気のベッドルームです。<br>
                             エアコンとパネルヒーターを完備しており、季節を問わず快適にお休みいただけます。</p>
                             <p>シンプルで静かな空間のため、旅の疲れをゆっくりと癒していただけます。</p>`
@@ -308,12 +316,12 @@ const guidebookData = {
                     icon: "rooms",
                     title: { en: "Bedroom 2", jp: "寝室2" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/bedroom2.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Bedroom 2"></p>
+                        en: `<p><img data-img="bedroom2.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="Bedroom 2"></p>
                             <p>A bright and easy-to-use bedroom equipped with two single beds.<br>
                             Equipped with air conditioning and panel heaters, you can stay comfortably even in the winter.</p>
                             <p>Natural light fills the room from the window, offering a refreshing wake-up in the morning.<br>
                             This room is ideal for families or friends.</p>`,
-                        jp: `<p><img src="img/mv_niseko/bedroom2.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="寝室2"></p>
+                        jp: `<p><img data-img="bedroom2.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem;" alt="寝室2"></p>
                             <p>シングルベッド2台を備えた、明るく使い勝手の良いベッドルームです。<br>
                             エアコンとパネルヒーターを完備しており、冬場も快適にお過ごしいただけます。</p>
                             <p>窓からは自然光が入り、朝はすっきりとした目覚めをお楽しみいただけます。<br>
@@ -333,7 +341,7 @@ const guidebookData = {
                     icon: "trash",
                     title: { en: "Trash Bins", jp: "ゴミ箱" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/trash_bins_kitchen.jpg" class="trash-img" loading="lazy" alt="Trash Bins" onclick="openLightbox(this.src)"></p>
+                        en: `<p><img data-img="trash_bins_kitchen.jpg" class="trash-img" loading="lazy" alt="Trash Bins" onclick="openLightbox(this.src)"></p>
                             <p>Trash bins are available in the kitchen.<br>
                             Please sort your trash according to the rules below during your stay.</p>
                             <ol style="padding-left: 1.5rem; line-height: 1.6; margin: 1rem 0;">
@@ -342,7 +350,7 @@ const guidebookData = {
                             </ol>
                             <p>Trash bags are provided in the kitchen.<br>
                             We appreciate your cooperation in sorting trash.</p>`,
-                        jp: `<p><img src="img/mv_niseko/trash_bins_kitchen.jpg" class="trash-img" loading="lazy" alt="ゴミ箱" onclick="openLightbox(this.src)"></p>
+                        jp: `<p><img data-img="trash_bins_kitchen.jpg" class="trash-img" loading="lazy" alt="ゴミ箱" onclick="openLightbox(this.src)"></p>
                             <p>キッチンにゴミ箱をご用意しています。<br>
                             滞在中に出たゴミは、下記の分別ルールに従ってご利用ください。</p>
                             <ol style="padding-left: 1.5rem; line-height: 1.6; margin: 1rem 0;">
@@ -365,14 +373,14 @@ const guidebookData = {
                             The room is heated, making it comfortable even in winter.<br>
                             Convenient for changing after skiing/snowboarding and temporarily drying wear.</p>
                             <p class="click-to-enlarge">Click image to enlarge</p>
-                            <p><img src="img/mv_niseko/changing_room_overview.jpg" class="changing-img" loading="lazy" alt="Changing Room" onclick="openLightbox(this.src)"></p>
+                            <p><img data-img="changing_room_overview.jpg" class="changing-img" loading="lazy" alt="Changing Room" onclick="openLightbox(this.src)"></p>
 
                             <h4 class="guide-sub-title">Floor Heating (Entrance & Changing Room)</h4>
                             <p>Floor heating is installed in the tiled areas of the entrance and changing room.<br>
                             Suitable for drying wet shoes and ski/snowboard equipment, keeping your feet warm.</p>
                             <p><strong>During the winter snowboard season, please set the floor heating to "4".</strong></p>
                             <p class="click-to-enlarge">Click image to enlarge</p>
-                            <p><img src="img/mv_niseko/floor_heating_panel.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="Floor Heating Panel" onclick="openLightbox(this.src)"></p>
+                            <p><img data-img="floor_heating_panel.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="Floor Heating Panel" onclick="openLightbox(this.src)"></p>
 
                             <h4 class="guide-sub-title">Floor Heating Controller</h4>
                             <p>Floor heating is operated from the panel on the wall.<br>
@@ -387,14 +395,14 @@ const guidebookData = {
                             室内は暖房が効いており、冬場でも快適にご利用いただけます。<br>
                             スキー・スノーボード後の着替えや、ウェアの一時乾燥にも便利なスペースです。</p>
                             <p class="click-to-enlarge">※画像をタップして拡大</p>
-                            <p><img src="img/mv_niseko/changing_room_overview.jpg" class="changing-img" loading="lazy" alt="脱衣所" onclick="openLightbox(this.src)"></p>
+                            <p><img data-img="changing_room_overview.jpg" class="changing-img" loading="lazy" alt="脱衣所" onclick="openLightbox(this.src)"></p>
 
                             <h4 class="guide-sub-title">床暖房（玄関・脱衣所）</h4>
                             <p>玄関および脱衣所の床タイル部分には床暖房を設置しています。<br>
                             濡れた靴やスキー・スノーボード用品の乾燥にも適しており、冬場でも足元が冷えにくい仕様です。</p>
                             <p><strong>冬のスノーボードシーズン中は、床暖房の設定を「4」にしてご利用ください。</strong></p>
                             <p class="click-to-enlarge">※画像をタップして拡大</p>
-                            <p><img src="img/mv_niseko/floor_heating_panel.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="床暖房" onclick="openLightbox(this.src)"></p>
+                            <p><img data-img="floor_heating_panel.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="床暖房" onclick="openLightbox(this.src)"></p>
 
                             <h4 class="guide-sub-title">床暖房 操作パネルについて</h4>
                             <p>床暖房の操作は、壁に設置されたパネルから行えます。<br>
@@ -409,13 +417,13 @@ const guidebookData = {
                     icon: "bath",
                     title: { en: "Bathroom", jp: "風呂" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/bathroom.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem; cursor:pointer;" alt="Bathroom" onclick="openLightbox(this.src)"></p>
+                        en: `<p><img data-img="bathroom.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem; cursor:pointer;" alt="Bathroom" onclick="openLightbox(this.src)"></p>
                             <p>A bathroom with a panoramic view of Mt. Yotei through the window.<br>
                             Enjoy a relaxing bath while gazing at the majestic scenery during the day and the quiet atmosphere at night.</p>
                             
                             <h4 class="guide-sub-title">How to Use the Water Heater (Bathroom)</h4>
-                            <p><img src="img/mv_niseko/bath_water_heater.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="Water Heater Instructions" onclick="openLightbox(this.src)"></p>`,
-                        jp: `<p><img src="img/mv_niseko/bathroom.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem; cursor:pointer;" alt="風呂" onclick="openLightbox(this.src)"></p>
+                            <p><img data-img="bath_water_heater.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; cursor:pointer;" alt="Water Heater Instructions" onclick="openLightbox(this.src)"></p>`,
+                        jp: `<p><img data-img="bathroom.jpg" style="width:100%; border-radius:12px; margin-top:0.5rem; margin-bottom:1rem; cursor:pointer;" alt="風呂" onclick="openLightbox(this.src)"></p>
                             <p>窓一面に羊蹄山を望むバスルームです。<br>
                             昼は雄大な景色を、夜は静かな時間を楽しみながら、<br>
                             ゆったりとご入浴いただけます。</p>`
@@ -452,15 +460,15 @@ const guidebookData = {
                             
                             <div style="display: flex; gap: 0.5rem; overflow-x: auto;">
                                 <div style="flex: 1; min-width: 0;">
-                                    <img src="img/mv_niseko/laundry_step1_power.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 1">
+                                    <img data-img="laundry_step1_power.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 1">
                                     <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">Step 1: Power</p>
                                 </div>
                                 <div style="flex: 1; min-width: 0;">
-                                    <img src="img/mv_niseko/laundry_step2_course_en.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 2">
+                                    <img data-img="laundry_step2_course_en.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 2">
                                     <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">Step 2: Course</p>
                                 </div>
                                 <div style="flex: 1; min-width: 0;">
-                                    <img src="img/mv_niseko/laundry_step3_start.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 3">
+                                    <img data-img="laundry_step3_start.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="Step 3">
                                     <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">Step 3: Start</p>
                                 </div>
                             </div>`,
@@ -469,15 +477,15 @@ const guidebookData = {
                             
                             <div style="display: flex; gap: 0.5rem; overflow-x: auto;">
                                 <div style="flex: 1; min-width: 0;">
-                                    <img src="img/mv_niseko/laundry_step1_power.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順1">
+                                    <img data-img="laundry_step1_power.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順1">
                                     <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">手順① 電源</p>
                                 </div>
                                 <div style="flex: 1; min-width: 0;">
-                                    <img src="img/mv_niseko/laundry_step2_course_jp.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順2">
+                                    <img data-img="laundry_step2_course_jp.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順2">
                                     <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">手順② コース選択</p>
                                 </div>
                                 <div style="flex: 1; min-width: 0;">
-                                    <img src="img/mv_niseko/laundry_step3_start.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順3">
+                                    <img data-img="laundry_step3_start.jpg" style="width: 100%; border-radius: 8px; cursor: pointer;" onclick="openLightbox(this.src)" alt="手順3">
                                     <p style="text-align: center; font-size: 0.8em; margin-top: 5px; font-weight: bold;">手順③ スタート</p>
                                 </div>
                             </div>`
@@ -490,11 +498,11 @@ const guidebookData = {
                     content: {
                         en: `<div class="panel-heater-images">
             <div class="panel-heater-item">
-                <img src="img/mv_niseko/panel_heater_location.jpg" class="panel-heater-img" loading="lazy" alt="Panel Heater Location" onclick="openLightbox(this.src)">
+                <img data-img="panel_heater_location.jpg" class="panel-heater-img" loading="lazy" alt="Panel Heater Location" onclick="openLightbox(this.src)">
                 <p class="panel-heater-caption">Location</p>
             </div>
             <div class="panel-heater-item">
-                <img src="img/mv_niseko/panel_heater_dial.jpg" class="panel-heater-img" loading="lazy" alt="Panel Heater Dial" onclick="openLightbox(this.src)">
+                <img data-img="panel_heater_dial.jpg" class="panel-heater-img" loading="lazy" alt="Panel Heater Dial" onclick="openLightbox(this.src)">
                 <p class="panel-heater-caption">Dial</p>
             </div>
         </div>
@@ -507,11 +515,11 @@ const guidebookData = {
         * You can leave the setting as is after use.</p>`,
                         jp: `<div class="panel-heater-images">
             <div class="panel-heater-item">
-                <img src="img/mv_niseko/panel_heater_location.jpg" class="panel-heater-img" loading="lazy" alt="パネルヒーター設置場所" onclick="openLightbox(this.src)">
+                <img data-img="panel_heater_location.jpg" class="panel-heater-img" loading="lazy" alt="パネルヒーター設置場所" onclick="openLightbox(this.src)">
                 <p class="panel-heater-caption">設置場所</p>
             </div>
             <div class="panel-heater-item">
-                <img src="img/mv_niseko/panel_heater_dial.jpg" class="panel-heater-img" loading="lazy" alt="パネルヒーターダイヤル" onclick="openLightbox(this.src)">
+                <img data-img="panel_heater_dial.jpg" class="panel-heater-img" loading="lazy" alt="パネルヒーターダイヤル" onclick="openLightbox(this.src)">
                 <p class="panel-heater-caption">ダイヤル</p>
             </div>
         </div>
@@ -529,11 +537,11 @@ const guidebookData = {
                     icon: "bbq",
                     title: { en: "Balcony", jp: "バルコニー" },
                     content: {
-                        en: `<p><img src="img/mv_niseko/bbq_deck.jpg" class="balcony-img" loading="lazy" alt="Balcony" onclick="openLightbox(this.src)"></p>
+                        en: `<p><img data-img="bbq_deck.jpg" class="balcony-img" loading="lazy" alt="Balcony" onclick="openLightbox(this.src)"></p>
                             <p>Enjoy a BBQ on the roofed deck while admiring the scenery.<br>
                             Please spend a relaxing time in an open space surrounded by nature.</p>
                             <p><strong>* BBQ rental is available only from May to November.</strong></p>`,
-                        jp: `<p><img src="img/mv_niseko/bbq_deck.jpg" class="balcony-img" loading="lazy" alt="バルコニー" onclick="openLightbox(this.src)"></p>
+                        jp: `<p><img data-img="bbq_deck.jpg" class="balcony-img" loading="lazy" alt="バルコニー" onclick="openLightbox(this.src)"></p>
                             <p>屋根付きデッキで、景色を眺めながらBBQをお楽しみいただけます。<br>
                             自然に囲まれた開放的な空間で、ゆったりとした時間をお過ごしください。</p>
                             <p>※ バーベキューは <strong>5月から11月までの期間のみ</strong> 貸し出しております。</p>`
@@ -1227,15 +1235,15 @@ const guidebookData = {
                             <div style="margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;">
                                 <div style="flex: 1 1 30%; min-width: 140px;">
                                     <p style="margin-bottom: 0.5rem; font-weight: bold; color: var(--gb-text-main); font-size: 0.9em; text-align: center;">① キッチン</p>
-                                    <img src="img/mv_niseko/heater_panel_kitchen.jpg" alt="Kitchen Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
+                                    <img data-img="heater_panel_kitchen.jpg" alt="Kitchen Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
                                 </div>
                                 <div style="flex: 1 1 30%; min-width: 140px;">
                                     <p style="margin-bottom: 0.5rem; font-weight: bold; color: var(--gb-text-main); font-size: 0.9em; text-align: center;">② 脱衣所</p>
-                                    <img src="img/mv_niseko/heater_panel_dressing_room.jpg" alt="Dressing Room Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
+                                    <img data-img="heater_panel_dressing_room.jpg" alt="Dressing Room Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
                                 </div>
                                 <div style="flex: 1 1 30%; min-width: 140px;">
                                     <p style="margin-bottom: 0.5rem; font-weight: bold; color: var(--gb-text-main); font-size: 0.9em; text-align: center;">③ 浴室</p>
-                                    <img src="img/mv_niseko/heater_panel_bathroom.jpg" alt="Bathroom Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
+                                    <img data-img="heater_panel_bathroom.jpg" alt="Bathroom Heater Panel" style="width: 100%; border-radius: 6px; border: 1px solid var(--gb-border-color); display: block;">
                                 </div>
                             </div>
 
@@ -1259,7 +1267,7 @@ const guidebookData = {
                             
                             <details class="living-accordion" style="margin-bottom: 1rem;">
                                 <summary>画像を表示</summary>
-                                <img src="img/mv_niseko/__FILENAME_BREAKER_STEP1__.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
+                                <img data-img="__FILENAME_BREAKER_STEP1__.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
                             </details>
 
                             <p><strong>② その後、しっかり上まで上げて「ON」にしてください。</strong><br>
@@ -1267,7 +1275,7 @@ const guidebookData = {
                             
                             <details class="living-accordion">
                                 <summary>画像を表示</summary>
-                                <img src="img/mv_niseko/__FILENAME_BREAKER_STEP2__.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
+                                <img data-img="__FILENAME_BREAKER_STEP2__.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
                             </details>`
                     }
                 },
@@ -1313,6 +1321,7 @@ function getLocalizedText(obj) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+    resolveImagePaths();
     initApp();
 });
 
@@ -1335,7 +1344,7 @@ function initApp() {
 function renderPropertyInfo() {
     document.getElementById('property-name').textContent = getLocalizedText(guidebookData.propertyName);
     const heroImg = document.querySelector('.hero-image');
-    if (heroImg) heroImg.src = guidebookData.heroImage;
+    if (heroImg) heroImg.src = IMG_BASE + guidebookData.heroImage;
     document.getElementById('welcome-message').textContent = getLocalizedText(guidebookData.welcomeMessage);
 }
 
@@ -1405,7 +1414,7 @@ const kitchenItemsData = [
             jp: ['食品を中に入れます。', '「あたため」ボタン、または分数を指定します。', 'スタートボタンを押して開始します。'],
             en: ['Place food inside.', 'Select "Reheat" or set the desired time.', 'Press the Start button to begin.']
         },
-        images: ['img/mv_niseko/kitchen_microwave_single.jpg', 'img/mv_niseko/kitchen_appliances_set.jpg']
+        images: ['img/mv_niseko/kitchen_microwave_single.jpg', "kitchen_appliances_set.jpg"]
     },
     {
         id: 'coffee',
@@ -1449,7 +1458,7 @@ const kitchenItemsData = [
             jp: ['引き出しや棚から必要なものをお選びください。', '使用後は必ず洗浄して乾かしてください。', '元の場所へ丁寧に戻してください。'],
             en: ['Choose what you need from the drawers or shelves.', 'Always wash and dry them after use.', 'Please return them carefully to their original locations.']
         },
-        images: ['img/mv_niseko/kitchen_tools_cutlery.jpg', 'img/mv_niseko/kitchen_pots_pans.jpg']
+        images: ['img/mv_niseko/kitchen_tools_cutlery.jpg', "kitchen_pots_pans.jpg"]
     },
     {
         id: 'refrigerator',
@@ -1505,7 +1514,7 @@ function renderKitchenAccordion() {
                         </button>
                         <div class="image-accordion-content">
                             <div class="kitchen-img-wrapper">
-                                <img data-src="${img}" class="kitchen-img lazy-kitchen" onclick="openLightbox('${img}')" alt="${title}">
+                                <img data-data-img="${img}" class="kitchen-img lazy-kitchen" onclick="openLightbox('${img}')" alt="${title}">
                             </div>
                         </div>
                     </div>
@@ -1609,7 +1618,7 @@ function renderSections() {
     let html = '';
     const lang = getLang();
     // Helper to get text (though not strictly used below for structure, kept for consistency if needed)
-    const t = window.translations ? window.translations[lang] : {};
+    const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
 
     // Render Access section first (now as expanded cards)
     if (guidebookData.access && guidebookData.access.items) {
@@ -1732,10 +1741,10 @@ window.scrollToId = function (id, event) {
 
 window.updateContent = () => {
     const lang = getLang();
-    const t = window.translations?.[lang] || {};
+    const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (t[key]) el.textContent = t[key];
+        if (getT(key)) el.textContent = getT(key);
     });
     document.body.className = `guidebook-page lang-${lang}`;
 };
@@ -1818,5 +1827,6 @@ window.closeLightbox = function (event) {
 
 // Initialize Lightbox on load
 document.addEventListener('DOMContentLoaded', () => {
+    resolveImagePaths();
     setupLightbox();
 });

@@ -1,3 +1,11 @@
+const IMG_BASE = 'img/lakeside_inn/';
+const PROPERTY_KEY = 'lakeside_inn';
+
+function resolveImagePaths() {
+    document.querySelectorAll('img[data-img]').forEach(img => {
+        img.src = IMG_BASE + img.getAttribute('data-img');
+    });
+}
 /**
  * Guest Guidebook - JavaScript
  * Handles accordion functionality, navigation, and data rendering
@@ -94,7 +102,7 @@ const ICONS = {
 const guidebookData = window.guidebookData = {
     propertyId: "557548",
     propertyName: "LAKE SIDE INN Nojiriko",
-    heroImage: "img/lakesideinn/main.jpg",
+    heroImage: "main.jpg",
     // Access Section (Bilingual) - Now as items array
     access: {
         id: "access",
@@ -114,8 +122,8 @@ const guidebookData = window.guidebookData = {
                         <strong>Check-out:</strong><br>
                         After use, please return the key to the key box.</p>
                         <div class="keybox-container">
-                            <img src="img/lakesideinn/checkin_exterior.jpg" alt="Keybox Location" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
-                            <img src="img/lakesideinn/checkin_keybox.jpg" alt="Keybox Detail" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
+                            <img data-img="checkin_exterior.jpg" alt="Keybox Location" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
+                            <img data-img="checkin_keybox.jpg" alt="Keybox Detail" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
                         </div>
                         <div class="lh-time-block">
   <div class="lh-time-title">
@@ -146,8 +154,8 @@ If the staff is absent, please return the key to the key box and leave us a mess
                         <strong>チェックアウト時</strong><br>
                         ご使用後の鍵はキーボックスへお戻しください。</p>
                         <div class="keybox-container">
-                            <img src="img/lakesideinn/checkin_exterior.jpg" alt="キーボックスの場所" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
-                            <img src="img/lakesideinn/checkin_keybox.jpg" alt="キーボックス詳細" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
+                            <img data-img="checkin_exterior.jpg" alt="キーボックスの場所" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover;">
+                            <img data-img="checkin_keybox.jpg" alt="キーボックス詳細" class="guidebook-img" style="aspect-ratio: 4/3; object-fit: cover; object-position: 95% 85%;">
                         </div>
                         <div class="lh-time-block">
   <div class="lh-time-title">
@@ -242,7 +250,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-1')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-1" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_1.png" alt="WiFi QR 1" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_1.png" alt="WiFi QR 1" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 2 -->
@@ -255,7 +263,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-2')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-2" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_2.png" alt="WiFi QR 2" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_2.png" alt="WiFi QR 2" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 3 -->
@@ -268,7 +276,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-3')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-3" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_3.png" alt="WiFi QR 3" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_3.png" alt="WiFi QR 3" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 4 -->
@@ -281,7 +289,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-4')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-4" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_4.png" alt="WiFi QR 4" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_4.png" alt="WiFi QR 4" class="wifi-qr-img">
                                 </div>
                             </div>
                         </div>`,
@@ -354,7 +362,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-1-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-1-jp" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_1.png" alt="WiFi QR 1" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_1.png" alt="WiFi QR 1" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 2 -->
@@ -367,7 +375,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-2-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-2-jp" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_2.png" alt="WiFi QR 2" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_2.png" alt="WiFi QR 2" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 3 -->
@@ -380,7 +388,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-3-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-3-jp" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_3.png" alt="WiFi QR 3" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_3.png" alt="WiFi QR 3" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 4 -->
@@ -393,7 +401,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-4-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-4-jp" class="wifi-qr-panel">
-                                    <img src="img/lakesideinn/wifi_qr_4.png" alt="WiFi QR 4" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_4.png" alt="WiFi QR 4" class="wifi-qr-img">
                                 </div>
                             </div>
                         </div>`
@@ -441,10 +449,10 @@ If the staff is absent, please return the key to the key box and leave us a mess
                 content: {
                     en: `<p>One car per cabin is allowed by default.<br>
                         If you plan to park two or more cars, please contact us in advance via the chat on the booking platform you used.</p>
-                        <img src="img/lakesideinn/parking_photo.jpg" alt="Parking Area" class="guidebook-img" style="margin-top: 10px;">`,
+                        <img data-img="parking_photo.jpg" alt="Parking Area" class="guidebook-img" style="margin-top: 10px;">`,
                     jp: `<p>原則、1棟につきお車1台までとなります。<br>
                         2台以上で来られる場合は、事前に予約サイト内のチャットにてご連絡ください。</p>
-                        <img src="img/lakesideinn/parking_photo.jpg" alt="駐車場写真" class="guidebook-img" style="margin-top: 10px;">`
+                        <img data-img="parking_photo.jpg" alt="駐車場写真" class="guidebook-img" style="margin-top: 10px;">`
                 }
             },
             {
@@ -516,9 +524,9 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     title: { en: "Loft", jp: "ロフト" },
                     content: {
                         en: `<p>The loft area is equipped with two single-size mattresses.</p>
-                             <img src="img/lakesideinn/loft.jpg" alt="Loft" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
+                             <img data-img="loft.jpg" alt="Loft" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
                         jp: `<p>ロフトエリアには、シングルサイズのマットレスを2台ご用意しております。</p>
-                             <img src="img/lakesideinn/loft.jpg" alt="ロフト" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
+                             <img data-img="loft.jpg" alt="ロフト" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -527,9 +535,9 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     title: { en: "Living Room", jp: "リビング" },
                     content: {
                         en: `<p>An open living room equipped with a dining table and bench sofa.<br>Natural light pours in, allowing you to comfortably enjoy meals and family time.</p>
-                             <img src="img/lakesideinn/living.jpg" alt="Living Room" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
+                             <img data-img="living.jpg" alt="Living Room" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
                         jp: `<p>ダイニングテーブルとベンチソファを備えた開放的なリビング。<br>自然光が差し込み、食事や団らんの時間を快適にお楽しみいただけます。</p>
-                             <img src="img/lakesideinn/living.jpg" alt="リビング" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
+                             <img data-img="living.jpg" alt="リビング" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -538,9 +546,9 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     title: { en: "Bedroom", jp: "ベッドルーム" },
                     content: {
                         en: `<p>A bedroom with two semi-double beds. A spacious and calm space where you can sleep comfortably.</p>
-                             <img src="img/lakesideinn/bedroom.jpg" alt="Bedroom" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
+                             <img data-img="bedroom.jpg" alt="Bedroom" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
                         jp: `<p>セミダブルベッド2台を備えた寝室。ゆとりある配置で、快適にお休みいただける落ち着いた空間です。</p>
-                             <img src="img/lakesideinn/bedroom.jpg" alt="ベッドルーム" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
+                             <img data-img="bedroom.jpg" alt="ベッドルーム" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -561,7 +569,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                 }
                              </style>
                              <h4 class="guide-sub-title">Basic Usage</h4>
-                             <img src="img/lakesideinn/kitchen_ih.jpg" alt="IH Stove" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="kitchen_ih.jpg" alt="IH Stove" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <details class="living-accordion">
                                  <summary>① Place the Pot</summary>
                                  <ul class="compact-guide-list">
@@ -599,7 +607,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                              </details>
 
                              <h4 class="guide-sub-title">Grill Usage</h4>
-                             <img src="img/lakesideinn/kitchen_grill.jpg" alt="Fish Grill" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="kitchen_grill.jpg" alt="Fish Grill" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <details class="living-accordion">
                                  <summary>① Select Menu</summary>
                                  <ul class="compact-guide-list">
@@ -639,7 +647,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                 }
                              </style>
                              <h4 class="guide-sub-title">基本の使い方</h4>
-                             <img src="img/lakesideinn/kitchen_ih.jpg" alt="IHコンロ" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="kitchen_ih.jpg" alt="IHコンロ" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <details class="living-accordion">
                                  <summary>① 鍋を置く</summary>
                                  <ul class="compact-guide-list">
@@ -677,7 +685,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                              </details>
 
                              <h4 class="guide-sub-title">グリルの使い方</h4>
-                             <img src="img/lakesideinn/kitchen_grill.jpg" alt="魚焼きグリル" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="kitchen_grill.jpg" alt="魚焼きグリル" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <details class="living-accordion">
                                  <summary>① メニューを選ぶ</summary>
                                  <ul class="compact-guide-list">
@@ -730,7 +738,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  <li>・Cups</li>
                                  <li>・Electric Kettle</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_tableware.jpg" alt="Tableware" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
+                             <img data-img="cookware_tableware.jpg" alt="Tableware" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
 
                              <h4 class="guide-sub-title">② Cutlery</h4>
                              <ul class="compact-guide-list">
@@ -740,7 +748,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  <li>・Chopsticks</li>
                                  <li>・Measuring Spoons</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_cutlery.jpg" alt="Cutlery" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
+                             <img data-img="cookware_cutlery.jpg" alt="Cutlery" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
 
                              <h4 class="guide-sub-title">③ Cooking Utensils</h4>
                              <ul class="compact-guide-list">
@@ -753,13 +761,13 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  <li>・Ladle</li>
                                  <li>・Spatula</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_utensils.jpg" alt="Cooking Utensils" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
+                             <img data-img="cookware_utensils.jpg" alt="Cooking Utensils" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
 
                              <h4 class="guide-sub-title">④ Home Appliances</h4>
                              <ul class="compact-guide-list">
                                  <li>・Microwave</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_microwave.jpg" alt="Microwave" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">`,
+                             <img data-img="cookware_microwave.jpg" alt="Microwave" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">`,
                         jp: `<style>
                                 .compact-guide-list {
                                     list-style: none;
@@ -778,7 +786,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  <li>・コップ</li>
                                  <li>・電気ケトル</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_tableware.jpg" alt="食器・ドリンク用品" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
+                             <img data-img="cookware_tableware.jpg" alt="食器・ドリンク用品" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
 
                              <h4 class="guide-sub-title">② カトラリー</h4>
                              <ul class="compact-guide-list">
@@ -788,7 +796,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  <li>・箸</li>
                                  <li>・計量スプーン</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_cutlery.jpg" alt="カトラリー" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
+                             <img data-img="cookware_cutlery.jpg" alt="カトラリー" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
 
                              <h4 class="guide-sub-title">③ 調理器具</h4>
                              <ul class="compact-guide-list">
@@ -801,13 +809,13 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  <li>・お玉</li>
                                  <li>・フライ返し</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_utensils.jpg" alt="調理器具" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
+                             <img data-img="cookware_utensils.jpg" alt="調理器具" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto 1.5rem; border-radius: 6px;">
 
                              <h4 class="guide-sub-title">④ 家電</h4>
                              <ul class="compact-guide-list">
                                  <li>・電子レンジ</li>
                              </ul>
-                             <img src="img/lakesideinn/cookware_microwave.jpg" alt="電子レンジ" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">`
+                             <img data-img="cookware_microwave.jpg" alt="電子レンジ" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -818,7 +826,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                         en: `<p>A space equipped with a washroom, toilet, and shower. It is a clean and calm space where you can spend your time comfortably.</p>
                              
                              <h4 class="guide-sub-title">1. Washroom</h4>
-                             <img src="img/lakesideinn/washroom.jpg" alt="Washroom" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="washroom.jpg" alt="Washroom" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <p>A washroom space with a washbasin and a wide counter. Designed for convenience in daily use such as grooming and skin care.</p>
                              <p>※ Hair dryer and hand soap are available.</p>
 
@@ -827,11 +835,11 @@ If the staff is absent, please return the key to the key box and leave us a mess
                              <p>※ Please do not flush anything other than toilet paper.</p>
 
                              <h4 class="guide-sub-title">3. Shower & Bath</h4>
-                             <img src="img/lakesideinn/shower.jpg" alt="Shower" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="shower.jpg" alt="Shower" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <p>A bath space with shower facilities. You can relax and heal the fatigue of the day.</p>
                              
                              <div style="margin: 1.5rem 0; width: 45%; border-radius: 6px; overflow: hidden; border: 1px solid #ddd;">
-                                 <img src="img/lakesideinn/water_heater_panel_en.jpg" alt="Water Heater Control Panel" loading="lazy" style="width: 100%; display: block;">
+                                 <img data-img="water_heater_panel_en.jpg" alt="Water Heater Control Panel" loading="lazy" style="width: 100%; display: block;">
                              </div>
                              <p style="font-size: 0.85rem; margin-top: -1rem; margin-bottom: 1.5rem; line-height: 1.4; color: #ccc;">
                                  <strong>Water Heater Control Panel</strong><br>
@@ -843,7 +851,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                         jp: `<p>洗面所・トイレ・シャワーを備えた水回りスペースです。<br>清潔感のある落ち着いた空間で、快適にご利用いただけます。</p>
                              
                              <h4 class="guide-sub-title">① 洗面所</h4>
-                             <img src="img/lakesideinn/washroom.jpg" alt="洗面所" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="washroom.jpg" alt="洗面所" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <p>洗面ボウルと広めのカウンターを備えた洗面スペースです。<br>身支度やスキンケアなど、日常使いに便利な設計となっています。</p>
                              <p>※ ドライヤー・ハンドソープをご用意しています。</p>
 
@@ -852,7 +860,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                              <p>※ トイレットペーパー以外のものは流さないようお願いいたします。</p>
 
                              <h4 class="guide-sub-title">③ シャワー・バス</h4>
-                             <img src="img/lakesideinn/shower.jpg" alt="シャワー・バス" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="shower.jpg" alt="シャワー・バス" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <p>シャワー設備を備えたバススペースです。<br>一日の疲れをゆっくりと癒していただけます。</p>
                              <p>※ 使用後は換気にご協力ください。<br>
                                 ※ 冬季は室温が下がる場合があります。</p>`
@@ -863,9 +871,9 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     icon: "sightseeing",
                     title: { en: "Balcony", jp: "バルコニー" },
                     content: {
-                        en: `<img src="img/lakesideinn/balcony.jpg" alt="Balcony" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
+                        en: `<img data-img="balcony.jpg" alt="Balcony" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
                              <p>A balcony space where you can enjoy BBQ. Fully equipped with outdoor tables and chairs, you can spend time dining and gathering in an open space.</p>`,
-                        jp: `<img src="img/lakesideinn/balcony.jpg" alt="バルコニー" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
+                        jp: `<img data-img="balcony.jpg" alt="バルコニー" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
                              <p>BBQをお楽しみいただけるバルコニースペースです。<br>屋外用テーブルと椅子を完備しており、開放的な空間でお食事や団らんの時間をお過ごしいただけます。</p>`
                     }
                 },
@@ -875,7 +883,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     title: { en: "BBQ", jp: "BBQ" },
                     content: {
                         en: `<h4 class="guide-sub-title">BBQ Information</h4>
-                             <img src="img/lakesideinn/bbq.jpg" alt="BBQ Grill" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="bbq.jpg" alt="BBQ Grill" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <p>The BBQ grill provided is a "Weber" grill.</p>
                              
                              <details class="living-accordion">
@@ -902,7 +910,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                  </div>
                              </details>`,
                         jp: `<h4 class="guide-sub-title">BBQのご案内</h4>
-                             <img src="img/lakesideinn/bbq.jpg" alt="BBQコンロ" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
+                             <img data-img="bbq.jpg" alt="BBQコンロ" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 0.5rem auto; border-radius: 6px;">
                              <p>使用するBBQコンロは「Weber（ウェーバー）」製です。</p>
                              
                              <details class="living-accordion">
@@ -937,7 +945,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     content: {
                         en: `<p>Two bowls are provided so that they can be used separately for water and food.</p>`,
                         jp: `<p>お水用・フード用として分けてお使いいただけるよう、2枚ご用意しています。</p>
-                             <img src="img/lakesideinn/pet_bowls.jpg" alt="ペット用のお皿" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-top: 1rem; border-radius: 6px;">`
+                             <img data-img="pet_bowls.jpg" alt="ペット用のお皿" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-top: 1rem; border-radius: 6px;">`
                     }
                 },
                 {
@@ -945,10 +953,10 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     icon: "mic",
                     title: { en: "Speaker", jp: "スピーカー" },
                     content: {
-                        en: `<img src="img/lakesideinn/bluetooth_speaker.jpg" alt="Speaker" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
+                        en: `<img data-img="bluetooth_speaker.jpg" alt="Speaker" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
                              <p>You can use the speaker by connecting via Bluetooth.</p>
                              <p>The device name will appear as "M's Explore".</p>`,
-                        jp: `<img src="img/lakesideinn/bluetooth_speaker.jpg" alt="スピーカー" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
+                        jp: `<img data-img="bluetooth_speaker.jpg" alt="スピーカー" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1rem; border-radius: 6px;">
                              <p>Bluetoothに接続することで、スピーカーをご利用いただけます。<br>Bluetoothのデバイス名は「M's Explore」と表示されます。</p>`
                     }
                 },
@@ -957,7 +965,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                     icon: "ac",
                     title: { en: "Humidifier", jp: "加湿器" },
                     content: {
-                        en: `<img src="img/lakesideinn/humidifier_main.jpg" alt="Humidifier" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1.5rem; border-radius: 6px;">
+                        en: `<img data-img="humidifier_main.jpg" alt="Humidifier" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1.5rem; border-radius: 6px;">
                              <h4 class="guide-sub-title">HOW TO USE HUMIDIFIER</h4>
                              
                              <details class="living-accordion">
@@ -1020,7 +1028,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                      <li>・Press and hold the button for 3 seconds to stop heating.</li>
                                  </ul>
                              </details>`,
-                        jp: `<img src="img/lakesideinn/humidifier_main.jpg" alt="加湿器" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1.5rem; border-radius: 6px;">
+                        jp: `<img data-img="humidifier_main.jpg" alt="加湿器" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin-bottom: 1.5rem; border-radius: 6px;">
                              <p>冬の乾燥している時期は説明書を読んで、お使いください。<br>
                              <a href="https://aimg.as-1.co.jp/c/67/7420/50/67742050manual.pdf?v=7599703f7bfa5f7bce8846de3bf010bee191590a" target="_blank" rel="noopener noreferrer" style="color: #ccc; text-decoration: underline;">URLはこちら</a></p>`
                     }
@@ -1744,14 +1752,14 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                                                             <li style="margin-bottom: 0.2rem; border-bottom: none; padding: 0;">2) Cans & Bottles</li>
                                                                             <li style="margin-bottom: 0; border-bottom: none; padding: 0;">3) PET Bottles</li>
                                                                         </ul>
-                                                                        <img src="img/lakesideinn/garbage.jpg" alt="Trash Bins" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
+                                                                        <img data-img="garbage.jpg" alt="Trash Bins" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`,
                         jp: `<p style="margin-bottom: 0;">ゴミ箱はキッチンの下にあります。<br>分別にご協力をお願いいたします。</p>
                                                                         <ul class="guide-list" style="margin-top: 1rem; margin-bottom: 1rem; padding-left: 0; list-style: none;">
                                                                             <li style="margin-bottom: 0.2rem; border-bottom: none; padding: 0;">・可燃ゴミ</li>
                                                                             <li style="margin-bottom: 0.2rem; border-bottom: none; padding: 0;">・缶・びん</li>
                                                                             <li style="margin-bottom: 0; border-bottom: none; padding: 0;">・ペットボトル</li>
                                                                         </ul>
-                                                                        <img src="img/lakesideinn/garbage.jpg" alt="ゴミ箱" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
+                                                                        <img data-img="garbage.jpg" alt="ゴミ箱" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto; border-radius: 6px;">`
                     }
                 },
                 {
@@ -1935,23 +1943,23 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                                                         <p>1. Find the tripped breaker (near the entrance) and push it all the way DOWN.</p>
                                                                         <details class="living-accordion" style="margin-bottom: 1rem;">
                                                                             <summary>View Image</summary>
-                                                                            <img src="img/lakesideinn/breaker_step_2.png" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                            <img data-img="breaker_step_2.png" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                         </details>
                                                                             <p>2. Then push it all the way UP to "ON".<br>👉 It should click into place.</p>
                                                                             <details class="living-accordion">
                                                                                 <summary>View Image</summary>
-                                                                                <img src="img/lakesideinn/breaker_step_1.png" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                <img data-img="breaker_step_1.png" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                             </details>`,
                         jp: `<p>電気が突然使えなくなった場合、ブレーカーが落ちている可能性があります。<br>以下の手順で復旧してください。</p>
                                                                                 <p>① 玄関付近にあるブレーカーのうち、落ちているものを一度いちばん下まで下げてください。<br>※ 下の画像①をご参照ください。</p>
                                                                                 <details class="living-accordion" style="margin-bottom: 1rem;">
                                                                                     <summary>画像を表示</summary>
-                                                                                    <img src="img/lakesideinn/breaker_step_1.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
+                                                                                    <img data-img="breaker_step_1.jpg" alt="手順1: ブレーカーを下げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
                                                                                 </details>
                                                                                 <p>② その後、しっかり上まで上げて「ON」にしてください。<br>👉 カチッと音がすればOKです。<br>※ 下の画像②をご参照ください。</p>
                                                                                 <details class="living-accordion">
                                                                                     <summary>画像を表示</summary>
-                                                                                    <img src="img/lakesideinn/breaker_step_2.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
+                                                                                    <img data-img="breaker_step_2.jpg" alt="手順2: ブレーカーを上げる" class="living-image" loading="lazy" style="width: 100%; max-width: 100%; display: block; margin: 1rem auto 0; border-radius: 6px;">
                                                                                 </details>`
                     }
                 },
@@ -2041,7 +2049,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                 en: "Enjoy BBQ on the deck.\n*Please note that only 2 grills are available in total.",
                 jp: "デッキでのBBQをお楽しみいただけます。\n※BBQグリルは全体で2台のみのご用意となりますので、あらかじめご了承ください。"
             },
-            image: "img/lakesideinn/bbq.jpg",
+            image: "lakesideinn/bbq.jpg",
             icon: "bbq",
             modalDetails: {
                 title: { en: "BBQ Grill Information (¥4,000)", jp: "BBQコンロのご案内（4,000円）" },
@@ -2094,17 +2102,19 @@ function getLocalizedText(obj) {
 // INITIALIZATION
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+    resolveImagePaths();
     renderGuidebook();
+    resolveImagePaths();
     initNavigation();
 
     // Implement toggleLanguage and updateContent since app.js is not loaded
     window.updateContent = () => {
         const lang = getLang();
-        const t = window.translations && window.translations[lang] ? window.translations[lang] : {};
+        const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
 
         document.querySelectorAll('[data-i18n]').forEach(element => {
             const key = element.getAttribute('data-i18n');
-            const translation = t[key];
+            const translation = getT(key);
 
             if (translation !== undefined) {
                 if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
@@ -2146,6 +2156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Re-render guidebook content
         renderGuidebook();
+        resolveImagePaths();
         updateLanguageLabel();
     };
 
@@ -2392,7 +2403,7 @@ window.scrollToElement = function (id) {
 function renderPropertyInfo() {
     const propertyNameEl = document.getElementById('property-name');
     const heroImage = document.querySelector('.hero-image');
-    console.log("Hero Image Element Found:", heroImage);
+
     const welcomeMessageEl = document.getElementById('welcome-message');
 
     if (propertyNameEl) {
@@ -2401,8 +2412,8 @@ function renderPropertyInfo() {
     // Targeted update for the real hero image element
     const heroEl = document.querySelector('.guidebook-hero img');
     if (heroEl && window.guidebookData.heroImage) {
-        heroEl.src = window.guidebookData.heroImage;
-        console.log("Real hero element updated:", heroEl);
+        heroEl.src = IMG_BASE + window.guidebookData.heroImage;
+
     }
     if (welcomeMessageEl && guidebookData.welcomeMessage) {
         welcomeMessageEl.textContent = getLocalizedText(guidebookData.welcomeMessage);
@@ -2415,7 +2426,7 @@ function renderSections() {
 
     let html = '';
     const lang = getLang();
-    const t = window.translations ? window.translations[lang] : {};
+    const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
 
     // Render Access section first (now as expanded cards)
     if (guidebookData.access && guidebookData.access.items) {
@@ -2493,15 +2504,15 @@ function renderServices() {
     if (!grid) return;
 
     const lang = getLang();
-    const t = window.translations ? window.translations[lang] : {};
-    const reserveText = t['guidebook.services.reserve'] || 'Reserve';
+    const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
+    const reserveText = getT('guidebook.services.reserve') || 'Reserve';
 
     const html = guidebookData.services.map(service => {
         const serviceName = getLocalizedText(service.name);
         const serviceDesc = getLocalizedText(service.description);
         return `
                                                                                         <div class="service-card" style="cursor: pointer;" onclick="openServiceModal('${service.id}')">
-                                                                                            <img src="${service.image}" alt="${serviceName}" class="service-image" loading="lazy">
+                                                                                            <img data-img="${service.image}" alt="${serviceName}" class="service-image" loading="lazy">
                                                                                                 <div class="service-info">
                                                                                                     <h3 class="service-name">${serviceName}</h3>
                                                                                                     <p class="service-desc">${serviceDesc}</p>
@@ -3039,8 +3050,8 @@ window.openServiceModal = function (serviceId) {
 
     const details = service.modalDetails;
     const lang = getLang();
-    const t = window.translations ? window.translations[lang] : {};
-    const reserveBtnText = t['guidebook.services.reserve'] || (lang === 'jp' ? '予約する' : 'Reserve');
+    const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
+    const reserveBtnText = getT('guidebook.services.reserve') || (lang === 'jp' ? '予約する' : 'Reserve');
 
     const getTxt = (obj) => getLocalizedText(obj);
 

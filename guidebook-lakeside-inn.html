@@ -7,10 +7,10 @@
     <title>Guest Guidebook | Japan Villas</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/guidebook.css">
-    <script src="js/translations.js"></script>
+    <script src="js/translations.js?v=4"></script>
     <!-- Supabase Auth -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="js/auth.js"></script>
+    <script src="js/auth.js?v=3"></script>
     <script>
         function toggleMobileMenu() {
             const dropdown = document.getElementById('mobileMenuDropdown');
@@ -90,8 +90,7 @@
     <!-- Hero Section -->
     <section class="guidebook-hero">
         <div class="hero-image-container">
-            <img src="img/lakesideinn/main.jpg" alt="Property Hero" class="hero-image"
-                style="object-position: center 15%;">
+            <img data-img="main.jpg" alt="Property Hero" class="hero-image" style="object-position: center 15%;">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -224,8 +223,8 @@
         window.stripe = Stripe("pk_test_51R4JWIGDBBKX0pDfQEoMMaYOZFdivdN0lWJoBPRrW6pRH1gW1GLXMQqsjdsEnEDUgrebF5ophMmm5WgwsujOhyBM00gxs18K9H");
     </script>
 
-    <script src="js/guidebook-lakeside-inn.js"></script>
-    <script src="js/lang-dropdown.js"></script>
+    <script src="js/guidebook-lakeside-inn.js?v=3"></script>
+    <script src="js/lang-dropdown.js?v=3"></script>
 </body>
 
 </html>

@@ -1,4 +1,81 @@
 // Translation data for Japan Villas
+// ─────────────────────────────────────────────
+// window.translations : legacy flat structure kept for backward-compat
+//   (used by app.js, auth.js, index, stays, contact …)
+// window.I18N         : new structured source for guidebooks
+//   window.I18N[lang].common[key]       – site-wide keys
+//   window.I18N[lang][PROPERTY_KEY][key] – per-property overrides
+// ─────────────────────────────────────────────
+
+// ─── Shared helper used by ALL guidebook JS files ───────────────────────────
+// Each guidebook JS must define: const PROPERTY_KEY = "lake_house" | "lakeside_inn" | "mv_niseko"
+// Call: getI18n(key, lang) → string | ""
+window.getI18n = function (key, lang) {
+    const l = lang || window.currentLang || 'en';
+    const i18n = window.I18N;
+    if (!i18n || !i18n[l]) return '';
+    const prop = (typeof PROPERTY_KEY !== 'undefined') ? PROPERTY_KEY : null;
+    // Property-specific wins over common
+    if (prop && i18n[l][prop] && i18n[l][prop][key] !== undefined) {
+        return i18n[l][prop][key];
+    }
+    if (i18n[l].common && i18n[l].common[key] !== undefined) {
+        return i18n[l].common[key];
+    }
+    return '';
+};
+
+// ─── window.I18N ─────────────────────────────────────────────────────────────
+window.I18N = {
+    en: {
+        common: {
+            // ── Guidebook UI ──────────────────────────────────────────────────
+            "guidebook.title": "Guest Guidebook",
+            "guidebook.sidebar.title": "Guidebook",
+            "guidebook.sidebar.subtitle": "Guest Guidebook",
+            "guidebook.nav.greeting": "Welcome",
+            "guidebook.nav.access": "Access & WiFi",
+            "guidebook.nav.facilities": "Room & Equipment Guide",
+            "guidebook.nav.neighborhood": "Neighborhood",
+            "guidebook.nav.rules": "House Rules",
+            "guidebook.nav.faq": "FAQ",
+            "guidebook.nav.services": "Optional Services",
+            "guidebook.services.title": "Optional Services",
+            "guidebook.services.subtitle": "Enhance your stay",
+            "guidebook.services.reserve": "Reserve",
+            "guidebook.footer.help": "Need help? Contact your host",
+            "guidebook.footer.call": "Chat with Host",
+        },
+        // Per-property overrides – add keys here to override common for one property
+        lake_house: {},
+        lakeside_inn: {},
+        mv_niseko: {},
+    },
+    jp: {
+        common: {
+            "guidebook.title": "ゲストガイドブック",
+            "guidebook.sidebar.title": "ガイドブック",
+            "guidebook.sidebar.subtitle": "ゲストガイドブック",
+            "guidebook.nav.greeting": "ご挨拶",
+            "guidebook.nav.access": "アクセス ＆ WiFi",
+            "guidebook.nav.facilities": "各部屋と備品のご案内",
+            "guidebook.nav.neighborhood": "近隣情報",
+            "guidebook.nav.rules": "ハウスルール",
+            "guidebook.nav.faq": "よくある質問",
+            "guidebook.nav.services": "有料サービス",
+            "guidebook.services.title": "有料サービス",
+            "guidebook.services.subtitle": "",
+            "guidebook.services.reserve": "予約する",
+            "guidebook.footer.help": "お困りですか？ホストにご連絡ください",
+            "guidebook.footer.call": "ホストにチャットする",
+        },
+        lake_house: {},
+        lakeside_inn: {},
+        mv_niseko: {},
+    },
+};
+
+// ─── window.translations (legacy, kept for non-guidebook pages) ──────────────
 window.translations = {
     en: {
         "nav.home": "Home",
@@ -79,7 +156,7 @@ window.translations = {
         "loginModal.hasAccount": "Already have an account?",
         "loginModal.login": "Login",
 
-        // Guidebook translations
+        // Guidebook keys also kept here so non-guidebook references still work
         "guidebook.title": "Guest Guidebook",
         "guidebook.sidebar.title": "Guidebook",
         "guidebook.sidebar.subtitle": "Guest Guidebook",
@@ -175,7 +252,7 @@ window.translations = {
         "loginModal.hasAccount": "すでにアカウントをお持ちの方は？",
         "loginModal.login": "ログイン",
 
-        // Guidebook translations
+        // Guidebook keys also kept here so non-guidebook references still work
         "guidebook.title": "ゲストガイドブック",
         "guidebook.sidebar.title": "ガイドブック",
         "guidebook.sidebar.subtitle": "ゲストガイドブック",
