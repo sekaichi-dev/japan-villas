@@ -430,9 +430,9 @@ window.initApp = () => {
             wifi: isJp ? 'WiFi' : 'WiFi',
             parking: isJp ? '駐車場' : 'Parking',
             about: isJp ? 'この宿泊施設について' : 'About this stay',
-            experience: isJp
+            experience: property.id === 2 ? '' : (isJp
                 ? '究極の日本のラグジュアリー体験を。卓越したデザイン、ロケーション、アメニティを厳選しました。'
-                : 'Experience the ultimate in Japanese luxury living. This property has been curated for its exceptional design, location, and amenities.',
+                : 'Experience the ultimate in Japanese luxury living. This property has been curated for its exceptional design, location, and amenities.'),
             amenitiesTitle: isJp ? 'アメニティ' : 'Amenities',
             mapPlaceholder: isJp ? '詳細地図は準備中です' : 'Detailed Map Coming Soon',
             night: isJp ? '/ 泊' : '/ night',
@@ -480,7 +480,7 @@ window.initApp = () => {
                     <div class="key-facts" style="margin-top:1rem; color:#ccc;">
                          <div class="fact-item">${icons.size} ${property.details.size || '--'}m²</div>
                          <div class="fact-item">${icons.bed} ${property.details.bedrooms} ${labels.bedrooms}</div>
-                         <div class="fact-item">${icons.bath} ${property.details.bath} ${labels.bathrooms}</div>
+                         <div class="fact-item">${icons.bath} ${property.details.bath ? property.details.bath + ' ' : (!isJp ? '1 ' : '')}${labels.bathrooms}</div>
                          <div class="fact-item">${icons.guests} ${property.details.guests} ${labels.guests}</div>
                          <div class="fact-item">${icons.wifi} ${labels.wifi}</div>
                          <div class="fact-item">${icons.parking} ${labels.parking}</div>
@@ -526,26 +526,17 @@ window.initApp = () => {
                 <div class="left-col">
                     <h2 style="margin-bottom:1rem; font-size: 1.5rem;">${labels.about}</h2>
                     <p style="font-size:1.1rem; color:#ccc; line-height:1.8; margin-bottom:2rem;">
-                        ${description}
-                        <br><br>
-                        ${labels.experience}
+                        ${description.replace(/\n/g, '<br>')}
+                        ${labels.experience ? `<br><br>${labels.experience}` : ''}
                     </p>
                     <h3 style="margin-top:3rem;">${labels.amenitiesTitle}</h3>
                     <div class="amenities-list" style="margin-top:1rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
                         ${amenities.map(a => `<div style="color:#ddd; display:flex; align-items:center; gap:0.5rem;">${icons.check} ${a}</div>`).join('')}
                     </div>
-                <div class="left-col">
-                    <h2 style="margin-bottom:1rem; font-size: 1.5rem;">${labels.about}</h2>
-                    <p style="font-size:1.1rem; color:#ccc; line-height:1.8; margin-bottom:2rem;">
-                        ${description}
-                        <br><br>
-                        ${labels.experience}
-                    </p>
-                    <h3 style="margin-top:3rem;">${labels.amenitiesTitle}</h3>
-                    <div class="amenities-list" style="margin-top:1rem; display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
-                        ${amenities.map(a => `<div style="color:#ddd; display:flex; align-items:center; gap:0.5rem;">${icons.check} ${a}</div>`).join('')}
-                    </div>
-                    <div style="margin-top:2rem; height:200px; background:#222; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#555;">${labels.mapPlaceholder}</div>
+                    ${property.mapUrl
+                ? `<iframe src="${property.mapUrl}" width="100%" height="400" style="border:0; border-radius:12px; margin-top:2rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+                : `<div style="margin-top:2rem; height:400px; background:#222; border-radius:12px; display:flex; align-items:center; justify-content:center; color:#555;">${labels.mapPlaceholder}</div>`
+            }
                 </div>
             </div>
             </div> <!-- End of detail-sheet -->
@@ -1491,7 +1482,7 @@ window.initApp = () => {
                 <div class="card-stats">
                     <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.bed} ${property.details.bedrooms} ${bedLabel}</span>
                     <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.guests} ${property.details.guests} ${guestLabel}</span>
-                    <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.bath} ${property.details.bath} ${bathLabel}</span>
+                    <span style="display:flex; align-items:center; gap:0.5rem; font-weight:300;">${icons.bath} ${property.details.bath ? property.details.bath + ' ' : (!window.currentLang || window.currentLang !== 'jp' ? '1 ' : '')}${bathLabel}</span>
                 </div>
             </div>
         </div>
@@ -1614,7 +1605,7 @@ window.initApp = () => {
                                  <div class="card-stats" style="font-size: 0.85rem; color: #fff; opacity: 0.9; font-weight: 300; width:100%; display: flex; align-items: center;">
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.bed} ${p.details.bedrooms} <span class="stat-label">${bedLabel}</span></span>
                                     <span style="display:flex; align-items:center; gap:0.4rem;">${icons.guests} ${p.details.guests} <span class="stat-label">${guestLabel}</span></span>
-                                    <span style="display:flex; align-items:center; gap:0.4rem;">${icons.bath} ${p.details.bath} <span class="stat-label">${bathLabel}</span></span>
+                                    <span style="display:flex; align-items:center; gap:0.4rem;">${icons.bath} ${p.details.bath ? p.details.bath + ' ' : (!window.currentLang || window.currentLang !== 'jp' ? '1 ' : '')}<span class="stat-label">${bathLabel}</span></span>
                                  </div>
                             </div>
                         </div>
