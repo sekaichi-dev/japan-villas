@@ -796,6 +796,7 @@ window.initApp = () => {
 
                                 const bookingData = {
                                     propertyId: property.id,
+                                    roomId: beds24RoomId,
                                     name: property.name,
                                     location: property.location,
                                     image: property.images[0],
