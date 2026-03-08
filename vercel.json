@@ -1,7 +1,16 @@
 {
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "nodejs20.x"
+  "rewrites": [
+    {
+      "source": "/guidebook-lake-house",
+      "destination": "/404"
+    },
+    {
+      "source": "/guidebook-lakeside-inn",
+      "destination": "/404"
+    },
+    {
+      "source": "/guidebook-mv-niseko",
+      "destination": "/404"
     }
-  }
+  ]
 }
