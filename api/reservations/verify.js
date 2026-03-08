@@ -36,7 +36,9 @@ export default async function handler(req, res) {
                 propertyName: 'Test Villa',
                 checkInDate: '2026-04-01',
                 checkOutDate: '2026-04-03',
-                guests: 2
+                guests: 2,
+                amount: 50000,
+                createdAt: new Date().toISOString()
             }
         });
     }
