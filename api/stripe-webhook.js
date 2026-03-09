@@ -311,8 +311,8 @@ async function createBeds24Booking(bookingInfo) {
 
     const data = await response.json();
     // Beds24 v2 POST /bookings returns an array of results
-    if (data && data.length > 0 && data[0].bookId) {
-        return data[0].bookId;
+    if (data && data.length > 0 && data[0].success && data[0].new?.id) {
+        return data[0].new.id;
     }
 
     console.error('[createBeds24Booking] Unexpected response:', data);
