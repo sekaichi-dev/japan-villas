@@ -299,7 +299,7 @@ async function createBeds24Booking(bookingInfo) {
             firstName: bookingInfo.firstName,
             lastName: bookingInfo.lastName,
             email: bookingInfo.email,
-            status: 'new',
+            status: 'confirmed',
             notes: bookingInfo.notes
         }])
     });
