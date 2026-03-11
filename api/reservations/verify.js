@@ -67,7 +67,7 @@ export default async function handler(req, res) {
         // Query the reservation by Stripe session ID
         const { data: reservation, error: queryError } = await supabase
             .from('reservations')
-            .select('id, stripe_session_id, amount, currency, status, customer_email, customer_name, property_name, check_in_date, check_out_date, guests, created_at, beds24_booking_id')
+            .select('id, stripe_session_id, amount, currency, status, customer_email, customer_name, property_name, check_in_date, check_out_date, guests, created_at')
             .eq('stripe_session_id', session_id)
             .single();
 
@@ -115,8 +115,7 @@ export default async function handler(req, res) {
                 checkInDate: reservation.check_in_date,
                 checkOutDate: reservation.check_out_date,
                 guests: reservation.guests,
-                createdAt: reservation.created_at,
-                beds24BookingId: reservation.beds24_booking_id || null,
+                createdAt: reservation.created_at
             }
         });
 

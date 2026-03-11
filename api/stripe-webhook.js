@@ -256,13 +256,8 @@ async function handleCheckoutSessionCompleted(session) {
                 console.log('[stripe-webhook] ✅ Beds24 booking created:', beds24BookingId);
 
                 // Update reservation with Beds24 ID
-                if (isSupabaseConfigured() && newReservationId) {
-                    const supabase = getSupabaseClient();
-                    await supabase
-                        .from('reservations')
-                        .update({ beds24_booking_id: beds24BookingId })
-                        .eq('id', newReservationId);
-                }
+                // NOTE: We successfully created the booking in Beds24.
+                // We're omitting the Supabase update for beds24_booking_id because the column hasn't been added to the database schema yet.
             }
         } catch (err) {
             console.error('[stripe-webhook] ❌ Failed to create Beds24 booking:', err.message);
