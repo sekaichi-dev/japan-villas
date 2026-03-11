@@ -249,7 +249,8 @@ async function handleCheckoutSessionCompleted(session) {
                 firstName: session.customer_details?.name?.split(' ')[0] || 'Guest',
                 lastName: session.customer_details?.name?.split(' ').slice(1).join(' ') || 'Customer',
                 email: session.customer_details?.email,
-                notes: `Stripe Session: ${session.id}`
+                price: session.amount_total,
+                notes: `Stripe Session: ${session.id} (Paid: ${session.amount_total} ${session.currency.toUpperCase()})`
             });
 
             if (beds24BookingId) {
@@ -294,6 +295,7 @@ async function createBeds24Booking(bookingInfo) {
             firstName: bookingInfo.firstName,
             lastName: bookingInfo.lastName,
             email: bookingInfo.email,
+            price: bookingInfo.price,
             status: 'confirmed',
             notes: bookingInfo.notes
         }])
