@@ -68,6 +68,15 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const bookingId = urlParams.get('booking');
+        const adminKey = urlParams.get('admin');
+
+        // Admin Bypass (Master Key)
+        if (adminKey === 'sekaichi2026') {
+            if (document.getElementById('guidebook-auth-style')) {
+                document.getElementById('guidebook-auth-style').remove();
+            }
+            return;
+        }
 
         // Missing Booking ID -> Block
         if (!bookingId) {
