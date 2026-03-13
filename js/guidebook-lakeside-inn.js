@@ -2050,7 +2050,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                 en: "Enjoy BBQ on the deck.\n*Please note that only 2 grills are available in total.",
                 jp: "デッキでのBBQをお楽しみいただけます。\n※BBQグリルは全体で2台のみのご用意となりますので、あらかじめご了承ください。"
             },
-            image: "lakesideinn/bbq.jpg",
+            image: "bbq.jpg",
             icon: "bbq",
             modalDetails: {
                 title: { en: "BBQ Grill Information (¥4,000)", jp: "BBQコンロのご案内（4,000円）" },
