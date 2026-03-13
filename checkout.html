@@ -521,6 +521,25 @@
             // Populate checkout UI with booking data
             populateCheckoutUI(bookingData);
 
+            // --- HIDDEN TEST MODE TRIGGER ---
+            // Triple click the main title "Confirm and pay" to activate ¥100 test mode
+            const title = document.querySelector('.checkout-title');
+            if (title) {
+                let clickCount = 0;
+                title.style.cursor = 'pointer';
+                title.title = 'Triple-click to test';
+                title.addEventListener('click', () => {
+                    clickCount++;
+                    if (clickCount >= 3) {
+                        const url = new URL(window.location.href);
+                        url.searchParams.set('test', '100');
+                        window.location.href = url.href;
+                    }
+                    // Reset counter if clicks are too slow (spaced by > 1s)
+                    setTimeout(() => { clickCount = 0; }, 1000);
+                });
+            }
+
             // Initialize Stripe Checkout button
             const checkoutBtn = document.getElementById('btn-checkout');
             if (checkoutBtn) {
