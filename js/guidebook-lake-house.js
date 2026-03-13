@@ -1823,9 +1823,10 @@ const guidebookData = {
     ],
     services: [
         {
-            id: 1,
+            id: "jacuzzi",
             name: { en: "Jacuzzi", jp: "ジャグジー" },
             price: 10000,
+            inventoryLimit: 1, // ジャグジーは1台のみ
             description: {
                 en: "Excellent jacuzzi with lake view. *Available Mar-Nov only",
                 jp: "湖を見ながら入るジャグジーは格別です。※3月~11月のみ利用可能"
@@ -2286,32 +2287,66 @@ function renderSections() {
     container.innerHTML = html;
 }
 
-function renderServices() {
+
+
+async function renderServices() {
     const grid = document.getElementById('services-grid');
     if (!grid) return;
 
     const lang = getLang();
-    const t = window.I18N ? { get: (k) => window.getI18n(k, lang) } : {};
     const getT = (k) => window.getI18n ? window.getI18n(k, lang) : (window.translations?.[lang]?.[k] ?? '');
     const reserveText = getT('guidebook.services.reserve') || 'Reserve';
+    const soldOutText = lang === 'jp' ? 'この期間は満員' : 'Sold Out';
+
+    const guestBooking = window.currentGuestBooking || {};
+    const inventoryMap = {};
+
+    await Promise.all(guidebookData.services.map(async (service) => {
+        if (service.inventoryLimit && guestBooking.arrival && guestBooking.departure) {
+            try {
+                const params = new URLSearchParams({
+                    option: service.id.toString(),
+                    property: guidebookData.propertyId || 'lake-house',
+                    arrival: guestBooking.arrival,
+                    departure: guestBooking.departure,
+                });
+                const res = await fetch(`/api/check-option-inventory?${params}`);
+                const data = await res.json();
+                inventoryMap[service.id] = data;
+            } catch (e) {
+                inventoryMap[service.id] = { available: true };
+            }
+        }
+    }));
 
     const html = guidebookData.services.map(service => {
         const serviceName = getLocalizedText(service.name);
         const serviceDesc = getLocalizedText(service.description);
+        const inv = inventoryMap[service.id];
+        const isSoldOut = inv && !inv.available;
+
+        const badge = isSoldOut
+            ? `<span style="display:inline-block; background:#555; color:#fff; font-size:0.7em; padding:2px 8px; border-radius:99px; margin-left:6px;">${soldOutText}</span>`
+            : (inv && inv.remaining !== null ? `<span style="display:inline-block; background:#c0392b22; color:#c0392b; font-size:0.7em; padding:2px 8px; border-radius:99px; margin-left:6px;">${lang === 'jp' ? `残り${inv.remaining}個` : `${inv.remaining} left`}</span>` : '');
+
+        const btn = isSoldOut
+            ? `<button class="service-btn" disabled style="opacity:0.4; cursor:not-allowed;">${soldOutText}</button>`
+            : `<button class="service-btn" onclick="event.stopPropagation(); handleServiceClick('${service.id}')">${reserveText}</button>`;
+
         return `
-            <div class="service-card" style="cursor: pointer;" onclick="openServiceModal(${service.id})">
+            <div class="service-card" style="cursor: pointer; ${isSoldOut ? 'opacity:0.7;' : ''}" onclick="openServiceModal('${service.id}')">
                 <img data-img="${service.image}" alt="${serviceName}" class="service-image" loading="lazy">
                 <div class="service-info">
-                    <h3 class="service-name">${serviceName}</h3>
+                    <h3 class="service-name">${serviceName}${badge}</h3>
                     <p class="service-desc">${serviceDesc}</p>
                     <p class="service-price">¥${service.price.toLocaleString()}</p>
-                    <button class="service-btn" onclick="event.stopPropagation(); handleServiceClick(${service.id})">${reserveText}</button>
+                    ${btn}
                 </div>
-            </div>
-        `;
+            </div>`;
     }).join('');
 
     grid.innerHTML = html;
+    if (typeof resolveImagePaths === 'function') resolveImagePaths();
 }
 
 // ============================================
@@ -2612,10 +2647,12 @@ async function handleServiceClick(serviceId) {
                     amount: service.price,
                     currency: "jpy",
                     metadata: {
-                        property: guidebookData.propertyId,
+                        property: guidebookData.propertyId || "lake-house",
                         option: service.id.toString(),
                         option_name: service.name.en || service.name,
-                        beds24_booking_id: beds24BookingId // Beds24メッセージ送信に使用
+                        beds24_booking_id: beds24BookingId, // Beds24メッセージ送信に使用
+                        check_in_date: window.currentGuestBooking?.arrival || '',
+                        check_out_date: window.currentGuestBooking?.departure || ''
                     },
                     successUrl: successUrl,
                     cancelUrl: currentUrl

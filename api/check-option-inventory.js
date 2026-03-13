@@ -13,9 +13,15 @@
 
 import { getSupabaseClient, isSupabaseConfigured } from '../lib/supabase.js';
 
-// Inventory limits per option (option id → max units available)
+// Inventory limits: Options and Room IDs
 const INVENTORY_LIMITS = {
-    'bbq': 2,   // Lake Side Inn has 2 BBQ sets
+    // Options
+    'bbq': 2,       // Lake Side Inn has 2 BBQ sets
+    'jacuzzi': 1,   // Lake House has 1 Jacuzzi
+    // Room IDs
+    '557549': 1,    // Mountain Villa Niseko
+    '557548': 1,    // Lake House Nojiriko
+    '586803': 4     // Lake Side Inn Nojiriko (4 rooms)
 };
 
 export default async function handler(req, res) {
@@ -32,42 +38,47 @@ export default async function handler(req, res) {
 
     const maxInventory = INVENTORY_LIMITS[option.toLowerCase()];
     if (maxInventory === undefined) {
-        // Option has no inventory limit – always available
         return res.status(200).json({ available: true, remaining: null, max: null });
     }
 
     if (!isSupabaseConfigured()) {
-        // Can't check without Supabase – fail open (allow)
-        console.warn('[check-option-inventory] Supabase not configured – skipping inventory check');
+        console.warn('[check-option-inventory] Supabase not configured');
         return res.status(200).json({ available: true, remaining: maxInventory, max: maxInventory });
     }
 
     try {
         const supabase = getSupabaseClient();
+        const tenMinutesAgo = new Date(Date.now() - 10 * 60 * 1000).toISOString();
 
-        // Count existing paid reservations for this option that OVERLAP with the requested stay.
-        // Overlap condition: existing.check_in < our departure AND existing.check_out > our arrival
-        // (standard date-range overlap)
-        // We store option info inside the metadata JSONB column.
-        const { count, error } = await supabase
+        // 1. Paid reservations
+        const { count: paidCount, error: paidError } = await supabase
             .from('reservations')
             .select('*', { count: 'exact', head: true })
             .eq('status', 'paid')
             .contains('metadata', { property: property, option: option })
-            .lt('check_in_date', departure)   // existing check-in is before our departure
-            .gt('check_out_date', arrival);   // existing check-out is after our arrival
+            .lt('check_in_date', departure)
+            .gt('check_out_date', arrival);
 
-        if (error) {
-            console.error('[check-option-inventory] Supabase query error:', error);
-            // Fail open on DB error – don't block the user
+        // 2. Pending reservations (within last 10 minutes)
+        const { count: pendingCount, error: pendingError } = await supabase
+            .from('reservations')
+            .select('*', { count: 'exact', head: true })
+            .eq('status', 'pending')
+            .gt('created_at', tenMinutesAgo)
+            .contains('metadata', { property: property, option: option })
+            .lt('check_in_date', departure)
+            .gt('check_out_date', arrival);
+
+        if (paidError || pendingError) {
+            console.error('[check-option-inventory] Supabase query error:', paidError || pendingError);
             return res.status(200).json({ available: true, remaining: maxInventory, max: maxInventory });
         }
 
-        const booked = count || 0;
+        const booked = (paidCount || 0) + (pendingCount || 0);
         const remaining = Math.max(0, maxInventory - booked);
         const available = remaining > 0;
 
-        console.log(`[check-option-inventory] option=${option} property=${property} arrival=${arrival} departure=${departure} | booked=${booked}/${maxInventory} → available=${available}`);
+        console.log(`[check-option-inventory] option=${option} property=${property} arrival=${arrival} departure=${departure} | booked=${booked} (paid=${paidCount}, pending=${pendingCount}) / max=${maxInventory} → available=${available}`);
 
         return res.status(200).json({ available, remaining, max: maxInventory, booked });
 

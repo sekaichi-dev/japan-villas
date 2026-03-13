@@ -620,7 +620,7 @@
                         
                         <a href="/" class="next-btn" style="display: inline-block; text-decoration: none;" data-i18n="checkout.returnToHome">Return to Home</a>
                     </div>
-                \`;
+                `;
 
                 // Re-apply translations after injecting new HTML
                 if (typeof window.applyTranslations === 'function') {
@@ -639,7 +639,7 @@
 
             const statsEl = document.getElementById('summary-stats');
             if (bookingData.stats) {
-                statsEl.textContent = `${bookingData.stats.beds} Beds • ${bookingData.stats.guests} Guests • ${bookingData.stats.baths} Baths`;
+                statsEl.textContent = `${bookingData.stats.bedrooms} Beds • ${bookingData.stats.guests} Guests • ${bookingData.stats.bath} Baths`;
             }
 
             document.getElementById('summary-dates').textContent = bookingData.dateRangeString || 'Dates selected';
@@ -732,7 +732,17 @@
 
             } catch (error) {
                 console.error('Checkout error:', error);
-                showPaymentMessage(`Payment error: ${error.message}`, 'error');
+                
+                let displayMessage = error.message;
+                if (error.message === 'SOLD_OUT') {
+                    displayMessage = window.currentLang === 'jp' 
+                        ? '申し訳ありません。このプランは現在売り切れ、または他の方が手続き中です。しばらく経ってから再度お試しください。' 
+                        : 'Sorry, this option is no longer available or is being held by another customer. Please try again later.';
+                } else if (!displayMessage.startsWith('Payment error')) {
+                    displayMessage = `Payment error: ${displayMessage}`;
+                }
+
+                showPaymentMessage(displayMessage, 'error');
                 checkoutBtn.disabled = false;
                 btnText.style.display = 'inline';
                 btnLoading.style.display = 'none';

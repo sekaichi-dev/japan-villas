@@ -149,10 +149,12 @@ async function handleCheckoutSessionCompleted(session) {
         return;
     }
 
+    let metadata = session.metadata || {};
+
     if (isSupabaseConfigured()) {
         const supabase = getSupabaseClient();
 
-        // Check for existing reservation (idempotency)
+        // Check for existing reservation (idempotency or pending hold)
         const { data: existing, error: lookupError } = await supabase
             .from('reservations')
             .select('id, status')
@@ -160,113 +162,92 @@ async function handleCheckoutSessionCompleted(session) {
             .single();
 
         if (lookupError && lookupError.code !== 'PGRST116') {
-            // PGRST116 = no rows found, which is expected for new sessions
             console.error('[stripe-webhook] Error checking for existing reservation:', lookupError);
             throw lookupError;
         }
 
         if (existing) {
-            console.log('[stripe-webhook] ℹ️ Reservation already exists for session:', session.id);
-            console.log('[stripe-webhook] Existing reservation ID:', existing.id, 'Status:', existing.status);
+            console.log('[stripe-webhook] ℹ️ Reservation already exists status:', existing.status);
+            if (existing.status === 'paid') {
+                console.log('[stripe-webhook] ✅ Already paid, skipping DB update.');
+                return;
+            }
 
-            // If already exists but not marked as paid, update it
             if (existing.status === 'pending') {
                 const { error: updateError } = await supabase
                     .from('reservations')
-                    .update({ status: 'paid' })
+                    .update({ 
+                        status: 'paid',
+                        stripe_payment_intent_id: session.payment_intent,
+                        amount: session.amount_total,
+                        currency: session.currency,
+                        customer_email: session.customer_details?.email || null,
+                        customer_name: session.customer_details?.name || null,
+                    })
                     .eq('id', existing.id);
 
                 if (updateError) {
-                    console.error('[stripe-webhook] Error updating reservation status:', updateError);
+                    console.error('[stripe-webhook] Error updating pending reservation:', updateError);
                     throw updateError;
                 }
-                console.log('[stripe-webhook] ✅ Updated existing reservation to paid');
+                console.log('[stripe-webhook] ✅ Pending reservation updated to paid');
+            } else {
+                return; // Cancelled or other
             }
-            return;
-        }
-    }
+        } else {
+            // Create new record
+            let resolvedArrival = metadata.check_in_date || null;
+            let resolvedDeparture = metadata.check_out_date || null;
 
-    // Parse metadata if present (contains booking details from frontend)
-    let metadata = {};
-    try {
-        metadata = session.metadata || {};
-    } catch (e) {
-        console.warn('[stripe-webhook] Could not parse session metadata');
-    }
-
-    // For option-only purchases, resolve the guest's stay dates from Beds24
-    // so the inventory check query can detect date overlaps correctly.
-    let resolvedArrival = metadata.check_in_date || null;
-    let resolvedDeparture = metadata.check_out_date || null;
-
-    if (metadata.option && metadata.beds24_booking_id && (!resolvedArrival || !resolvedDeparture)) {
-        try {
-            const beds24BookingRes = await fetch(
-                `https://api.beds24.com/v2/bookings?id=${encodeURIComponent(metadata.beds24_booking_id)}`,
-                { headers: { 'token': await getBeds24Token() } }
-            );
-            if (beds24BookingRes.ok) {
-                const b24Data = await beds24BookingRes.json();
-                const b24Booking = Array.isArray(b24Data) ? b24Data[0] : b24Data?.data?.[0];
-                if (b24Booking) {
-                    resolvedArrival = b24Booking.arrival || resolvedArrival;
-                    resolvedDeparture = b24Booking.departure || resolvedDeparture;
-                    console.log(`[stripe-webhook] Resolved stay dates from Beds24: ${resolvedArrival} → ${resolvedDeparture}`);
+            if (metadata.option && metadata.beds24_booking_id && (!resolvedArrival || !resolvedDeparture)) {
+                try {
+                    const beds24BookingRes = await fetch(
+                        `https://api.beds24.com/v2/bookings?id=${encodeURIComponent(metadata.beds24_booking_id)}`,
+                        { headers: { 'token': await getBeds24Token() } }
+                    );
+                    if (beds24BookingRes.ok) {
+                        const b24Data = await beds24BookingRes.json();
+                        const b24Booking = Array.isArray(b24Data) ? b24Data[0] : b24Data?.data?.[0];
+                        if (b24Booking) {
+                            resolvedArrival = b24Booking.arrival || resolvedArrival;
+                            resolvedDeparture = b24Booking.departure || resolvedDeparture;
+                        }
+                    }
+                } catch (err) {
+                    console.warn('[stripe-webhook] Could not resolve dates from Beds24:', err.message);
                 }
             }
-        } catch (err) {
-            console.warn('[stripe-webhook] Could not resolve stay dates from Beds24:', err.message);
-        }
-    }
 
-    // Prepare reservation data
-    const reservationData = {
-        stripe_session_id: session.id,
-        stripe_payment_intent_id: session.payment_intent,
-        amount: session.amount_total,
-        currency: session.currency,
-        status: 'paid',
-        customer_email: session.customer_details?.email || null,
-        customer_name: session.customer_details?.name || null,
-        property_name: metadata.property_name || metadata.property || null,
-        check_in_date: resolvedArrival,
-        check_out_date: resolvedDeparture,
-        guests: metadata.guests ? parseInt(metadata.guests) : null,
-        metadata: metadata,
-    };
+            const { error: insertError } = await supabase
+                .from('reservations')
+                .insert([{
+                    stripe_session_id: session.id,
+                    stripe_payment_intent_id: session.payment_intent,
+                    amount: session.amount_total,
+                    currency: session.currency,
+                    status: 'paid',
+                    customer_email: session.customer_details?.email || null,
+                    customer_name: session.customer_details?.name || null,
+                    property_name: metadata.property_name || metadata.property || null,
+                    check_in_date: resolvedArrival,
+                    check_out_date: resolvedDeparture,
+                    guests: metadata.guests ? parseInt(metadata.guests) : null,
+                    metadata: metadata
+                }]);
 
-    // Insert new reservation
-    let newReservationId = null;
-    if (isSupabaseConfigured()) {
-        const supabase = getSupabaseClient();
-        const { data: newReservation, error: insertError } = await supabase
-            .from('reservations')
-            .insert(reservationData)
-            .select()
-            .single();
-
-        if (insertError) {
-            // Check if it's a duplicate key error (race condition)
-            if (insertError.code === '23505') {
-                console.log('[stripe-webhook] ℹ️ Duplicate insert detected (race condition), reservation already exists');
-                return;
+            if (insertError) {
+                if (insertError.code === '23505') return;
+                console.error('[stripe-webhook] Error inserting reservation:', insertError);
+                throw insertError;
             }
-            console.error('[stripe-webhook] Error inserting reservation:', insertError);
-            throw insertError;
+            console.log('[stripe-webhook] ✅ New reservation created');
         }
-
-        newReservationId = newReservation.id;
-        console.log('[stripe-webhook] ✅ Reservation created successfully');
-        console.log('[stripe-webhook] Reservation ID:', newReservationId);
-    } else {
-        console.log('[stripe-webhook] ⚠️ Supabase not configured: skipping reservation DB insert.');
     }
 
-    // --- PHASE 2: Create booking in Beds24 ---
+    // --- PHASE 2: Notifications ---
     if (metadata.room_id) {
         try {
-            console.log('[stripe-webhook] Creating booking in Beds24 for room:', metadata.room_id);
-            const beds24BookingId = await createBeds24Booking({
+            await createBeds24Booking({
                 roomId: metadata.room_id,
                 arrival: metadata.check_in_date,
                 departure: metadata.check_out_date,
@@ -277,26 +258,14 @@ async function handleCheckoutSessionCompleted(session) {
                 price: session.amount_total,
                 notes: `Stripe Session: ${session.id} (Paid: ${session.amount_total} ${session.currency.toUpperCase()})`
             });
-
-            if (beds24BookingId) {
-                console.log('[stripe-webhook] ✅ Beds24 booking created:', beds24BookingId);
-
-                // Update reservation with Beds24 ID
-                // NOTE: We successfully created the booking in Beds24.
-                // We're omitting the Supabase update for beds24_booking_id because the column hasn't been added to the database schema yet.
-            }
         } catch (err) {
-            console.error('[stripe-webhook] ❌ Failed to create Beds24 booking:', err.message);
-            // We don't throw here to ensure we don't retry a successful payment
-            // but in production we might want to alert staff
+            console.error('[stripe-webhook] Failed to create Beds24 booking:', err.message);
         }
-    } else {
-        console.warn('[stripe-webhook] ⚠️ No room_id in metadata, skipping Beds24 booking');
     }
 
-    // Send confirmation emails to customer and admin
     await sendConfirmationEmail(session, metadata);
 }
+
 
 /**
  * Helper to create a booking in Beds24 v2 API

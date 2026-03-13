@@ -2867,7 +2867,9 @@ async function handleServiceClick(serviceId) {
                         property: guidebookData.propertyId || "lake-side-inn",
                         option: service.id.toString(),
                         option_name: service.name.en || service.name,
-                        beds24_booking_id: beds24BookingId // Beds24メッセージ送信に使用
+                        beds24_booking_id: beds24BookingId, // Beds24メッセージ送信に使用
+                        check_in_date: window.currentGuestBooking?.arrival || '',
+                        check_out_date: window.currentGuestBooking?.departure || ''
                     },
                     successUrl: successUrl,
                     cancelUrl: currentUrl
