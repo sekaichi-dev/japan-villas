@@ -244,8 +244,9 @@ async function handleCheckoutSessionCompleted(session) {
         }
     }
 
-    // --- PHASE 2: Notifications ---
+    // --- PHASE 2: Notifications & Beds24 Updates ---
     if (metadata.room_id) {
+        // 1. For a NEW room booking
         try {
             await createBeds24Booking({
                 roomId: metadata.room_id,
@@ -258,8 +259,25 @@ async function handleCheckoutSessionCompleted(session) {
                 price: session.amount_total,
                 notes: `Stripe Session: ${session.id} (Paid: ${session.amount_total} ${session.currency.toUpperCase()})`
             });
+            console.log('[stripe-webhook] ✅ Beds24 room booking created with price');
         } catch (err) {
             console.error('[stripe-webhook] Failed to create Beds24 booking:', err.message);
+        }
+    } else if (metadata.beds24_booking_id) {
+        // 2. For an OPTION purchase on an EXISTING booking
+        try {
+            const bookingId = parseInt(metadata.beds24_booking_id);
+            const itemName = metadata.option_name || (metadata.option ? `Option: ${metadata.option}` : 'Optional Service');
+            
+            await addBeds24InvoiceItem(bookingId, {
+                description: `Stripe: ${itemName}`,
+                amount: session.amount_total,
+                qty: 1,
+                status: 'total' // ensures it counts toward the total booking value
+            });
+            console.log(`[stripe-webhook] ✅ Invoice item added to Beds24 booking #${bookingId}`);
+        } catch (err) {
+            console.error('[stripe-webhook] Failed to add invoice item to Beds24:', err.message);
         }
     }
 
@@ -289,9 +307,16 @@ async function createBeds24Booking(bookingInfo) {
             firstName: bookingInfo.firstName,
             lastName: bookingInfo.lastName,
             email: bookingInfo.email,
-            price: bookingInfo.price,
+            price: bookingInfo.price, // Still sent at top level
             status: 'confirmed',
-            notes: bookingInfo.notes
+            notes: bookingInfo.notes,
+            // Include explicit invoice charge so LINE notifications etc. see the total correctly
+            invoice: [{
+                description: "Reservation Charge (Stripe)",
+                amount: bookingInfo.price,
+                qty: 1,
+                status: 'total'
+            }]
         }])
     });
 
@@ -308,6 +333,33 @@ async function createBeds24Booking(bookingInfo) {
 
     console.error('[createBeds24Booking] Unexpected response:', data);
     return null;
+}
+
+/**
+ * Add an invoice item to an existing Beds24 booking
+ * API v2: POST /v2/bookings/invoice
+ */
+async function addBeds24InvoiceItem(bookingId, invoiceItem) {
+    const token = await getBeds24Token();
+    const response = await fetch('https://api.beds24.com/v2/bookings/invoice', {
+        method: 'POST',
+        headers: {
+            'token': token.trim(),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify([{
+            bookingId: parseInt(bookingId),
+            invoice: [invoiceItem]
+        }])
+    });
+
+    if (!response.ok) {
+        const text = await response.text();
+        throw new Error(`Beds24 Invoice API Error (${response.status}): ${text}`);
+    }
+
+    return await response.json();
 }
 
 /**
