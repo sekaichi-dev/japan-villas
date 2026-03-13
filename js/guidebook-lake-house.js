@@ -152,7 +152,7 @@ const guidebookData = {
                                 <strong>Password:</strong> nojiriko</p>
                             </div>
                             <div class="wifi-image">
-                                <img data-img="tlh-wifi.png" alt="WiFi QR Code" class="guidebook-img">
+                                <img data-img="tlh-wifi.jpg" alt="WiFi QR Code" class="guidebook-img">
                             </div>
                         </div>`,
                     jp: `<div class="wifi-container">
@@ -162,7 +162,7 @@ const guidebookData = {
                                 <strong>パスワード:</strong> nojiriko</p>
                             </div>
                             <div class="wifi-image">
-                                <img data-img="tlh-wifi.png" alt="WiFi QRコード" class="guidebook-img">
+                                <img data-img="tlh-wifi.jpg" alt="WiFi QRコード" class="guidebook-img">
                             </div>
                         </div>`
                 }
@@ -283,16 +283,16 @@ const guidebookData = {
                         en: `<p>Below is the floor plan of the property.<br>Using this layout, we will introduce each room and the equipment available throughout the house.</p>
                              <div class="floor-plans" style="margin-top: 1rem;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">1st Floor Plan</p>
-                                 <img data-img="floor_plan_1f.png" alt="1st Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
+                                 <img data-img="floor_plan_1f.jpg" alt="1st Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">2nd Floor Plan</p>
-                                 <img data-img="floor_plan_2f.png" alt="2nd Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
+                                 <img data-img="floor_plan_2f.jpg" alt="2nd Floor Plan" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
                              </div>`,
                         jp: `<p>施設の平面図です。<br>このレイアウトに沿って、各部屋と設備をご紹介します。</p>
                              <div class="floor-plans" style="margin-top: 1rem;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">1階 平面図</p>
-                                 <img data-img="floor_plan_1f.png" alt="1階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
+                                 <img data-img="floor_plan_1f.jpg" alt="1階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 1rem; display: block;">
                                  <p style="margin-bottom: 0.25rem; font-weight: bold;">2階 平面図</p>
-                                 <img data-img="floor_plan_2f.png" alt="2階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
+                                 <img data-img="floor_plan_2f.jpg" alt="2階 平面図" class="living-image" loading="lazy" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 0.5rem; display: block;">
                              </div>`
                     }
                 },
@@ -454,35 +454,35 @@ const guidebookData = {
                     content: {
                         en: `<div class="kitchen-gallery">
                             <div class="gallery-item">
-                                <img data-img="kitchen_ih_stove.png" alt="IH Cooking Stove" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_ih_stove.jpg" alt="IH Cooking Stove" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>IH Cooking Stove</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_cookware.png" alt="Cooking Tools & Pots" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_cookware.jpg" alt="Cooking Tools & Pots" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Cooking Tools & Pots in Drawer</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_rice_cooker.png" alt="Rice Cooker" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_rice_cooker.jpg" alt="Rice Cooker" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Rice Cooker (ZOJIRUSHI)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_microwave.png" alt="Microwave" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_microwave.jpg" alt="Microwave" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Microwave (Panasonic)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_kettle.png" alt="Electric Kettle" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_kettle.jpg" alt="Electric Kettle" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Electric Kettle (T-fal)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_ih_panel.png" alt="IH Battery Cover" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_ih_panel.jpg" alt="IH Battery Cover" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Battery Replacement - Open this cover</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_batteries.png" alt="Spare Batteries" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_batteries.jpg" alt="Spare Batteries" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Spare Batteries Location</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_carbonated_server.png" alt="Sparkling Water Server" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_carbonated_server.jpg" alt="Sparkling Water Server" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Unlimited Sparkling Water Server - Pull the lever</strong></p>
                             </div>
                             <div class="gallery-item">
@@ -490,57 +490,57 @@ const guidebookData = {
                                 <p class="gallery-caption"><strong>Refrigerator (Panasonic 470L)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_ice_maker.png" alt="HOSHIZAKI Ice Maker" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_ice_maker.jpg" alt="HOSHIZAKI Ice Maker" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>HOSHIZAKI Ice Maker (Commercial)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_tableware_bowls.png" alt="Tableware Bowls" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_tableware_bowls.jpg" alt="Tableware Bowls" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Tableware (Bowls & Deep Plates)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_tableware_plates.png" alt="Tableware Plates" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_tableware_plates.jpg" alt="Tableware Plates" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Tableware (Assorted Plates)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_pans_pots.png" alt="Pots and Pans" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_pans_pots.jpg" alt="Pots and Pans" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Pots, Pans & Strainer</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_hotplate_zojirushi.png" alt="Hot Plate" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_hotplate_zojirushi.jpg" alt="Hot Plate" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>Hot Plate (ZOJIRUSHI)</strong></p>
                             </div>
                         </div>`,
                         jp: `<div class="kitchen-gallery">
                             <div class="gallery-item">
-                                <img data-img="kitchen_ih_stove.png" alt="IHコンロ" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_ih_stove.jpg" alt="IHコンロ" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>IHコンロ</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_cookware.png" alt="調理器具・鍋" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_cookware.jpg" alt="調理器具・鍋" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>調理器具・鍋（引き出し内）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_rice_cooker.png" alt="炊飯器" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_rice_cooker.jpg" alt="炊飯器" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>炊飯器（象印）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_microwave.png" alt="電子レンジ" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_microwave.jpg" alt="電子レンジ" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>電子レンジ (Panasonic)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_kettle.png" alt="電気ケトル" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_kettle.jpg" alt="電気ケトル" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>電気ケトル (T-fal)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_ih_panel.png" alt="IHコンロ電池カバー" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_ih_panel.jpg" alt="IHコンロ電池カバー" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>電池交換 - このカバーを開けてください</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_batteries.png" alt="予備電池" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_batteries.jpg" alt="予備電池" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>予備電池の保管場所</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_carbonated_server.png" alt="炭酸サーバー" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_carbonated_server.jpg" alt="炭酸サーバー" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>炭酸サーバー使い放題 - レバーを引いてください</strong></p>
                             </div>
                             <div class="gallery-item">
@@ -548,23 +548,23 @@ const guidebookData = {
                                 <p class="gallery-caption"><strong>冷蔵庫 (Panasonic 470L)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_ice_maker.png" alt="HOSHIZAKI製氷機" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_ice_maker.jpg" alt="HOSHIZAKI製氷機" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>HOSHIZAKI製氷機 (業務用)</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_tableware_bowls.png" alt="食器類（木製ボウル・深皿）" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_tableware_bowls.jpg" alt="食器類（木製ボウル・深皿）" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>食器類（木製ボウル・深皿）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_tableware_plates.png" alt="食器類（平皿）" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_tableware_plates.jpg" alt="食器類（平皿）" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>食器類（取り皿・平皿各種）</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_pans_pots.png" alt="鍋・フライパン" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_pans_pots.jpg" alt="鍋・フライパン" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>鍋・フライパン・ザル</strong></p>
                             </div>
                             <div class="gallery-item">
-                                <img data-img="kitchen_hotplate_zojirushi.png" alt="ホットプレート" class="guidebook-img" loading="lazy">
+                                <img data-img="kitchen_hotplate_zojirushi.jpg" alt="ホットプレート" class="guidebook-img" loading="lazy">
                                 <p class="gallery-caption"><strong>ホットプレート（象印）</strong></p>
                             </div>
                         </div>`
@@ -644,15 +644,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img data-img="karaoke_power_1.png" alt="Power Button 1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="karaoke_power_1.jpg" alt="Power Button 1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン①<br>Power Button 1</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="karaoke_power_2.png" alt="Power Button 2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="karaoke_power_2.jpg" alt="Power Button 2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン②<br>Power Button 2</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="karaoke_power_3.png" alt="Power Button 3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="karaoke_power_3.jpg" alt="Power Button 3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン③<br>Power Button 3</p>
                             </div>
                         </div>
@@ -668,15 +668,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img data-img="karaoke_power_1.png" alt="電源ボタン1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="karaoke_power_1.jpg" alt="電源ボタン1" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン①<br>Power Button 1</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="karaoke_power_2.png" alt="電源ボタン2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="karaoke_power_2.jpg" alt="電源ボタン2" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン②<br>Power Button 2</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="karaoke_power_3.png" alt="電源ボタン3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="karaoke_power_3.jpg" alt="電源ボタン3" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン③<br>Power Button 3</p>
                             </div>
                         </div>
@@ -697,15 +697,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img data-img="washing_new_1.png" alt="Step 1 Power" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="washing_new_1.jpg" alt="Step 1 Power" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Step 1: Power</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="washing_new_2_en.png" alt="Step 2 Select Course" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="washing_new_2_en.jpg" alt="Step 2 Select Course" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Step 2: Select Mode</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="washing_new_3.png" alt="Step 3 Start" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="washing_new_3.jpg" alt="Step 3 Start" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Step 3: Start</p>
                             </div>
                         </div>
@@ -715,15 +715,15 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img data-img="washing_new_1.png" alt="手順1 電源" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="washing_new_1.jpg" alt="手順1 電源" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">手順① 電源</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="washing_new_2_jp.png" alt="手順2 コース選択" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="washing_new_2_jp.jpg" alt="手順2 コース選択" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">手順② コース選択</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="washing_new_3.png" alt="手順3 スタート" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="washing_new_3.jpg" alt="手順3 スタート" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">手順③ スタート</p>
                             </div>
                         </div>
@@ -740,11 +740,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img data-img="water_heater_1.png" alt="Kitchen Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="water_heater_1.jpg" alt="Kitchen Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Control Panel (Kitchen)</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="water_heater_2.png" alt="Bathroom Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="water_heater_2.jpg" alt="Bathroom Control Panel" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Control Panel (Bathroom)</p>
                             </div>
                         </div>
@@ -755,11 +755,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin: 1rem 0;">
                             <div style="text-align: center;">
-                                <img data-img="water_heater_1.png" alt="キッチン給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="water_heater_1.jpg" alt="キッチン給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">キッチン給湯パネル</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="water_heater_2.png" alt="浴室給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="water_heater_2.jpg" alt="浴室給湯パネル" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">浴室給湯パネル</p>
                             </div>
                         </div>
@@ -773,7 +773,7 @@ const guidebookData = {
                     content: {
                         en: `<p>・Equipped with Jet Bath<br>
                         ・Bathroom equipped with 5-level dimming light</p>
-                        <img data-img="bath_water_heater_guide_en.png" alt="Bath Operation Guide" class="living-image" loading="lazy" style="width: 100%; border-radius: 6px; margin-top: 1rem;">`,
+                        <img data-img="bath_water_heater_guide_en.jpg" alt="Bath Operation Guide" class="living-image" loading="lazy" style="width: 100%; border-radius: 6px; margin-top: 1rem;">`,
                         jp: `<p>・ジェットバス付き浴槽完備<br>
                         ・浴室内 5段階調光完備</p>`
                     }
@@ -786,11 +786,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 320px; margin: 0.5rem auto 1rem auto;">
                             <div style="text-align: center;">
-                                <img data-img="jacuzzi_1_panel_loc.png" alt="Switch Panel Location" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="jacuzzi_1_panel_loc.jpg" alt="Switch Panel Location" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Location</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="jacuzzi_2_panel_on_v2.png" alt="Switch Panel ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="jacuzzi_2_panel_on_v2.jpg" alt="Switch Panel ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Switch ON</p>
                             </div>
                         </div>
@@ -798,7 +798,7 @@ const guidebookData = {
                         <p>2. Turn on the Jacuzzi power button.</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img data-img="jacuzzi_3_main_power.png" alt="Jacuzzi Main Power" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img data-img="jacuzzi_3_main_power.jpg" alt="Jacuzzi Main Power" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Power Button</p>
                         </div>
 
@@ -809,7 +809,7 @@ const guidebookData = {
                         <p><strong>Draining:</strong> Open Drain Valves 1 & 2. Drain completely after use.</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img data-img="jacuzzi_6_drain2.png" alt="Drain Valve 2" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img data-img="jacuzzi_6_drain2.jpg" alt="Drain Valve 2" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">Drain Valve 2</p>
                         </div>
 
@@ -823,11 +823,11 @@ const guidebookData = {
                         
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 320px; margin: 0.5rem auto 1rem auto;">
                             <div style="text-align: center;">
-                                <img data-img="jacuzzi_1_panel_loc.png" alt="パネル場所" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="jacuzzi_1_panel_loc.jpg" alt="パネル場所" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">場所</p>
                             </div>
                             <div style="text-align: center;">
-                                <img data-img="jacuzzi_2_panel_on_v2.png" alt="電源ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
+                                <img data-img="jacuzzi_2_panel_on_v2.jpg" alt="電源ON" style="width: 100%; height: auto; border-radius: 6px; aspect-ratio: 1/1; object-fit: cover;">
                                 <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ON</p>
                             </div>
                         </div>
@@ -835,7 +835,7 @@ const guidebookData = {
                         <p>② ジャグジー本体の電源を入れる。</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img data-img="jacuzzi_3_main_power.png" alt="ジャグジー電源ボタン" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img data-img="jacuzzi_3_main_power.jpg" alt="ジャグジー電源ボタン" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">電源ボタン</p>
                         </div>
 
@@ -846,7 +846,7 @@ const guidebookData = {
                         <p><strong>&lt;排水する&gt;</strong> 排水弁①と排水弁②両方開けてください。※使用後は完全に排水をお願いします</p>
 
                         <div style="text-align: center; margin: 0.5rem 0 1.5rem 0;">
-                            <img data-img="jacuzzi_6_drain2.png" alt="排水弁2" style="max-width: 100%; width: 200px; border-radius: 6px;">
+                            <img data-img="jacuzzi_6_drain2.jpg" alt="排水弁2" style="max-width: 100%; width: 200px; border-radius: 6px;">
                             <p style="font-size: 0.75rem; color: #a0a0a0; margin-top: 4px; line-height: 1.2;">排水弁②</p>
                         </div>
 
@@ -898,7 +898,7 @@ const guidebookData = {
                         en: `<p>Lighter, grill net, and tongs are stored on the upper kitchen shelf.<br>Please refer to the video below for usage instructions.</p>
                         
                         <div style="margin-bottom: 1.5rem;">
-                            <img data-img="bbq_shelf.png" alt="BBQ Tools Shelf" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
+                            <img data-img="bbq_shelf.jpg" alt="BBQ Tools Shelf" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/P64SbH-GK3I?si=z_PJTQ1tvNLq4oeN" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ Watch the video</a>
                             </div>
@@ -906,7 +906,7 @@ const guidebookData = {
                         jp: `<p>BBQに使用するチャッカマン・網・トングは、キッチン上部の棚にまとめて置いてあります。<br>ご利用方法については、下記の動画よりご確認ください。</p>
                         
                         <div style="margin-bottom: 1.5rem;">
-                            <img data-img="bbq_shelf.png" alt="キッチンの棚" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
+                            <img data-img="bbq_shelf.jpg" alt="キッチンの棚" style="width: 85%; height: auto; border-radius: 6px; display: block; margin: 0 auto 1rem;">
                             <div style="text-align: center;">
                                 <a href="https://youtu.be/wdCWkTrMGVM?si=5DMPr1CN-Xbc3pBE" target="_blank" style="font-size: 1rem; font-weight: bold; color: #fff; text-decoration: underline; text-underline-offset: 4px;">▶ 動画はこちら</a>
                             </div>
@@ -1024,12 +1024,12 @@ const guidebookData = {
                         <strong>Trash Location:</strong> Please place sorted trash in the designated area shown in the red frame below.<br>
                         <strong>At Checkout:</strong> Please gather all trash and leave it near the designated area in the living room.<br>
                         <strong>Long-term Guests:</strong> If you need trash collection, please contact us via the booking site.</p>
-                        <img data-img="trashbox.png" alt="Trash Box" class="guidebook-image" loading="lazy">`,
+                        <img data-img="trashbox.jpg" alt="Trash Box" class="guidebook-image" loading="lazy">`,
                         jp: `<p><strong>分別：</strong>可燃ゴミ、不燃ゴミ、缶、ペットボトル、瓶<br>
                         <strong>ゴミの置き場所：</strong>画像の赤枠で示された場所にまとめて置いてください。<br>
                         <strong>チェックアウト時：</strong>ゴミはすべてリビングの赤枠付近に一箇所にまとめてください。<br>
                         <strong>長期滞在のお客様：</strong>ゴミの回収が必要な際は、予約サイトのメッセージよりご連絡ください。</p>
-                        <img data-img="trashbox.png" alt="ゴミ箱" class="guidebook-image" loading="lazy">`
+                        <img data-img="trashbox.jpg" alt="ゴミ箱" class="guidebook-image" loading="lazy">`
                     }
                 }
             ]
@@ -1710,7 +1710,7 @@ const guidebookData = {
                                                                             <li>④ 忘れ物はありませんか?(充電ケーブル/冷蔵庫内/傘/洋服 等)</li>
                                                                             <li>⑤ 備品の紛失、破損等があった場合はご連絡をお願い致します</li>
                                                                             <li>⑥ ゴミは分別して画像のようにリビングルームに置いてください<br>
-                                                                                <img data-img="trashbox.png" alt="ゴミ箱" loading="lazy" style="width: 100%; max-width: 600px; display: block; margin: 16px auto 0; border-radius: 12px; height: auto;">
+                                                                                <img data-img="trashbox.jpg" alt="ゴミ箱" loading="lazy" style="width: 100%; max-width: 600px; display: block; margin: 16px auto 0; border-radius: 12px; height: auto;">
                                                                             </li>
                                                                         </ul>`,
                     }

@@ -250,7 +250,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-1')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-1" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_1.png" alt="WiFi QR 1" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_1.jpg" alt="WiFi QR 1" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 2 -->
@@ -263,7 +263,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-2')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-2" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_2.png" alt="WiFi QR 2" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_2.jpg" alt="WiFi QR 2" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 3 -->
@@ -276,7 +276,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-3')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-3" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_3.png" alt="WiFi QR 3" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_3.jpg" alt="WiFi QR 3" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 4 -->
@@ -289,7 +289,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-4')">Show QR</button>
                                 </div>
                                 <div id="wifi-qr-4" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_4.png" alt="WiFi QR 4" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_4.jpg" alt="WiFi QR 4" class="wifi-qr-img">
                                 </div>
                             </div>
                         </div>`,
@@ -362,7 +362,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-1-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-1-jp" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_1.png" alt="WiFi QR 1" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_1.jpg" alt="WiFi QR 1" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 2 -->
@@ -375,7 +375,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-2-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-2-jp" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_2.png" alt="WiFi QR 2" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_2.jpg" alt="WiFi QR 2" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 3 -->
@@ -388,7 +388,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-3-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-3-jp" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_3.png" alt="WiFi QR 3" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_3.jpg" alt="WiFi QR 3" class="wifi-qr-img">
                                 </div>
                             </div>
                             <!-- 4 -->
@@ -401,7 +401,7 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                     <button class="wifi-qr-btn" onclick="toggleWifiQr('wifi-qr-4-jp')">こちら（QR）</button>
                                 </div>
                                 <div id="wifi-qr-4-jp" class="wifi-qr-panel">
-                                    <img data-img="wifi_qr_4.png" alt="WiFi QR 4" class="wifi-qr-img">
+                                    <img data-img="wifi_qr_4.jpg" alt="WiFi QR 4" class="wifi-qr-img">
                                 </div>
                             </div>
                         </div>`
@@ -1943,12 +1943,12 @@ If the staff is absent, please return the key to the key box and leave us a mess
                                                                         <p>1. Find the tripped breaker (near the entrance) and push it all the way DOWN.</p>
                                                                         <details class="living-accordion" style="margin-bottom: 1rem;">
                                                                             <summary>View Image</summary>
-                                                                            <img data-img="breaker_step_2.png" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                            <img data-img="breaker_step_2.jpg" alt="Step 1: Push Down" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                         </details>
                                                                             <p>2. Then push it all the way UP to "ON".<br>👉 It should click into place.</p>
                                                                             <details class="living-accordion">
                                                                                 <summary>View Image</summary>
-                                                                                <img data-img="breaker_step_1.png" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
+                                                                                <img data-img="breaker_step_1.jpg" alt="Step 2: Push Up" class="living-image" loading="lazy" style="width: 60%; display: block; margin: 1rem auto 0;">
                                                                             </details>`,
                         jp: `<p>電気が突然使えなくなった場合、ブレーカーが落ちている可能性があります。<br>以下の手順で復旧してください。</p>
                                                                                 <p>① 玄関付近にあるブレーカーのうち、落ちているものを一度いちばん下まで下げてください。<br>※ 下の画像①をご参照ください。</p>

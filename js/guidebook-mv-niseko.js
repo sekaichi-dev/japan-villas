@@ -143,7 +143,7 @@ const guidebookData = {
                                 <strong>Password:</strong> mountainv</p>
                             </div>
                             <div class="wifi-image">
-                                <img data-img="wifi_qr.png" alt="WiFi QR Code" class="guidebook-img">
+                                <img data-img="wifi_qr.jpg" alt="WiFi QR Code" class="guidebook-img">
                             </div>
                         </div>`,
                     jp: `<div class="wifi-container">
@@ -152,7 +152,7 @@ const guidebookData = {
                                 <strong>パスワード:</strong> mountainv</p>
                             </div>
                             <div class="wifi-image">
-                                <img data-img="wifi_qr.png" alt="WiFi QRコード" class="guidebook-img">
+                                <img data-img="wifi_qr.jpg" alt="WiFi QRコード" class="guidebook-img">
                             </div>
                         </div>`
                 }
