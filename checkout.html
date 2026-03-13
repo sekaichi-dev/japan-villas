@@ -521,25 +521,6 @@
             // Populate checkout UI with booking data
             populateCheckoutUI(bookingData);
 
-            // --- HIDDEN TEST MODE TRIGGER ---
-            // Triple click the main title "Confirm and pay" to activate ¥100 test mode
-            const title = document.querySelector('.checkout-title');
-            if (title) {
-                let clickCount = 0;
-                title.style.cursor = 'pointer';
-                title.title = 'Triple-click to test';
-                title.addEventListener('click', () => {
-                    clickCount++;
-                    if (clickCount >= 3) {
-                        const url = new URL(window.location.href);
-                        url.searchParams.set('test', '100');
-                        window.location.href = url.href;
-                    }
-                    // Reset counter if clicks are too slow (spaced by > 1s)
-                    setTimeout(() => { clickCount = 0; }, 1000);
-                });
-            }
-
             // Initialize Stripe Checkout button
             const checkoutBtn = document.getElementById('btn-checkout');
             if (checkoutBtn) {
@@ -666,20 +647,12 @@
 
             const breakdownContainer = document.getElementById('breakdown-lines');
             if (bookingData && bookingData.prices) {
-                const urlParams = new URLSearchParams(window.location.search);
-                const isTest = urlParams.get('test') === '100';
-
-                let { perNight, nights, total } = bookingData.prices;
-                
-                if (isTest) {
-                    total = 100;
-                    perNight = 100 / nights; // Mock per night price for display
-                }
+                const { perNight, nights, total } = bookingData.prices;
 
                 breakdownContainer.innerHTML = `
-                    <div class="price-row" ${isTest ? 'style="color: #ff6b6b; font-weight: bold;"' : ''}>
-                        <span>${isTest ? '[TEST MODE] ' : ''}¥${perNight.toLocaleString()} x ${nights} nights</span>
-                        <span>¥${(isTest ? 100 : (perNight * nights)).toLocaleString()}</span>
+                    <div class="price-row">
+                        <span>¥${perNight.toLocaleString()} x ${nights} nights</span>
+                        <span>¥${(perNight * nights).toLocaleString()}</span>
                     </div>
                     <div class="price-row">
                         <span>Taxes & fees</span>
@@ -730,13 +703,9 @@
             try {
                 const stripe = Stripe(STRIPE_PUBLISHABLE_KEY);
                 
-                // Allow 100 JPY test if URL param 'test=100' is present
-                const urlParams = new URLSearchParams(window.location.search);
-                const isTest = urlParams.get('test') === '100';
-                
                 const paymentData = {
-                    productName: (isTest ? '[TEST] ' : '') + `${bookingData.name} - ${bookingData.dateRangeString}`,
-                    amount: isTest ? 100 : bookingData.prices.total,
+                    productName: `${bookingData.name} - ${bookingData.dateRangeString}`,
+                    amount: bookingData.prices.total,
                     currency: 'jpy',
                     metadata: {
                         property_id: bookingData.propertyId,
@@ -744,8 +713,7 @@
                         check_in_date: bookingData.dates.start,
                         check_out_date: bookingData.dates.end,
                         guests: bookingData.adults,
-                        room_id: bookingData.roomId || '',
-                        is_test: isTest ? 'true' : 'false'
+                        room_id: bookingData.roomId || ''
                     }
                 };
 
